@@ -1,11 +1,11 @@
 import { State, Store } from '@sambego/storybook-state'
 import React from 'react'
 import { NavigationItem } from '../../types'
-import { BottomNavLayout, Props } from './BottomNavLayout'
+import { TopNavLayout, Props } from './TopNavLayout'
 
 export default {
-  title: 'Elements/BottomNavLayout',
-  component: BottomNavLayout,
+  title: 'Elements/TopNavLayout',
+  component: TopNavLayout,
 }
 
 const store = new Store({
@@ -18,7 +18,7 @@ const handleNavigationItemClicked = (
 
 export const defaultState = (): React.FunctionComponentElement<Props> => (
   <State store={store}>
-    <BottomNavLayout
+    <TopNavLayout
       handleNavigationItemClicked={handleNavigationItemClicked}
       selectedNavigationItem={store.get('selectedNavigationItem')}
     >
@@ -41,7 +41,7 @@ export const defaultState = (): React.FunctionComponentElement<Props> => (
       <p>Child 16</p>
       <p>Child 17</p>
       <p>Child 18</p>
-    </BottomNavLayout>
+    </TopNavLayout>
   </State>
 )
 

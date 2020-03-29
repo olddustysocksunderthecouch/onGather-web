@@ -1,7 +1,7 @@
 import React, { Dispatch } from 'react'
 import { connect } from 'react-redux'
 import { AnyAction } from 'redux'
-import BottomNavLayout from '../../../common/modules/BottomNav/containers/BottomNavLayout'
+import BottomNavLayout from '../../../common/modules/TopNav/containers/TopNavLayout'
 import { ConnectedReduxProps } from '../../../common/redux/types'
 import { Home } from '../components/Home'
 

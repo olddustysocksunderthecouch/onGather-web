@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import { NavigationItem } from '../../types'
-import { BottomNav } from '../BottomNav'
-import styles from './BottomNavLayout.module.scss'
+import { TopNav } from '../TopNav'
+import styles from './TopNavLayout.module.scss'
 
 export interface Props {
   children?: ReactNode
@@ -9,18 +9,18 @@ export interface Props {
   selectedNavigationItem: NavigationItem
 }
 
-export const BottomNavLayout: React.FunctionComponent<Props> = ({
+export const TopNavLayout: React.FunctionComponent<Props> = ({
   children,
   handleNavigationItemClicked,
   selectedNavigationItem,
 }) => (
   <div className={styles.container}>
-    <div className={styles.children}>{children}</div>
-    <div className={styles.bottomNav}>
-      <BottomNav
+    <div className={styles.TopNav}>
+      <TopNav
         handleNavigationItemClicked={handleNavigationItemClicked}
         selectedNavigationItem={selectedNavigationItem}
       />
     </div>
+    <div className={styles.children}>{children}</div>
   </div>
 )

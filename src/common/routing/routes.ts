@@ -1,9 +1,9 @@
 import { AppActions } from '../../modules/App/types'
-import { BottomNavActions } from '../modules/BottomNav/types'
+import { TopNavActions } from '../modules/TopNav/types'
 
 export const actionRouteMap = {
   [AppActions.StartedOnboarding]: '/onboarding',
   [AppActions.Onboarded]: '/',
-  [BottomNavActions.NavigateToSearch]: '/home',
-  [BottomNavActions.NavigateToProfile]: '/select-template',
+  [TopNavActions.NavigateToSearch]: '/home',
+  [TopNavActions.NavigateToProfile]: '/select-template',
 }

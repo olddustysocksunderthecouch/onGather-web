@@ -1,11 +1,11 @@
 import { State, Store } from '@sambego/storybook-state'
 import React from 'react'
 import { NavigationItem } from '../../types'
-import { BottomNav, Props } from './BottomNav'
+import { TopNav, Props } from './TopNav'
 
 export default {
-  title: 'Elements/BottomNav',
-  component: BottomNav,
+  title: 'Elements/TopNav',
+  component: TopNav,
 }
 
 const store = new Store({
@@ -18,7 +18,7 @@ const handleNavigationItemClicked = (
 
 export const defaultState = (): React.FunctionComponentElement<Props> => (
   <State store={store}>
-    <BottomNav
+    <TopNav
       handleNavigationItemClicked={handleNavigationItemClicked}
       selectedNavigationItem={store.get('selectedNavigationItem')}
     />

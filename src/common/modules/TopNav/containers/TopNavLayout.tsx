@@ -2,10 +2,10 @@ import React, { Dispatch, ReactNode } from 'react'
 import { connect } from 'react-redux'
 import { AnyAction } from 'redux'
 import { RootState } from '../../../redux/types'
-import { navigateToProfile, navigateToSearch } from '../BottomNav.actions'
-import { BottomNavLayout } from '../components/BottomNavLayout'
+import { navigateToProfile, navigateToSearch } from '../TopNav.actions'
+import { TopNavLayout } from '../components/TopNavLayout'
 import { NavigationItem } from '../types'
-import { selectors as BottomNavLayoutSelectors } from './../index'
+import { selectors as TopNavLayoutSelectors } from '../index'
 
 export interface Props {
   children: ReactNode
@@ -18,21 +18,21 @@ const navigationItemToActionMap: { [key in NavigationItem]: AnyAction } = {
   [NavigationItem.Profile]: navigateToProfile(),
 }
 
-const BottomNavLayoutContainer = ({
+const TopNavLayoutContainer = ({
   children,
   handleNavigationItemClicked,
   selectedNavigationItem,
 }: Props): React.FunctionComponentElement<Props> => (
-  <BottomNavLayout
+  <TopNavLayout
     selectedNavigationItem={selectedNavigationItem!}
     handleNavigationItemClicked={handleNavigationItemClicked!}
   >
     {children}
-  </BottomNavLayout>
+  </TopNavLayout>
 )
 
 const mapStateToProps = (state: RootState): any => ({
-  selectedNavigationItem: BottomNavLayoutSelectors.selectActiveNavigationItem(
+  selectedNavigationItem: TopNavLayoutSelectors.selectActiveNavigationItem(
     state,
   ),
 })
@@ -45,4 +45,4 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): any => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(BottomNavLayoutContainer)
+)(TopNavLayoutContainer)

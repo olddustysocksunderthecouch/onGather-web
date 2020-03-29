@@ -1,4 +1,4 @@
-import * as SUT from './BottomNav.selectors'
+import * as SUT from './TopNav.selectors'
 import { NavigationItem } from './types'
 
 describe('Bottom Nav Selectors', () => {

@@ -1,13 +1,13 @@
 import {
-  BottomNavActions,
+  TopNavActions,
   NavigateToProfileAction,
   NavigateToSearchAction,
 } from './types'
 
 export const navigateToSearch = (): NavigateToSearchAction => ({
-  type: BottomNavActions.NavigateToSearch,
+  type: TopNavActions.NavigateToSearch,
 })
 
 export const navigateToProfile = (): NavigateToProfileAction => ({
-  type: BottomNavActions.NavigateToProfile,
+  type: TopNavActions.NavigateToProfile,
 })

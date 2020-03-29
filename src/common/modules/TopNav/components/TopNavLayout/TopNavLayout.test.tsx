@@ -3,7 +3,7 @@ import React from 'react'
 import { unmountComponentAtNode } from 'react-dom'
 import { create } from 'react-test-renderer'
 import { NavigationItem } from '../../types'
-import { BottomNavLayout } from './BottomNavLayout'
+import { TopNavLayout } from './TopNavLayout'
 
 describe('Onboarding Component', () => {
   let container: any = null
@@ -21,20 +21,20 @@ describe('Onboarding Component', () => {
   it('renders correctly', () => {
     // when we create the component then it should render correctly
     const instance = create(
-      <BottomNavLayout
+      <TopNavLayout
         handleNavigationItemClicked={(): void => undefined}
         selectedNavigationItem={NavigationItem.Search}
       />,
     )
-    expect(instance.root.type).toBe(BottomNavLayout)
+    expect(instance.root.type).toBe(TopNavLayout)
   })
 
   it('calls the handleNavigationItemClicked handler when each navigation item is clicked', () => {
-    // given ... we have an BottomNavLayout component
+    // given ... we have an TopNavLayout component
     // ... we have a handleNavigationItemClicked function
     const handleNavigationItemClicked = jest.fn()
     const { getByTestId } = render(
-      <BottomNavLayout
+      <TopNavLayout
         handleNavigationItemClicked={handleNavigationItemClicked}
         selectedNavigationItem={NavigationItem.Search}
       />,
