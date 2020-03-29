@@ -1,0 +1,13 @@
+{
+  "build": "build the project",
+  "lint": "run linter",
+  "lint:fix": "run linter and fix all errors",
+  "npm:audit": "audit all npm dependencies for critical vulnerabilities",
+  "reset": "remove all node modules and reinstall them",
+  "start": "serve the project",
+  "storybook:build": "build storybook as a static site for export",
+  "storybook:start": "start storybook",
+  "test": "run all unit tests",
+  "test:coverage": "run all unit tests with coverage",
+  "test:watch": "run all unit tests in watch mode"
+}

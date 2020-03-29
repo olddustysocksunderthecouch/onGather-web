@@ -1,0 +1,21 @@
+@import './common/styles/fonts';
+
+body {
+  @include text-style('bold', 'title-large');
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  > .container {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    > div:first-of-type {
+      flex-grow: 1;
+      width: 100vw;
+    }
+  }
+  padding: 0;
+}

@@ -1,0 +1,111 @@
+{
+  "name": "on-gather",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "help": "package-json-help.js",
+    "lint": "eslint './src/**/*.{ts,tsx}'",
+    "lint:fix": "eslint --fix './src/**/*.{ts,tsx}'",
+    "npm:audit": "npm run _npm:audit:spec",
+    "storybook:build": "build-storybook -s public",
+    "start:storybook": "start-storybook -p 9009 -s public",
+    "reset": "npx rimraf node_modules && npm i",
+    "test": "react-scripts test  --watchAll=false",
+    "test:coverage": "npm test -- --coverage",
+    "test:watch": "react-scripts test --env=jsdom --watchAll",
+    "_eject": "react-scripts eject",
+    "_git:pre-commit": "npm run lint && npm run test",
+    "_git:pre-push": "",
+    "_npm:audit:spec": "audit-ci --critical",
+    "_test:ci": "CI=true react-scripts test"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "connected-react-router": "^6.8.0",
+    "history": "^4.10.1",
+    "immutable": "^3.8.2",
+    "memoize-one": "^5.1.1",
+    "ramda": "^0.27.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.0",
+    "react-redux": "^7.2.0",
+    "react-router": "^5.1.2",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.1",
+    "react-window": "^1.8.5",
+    "react-window-infinite-loader": "^1.0.5",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-observable": "^1.2.0",
+    "redux-persist": "^6.0.0",
+    "reselect": "^4.0.0",
+    "seamless-immutable": "^7.1.4",
+    "typescript": "^3.8.3"
+  },
+  "devDependencies": {
+    "@commitlint/config-conventional": "^8.3.4",
+    "@sambego/storybook-state": "^2.0.1",
+    "@storybook/addon-actions": "^5.3.17",
+    "@storybook/addon-console": "^1.2.1",
+    "@storybook/addon-links": "^5.3.17",
+    "@storybook/addon-viewport": "^5.3.17",
+    "@storybook/addons": "^5.3.17",
+    "@storybook/preset-create-react-app": "^2.1.0",
+    "@storybook/react": "^5.3.17",
+    "@testing-library/dom": "^7.1.0",
+    "@testing-library/jest-dom": "^5.1.1",
+    "@testing-library/react": "^10.0.1",
+    "@testing-library/user-event": "^10.0.0",
+    "@types/jest": "^25.1.4",
+    "@types/node": "^13.9.3",
+    "@types/react": "^16.9.23",
+    "@types/react-dom": "^16.9.5",
+    "@types/react-redux": "^7.1.7",
+    "@types/react-router": "^5.1.4",
+    "@types/react-router-dom": "^5.1.3",
+    "@types/react-test-renderer": "^16.9.2",
+    "@types/react-window": "^1.8.1",
+    "@types/react-window-infinite-loader": "^1.0.2",
+    "@typescript-eslint/eslint-plugin": "^2.23.0",
+    "@typescript-eslint/parser": "^2.24.0",
+    "audit-ci": "^2.5.1",
+    "commitlint": "^8.3.5",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-config-react": "^1.1.7",
+    "eslint-plugin-flowtype": "^4.6.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^4.2.3",
+    "js-parametrize": "0.0.2",
+    "node-sass": "^4.13.1",
+    "npm-run-all": "^4.1.5",
+    "package-json-help": "0.0.9",
+    "prettier": "^2.0.1",
+    "react-test-renderer": "^16.13.0",
+    "rxjs-marbles": "^5.0.5"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "npm run _git:pre-commit",
+      "pre-push": "npm run _git:pre-push"
+    }
+  }
+}

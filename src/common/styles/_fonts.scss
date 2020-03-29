@@ -1,0 +1,56 @@
+@font-face {
+  font-family: 'Roboto';
+  src: local('Roboto Light'), local('Roboto-Light'),
+    url('./fonts/roboto/Roboto-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: local('Roboto'), local('Roboto-Regular'),
+      url('./fonts/roboto/Roboto-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+@font-face {
+  font-family: 'Roboto';
+  src: local('Roboto Medium'), local('Roboto-Medium'),
+    url('./fonts/roboto/Roboto-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: local('Roboto Bold'), local('Roboto-Bold'),
+    url('./fonts/roboto/Roboto-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+$font-weights: (
+  'light': 300,
+  'regular': 400,
+  'medium': 500,
+  'bold': 700,
+);
+
+$font-sizes: (
+  'meta': 10px,
+  'body-small': 13px,
+  'body': 15px,
+  'title': 17px,
+  'title-large': 20px,
+);
+
+$font-families: (
+  'font-main': 'Roboto',
+);
+
+@mixin text-style($weight, $size) {
+  font-family: 'Roboto';
+  font-weight: map-get($font-weights, $weight);
+  font-size: map-get($font-sizes, $size);
+}

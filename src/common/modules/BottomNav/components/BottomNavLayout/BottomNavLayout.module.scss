@@ -1,0 +1,19 @@
+@import './../../../../styles/variables';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.children {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  flex-grow: 1;
+}
+
+.bottomNav {
+  background-color: $color-dark-gray;
+}
