@@ -13,7 +13,7 @@ export const Home: React.FunctionComponent<Props> = ({ dummyText }) => (
     <section className={styles.homeSection}>
       <img
         src={homeBackgroundImage}
-        alt="home background image"
+        alt="home background"
         className={styles.homeBackgroundImage}
       />
       <h1 className={styles.homePageTitle}>
@@ -25,7 +25,7 @@ export const Home: React.FunctionComponent<Props> = ({ dummyText }) => (
     <section className={styles.homeSection2}>
       <img
         src={homeBackgroundImage2}
-        alt="follow icon"
+        alt="home background 2"
         className={styles.homeBackgroundImage2}
       />
       <h1 className={styles.homePageTitle2}>

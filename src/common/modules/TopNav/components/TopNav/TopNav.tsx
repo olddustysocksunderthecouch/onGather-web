@@ -1,7 +1,6 @@
 import classes from 'classnames'
 import React from 'react'
 import { NavigationItem } from '../../types'
-import onGatherLogo from './../../assets/onGatherLogo.svg'
 import styles from './TopNav.module.scss'
 
 export interface Props {
