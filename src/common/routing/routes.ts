@@ -4,6 +4,6 @@ import { TopNavActions } from '../modules/TopNav/types'
 export const actionRouteMap = {
   [AppActions.StartedOnboarding]: '/onboarding',
   [AppActions.Onboarded]: '/',
-  [TopNavActions.NavigateToSearch]: '/home',
-  [TopNavActions.NavigateToProfile]: '/select-template',
+  [TopNavActions.NavigateToCreateTemplate]: '/Create-Template',
+  [TopNavActions.NavigateToHome]: '/',
 }

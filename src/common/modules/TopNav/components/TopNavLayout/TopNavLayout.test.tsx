@@ -23,7 +23,8 @@ describe('Onboarding Component', () => {
     const instance = create(
       <TopNavLayout
         handleNavigationItemClicked={(): void => undefined}
-        selectedNavigationItem={NavigationItem.Search}
+        selectedNavigationItem={NavigationItem.Create}
+        handleHomeClicked={(): void => undefined}
       />,
     )
     expect(instance.root.type).toBe(TopNavLayout)
@@ -35,8 +36,9 @@ describe('Onboarding Component', () => {
     const handleNavigationItemClicked = jest.fn()
     const { getByTestId } = render(
       <TopNavLayout
+        handleHomeClicked={(): void => undefined}
         handleNavigationItemClicked={handleNavigationItemClicked}
-        selectedNavigationItem={NavigationItem.Search}
+        selectedNavigationItem={NavigationItem.Create}
       />,
     )
     fireEvent.click(getByTestId('searchIconContainer'))

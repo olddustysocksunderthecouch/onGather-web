@@ -4,11 +4,7 @@ import homeBackgroundImage from './../../assets/homeBackgroundImage.svg'
 import homeBackgroundImage2 from './../../assets/homeBackgroundImage2.png'
 import styles from './Home.module.scss'
 
-export interface Props {
-  dummyText: string
-}
-
-export const Home: React.FunctionComponent<Props> = ({ dummyText }) => (
+export const Home: React.FunctionComponent = () => (
   <div className={styles.container}>
     <section className={styles.homeSection}>
       <img

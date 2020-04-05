@@ -5,6 +5,8 @@ import {
   InitAppSuccessAction,
   OnboardedAction,
   StartedOnboardingAction,
+  SignInGoogleAction,
+  SignInGoogleSuccessAction,
 } from './types'
 
 export const initApp = (): InitAppAction => ({
@@ -25,4 +27,12 @@ export const startedOnboarding = (): StartedOnboardingAction => ({
 
 export const onboarded = (): OnboardedAction => ({
   type: AppActions.Onboarded,
+})
+
+export const signInGoogle = (): SignInGoogleAction => ({
+  type: AppActions.SignInGoogle,
+})
+
+export const signInGoogleSuccess = (): SignInGoogleSuccessAction => ({
+  type: AppActions.SignInGoogleSuccess,
 })

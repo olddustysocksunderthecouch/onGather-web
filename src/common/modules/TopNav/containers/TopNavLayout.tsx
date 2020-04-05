@@ -1,29 +1,32 @@
 import React, { Dispatch, ReactNode } from 'react'
 import { connect } from 'react-redux'
 import { AnyAction } from 'redux'
+import { signInGoogle } from '../../../../modules/App/App.actions'
 import { RootState } from '../../../redux/types'
-import { navigateToProfile, navigateToSearch } from '../TopNav.actions'
 import { TopNavLayout } from '../components/TopNavLayout'
+import { navigateToCreateTemplate, navigateToHome } from '../TopNav.actions'
 import { NavigationItem } from '../types'
-import { selectors as TopNavLayoutSelectors } from '../index'
 
 export interface Props {
   children: ReactNode
+  handleHomeClicked?: () => void
   handleNavigationItemClicked?: (navigationItem: NavigationItem) => void
   selectedNavigationItem?: NavigationItem
 }
 
 const navigationItemToActionMap: { [key in NavigationItem]: AnyAction } = {
-  [NavigationItem.Search]: navigateToSearch(),
-  [NavigationItem.Profile]: navigateToProfile(),
+  [NavigationItem.Create]: navigateToCreateTemplate(),
+  [NavigationItem.SignIn]: signInGoogle(),
 }
 
 const TopNavLayoutContainer = ({
   children,
+  handleHomeClicked,
   handleNavigationItemClicked,
   selectedNavigationItem,
 }: Props): React.FunctionComponentElement<Props> => (
   <TopNavLayout
+    handleHomeClicked={handleHomeClicked}
     selectedNavigationItem={selectedNavigationItem!}
     handleNavigationItemClicked={handleNavigationItemClicked!}
   >
@@ -32,14 +35,15 @@ const TopNavLayoutContainer = ({
 )
 
 const mapStateToProps = (state: RootState): any => ({
-  selectedNavigationItem: TopNavLayoutSelectors.selectActiveNavigationItem(
-    state,
-  ),
+  // selectedNavigationItem: TopNavLayoutSelectors.selectActiveNavigationItem(
+  //   state,
+  // ),
 })
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): any => ({
   handleNavigationItemClicked: (navigationItemClicked: NavigationItem): void =>
     dispatch(navigationItemToActionMap[navigationItemClicked]),
+  handleHomeClicked: (): void => dispatch(navigateToHome()),
 })
 
 export default connect(

@@ -9,7 +9,7 @@ export default {
 }
 
 const store = new Store({
-  selectedNavigationItem: NavigationItem.Profile,
+  selectedNavigationItem: NavigationItem.Create,
 })
 
 const handleNavigationItemClicked = (
@@ -19,6 +19,7 @@ const handleNavigationItemClicked = (
 export const defaultState = (): React.FunctionComponentElement<Props> => (
   <State store={store}>
     <TopNav
+      handleHomeClicked={(): void => undefined}
       handleNavigationItemClicked={handleNavigationItemClicked}
       selectedNavigationItem={store.get('selectedNavigationItem')}
     />

@@ -1,13 +1,13 @@
 import {
+  NavigateToCreateTemplateAction,
+  NavigateToHomeAction,
   TopNavActions,
-  NavigateToProfileAction,
-  NavigateToSearchAction,
 } from './types'
 
-export const navigateToSearch = (): NavigateToSearchAction => ({
-  type: TopNavActions.NavigateToSearch,
+export const navigateToHome = (): NavigateToHomeAction => ({
+  type: TopNavActions.NavigateToHome,
 })
 
-export const navigateToProfile = (): NavigateToProfileAction => ({
-  type: TopNavActions.NavigateToProfile,
+export const navigateToCreateTemplate = (): NavigateToCreateTemplateAction => ({
+  type: TopNavActions.NavigateToCreateTemplate,
 })

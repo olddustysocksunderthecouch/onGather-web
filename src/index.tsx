@@ -28,7 +28,7 @@ ReactDOM.render(
           />
           <Route
             exact
-            path="/create-template"
+            path="/Create-Template"
             component={CreateTemplateContainer}
           />
           <Route render={(): JSX.Element => <div>404 Not Found</div>} />

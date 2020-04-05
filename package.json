@@ -24,6 +24,7 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "connected-react-router": "^6.8.0",
+    "firebase": "^7.13.2",
     "history": "^4.10.1",
     "immutable": "^3.8.2",
     "memoize-one": "^5.1.1",

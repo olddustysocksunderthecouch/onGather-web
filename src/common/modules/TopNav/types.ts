@@ -1,19 +1,19 @@
 export enum NavigationItem {
-  Search = 'search',
-  Profile = 'profile',
+  Create = 'create',
+  SignIn = 'signIn',
 }
 
 export enum TopNavActions {
-  NavigateToSearch = 'moments/TopNav/NAVIGATE_TO_SEARCH',
-  NavigateToProfile = 'moments/TopNav/NAVIGATE_TO_PROFILE',
+  NavigateToCreateTemplate = 'moments/TopNav/NAVIGATE_TO_CREATE_TEMPLATE',
+  NavigateToHome = 'moments/TopNav/NAVIGATE_TO_HOME',
 }
 
-export interface NavigateToSearchAction {
-  type: typeof TopNavActions.NavigateToSearch
+export interface NavigateToHomeAction {
+  type: typeof TopNavActions.NavigateToHome
 }
 
-export interface NavigateToProfileAction {
-  type: typeof TopNavActions.NavigateToProfile
+export interface NavigateToCreateTemplateAction {
+  type: typeof TopNavActions.NavigateToCreateTemplate
 }
 
-export type TopNavActionTypes = NavigateToSearchAction | NavigateToProfileAction
+export type TopNavActionTypes = NavigateToCreateTemplateAction

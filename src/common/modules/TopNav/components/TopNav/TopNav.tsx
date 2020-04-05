@@ -4,11 +4,13 @@ import { NavigationItem } from '../../types'
 import styles from './TopNav.module.scss'
 
 export interface Props {
+  handleHomeClicked?: () => void
   handleNavigationItemClicked: (navigationItemClicked: NavigationItem) => void
   selectedNavigationItem: NavigationItem
 }
 
 export const TopNav: React.FunctionComponent<Props> = ({
+  handleHomeClicked,
   handleNavigationItemClicked,
   selectedNavigationItem,
 }) => {
@@ -21,21 +23,23 @@ export const TopNav: React.FunctionComponent<Props> = ({
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.onGatherLogo}>onGather</h1>
+      <h1 className={styles.onGatherLogo} onClick={handleHomeClicked}>
+        onGather
+      </h1>
       <div className={styles.callsToAction}>
         <div
-          className={classes(topNavItemStyle(NavigationItem.Search))}
+          className={classes(topNavItemStyle(NavigationItem.Create))}
           onClick={(): void =>
-            handleNavigationItemClicked(NavigationItem.Search)
+            handleNavigationItemClicked(NavigationItem.Create)
           }
           data-testid="searchIconContainer"
         >
           <p>Create</p>
         </div>
         <div
-          className={classes(topNavItemStyle(NavigationItem.Profile))}
+          className={classes(topNavItemStyle(NavigationItem.SignIn))}
           onClick={(): void =>
-            handleNavigationItemClicked(NavigationItem.Profile)
+            handleNavigationItemClicked(NavigationItem.SignIn)
           }
           data-testid="profileIconContainer"
         >

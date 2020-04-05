@@ -11,6 +11,8 @@ export enum AppActions {
   PersistRehydrate = 'persist/REHYDRATE',
   Onboarded = 'moments/App/ONBOARDED',
   StartedOnboarding = 'moments/App/STARTED_ONBOARDING',
+  SignInGoogle = 'moments/App/SIGN_IN_GOOGLE',
+  SignInGoogleSuccess = 'moments/App/SIGN_IN_GOOGLE_SUCCESS',
 }
 
 export interface InitAppAction {
@@ -37,9 +39,19 @@ export interface OnboardedAction {
   type: typeof AppActions.Onboarded
 }
 
+export interface SignInGoogleAction {
+  type: typeof AppActions.SignInGoogle
+}
+
+export interface SignInGoogleSuccessAction {
+  type: typeof AppActions.SignInGoogleSuccess
+}
+
 export type AppActionTypes =
   | InitAppAction
   | InitAppSuccessAction
   | InitAppFailureAction
   | OnboardedAction
   | StartedOnboardingAction
+  | SignInGoogleAction
+  | SignInGoogleSuccessAction
