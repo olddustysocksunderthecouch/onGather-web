@@ -7,8 +7,9 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { configureStoreAndPersistor } from './common/redux'
 import { history } from './common/redux/store'
 import './index.scss'
+import { CreateTemplateContainer } from './modules/CreateTemplate'
 import { HomeContainer } from './modules/Home'
-import { SelectTemplateContainer } from './modules/SelectTemplate'
+import { PrivacyPolicyContainer } from './modules/PrivacyPolicy'
 import * as serviceWorker from './serviceWorker'
 
 const storeAndPersistor = configureStoreAndPersistor()
@@ -20,7 +21,16 @@ ReactDOM.render(
         <Switch>
           <Route exact path="/" component={HomeContainer} />
           <Route exact path="/Home" component={HomeContainer} />
-          <Route exact path="/search" component={SelectTemplateContainer} />
+          <Route
+            exact
+            path="/Privacy-Policy"
+            component={PrivacyPolicyContainer}
+          />
+          <Route
+            exact
+            path="/create-template"
+            component={CreateTemplateContainer}
+          />
           <Route render={(): JSX.Element => <div>404 Not Found</div>} />
         </Switch>
       </ConnectedRouter>

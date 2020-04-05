@@ -1,3 +1,3 @@
-import SelectTemplate from './SelectTemplate'
+import SelectTemplate from './CreateTemplate'
 
 export { SelectTemplate }

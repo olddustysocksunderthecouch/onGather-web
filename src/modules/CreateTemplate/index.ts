@@ -1,3 +1,3 @@
-import SelectTemplateContainer from './containers/SelectTemplate'
+import CreateTemplateContainer from './containers/CreateTemplate'
 
-export { SelectTemplateContainer }
+export { CreateTemplateContainer }
