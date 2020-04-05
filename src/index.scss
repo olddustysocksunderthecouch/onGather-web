@@ -1,7 +1,7 @@
 @import './common/styles/fonts';
 
 body {
-  @include text-style('bold', 'title-large');
+  @include text-style('font-main', 'regular', 'body');
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

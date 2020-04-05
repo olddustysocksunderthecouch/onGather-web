@@ -1,21 +1,39 @@
 @import './../../../../styles/variables';
 @import './../../../../styles/fonts';
+
 .container {
   display: flex;
   flex-direction: row;
   flex-grow: 1;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
-  box-shadow: 5px 5px 16px rgba(194, 194, 194, 0.74);
+  box-shadow: 3px 3px 6px rgba(207, 207, 207, 0.2);
+  position: sticky;
+}
+.callsToAction {
+  display: flex;
+  flex-direction: row;
 }
 
-.buttonContainer {
+.onGatherLogo {
+  margin-left: 4rem;
+  line-height: 0;
+  padding: 0;
+  margin-top: 16px;
+  @include text-style('font-title', 'regular', 'title-l');
+
+  @media (min-width: $bigMobile) {
+    @include text-style('font-title', 'regular', 'title-xl');
+  }
+}
+
+.topNavItem {
   display: flex;
   justify-content: center;
   align-content: center;
-  padding: 16px 16px;
+  padding: 16px 8px;
 
-  @include text-style('medium', 'body-small');
+  @include text-style('font-main', 'regular', 'body-s');
 
   &:active {
     opacity: 90%;
@@ -24,11 +42,7 @@
     padding: 0;
     margin-bottom: 0;
   }
-}
-
-.iconSelected p {
-  color: $color-mid-gray;
-}
-.iconUnselected p {
-  color: $color-mid-gray;
+  &.topNavItemSelected {
+    color: $color-mid-gray;
+  }
 }

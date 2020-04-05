@@ -1,32 +1,24 @@
 @font-face {
-  font-family: 'Roboto';
-  src: local('Roboto Light'), local('Roboto-Light'),
-    url('./fonts/roboto/Roboto-Light.ttf') format('truetype');
-  font-weight: 300;
+  font-family: 'Raleway';
+  src: local('Raleway Regular'), local('Raleway-Regular'),
+    url('./fonts/Raleway/Raleway-Regular.ttf') format('truetype');
+  font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-    font-family: 'Roboto';
-    src: local('Roboto'), local('Roboto-Regular'),
-      url('./fonts/roboto/Roboto-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-  }
-
-@font-face {
-  font-family: 'Roboto';
-  src: local('Roboto Medium'), local('Roboto-Medium'),
-    url('./fonts/roboto/Roboto-Medium.ttf') format('truetype');
-  font-weight: 500;
+  font-family: 'Raleway';
+  src: local('Raleway SemiBold'), local('Raleway-SemiBold'),
+    url('./fonts/Raleway/Raleway-SemiBold.ttf') format('truetype');
+  font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Roboto';
-  src: local('Roboto Bold'), local('Roboto-Bold'),
-    url('./fonts/roboto/Roboto-Bold.ttf') format('truetype');
-  font-weight: bold;
+  font-family: 'Yeseva_One';
+  src: local('YesevaOne Regular'), local('YesevaOne-Regular'),
+    url('./fonts/Yeseva_One/YesevaOne-Regular.ttf') format('truetype');
+  font-weight: normal;
   font-style: normal;
 }
 
@@ -39,18 +31,20 @@ $font-weights: (
 
 $font-sizes: (
   'meta': 10px,
-  'body-small': 13px,
-  'body': 15px,
-  'title': 17px,
-  'title-large': 20px,
+  'body-s': 14px,
+  'body': 18px,
+  'title-l': 24px,
+  'title-xl': 32px,
 );
 
 $font-families: (
-  'font-main': 'Roboto',
+  'font-title': 'Yeseva_One',
+  'font-main': 'Raleway',
+  'font-other': 'Open_Sans'
 );
 
-@mixin text-style($weight, $size) {
-  font-family: 'Roboto';
+@mixin text-style($font-family, $weight, $size) {
+  font-family: map-get($font-families, $font-family);
   font-weight: map-get($font-weights, $weight);
   font-size: map-get($font-sizes, $size);
 }
