@@ -5,11 +5,17 @@
   display: flex;
   flex-direction: column;
   height: 600px;
+  @media (min-width: $tablet) {
+    text-align: center;
+    // justify-self: center;
+  }
 }
 .sectionTitle {
+  margin-left: 24px;
   @include text-style('font-title', 'regular', 'title-l');
-  @media (min-width: $desktop) {
+  @media (min-width: $tablet) {
     @include text-style('font-title', 'regular', 'title-xxl');
+    margin-left: 0;
   }
 }
 
@@ -17,6 +23,11 @@
   list-style: none;
   padding: 18px 24px;
 
+  @media (min-width: $tablet) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
   li {
     display: flex;
     align-items: center;
@@ -25,6 +36,15 @@
     border: 1px solid $color-black;
     border-radius: 14px;
     padding: 4px;
+
+    @media (min-width: $tablet) {
+      width: 196px;
+      height: 192px;
+      flex-direction: column;
+      margin-right: 12px;
+      align-items: flex-start;
+    }
+
     p {
       margin-bottom: 0;
     }
@@ -32,10 +52,18 @@
       @include text-style('font-other', 'regular', 'body-s');
       color: $color-darker-gray;
       margin-left: 24px;
+      @media (min-width: $tablet) {
+        margin-top: 24px;
+      }
     }
     .listItemContent {
       @include text-style('font-main', 'regular', 'body-s');
       margin-left: 24px;
+      text-align: left;
+      @media (min-width: $tablet) {
+        @include text-style('font-main', 'regular', 'body');
+        margin-top: 8px;
+      }
     }
   }
 }

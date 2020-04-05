@@ -10,7 +10,7 @@
     "lint:fix": "eslint --fix './src/**/*.{ts,tsx}'",
     "npm:audit": "npm run _npm:audit:spec",
     "storybook:build": "build-storybook -s public",
-    "start:storybook": "start-storybook -p 9009 -s public",
+    "storybook:start": "start-storybook -p 9009 -s public",
     "reset": "npx rimraf node_modules && npm i",
     "test": "react-scripts test  --watchAll=false",
     "test:coverage": "npm test -- --coverage",
