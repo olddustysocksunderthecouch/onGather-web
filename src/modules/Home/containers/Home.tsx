@@ -2,18 +2,11 @@ import React, { Dispatch } from 'react'
 import { connect } from 'react-redux'
 import { AnyAction } from 'redux'
 import BottomNavLayout from '../../../common/modules/TopNav/containers/TopNavLayout'
-import { ConnectedReduxProps } from '../../../common/redux/types'
 import { Home } from '../components/Home'
 
-interface Props extends ConnectedReduxProps<AnyAction> {
-  dummyText: string
-}
-
-const HomeContainer = ({
-  dummyText = 'Home Container',
-}: Props): React.FunctionComponentElement<Props> => (
+const HomeContainer = (): React.ReactElement => (
   <BottomNavLayout>
-    <Home dummyText={dummyText} />
+    <Home />
   </BottomNavLayout>
 )
 

@@ -5,7 +5,7 @@ import { Home } from './Home'
 describe('Home Component', () => {
   it('renders correctly', () => {
     // when we create the component then it should render correctly
-    const instance = create(<Home dummyText={'This is the Home Component'} />)
+    const instance = create(<Home />)
     expect(instance.root.type).toBe(Home)
   })
 })
