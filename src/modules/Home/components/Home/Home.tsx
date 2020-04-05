@@ -34,6 +34,6 @@ export const Home: React.FunctionComponent<Props> = ({ dummyText }) => (
         <br /> to bring everyone together
       </h1>
     </section>
-    <HowItWorks dummyText={'also some text'} />
+    <HowItWorks />
   </div>
 )

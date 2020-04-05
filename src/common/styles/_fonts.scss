@@ -16,9 +16,17 @@
 
 @font-face {
   font-family: 'Yeseva_One';
-  src: local('YesevaOne Regular'), local('YesevaOne-Regular'),
+  src: local('Yeseva One Regular'), local('YesevaOne-Regular'),
     url('./fonts/Yeseva_One/YesevaOne-Regular.ttf') format('truetype');
   font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Open_Sans';
+  src: local('Open Sans Light'), local('OpenSans-Light'),
+    url('./fonts/Open_Sans/OpenSans-Light.ttf') format('truetype');
+  font-weight: 300;
   font-style: normal;
 }
 
@@ -35,6 +43,7 @@ $font-sizes: (
   'body': 18px,
   'title-l': 24px,
   'title-xl': 32px,
+  'title-xxl': 36px,
 );
 
 $font-families: (
