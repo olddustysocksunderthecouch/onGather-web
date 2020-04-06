@@ -10,11 +10,11 @@
   }
 
   @media (min-width: $desktop) {
-    margin: 28px 384px;
+    margin: 56px 192px;
   }
 
   @media (min-width: $bigScreen) {
-    margin: 28px 448px;
+    margin: 56px 448px;
   }
 
 
@@ -29,7 +29,7 @@
     margin-top: 24px;
     @include text-style('font-main', 'regular', 'body');
     @media (min-width: $tablet) {
-      
+
       @include text-style('font-main', 'regular', 'title-xl');
     }
   }
