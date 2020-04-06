@@ -10,10 +10,6 @@
   box-shadow: 3px 3px 6px rgba(207, 207, 207, 0.2);
   position: sticky;
 }
-.callsToAction {
-  display: flex;
-  flex-direction: row;
-}
 
 .onGatherLogo {
   margin-left: 4rem;
@@ -30,6 +26,12 @@
   &:active {
     opacity: 70%;
   }
+}
+
+.callsToAction {
+  display: flex;
+  flex-direction: row;
+  margin-right: 4rem;
 }
 
 .topNavItem {
