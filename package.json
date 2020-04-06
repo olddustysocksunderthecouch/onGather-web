@@ -22,6 +22,7 @@
     "_test:ci": "CI=true react-scripts test"
   },
   "dependencies": {
+    "@material-ui/core": "^4.9.9",
     "classnames": "^2.2.6",
     "connected-react-router": "^6.8.0",
     "firebase": "^7.13.2",

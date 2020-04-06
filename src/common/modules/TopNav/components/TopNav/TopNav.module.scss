@@ -12,14 +12,14 @@
 }
 
 .onGatherLogo {
-  margin-left: 4rem;
+  margin-left: 24px;
   line-height: 0;
   padding: 0;
-  margin-top: 16px;
   cursor: pointer;
   @include text-style('font-title', 'regular', 'title-l');
 
-  @media (min-width: $bigMobile) {
+  @media (min-width: $desktop) {
+    margin-left: 4rem;
     @include text-style('font-title', 'regular', 'title-xl');
   }
 
@@ -31,7 +31,10 @@
 .callsToAction {
   display: flex;
   flex-direction: row;
-  margin-right: 4rem;
+  margin-right: 24px;
+  @media (min-width: $desktop) {
+    margin-left: 4rem;
+  }
 }
 
 .topNavItem {

@@ -1,6 +1,58 @@
-.container {
+@import 'src/common/styles/fonts';
+@import 'src/common/styles/variables';
+
+.createTemplate {
   display: flex;
-  flex: 1;
-  justify-content: center;
-  align-content: center;
+  flex-direction: column;
+  margin: 28px 24px;
+  @media (min-width: $tablet) {
+    margin: 28px 128px;
+  }
+
+  @media (min-width: $desktop) {
+    margin: 28px 384px;
+  }
+
+  @media (min-width: $bigScreen) {
+    margin: 28px 448px;
+  }
+
+
+
+  h1 {
+    @include text-style('font-title', 'regular', 'title-l');
+    @media (min-width: $tablet) {
+      @include text-style('font-title', 'regular', 'title-xxl');
+    }
+  }
+  h2 {
+    margin-top: 24px;
+    @include text-style('font-main', 'regular', 'body');
+    @media (min-width: $tablet) {
+      
+      @include text-style('font-main', 'regular', 'title-xl');
+    }
+  }
+
+  p,
+  button {
+    @include text-style('font-main', 'regular', 'body-s');
+
+    @media (min-width: $tablet) {
+      @include text-style('font-main', 'regular', 'body');
+    }
+  }
+  p {
+    margin-top: 8px;
+  }
+}
+.MuiTextField-root {
+  margin-top: 18px;
+}
+
+.uploadButton {
+  border: $color-light-gray solid 1px;
+  padding: 16px 24px;
+  border-radius: 8px;
+  margin-top: 16px;
 }

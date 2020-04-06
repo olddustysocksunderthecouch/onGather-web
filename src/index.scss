@@ -1,4 +1,6 @@
 @import './common/styles/fonts';
+@import './common/styles/reset';
+
 
 body {
   @include text-style('font-main', 'regular', 'body');
