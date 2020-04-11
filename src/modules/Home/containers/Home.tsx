@@ -1,17 +1,25 @@
 import React, { Dispatch } from 'react'
 import { connect } from 'react-redux'
 import { AnyAction } from 'redux'
-import BottomNavLayout from '../../../common/modules/TopNav/containers/TopNavLayout'
+import TopNavLayout from '../../../common/modules/TopNav/containers/TopNavLayout'
+import { TopNavType } from '../../../common/modules/TopNav/types'
+import { ConnectedReduxProps } from '../../../common/redux/types'
 import { Home } from '../components/Home'
 
-const HomeContainer = (): React.ReactElement => (
-  <BottomNavLayout>
-    <Home />
-  </BottomNavLayout>
+interface Props extends ConnectedReduxProps<AnyAction> {
+  handleClick: () => void
+}
+
+const HomeContainer = ({
+  handleClick,
+}: Props): React.FunctionComponentElement<Props> => (
+  <TopNavLayout topNavType={TopNavType.Home}>
+    <Home handleClick={handleClick} />
+  </TopNavLayout>
 )
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): any => ({
-  handleGotItClicked: (): void => undefined,
+  handleClick: (): void => undefined,
 })
 
 export default connect(null, mapDispatchToProps)(HomeContainer)

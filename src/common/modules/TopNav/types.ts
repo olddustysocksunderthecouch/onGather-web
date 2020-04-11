@@ -1,6 +1,15 @@
 export enum NavigationItem {
-  Create = 'create',
-  SignIn = 'signIn',
+  Create = 'Create',
+  SignIn = 'Sign In',
+  SignOut = 'Sign Out',
+  SaveDraftTemplate = 'Save Draft',
+  PublishTemplate = 'Publish',
+}
+
+export enum TopNavType {
+  Home = 'home',
+  HomeSignedIn = 'home',
+  CreateTemplate = 'createTemplate',
 }
 
 export enum TopNavActions {

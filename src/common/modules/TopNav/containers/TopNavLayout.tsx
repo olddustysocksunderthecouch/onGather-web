@@ -1,15 +1,23 @@
 import React, { Dispatch, ReactNode } from 'react'
 import { connect } from 'react-redux'
 import { AnyAction } from 'redux'
-import { signInGoogle } from '../../../../modules/App/App.actions'
+import {
+  signInGoogle,
+  signOutGoogle,
+} from '../../../../modules/App/App.actions'
+import {
+  publishTemplate,
+  saveDraftTemplate,
+} from '../../../../modules/CreateTemplate/CreateTemplate.actions'
 import { RootState } from '../../../redux/types'
 import { TopNavLayout } from '../components/TopNavLayout'
 import { navigateToCreateTemplate, navigateToHome } from '../TopNav.actions'
-import { NavigationItem } from '../types'
+import { NavigationItem, TopNavType } from '../types'
 
 export interface Props {
   children: ReactNode
   handleHomeClicked?: () => void
+  topNavType: TopNavType
   handleNavigationItemClicked?: (navigationItem: NavigationItem) => void
   selectedNavigationItem?: NavigationItem
 }
@@ -17,15 +25,20 @@ export interface Props {
 const navigationItemToActionMap: { [key in NavigationItem]: AnyAction } = {
   [NavigationItem.Create]: navigateToCreateTemplate(),
   [NavigationItem.SignIn]: signInGoogle(),
+  [NavigationItem.SignOut]: signOutGoogle(),
+  [NavigationItem.SaveDraftTemplate]: saveDraftTemplate(),
+  [NavigationItem.PublishTemplate]: publishTemplate(),
 }
 
 const TopNavLayoutContainer = ({
   children,
+  topNavType,
   handleHomeClicked,
   handleNavigationItemClicked,
   selectedNavigationItem,
 }: Props): React.FunctionComponentElement<Props> => (
   <TopNavLayout
+    topNavType={topNavType}
     handleHomeClicked={handleHomeClicked}
     selectedNavigationItem={selectedNavigationItem!}
     handleNavigationItemClicked={handleNavigationItemClicked!}

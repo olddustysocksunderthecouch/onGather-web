@@ -2,6 +2,7 @@ import React, { Dispatch } from 'react'
 import { connect } from 'react-redux'
 import { AnyAction } from 'redux'
 import BottomNavLayout from '../../../common/modules/TopNav/containers/TopNavLayout'
+import { TopNavType } from '../../../common/modules/TopNav/types'
 import { ConnectedReduxProps } from '../../../common/redux/types'
 import { CreateTemplate } from '../components/CreateTemplate'
 
@@ -12,7 +13,7 @@ interface Props extends ConnectedReduxProps<AnyAction> {
 const CreateTemplateContainer = ({
   dummyText = 'CreateTemplate Container',
 }: Props): React.FunctionComponentElement<Props> => (
-  <BottomNavLayout>
+  <BottomNavLayout topNavType={TopNavType.CreateTemplate}>
     <CreateTemplate dummyText={dummyText} />
   </BottomNavLayout>
 )

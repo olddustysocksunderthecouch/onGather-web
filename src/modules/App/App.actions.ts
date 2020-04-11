@@ -4,9 +4,11 @@ import {
   InitAppFailureAction,
   InitAppSuccessAction,
   OnboardedAction,
-  StartedOnboardingAction,
   SignInGoogleAction,
   SignInGoogleSuccessAction,
+  StartedOnboardingAction,
+  SignOutGoogleAction,
+  SignOutGoogleSuccessAction,
 } from './types'
 
 export const initApp = (): InitAppAction => ({
@@ -35,4 +37,12 @@ export const signInGoogle = (): SignInGoogleAction => ({
 
 export const signInGoogleSuccess = (): SignInGoogleSuccessAction => ({
   type: AppActions.SignInGoogleSuccess,
+})
+
+export const signOutGoogle = (): SignOutGoogleAction => ({
+  type: AppActions.SignOutGoogle,
+})
+
+export const signOutGoogleSuccess = (): SignOutGoogleSuccessAction => ({
+  type: AppActions.SignOutGoogleSuccess,
 })

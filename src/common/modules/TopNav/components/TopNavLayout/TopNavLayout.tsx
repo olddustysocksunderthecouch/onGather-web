@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react'
-import { NavigationItem } from '../../types'
+import { NavigationItem, TopNavType } from '../../types'
 import { TopNav } from '../TopNav'
 import styles from './TopNavLayout.module.scss'
 
@@ -8,10 +8,12 @@ export interface Props {
   handleHomeClicked?: () => void
   handleNavigationItemClicked: (navigationItemClicked: NavigationItem) => void
   selectedNavigationItem: NavigationItem
+  topNavType: TopNavType
 }
 
 export const TopNavLayout: React.FunctionComponent<Props> = ({
   children,
+  topNavType,
   handleHomeClicked,
   handleNavigationItemClicked,
   selectedNavigationItem,
@@ -19,6 +21,7 @@ export const TopNavLayout: React.FunctionComponent<Props> = ({
   <div className={styles.container}>
     <div className={styles.TopNav}>
       <TopNav
+        topNavType={topNavType}
         handleHomeClicked={handleHomeClicked}
         handleNavigationItemClicked={handleNavigationItemClicked}
         selectedNavigationItem={selectedNavigationItem}

@@ -1,18 +1,28 @@
 import classes from 'classnames'
 import React from 'react'
-import { NavigationItem } from '../../types'
+import { NavigationItem, TopNavType } from '../../types'
 import styles from './TopNav.module.scss'
 
 export interface Props {
   handleHomeClicked?: () => void
   handleNavigationItemClicked: (navigationItemClicked: NavigationItem) => void
   selectedNavigationItem: NavigationItem
+  topNavType: TopNavType
+}
+
+const navigationItemsForTopNavType = {
+  home: [NavigationItem.Create, NavigationItem.SignIn, NavigationItem.SignOut],
+  createTemplate: [
+    NavigationItem.SaveDraftTemplate,
+    NavigationItem.PublishTemplate,
+  ],
 }
 
 export const TopNav: React.FunctionComponent<Props> = ({
   handleHomeClicked,
   handleNavigationItemClicked,
   selectedNavigationItem,
+  topNavType,
 }) => {
   const topNavItemStyle = (navigationItem: NavigationItem): object => {
     return {
@@ -20,31 +30,27 @@ export const TopNav: React.FunctionComponent<Props> = ({
       [styles.topNavItemSelected]: selectedNavigationItem === navigationItem,
     }
   }
-
   return (
     <div className={styles.container}>
       <h1 className={styles.onGatherLogo} onClick={handleHomeClicked}>
         onGather
       </h1>
       <div className={styles.callsToAction}>
-        <div
-          className={classes(topNavItemStyle(NavigationItem.Create))}
-          onClick={(): void =>
-            handleNavigationItemClicked(NavigationItem.Create)
-          }
-          data-testid="searchIconContainer"
-        >
-          <p>Create</p>
-        </div>
-        <div
-          className={classes(topNavItemStyle(NavigationItem.SignIn))}
-          onClick={(): void =>
-            handleNavigationItemClicked(NavigationItem.SignIn)
-          }
-          data-testid="profileIconContainer"
-        >
-          <p>Login</p>
-        </div>
+        {navigationItemsForTopNavType[topNavType].map(
+          (navigationItem: NavigationItem) => {
+            return (
+              <div
+                className={classes(topNavItemStyle(navigationItem))}
+                onClick={(): void =>
+                  handleNavigationItemClicked(navigationItem)
+                }
+                key={navigationItem}
+              >
+                <p>{navigationItem}</p>
+              </div>
+            )
+          },
+        )}
       </div>
     </div>
   )

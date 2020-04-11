@@ -4,7 +4,11 @@ import homeBackgroundImage from './../../assets/homeBackgroundImage.svg'
 import homeBackgroundImage2 from './../../assets/homeBackgroundImage2.png'
 import styles from './Home.module.scss'
 
-export const Home: React.FunctionComponent = () => (
+export interface Props {
+  handleClick: () => void
+}
+
+export const Home: React.FunctionComponent<Props> = ({ handleClick }) => (
   <div className={styles.container}>
     <section className={styles.homeSection}>
       <img

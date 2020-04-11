@@ -1,21 +1,24 @@
 import { CallHistoryMethodAction } from 'connected-react-router'
 // Firebase App (the core Firebase SDK) is always required and must be listed first
-import * as firebase from 'firebase/app'
+import * as firebase from 'firebase'
 import { AnyAction } from 'redux'
 import { ActionsObservable, ofType } from 'redux-observable'
 import { RehydrateAction } from 'redux-persist'
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
-import { initApp, initAppSuccess, signInGoogleSuccess } from './App.actions'
+import {
+  initApp,
+  initAppSuccess,
+  signInGoogleSuccess,
+  signOutGoogleSuccess,
+} from './App.actions'
 import {
   AppActions,
   AppActionTypes,
   InitAppSuccessAction,
   SignInGoogleSuccessAction,
+  SignOutGoogleSuccessAction,
 } from './types'
-// ---------------------------------
-// init app
-// ---------------------------------
 
 export const startInitAppEpic$ = (
   action$: ActionsObservable<RehydrateAction>,
@@ -47,7 +50,7 @@ export const initAppEpic$ = (
     }),
   )
 
-export const signinAppEpic$ = (
+export const signInAppEpic$ = (
   action$: ActionsObservable<AppActionTypes>,
 ): Observable<SignInGoogleSuccessAction> =>
   action$.pipe(
@@ -55,7 +58,6 @@ export const signinAppEpic$ = (
     map(() => {
       const provider = new firebase.auth.GoogleAuthProvider()
       // provider.addScope('https://www.googleapis.com/auth/calendar.readonly')
-      // firebase.auth().signOut()
       firebase
         .auth()
         .signInWithPopup(provider)
@@ -80,5 +82,16 @@ export const signinAppEpic$ = (
         })
 
       return signInGoogleSuccess()
+    }),
+  )
+
+export const signOutAppEpic$ = (
+  action$: ActionsObservable<AppActionTypes>,
+): Observable<SignOutGoogleSuccessAction> =>
+  action$.pipe(
+    ofType<AppActionTypes>(AppActions.SignOutGoogle),
+    map(() => {
+      firebase.auth().signOut()
+      return signOutGoogleSuccess()
     }),
   )

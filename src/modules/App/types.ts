@@ -5,14 +5,16 @@ export interface AppState {
 }
 
 export enum AppActions {
-  InitApp = 'moments/App/INIT_APP',
-  InitAppSuccess = 'moments/App/INIT_APP_SUCCESS',
-  InitAppFailure = 'moments/App/INIT_APP_FAILURE',
+  InitApp = '/App/INIT_APP',
+  InitAppSuccess = '/App/INIT_APP_SUCCESS',
+  InitAppFailure = '/App/INIT_APP_FAILURE',
   PersistRehydrate = 'persist/REHYDRATE',
-  Onboarded = 'moments/App/ONBOARDED',
-  StartedOnboarding = 'moments/App/STARTED_ONBOARDING',
-  SignInGoogle = 'moments/App/SIGN_IN_GOOGLE',
-  SignInGoogleSuccess = 'moments/App/SIGN_IN_GOOGLE_SUCCESS',
+  Onboarded = '/App/ONBOARDED',
+  StartedOnboarding = '/App/STARTED_ONBOARDING',
+  SignInGoogle = '/App/SIGN_IN_GOOGLE',
+  SignInGoogleSuccess = '/App/SIGN_IN_GOOGLE_SUCCESS',
+  SignOutGoogle = '/App/SIGN_OUT_GOOGLE',
+  SignOutGoogleSuccess = '/App/SIGN_OUT_GOOGLE_SUCCESS',
 }
 
 export interface InitAppAction {
@@ -47,6 +49,14 @@ export interface SignInGoogleSuccessAction {
   type: typeof AppActions.SignInGoogleSuccess
 }
 
+export interface SignOutGoogleAction {
+  type: typeof AppActions.SignOutGoogle
+}
+
+export interface SignOutGoogleSuccessAction {
+  type: typeof AppActions.SignOutGoogleSuccess
+}
+
 export type AppActionTypes =
   | InitAppAction
   | InitAppSuccessAction
@@ -55,3 +65,4 @@ export type AppActionTypes =
   | StartedOnboardingAction
   | SignInGoogleAction
   | SignInGoogleSuccessAction
+  | SignOutGoogleAction
