@@ -36,9 +36,8 @@ export const saveDraftTemplateEpic$ = (
         }),
       ).pipe(
         flatMap(
-          (result: any): Observable<SaveDraftTemplateSuccessAction> => {
-            return of(saveDraftTemplateSuccess())
-          },
+          (): Observable<SaveDraftTemplateSuccessAction> =>
+            of(saveDraftTemplateSuccess()),
         ),
         catchError(
           (error: Error): Observable<SaveDraftTemplateFailureAction> =>
@@ -63,9 +62,8 @@ export const publishTemplateEpic$ = (
         }),
       ).pipe(
         flatMap(
-          (result: any): Observable<PublishTemplateSuccessAction> => {
-            return of(publishTemplateSuccess())
-          },
+          (): Observable<PublishTemplateSuccessAction> =>
+            of(publishTemplateSuccess()),
         ),
         catchError(
           (error: Error): Observable<PublishTemplateFailureAction> =>

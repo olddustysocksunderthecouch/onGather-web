@@ -10,6 +10,8 @@ import { Category, Duration, Template } from '../../types'
 import styles from './CreateTemplate.module.scss'
 
 export interface Props {
+  loading: string | null
+  error: string | null
   handleTemplateDataChange: (template: Template) => void
 }
 const categories: string[] = Object.keys(Category)
@@ -33,6 +35,8 @@ const theme = createMuiTheme({
 })
 
 export const CreateTemplate: React.FunctionComponent<Props> = ({
+  loading,
+  error,
   handleTemplateDataChange,
 }) => {
   const [categorySelected, setCategorySelected] = useState('')
@@ -195,6 +199,16 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
           />
         </form>
       </ThemeProvider>
+      {loading && (
+        <div className={styles.loading}>
+          <p>Your template is being uploaded</p>
+        </div>
+      )}
+      {error && (
+        <div className={styles.error}>
+          <p>There has been a error: {error}</p>
+        </div>
+      )}
     </div>
   )
 }

@@ -17,8 +17,6 @@
     margin: 56px 448px;
   }
 
-
-
   h1 {
     @include text-style('font-title', 'regular', 'title-l');
     @media (min-width: $tablet) {
@@ -29,7 +27,6 @@
     margin-top: 24px;
     @include text-style('font-main', 'regular', 'body');
     @media (min-width: $tablet) {
-
       @include text-style('font-main', 'regular', 'title-xl');
     }
   }
@@ -55,4 +52,43 @@
   padding: 16px 24px;
   border-radius: 8px;
   margin-top: 16px;
+}
+
+.loading {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  padding: 16px 18px;
+  border-radius: 6px;
+  animation: pulse 4s infinite ease-out;
+
+  p {
+    margin: 0;
+    color: $color-white;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    background-color: $color-darker-gray;
+  }
+  50% {
+    background-color: $color-light-gray;
+  }
+  100% {
+    background-color: $color-darker-gray;
+  }
+}
+
+.error {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  padding: 16px 18px;
+  border-radius: 6px;
+
+  p {
+    margin: 0;
+    color: $color-red;
+  }
 }

@@ -41,12 +41,14 @@
   display: flex;
   justify-content: center;
   align-content: center;
-  padding: 16px 8px;
+  margin: 8px 4px;
+  padding: 8px 6px;
 
   @include text-style('font-main', 'regular', 'body-s');
 
   &:active {
-    opacity: 90%;
+    background-color: $color-alto-gray;
+    opacity: 50%;
   }
   p {
     padding: 0;

@@ -7,7 +7,11 @@ export default {
 }
 
 export const defaultState = (): React.FunctionComponentElement<Props> => (
-  <CreateTemplate handleTemplateDataChange={(): void => undefined} />
+  <CreateTemplate
+    loading="Here is an error"
+    error="error"
+    handleTemplateDataChange={(): void => undefined}
+  />
 )
 
 defaultState.story = {

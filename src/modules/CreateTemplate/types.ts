@@ -21,8 +21,13 @@ export interface Template {
   invitationDescription?: string
 }
 
+export interface TemplateEditorState extends Template {
+  error: string
+  loading: string
+}
+
 export interface CreateTemplateState {
-  templateEditor: Template
+  templateEditor: TemplateEditorState
 }
 
 export interface Duration {

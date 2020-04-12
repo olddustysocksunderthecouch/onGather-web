@@ -6,7 +6,11 @@ describe('CreateTemplate Component', () => {
   it('renders correctly', () => {
     // when we create the component then it should render correctly
     const instance = create(
-      <CreateTemplate dummyText={'This is the SelectTemplate Component'} />,
+      <CreateTemplate
+        loading="Here is an error"
+        error="error"
+        handleTemplateDataChange={(): void => undefined}
+      />,
     )
     expect(instance.root.type).toBe(CreateTemplate)
   })
