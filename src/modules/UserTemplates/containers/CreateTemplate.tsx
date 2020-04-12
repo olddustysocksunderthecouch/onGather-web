@@ -6,9 +6,9 @@ import BottomNavLayout from '../../../common/modules/TopNav/containers/TopNavLay
 import { TopNavType } from '../../../common/modules/TopNav/types'
 import { ConnectedReduxProps, RootState } from '../../../common/redux/types'
 import { CreateTemplate } from '../components/CreateTemplate'
-import { setEditorTemplateData } from '../CreateTemplate.actions'
+import { setEditorTemplateData } from '../UserTemplates.actions'
 import { Template } from '../types'
-import { selectors as CreateTemplateSelectors } from './../index'
+import { selectors as CreateTemplateSelectors } from '../index'
 
 interface Props extends ConnectedReduxProps<AnyAction> {
   loading: string | null

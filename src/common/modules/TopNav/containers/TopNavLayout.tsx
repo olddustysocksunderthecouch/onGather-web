@@ -8,7 +8,7 @@ import {
 import {
   publishTemplate,
   saveDraftTemplate,
-} from '../../../../modules/CreateTemplate/CreateTemplate.actions'
+} from '../../../../modules/UserTemplates/UserTemplates.actions'
 import { RootState } from '../../../redux/types'
 import { TopNavLayout } from '../components/TopNavLayout'
 import { navigateToCreateTemplate, navigateToHome } from '../TopNav.actions'

@@ -201,12 +201,12 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
       </ThemeProvider>
       {loading && (
         <div className={styles.loading}>
-          <p>Your template is being uploaded</p>
+          <p>{loading}</p>
         </div>
       )}
       {error && (
         <div className={styles.error}>
-          <p>There has been a error: {error}</p>
+          <p>Error: {error}</p>
         </div>
       )}
     </div>

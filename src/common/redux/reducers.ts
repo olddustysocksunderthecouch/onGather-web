@@ -1,7 +1,7 @@
 import { History } from 'history'
 import { combineReducers, Reducer } from 'redux'
 import { reducer as appReducer } from '../../modules/App'
-import { reducer as createTemplateReducer } from '../../modules/CreateTemplate'
+import { reducer as createTemplateReducer } from '../../modules/UserTemplates'
 import { createRoutingReducer } from '../routing'
 import { RootState } from './types'
 

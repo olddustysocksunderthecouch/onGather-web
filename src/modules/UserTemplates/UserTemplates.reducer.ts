@@ -1,10 +1,10 @@
 import {
-  CreateTemplateActions,
-  CreateTemplateActionTypes,
-  CreateTemplateState,
+  UserTemplatesActions,
+  UserTemplatesActionTypes,
+  UserTemplatesState,
 } from './types'
 
-export const initialState: CreateTemplateState = {
+export const initialState: UserTemplatesState = {
   templateEditor: {
     loading: '',
     error: '',
@@ -22,10 +22,10 @@ export const initialState: CreateTemplateState = {
 
 export function reducer(
   state = initialState,
-  action: CreateTemplateActionTypes,
-): CreateTemplateState {
+  action: UserTemplatesActionTypes,
+): UserTemplatesState {
   switch (action.type) {
-    case CreateTemplateActions.SetEditorTemplateData: {
+    case UserTemplatesActions.SetEditorTemplateData: {
       return {
         ...state,
         templateEditor: {
@@ -35,7 +35,7 @@ export function reducer(
         },
       }
     }
-    case CreateTemplateActions.SaveDraftTemplate: {
+    case UserTemplatesActions.SaveDraftTemplate: {
       return {
         ...state,
         templateEditor: {
@@ -45,7 +45,7 @@ export function reducer(
         },
       }
     }
-    case CreateTemplateActions.SaveDraftTemplateSuccess: {
+    case UserTemplatesActions.SaveDraftTemplateSuccess: {
       return {
         ...state,
         templateEditor: {
@@ -55,7 +55,7 @@ export function reducer(
         },
       }
     }
-    case CreateTemplateActions.SaveDraftTemplateFailure: {
+    case UserTemplatesActions.SaveDraftTemplateFailure: {
       return {
         ...state,
         templateEditor: {
@@ -65,7 +65,7 @@ export function reducer(
         },
       }
     }
-    case CreateTemplateActions.PublishTemplate: {
+    case UserTemplatesActions.PublishTemplate: {
       return {
         ...state,
         templateEditor: {
@@ -75,7 +75,7 @@ export function reducer(
         },
       }
     }
-    case CreateTemplateActions.PublishTemplateSuccess: {
+    case UserTemplatesActions.PublishTemplateSuccess: {
       return {
         ...state,
         templateEditor: {
@@ -85,7 +85,7 @@ export function reducer(
         },
       }
     }
-    case CreateTemplateActions.PublishTemplateFailure: {
+    case UserTemplatesActions.PublishTemplateFailure: {
       return {
         ...state,
         templateEditor: {

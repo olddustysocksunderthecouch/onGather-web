@@ -1,5 +1,5 @@
 import {
-  CreateTemplateActions,
+  UserTemplatesActions,
   PublishTemplateAction,
   PublishTemplateFailureAction,
   PublishTemplateSuccessAction,
@@ -13,41 +13,41 @@ import {
 export const setEditorTemplateData = (
   template: Template,
 ): SetEditorTemplateDataAction => ({
-  type: CreateTemplateActions.SetEditorTemplateData,
+  type: UserTemplatesActions.SetEditorTemplateData,
   payload: {
     template,
   },
 })
 
 export const saveDraftTemplate = (): SaveDraftTemplateAction => ({
-  type: CreateTemplateActions.SaveDraftTemplate,
+  type: UserTemplatesActions.SaveDraftTemplate,
 })
 
 export const saveDraftTemplateSuccess = (): SaveDraftTemplateSuccessAction => ({
-  type: CreateTemplateActions.SaveDraftTemplateSuccess,
+  type: UserTemplatesActions.SaveDraftTemplateSuccess,
 })
 
 export const saveDraftTemplateFailure = (
   message: string,
 ): SaveDraftTemplateFailureAction => ({
-  type: CreateTemplateActions.SaveDraftTemplateFailure,
+  type: UserTemplatesActions.SaveDraftTemplateFailure,
   payload: {
     message,
   },
 })
 
 export const publishTemplate = (): PublishTemplateAction => ({
-  type: CreateTemplateActions.PublishTemplate,
+  type: UserTemplatesActions.PublishTemplate,
 })
 
 export const publishTemplateSuccess = (): PublishTemplateSuccessAction => ({
-  type: CreateTemplateActions.PublishTemplateSuccess,
+  type: UserTemplatesActions.PublishTemplateSuccess,
 })
 
 export const publishTemplateFailure = (
   message: string,
 ): PublishTemplateFailureAction => ({
-  type: CreateTemplateActions.PublishTemplateFailure,
+  type: UserTemplatesActions.PublishTemplateFailure,
   payload: {
     message,
   },

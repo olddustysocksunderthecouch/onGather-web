@@ -1,6 +1,6 @@
 import { combineEpics } from 'redux-observable'
 import { epics as appEpics } from '../../modules/App'
-import { epics as createTemplateEpics } from '../../modules/CreateTemplate'
+import { epics as createTemplateEpics } from '../../modules/UserTemplates'
 import { epics as routingEpics } from '../routing'
 
 const epics: any = [

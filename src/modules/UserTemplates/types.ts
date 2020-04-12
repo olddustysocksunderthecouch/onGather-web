@@ -26,7 +26,7 @@ export interface TemplateEditorState extends Template {
   loading: string
 }
 
-export interface CreateTemplateState {
+export interface UserTemplatesState {
   templateEditor: TemplateEditorState
 }
 
@@ -35,58 +35,58 @@ export interface Duration {
   timeFormatted: string
 }
 
-export enum CreateTemplateActions {
-  SetEditorTemplateData = '/CreateTemplate/SET_EDITOR_TEMPLATE_DATA',
-  SaveDraftTemplate = '/CreateTemplate/SAVE_DRAFT_TEMPLATE',
-  SaveDraftTemplateSuccess = '/CreateTemplate/SAVE_DRAFT_TEMPLATE_SUCCESS',
-  SaveDraftTemplateFailure = '/CreateTemplate/SAVE_DRAFT_TEMPLATE_FAILURE',
-  PublishTemplate = '/CreateTemplate/PUBLISH_TEMPLATE',
-  PublishTemplateSuccess = '/CreateTemplate/PUBLISH_TEMPLATE_SUCCESS',
-  PublishTemplateFailure = '/CreateTemplate/PUBLISH_TEMPLATE_FAILURE',
+export enum UserTemplatesActions {
+  SetEditorTemplateData = '/UserTemplates/SET_EDITOR_TEMPLATE_DATA',
+  SaveDraftTemplate = '/UserTemplates/SAVE_DRAFT_TEMPLATE',
+  SaveDraftTemplateSuccess = '/UserTemplates/SAVE_DRAFT_TEMPLATE_SUCCESS',
+  SaveDraftTemplateFailure = '/UserTemplates/SAVE_DRAFT_TEMPLATE_FAILURE',
+  PublishTemplate = '/UserTemplates/PUBLISH_TEMPLATE',
+  PublishTemplateSuccess = '/UserTemplates/PUBLISH_TEMPLATE_SUCCESS',
+  PublishTemplateFailure = '/UserTemplates/PUBLISH_TEMPLATE_FAILURE',
 }
 
 export interface SetEditorTemplateDataAction {
-  type: typeof CreateTemplateActions.SetEditorTemplateData
+  type: typeof UserTemplatesActions.SetEditorTemplateData
   payload: {
     template: Template
   }
 }
 
 export interface SaveDraftTemplateAction {
-  type: typeof CreateTemplateActions.SaveDraftTemplate
+  type: typeof UserTemplatesActions.SaveDraftTemplate
 }
 
 export interface SaveDraftTemplateSuccessAction {
-  type: typeof CreateTemplateActions.SaveDraftTemplateSuccess
+  type: typeof UserTemplatesActions.SaveDraftTemplateSuccess
 }
 
 export interface SaveDraftTemplateSuccessAction {
-  type: typeof CreateTemplateActions.SaveDraftTemplateSuccess
+  type: typeof UserTemplatesActions.SaveDraftTemplateSuccess
 }
 
 export interface SaveDraftTemplateFailureAction {
-  type: typeof CreateTemplateActions.SaveDraftTemplateFailure
+  type: typeof UserTemplatesActions.SaveDraftTemplateFailure
   payload: {
     message: string
   }
 }
 
 export interface PublishTemplateAction {
-  type: typeof CreateTemplateActions.PublishTemplate
+  type: typeof UserTemplatesActions.PublishTemplate
 }
 
 export interface PublishTemplateSuccessAction {
-  type: typeof CreateTemplateActions.PublishTemplateSuccess
+  type: typeof UserTemplatesActions.PublishTemplateSuccess
 }
 
 export interface PublishTemplateFailureAction {
-  type: typeof CreateTemplateActions.PublishTemplateFailure
+  type: typeof UserTemplatesActions.PublishTemplateFailure
   payload: {
     message: string
   }
 }
 
-export type CreateTemplateActionTypes =
+export type UserTemplatesActionTypes =
   | SetEditorTemplateDataAction
   | SaveDraftTemplateAction
   | SaveDraftTemplateSuccessAction

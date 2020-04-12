@@ -5,28 +5,28 @@ import { from, Observable, of } from 'rxjs'
 import { catchError, flatMap, withLatestFrom } from 'rxjs/operators'
 import { RootState } from '../../common/redux/types'
 import {
-  publishTemplateFailure,
-  publishTemplateSuccess,
-  saveDraftTemplateFailure,
-  saveDraftTemplateSuccess,
-} from './CreateTemplate.actions'
-import {
-  CreateTemplateActions,
-  CreateTemplateActionTypes,
+  UserTemplatesActionTypes,
   PublishTemplateFailureAction,
   PublishTemplateSuccessAction,
   SaveDraftTemplateFailureAction,
   SaveDraftTemplateSuccessAction,
+  UserTemplatesActions,
 } from './types'
+import {
+  publishTemplateFailure,
+  publishTemplateSuccess,
+  saveDraftTemplateFailure,
+  saveDraftTemplateSuccess,
+} from './UserTemplates.actions'
 
 export const saveDraftTemplateEpic$ = (
-  action$: ActionsObservable<CreateTemplateActionTypes>,
+  action$: ActionsObservable<UserTemplatesActionTypes>,
   state$: StateObservable<RootState>,
 ): Observable<
   SaveDraftTemplateSuccessAction | SaveDraftTemplateFailureAction
 > =>
   action$.pipe(
-    ofType<CreateTemplateActionTypes>(CreateTemplateActions.SaveDraftTemplate),
+    ofType<UserTemplatesActionTypes>(UserTemplatesActions.SaveDraftTemplate),
     withLatestFrom(state$),
     flatMap(([action, state]) =>
       from(
@@ -48,11 +48,11 @@ export const saveDraftTemplateEpic$ = (
   )
 
 export const publishTemplateEpic$ = (
-  action$: ActionsObservable<CreateTemplateActionTypes>,
+  action$: ActionsObservable<UserTemplatesActionTypes>,
   state$: StateObservable<RootState>,
 ): Observable<PublishTemplateSuccessAction | PublishTemplateFailureAction> =>
   action$.pipe(
-    ofType<CreateTemplateActionTypes>(CreateTemplateActions.PublishTemplate),
+    ofType<UserTemplatesActionTypes>(UserTemplatesActions.PublishTemplate),
     withLatestFrom(state$),
     flatMap(([action, state]) =>
       from(
