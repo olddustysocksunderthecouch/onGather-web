@@ -7,7 +7,7 @@ export default {
 }
 
 export const defaultState = (): React.FunctionComponentElement<Props> => (
-  <CreateTemplate dummyText={'This is the SelectTemplate Component'} />
+  <CreateTemplate handleTemplateDataChange={(): void => undefined} />
 )
 
 defaultState.story = {

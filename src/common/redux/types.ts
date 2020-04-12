@@ -3,10 +3,12 @@ import { Dispatch } from 'react'
 import { Store } from 'redux'
 import { Persistor } from 'redux-persist'
 import { AppState } from '../../modules/App/types'
+import { CreateTemplateState } from '../../modules/CreateTemplate/types'
 
 export interface RootState {
   app: AppState
   router: RouterState
+  createTemplate: CreateTemplateState
 }
 
 export interface RootPreloadedState extends RootState {

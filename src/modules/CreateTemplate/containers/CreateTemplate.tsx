@@ -1,3 +1,4 @@
+import { debounce } from 'debounce'
 import React, { Dispatch } from 'react'
 import { connect } from 'react-redux'
 import { AnyAction } from 'redux'
@@ -5,21 +6,26 @@ import BottomNavLayout from '../../../common/modules/TopNav/containers/TopNavLay
 import { TopNavType } from '../../../common/modules/TopNav/types'
 import { ConnectedReduxProps } from '../../../common/redux/types'
 import { CreateTemplate } from '../components/CreateTemplate'
+import { setEditorTemplateData } from '../CreateTemplate.actions'
+import { Template } from '../types'
 
 interface Props extends ConnectedReduxProps<AnyAction> {
-  dummyText: string
+  handleTemplateDataChange: (template: Template) => void
 }
 
 const CreateTemplateContainer = ({
-  dummyText = 'CreateTemplate Container',
+  handleTemplateDataChange,
 }: Props): React.FunctionComponentElement<Props> => (
   <BottomNavLayout topNavType={TopNavType.CreateTemplate}>
-    <CreateTemplate dummyText={dummyText} />
+    <CreateTemplate handleTemplateDataChange={handleTemplateDataChange} />
   </BottomNavLayout>
 )
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): any => ({
-  handleGotItClicked: (): void => undefined,
+  handleTemplateDataChange: debounce(
+    (template: Template): void => dispatch(setEditorTemplateData(template)),
+    300,
+  ),
 })
 
 export default connect(null, mapDispatchToProps)(CreateTemplateContainer)

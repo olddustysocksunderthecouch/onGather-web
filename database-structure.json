@@ -33,7 +33,7 @@
       "tid4": true
     }
   },
-  "templates": {
+  "templates": { 
       "tid1": {
           "uid": "some user id", 
           "category": "some-category-id",

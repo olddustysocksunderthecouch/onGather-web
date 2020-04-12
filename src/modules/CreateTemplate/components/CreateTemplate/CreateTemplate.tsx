@@ -5,22 +5,14 @@ import MenuItem from '@material-ui/core/MenuItem'
 import Select from '@material-ui/core/Select'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
-import React, { useState } from 'react'
-import { Duration } from '../../types'
+import React, { ChangeEvent, useEffect, useState } from 'react'
+import { Category, Duration, Template } from '../../types'
 import styles from './CreateTemplate.module.scss'
 
 export interface Props {
-  dummyText: string
+  handleTemplateDataChange: (template: Template) => void
 }
-const categories: string[] = [
-  'Popular',
-  'Book Club',
-  'Meditation',
-  'Games',
-  'Craft',
-  'Workout',
-  'Discussion',
-]
+const categories: string[] = Object.keys(Category)
 
 const durations: Duration[] = [
   { timeMinutes: '15', timeFormatted: '15 min' },
@@ -41,11 +33,11 @@ const theme = createMuiTheme({
 })
 
 export const CreateTemplate: React.FunctionComponent<Props> = ({
-  dummyText,
+  handleTemplateDataChange,
 }) => {
   const [categorySelected, setCategorySelected] = useState('')
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>): void => {
-    setCategorySelected(event.target.value as string)
+    setCategorySelected(event.target.value as Category)
   }
   const [durationSelected, setDurationSelected] = useState('')
   const handleDurationChange = (
@@ -53,6 +45,35 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
   ): void => {
     setDurationSelected(event.target.value as string)
   }
+
+  const [title, setTitle] = useState('')
+  const [shortDescription, setShortDescription] = useState('')
+  const [mainAimsOutcomes, setMainAimsOutcomes] = useState('')
+  const [hostInstructions, setHostInstructions] = useState('')
+  const [invitationDescription, setInvitationDescription] = useState('')
+
+  useEffect(() => {
+    const templateData: Template = {
+      category: categorySelected,
+      title,
+      shortDescription,
+      mainAimsOutcomes,
+      suggestedDuration: durationSelected,
+      imageUrl: '',
+      hostInstructions,
+      invitationDescription,
+    }
+
+    handleTemplateDataChange(templateData)
+  }, [
+    categorySelected,
+    title,
+    shortDescription,
+    mainAimsOutcomes,
+    durationSelected,
+    hostInstructions,
+    invitationDescription,
+  ])
 
   return (
     <div className={styles.createTemplate}>
@@ -87,6 +108,9 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
             style={{ marginTop: '16px', width: '300px' }}
             label="Title"
             variant="outlined"
+            onChange={(event: ChangeEvent<HTMLInputElement>): void => {
+              setTitle(event.target.value)
+            }}
           />
           <TextField
             style={{ marginTop: '16px' }}
@@ -95,6 +119,9 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
             rows="2"
             fullWidth
             multiline
+            onChange={(event: ChangeEvent<HTMLInputElement>): void => {
+              setShortDescription(event.target.value)
+            }}
           />
           <TextField
             style={{ marginTop: '16px' }}
@@ -103,6 +130,9 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
             variant="outlined"
             fullWidth
             helperText="Put commas between each item"
+            onChange={(event: ChangeEvent<HTMLInputElement>): void => {
+              setMainAimsOutcomes(event.target.value)
+            }}
           />
         </form>
         <FormControl
@@ -142,6 +172,9 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
             rows="4"
             fullWidth
             multiline
+            onChange={(event: ChangeEvent<HTMLInputElement>): void => {
+              setHostInstructions(event.target.value)
+            }}
           />
           <h2>Invitation Description</h2>
           <p>
@@ -156,6 +189,9 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
             rows="4"
             fullWidth
             multiline
+            onChange={(event: ChangeEvent<HTMLInputElement>): void => {
+              setInvitationDescription(event.target.value)
+            }}
           />
         </form>
       </ThemeProvider>
