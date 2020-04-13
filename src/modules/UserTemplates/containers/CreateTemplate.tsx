@@ -2,7 +2,7 @@ import { debounce } from 'debounce'
 import React, { Dispatch } from 'react'
 import { connect } from 'react-redux'
 import { AnyAction } from 'redux'
-import BottomNavLayout from '../../../common/modules/TopNav/containers/TopNavLayout'
+import TopNavLayout from '../../../common/modules/TopNav/containers/TopNavLayout'
 import { TopNavType } from '../../../common/modules/TopNav/types'
 import { ConnectedReduxProps, RootState } from '../../../common/redux/types'
 import { CreateTemplate } from '../components/CreateTemplate'
@@ -21,13 +21,13 @@ const CreateTemplateContainer = ({
   error,
   handleTemplateDataChange,
 }: Props): React.FunctionComponentElement<Props> => (
-  <BottomNavLayout topNavType={TopNavType.CreateTemplate}>
+  <TopNavLayout topNavType={TopNavType.CreateTemplate}>
     <CreateTemplate
       loading={loading}
       error={error}
       handleTemplateDataChange={handleTemplateDataChange}
     />
-  </BottomNavLayout>
+  </TopNavLayout>
 )
 const mapStateToProps = (state: RootState): any => ({
   error: CreateTemplateSelectors.selectTemplateEditorError(state),
