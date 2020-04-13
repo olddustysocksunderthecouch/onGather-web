@@ -28,21 +28,36 @@ export const TemplatePreview: React.FunctionComponent<Props> = ({
     className={styles.templatePreview}
     onClick={(): void => handleTemplatePreviewClicked(templateId)}
   >
-    <img src={PlaceholderImage} alt="Template Image" />
-
-    <div>
-      <h2>{title}</h2>
-      <div>
-        <img src={PeopleIcon} alt="People Icon" />
-        <p>{gatheringSize}</p>
-        <img src={TimeIcon} alt="Time Icon" />
-        <p>{suggestedDuration}</p>
+    <div className={styles.top}>
+      <img
+        className={styles.image}
+        src={PlaceholderImage}
+        alt="Template Image"
+      />
+      <div className={styles.titleMeta}>
+        <h2>{title}</h2>
+        <div className={styles.meta}>
+          <img src={PeopleIcon} alt="People Icon" />
+          <p>{gatheringSize}</p>
+          <img src={TimeIcon} alt="Time Icon" />
+          <p>{suggestedDuration}</p>
+        </div>
+        <div className={styles.bodyDesktop}>
+          <h3>{mainAimsOutcomes}</h3>
+          <p>{shortDescription}</p>
+        </div>
+        <div className={styles.moreDesktop}>
+          <h4>MORE INFO</h4>
+          <img src={MoreIcon} alt="More Icon" />
+        </div>
       </div>
     </div>
-    <h3>{mainAimsOutcomes}</h3>
-    <p>{shortDescription}</p>
-    <div>
-      <h4>MORE</h4>
+    <div className={styles.bodyMobile}>
+      <p>{shortDescription}</p>
+      <h3>{mainAimsOutcomes}</h3>
+    </div>
+    <div className={styles.moreMobile}>
+      <h4>MORE INFO</h4>
       <img src={MoreIcon} alt="More Icon" />
     </div>
   </div>

@@ -1,6 +1,115 @@
-.container {
+@import 'src/common/styles/fonts';
+@import 'src/common/styles/variables';
+
+@mixin more {
+  display: flex;
+  flex-direction: row;
+  align-self: flex-end;
+  h4 {
+    color: $color-dark-gray;
+    letter-spacing: 0.075em;
+    margin-right: 12px;
+  }
+}
+
+.templatePreview {
   display: flex;
   flex: 1;
-  justify-content: center;
-  align-content: center;
+  flex-direction: column;
+  border: solid 1px $color-black;
+  border-radius: 18px;
+  padding: 32px 32px 0px 32px;
+}
+.image {
+  height: 72px;
+  width: 72px;
+  @media (min-width: $tablet) {
+    height: 198px;
+    width: 208px;
+    margin-bottom: 32px;
+  }
+}
+.top {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+}
+.titleMeta {
+  width: 100%;
+  padding-left: 32px;
+  display: flex;
+  flex-direction: column;
+  h2 {
+    margin: 0;
+    @include text-style('font-main', 'semibold', 'body');
+    @media (min-width: $tablet) {
+      @include text-style('font-main', 'semibold', 'title-l');
+    }
+  }
+  @media (min-width: $tablet) {
+    padding-bottom: 32px;
+  }
+}
+
+.meta {
+  display: flex;
+  flex-direction: row;
+  p {
+    @include text-style('font-main', 'medium', 'meta');
+    letter-spacing: 0.075em;
+    padding-right: 16px;
+  }
+  img {
+    padding-right: 8px;
+  }
+}
+
+.bodyMobile {
+  @media (min-width: $tablet) {
+    display: none;
+  }
+  h3 {
+    @include text-style('font-main', 'semibold', 'meta');
+    letter-spacing: 0.075em;
+  }
+  p {
+    @include text-style('font-main', 'regular', 'body-s');
+  }
+}
+
+.bodyDesktop {
+justify-content: stretch;
+  @media (max-width: $tablet) {
+    display: none;
+  }
+  h3 {
+    @include text-style('font-main', 'semibold', 'meta');
+    letter-spacing: 0.075em;
+  }
+  p {
+    @include text-style('font-main', 'regular', 'body-s');
+  }
+}
+
+.moreDesktop {
+  @include more;
+  @include text-style('font-main', 'semibold', 'body');
+  @media (max-width: $tablet) {
+    display: none;
+  }
+  padding-top: 42px;
+  h4, img {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  
+}
+
+.moreMobile {
+  @include more;
+  @include text-style('font-main', 'semibold', 'body');
+  @media (min-width: $tablet) {
+    display: none;
+  }
 }
