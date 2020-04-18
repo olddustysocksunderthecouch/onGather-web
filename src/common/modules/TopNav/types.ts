@@ -13,8 +13,8 @@ export enum TopNavType {
 }
 
 export enum TopNavActions {
-  NavigateToCreateTemplate = 'moments/TopNav/NAVIGATE_TO_CREATE_TEMPLATE',
-  NavigateToHome = 'moments/TopNav/NAVIGATE_TO_HOME',
+  NavigateToCreateTemplate = '/TopNav/NAVIGATE_TO_CREATE_TEMPLATE',
+  NavigateToHome = '/TopNav/NAVIGATE_TO_HOME',
 }
 
 export interface NavigateToHomeAction {
