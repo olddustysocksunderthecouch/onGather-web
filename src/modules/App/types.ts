@@ -1,7 +1,15 @@
 export interface AppState {
   loaded: boolean
   loading: boolean
-  onboarded: boolean
+  signedIn: boolean
+  user: User
+}
+
+export interface User {
+  uid: string
+  displayName: string
+  photoUrl: string
+  email: string
 }
 
 export enum AppActions {
@@ -9,12 +17,12 @@ export enum AppActions {
   InitAppSuccess = '/App/INIT_APP_SUCCESS',
   InitAppFailure = '/App/INIT_APP_FAILURE',
   PersistRehydrate = 'persist/REHYDRATE',
-  Onboarded = '/App/ONBOARDED',
-  StartedOnboarding = '/App/STARTED_ONBOARDING',
   SignInGoogle = '/App/SIGN_IN_GOOGLE',
   SignInGoogleSuccess = '/App/SIGN_IN_GOOGLE_SUCCESS',
+  SignInGoogleFailure = '/App/SIGN_IN_GOOGLE_FAILURE',
   SignOutGoogle = '/App/SIGN_OUT_GOOGLE',
   SignOutGoogleSuccess = '/App/SIGN_OUT_GOOGLE_SUCCESS',
+  SignOutGoogleFailure = '/App/SIGN_OUT_GOOGLE_FAILURE',
 }
 
 export interface InitAppAction {
@@ -33,20 +41,26 @@ export interface InitAppFailureAction {
   type: typeof AppActions.InitAppFailure
 }
 
-export interface StartedOnboardingAction {
-  type: typeof AppActions.StartedOnboarding
-}
-
-export interface OnboardedAction {
-  type: typeof AppActions.Onboarded
-}
-
 export interface SignInGoogleAction {
   type: typeof AppActions.SignInGoogle
 }
 
 export interface SignInGoogleSuccessAction {
   type: typeof AppActions.SignInGoogleSuccess
+  payload: {
+    user: User
+  }
+}
+
+export interface SignInGoogleFailureAction {
+  type: typeof AppActions.SignInGoogleFailure
+  payload: {
+    message: string
+  }
+}
+
+export interface SignOutGoogleAction {
+  type: typeof AppActions.SignOutGoogle
 }
 
 export interface SignOutGoogleAction {
@@ -57,12 +71,20 @@ export interface SignOutGoogleSuccessAction {
   type: typeof AppActions.SignOutGoogleSuccess
 }
 
+export interface SignOutGoogleFailureAction {
+  type: typeof AppActions.SignOutGoogleFailure
+  payload: {
+    message: string
+  }
+}
+
 export type AppActionTypes =
   | InitAppAction
   | InitAppSuccessAction
   | InitAppFailureAction
-  | OnboardedAction
-  | StartedOnboardingAction
   | SignInGoogleAction
   | SignInGoogleSuccessAction
+  | SignInGoogleFailureAction
   | SignOutGoogleAction
+  | SignOutGoogleSuccessAction
+  | SignOutGoogleFailureAction

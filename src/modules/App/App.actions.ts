@@ -3,12 +3,13 @@ import {
   InitAppAction,
   InitAppFailureAction,
   InitAppSuccessAction,
-  OnboardedAction,
   SignInGoogleAction,
+  SignInGoogleFailureAction,
   SignInGoogleSuccessAction,
-  StartedOnboardingAction,
   SignOutGoogleAction,
+  SignOutGoogleFailureAction,
   SignOutGoogleSuccessAction,
+  User,
 } from './types'
 
 export const initApp = (): InitAppAction => ({
@@ -23,20 +24,24 @@ export const initAppFailure = (): InitAppFailureAction => ({
   type: AppActions.InitAppFailure,
 })
 
-export const startedOnboarding = (): StartedOnboardingAction => ({
-  type: AppActions.StartedOnboarding,
-})
-
-export const onboarded = (): OnboardedAction => ({
-  type: AppActions.Onboarded,
-})
-
 export const signInGoogle = (): SignInGoogleAction => ({
   type: AppActions.SignInGoogle,
 })
 
-export const signInGoogleSuccess = (): SignInGoogleSuccessAction => ({
+export const signInGoogleSuccess = (user: User): SignInGoogleSuccessAction => ({
   type: AppActions.SignInGoogleSuccess,
+  payload: {
+    user,
+  },
+})
+
+export const signInGoogleFailure = (
+  message: string,
+): SignInGoogleFailureAction => ({
+  type: AppActions.SignInGoogleFailure,
+  payload: {
+    message,
+  },
 })
 
 export const signOutGoogle = (): SignOutGoogleAction => ({
@@ -45,4 +50,13 @@ export const signOutGoogle = (): SignOutGoogleAction => ({
 
 export const signOutGoogleSuccess = (): SignOutGoogleSuccessAction => ({
   type: AppActions.SignOutGoogleSuccess,
+})
+
+export const signOutGoogleFailure = (
+  message: string,
+): SignOutGoogleFailureAction => ({
+  type: AppActions.SignOutGoogleFailure,
+  payload: {
+    message,
+  },
 })

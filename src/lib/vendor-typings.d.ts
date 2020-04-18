@@ -1,5 +1,8 @@
 declare module 'js-parametrize'
 declare module 'classnames'
+declare module 'redux-firestore/lib/reducer'
+declare module 'react-redux-firebase/lib/reducer'
+
 declare module 'ramda' {
   export function F(...rest: any[]): any
   export function T(...rest: any[]): any

@@ -1,5 +1,6 @@
 import { routerMiddleware } from 'connected-react-router'
 import { createBrowserHistory } from 'history'
+import { getFirebase } from 'react-redux-firebase'
 import {
   AnyAction,
   applyMiddleware,
@@ -12,6 +13,7 @@ import { createEpicMiddleware } from 'redux-observable'
 import { persistReducer, persistStore } from 'redux-persist'
 import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2'
 import storage from 'redux-persist/lib/storage'
+import thunk from 'redux-thunk'
 import rootEpic from './epics'
 import createRootReducer from './reducers'
 import { ReduxStoreAndPersistor, RootPreloadedState, RootState } from './types'
@@ -30,7 +32,11 @@ export const configureStoreAndPersistor = (
 ): ReduxStoreAndPersistor => {
   const epicMiddleware = createEpicMiddleware()
   const createdRouterMiddleWare: any = routerMiddleware(history)
-  const middlewares = [createdRouterMiddleWare, epicMiddleware]
+  const middlewares = [
+    createdRouterMiddleWare,
+    epicMiddleware,
+    thunk.withExtraArgument(getFirebase),
+  ]
   const middlewareEnhancer = applyMiddleware(...middlewares)
   const enhancers = [middlewareEnhancer]
   const composedEnhancers: StoreEnhancer = composeWithDevTools(...enhancers)

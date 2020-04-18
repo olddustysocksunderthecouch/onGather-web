@@ -9,6 +9,8 @@ export interface RootState {
   app: AppState
   router: RouterState
   createTemplate: UserTemplatesState
+  firebase: any
+  firestore: any
 }
 
 export interface RootPreloadedState extends RootState {

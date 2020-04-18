@@ -3,7 +3,13 @@ import { AppActions, AppActionTypes, AppState } from './types'
 export const initialState: AppState = {
   loaded: false,
   loading: false,
-  onboarded: false,
+  signedIn: false,
+  user: {
+    uid: '',
+    displayName: '',
+    photoUrl: '',
+    email: '',
+  },
 }
 
 export function reducer(
@@ -29,10 +35,17 @@ export function reducer(
         loaded: false,
         loading: false,
       }
-    case AppActions.Onboarded:
+    case AppActions.SignInGoogleSuccess:
       return {
         ...state,
-        onboarded: true,
+        signedIn: true,
+        user: action.payload.user,
+      }
+    case AppActions.SignOutGoogleSuccess:
+      return {
+        ...state,
+        signedIn: false,
+        user: initialState.user,
       }
   }
   return state
