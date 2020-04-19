@@ -1,3 +1,4 @@
-import SelectTemplate from './CreateTemplate'
+import CreateTemplate from './CreateTemplate'
+import UserTemplates from './UserTemplates'
 
-export { SelectTemplate }
+export { CreateTemplate, UserTemplates }

@@ -11,7 +11,12 @@ export interface Props {
 }
 
 const navigationItemsForTopNavType = {
-  home: [NavigationItem.Create, NavigationItem.SignIn, NavigationItem.SignOut],
+  home: [
+    NavigationItem.Templates,
+    NavigationItem.SignIn,
+    NavigationItem.SignOut,
+  ],
+  userTemplates: [NavigationItem.Create],
   createTemplate: [
     NavigationItem.SaveDraftTemplate,
     NavigationItem.PublishTemplate,

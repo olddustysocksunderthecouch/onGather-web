@@ -1,3 +1,3 @@
-import { UserTemplate } from './UserTemplate'
+import { UserTemplates } from './UserTemplates'
 
-export { UserTemplate }
+export { UserTemplates }

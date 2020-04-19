@@ -9,15 +9,18 @@ import {
   createFirebaseInstance,
   ReactReduxFirebaseProvider,
 } from 'react-redux-firebase'
-import { createFirestoreInstance } from 'redux-firestore' 
 import { Route, Switch } from 'react-router'
+import { createFirestoreInstance } from 'redux-firestore'
 import { PersistGate } from 'redux-persist/integration/react'
 import { configureStoreAndPersistor } from './common/redux'
 import { history } from './common/redux/store'
 import './index.scss'
 import { HomeContainer } from './modules/Home'
 import { PrivacyPolicyContainer } from './modules/PrivacyPolicy'
-import { CreateTemplateContainer } from './modules/UserTemplates'
+import {
+  CreateTemplateContainer,
+  UserTemplatesContainer,
+} from './modules/UserTemplates'
 import * as serviceWorker from './serviceWorker'
 
 const firebaseConfig = {
@@ -57,16 +60,21 @@ ReactDOM.render(
         <ConnectedRouter history={history}>
           <Switch>
             <Route exact path="/" component={HomeContainer} />
-            <Route exact path="/Home" component={HomeContainer} />
+            <Route exact path="/home" component={HomeContainer} />
             <Route
               exact
-              path="/Privacy-Policy"
+              path="/privacy-policy"
               component={PrivacyPolicyContainer}
             />
             <Route
               exact
-              path="/Create-Template"
+              path="/create-template"
               component={CreateTemplateContainer}
+            />
+            <Route
+              exact
+              path="/user-templates"
+              component={UserTemplatesContainer}
             />
             <Route render={(): JSX.Element => <div>404 Not Found</div>} />
           </Switch>

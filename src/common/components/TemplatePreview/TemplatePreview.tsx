@@ -6,13 +6,13 @@ import TimeIcon from './assets/TimeIcon.svg'
 import styles from './TemplatePreview.module.scss'
 
 export interface Props {
-  templateId: string
-  title: string
-  gatheringSize: string
-  suggestedDuration: string
-  mainAimsOutcomes: string
-  shortDescription: string
-  handleTemplatePreviewClicked: (templateId: string) => void
+  templateId?: string
+  title?: string
+  gatheringSize?: string
+  suggestedDuration?: string
+  mainAimsOutcomes?: string
+  shortDescription?: string
+  handleTemplatePreviewClicked: (templateId?: string) => void
 }
 
 export const TemplatePreview: React.FunctionComponent<Props> = ({

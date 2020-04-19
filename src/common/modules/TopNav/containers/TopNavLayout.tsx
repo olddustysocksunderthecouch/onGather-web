@@ -11,7 +11,11 @@ import {
 } from '../../../../modules/UserTemplates/UserTemplates.actions'
 import { RootState } from '../../../redux/types'
 import { TopNavLayout } from '../components/TopNavLayout'
-import { navigateToCreateTemplate, navigateToHome } from '../TopNav.actions'
+import {
+  navigateToCreateTemplate,
+  navigateToHome,
+  navigateToUserTemplates,
+} from '../TopNav.actions'
 import { NavigationItem, TopNavType } from '../types'
 
 export interface Props {
@@ -24,6 +28,7 @@ export interface Props {
 
 const navigationItemToActionMap: { [key in NavigationItem]: AnyAction } = {
   [NavigationItem.Create]: navigateToCreateTemplate(),
+  [NavigationItem.Templates]: navigateToUserTemplates(),
   [NavigationItem.SignIn]: signInGoogle(),
   [NavigationItem.SignOut]: signOutGoogle(),
   [NavigationItem.SaveDraftTemplate]: saveDraftTemplate(),
