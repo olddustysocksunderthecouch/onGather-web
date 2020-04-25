@@ -1,0 +1,52 @@
+@import 'src/common/styles/variables';
+@import 'src/common/styles/fonts';
+
+.container {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  .horizontalScrollView {
+    margin: 2px -6px 0px -6px;
+    overflow: scroll;
+    white-space: nowrap;
+    -ms-overflow-style: none;
+    flex-shrink: 2;
+  }
+
+  .categoryItem {
+    border: none;
+    background: none;
+    @include text-style('font-main', 'regular', 'body-s');
+    text-transform: uppercase;
+    letter-spacing: 0.075em;
+    margin: 0px 4px 0px 4px;
+    &:focus {
+      outline: none;
+    }
+    &.categoryItemSelected{
+      @include text-style('font-main', 'medium', 'body-s');
+    }
+  }
+  .selectionIndicator {
+    height: 1px;
+    width: 60%;
+    margin-left: 20%;
+    margin-top: 1px;
+    background-color: $color-black;
+
+  }
+
+  .leftMoreIcon {
+    flex-basis: 20px;
+    transform: rotate(180deg);
+    background-color: transparent;
+  }
+  .rightMoreIcon {
+    flex-basis: 20px;
+    z-index: 1;
+  }
+}
+
+::-webkit-scrollbar {
+  display: none;
+}

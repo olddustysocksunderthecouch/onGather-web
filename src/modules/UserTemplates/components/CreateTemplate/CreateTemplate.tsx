@@ -6,6 +6,7 @@ import Select from '@material-ui/core/Select'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import React, { ChangeEvent, useEffect, useState } from 'react'
+import { categories } from '../../../../common/constants'
 import { Category, Duration, Template } from '../../types'
 import styles from './CreateTemplate.module.scss'
 
@@ -14,7 +15,6 @@ export interface Props {
   error: string | null
   handleTemplateDataChange: (template: Template) => void
 }
-const categories: string[] = Object.keys(Category)
 
 const durations: Duration[] = [
   { timeMinutes: '15', timeFormatted: '15 min' },

@@ -4,17 +4,17 @@ import { AnyAction } from 'redux'
 import TopNavLayout from '../../../common/modules/TopNav/containers/TopNavLayout'
 import { TopNavType } from '../../../common/modules/TopNav/types'
 import { ConnectedReduxProps } from '../../../common/redux/types'
-import { SelectTemplate } from '../components/SelectTemplate'
+import { BrowseTemplates } from '../components/BrowseTemplates'
 
 interface Props extends ConnectedReduxProps<AnyAction> {
   dummyText: string
 }
 
-const SelectTemplateContainer = ({
-  dummyText = 'Search Container',
+const BrowseTemplatesContainer = ({
+  dummyText,
 }: Props): React.FunctionComponentElement<Props> => (
   <TopNavLayout topNavType={TopNavType.Home}>
-    <SelectTemplate dummyText={dummyText} />
+    <BrowseTemplates templates={[]} />
   </TopNavLayout>
 )
 
@@ -22,4 +22,4 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): any => ({
   handleGotItClicked: (): void => undefined,
 })
 
-export default connect(null, mapDispatchToProps)(SelectTemplateContainer)
+export default connect(null, mapDispatchToProps)(BrowseTemplatesContainer)

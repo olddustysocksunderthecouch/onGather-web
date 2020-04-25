@@ -15,6 +15,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { configureStoreAndPersistor } from './common/redux'
 import { history } from './common/redux/store'
 import './index.scss'
+import { BrowseTemplateContainer } from './modules/BrowseTemplate'
 import { HomeContainer } from './modules/Home'
 import { PrivacyPolicyContainer } from './modules/PrivacyPolicy'
 import {
@@ -75,6 +76,11 @@ ReactDOM.render(
               exact
               path="/user-templates"
               component={UserTemplatesContainer}
+            />
+            <Route
+              exact
+              path="/browse-templates"
+              component={BrowseTemplateContainer}
             />
             <Route render={(): JSX.Element => <div>404 Not Found</div>} />
           </Switch>
