@@ -10,17 +10,22 @@ const arrayResult = (data: any): any => {
 
 export const selectUserTemplateDrafts = createSelector(
   firebaseSelectors.selectUid,
-  firestoreSelectors.selectQueries,
-  (uid: string, queries: any): any => {
-    if (uid) {
-      const query = `templates?where=uid:==:${uid}`
-      if (queries[query].data != undefined) {
-        const data = queries[query].data
-        console.log(arrayResult(data))
-        return arrayResult(data)
-      } else {
-        return []
-      }
+  firestoreSelectors.selectData,
+  (uid: string, data: any): any => {
+    if (uid && data.userDrafts) {
+      return arrayResult(data.userDrafts)
+    } else {
+      return []
+    }
+  },
+)
+
+export const selectUserTemplatePublished = createSelector(
+  firebaseSelectors.selectUid,
+  firestoreSelectors.selectData,
+  (uid: string, data: any): any => {
+    if (uid && data.userPublished) {
+      return arrayResult(data.userPublished)
     } else {
       return []
     }

@@ -7,3 +7,8 @@ export const selectQueries = createSelector(
   selectFirestore,
   (firestore: any): any => firestore.queries,
 )
+
+export const selectData = createSelector(
+  selectFirestore,
+  (firestore: any): any => firestore.data,
+)

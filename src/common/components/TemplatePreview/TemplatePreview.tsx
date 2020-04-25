@@ -24,7 +24,7 @@ export const TemplatePreview: React.FunctionComponent<Props> = ({
   shortDescription,
   handleTemplatePreviewClicked,
 }) => (
-  <div
+  <article
     className={styles.templatePreview}
     onClick={(): void => handleTemplatePreviewClicked(templateId)}
   >
@@ -60,5 +60,5 @@ export const TemplatePreview: React.FunctionComponent<Props> = ({
       <h4>MORE INFO</h4>
       <img src={MoreIcon} alt="More Icon" />
     </div>
-  </div>
+  </article>
 )

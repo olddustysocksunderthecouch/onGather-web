@@ -19,14 +19,14 @@ export const TopNavLayout: React.FunctionComponent<Props> = ({
   selectedNavigationItem,
 }) => (
   <div className={styles.container}>
-    <div className={styles.TopNav}>
+    <nav className={styles.TopNav}>
       <TopNav
         topNavType={topNavType}
         handleHomeClicked={handleHomeClicked}
         handleNavigationItemClicked={handleNavigationItemClicked}
         selectedNavigationItem={selectedNavigationItem}
       />
-    </div>
+    </nav>
     <div className={styles.children}>{children}</div>
   </div>
 )

@@ -7,7 +7,7 @@ export default {
 }
 
 export const defaultState = (): React.FunctionComponentElement<Props> => (
-  <UserTemplates draftTemplates={[]} />
+  <UserTemplates draftTemplates={[]} publishedTemplates={[]} />
 )
 
 defaultState.story = {
