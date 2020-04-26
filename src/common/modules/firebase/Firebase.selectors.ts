@@ -10,7 +10,7 @@ export const selectAuth = createSelector(
 
 export const selectUid = createSelector(
   selectAuth,
-  (profile: any): any => profile.uid,
+  (profile: any): string | null => profile.uid,
 )
 
 export const selectPhotoURL = createSelector(

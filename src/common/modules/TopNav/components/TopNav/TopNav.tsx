@@ -35,8 +35,9 @@ export const TopNav: React.FunctionComponent<Props> = ({
       [styles.topNavItemSelected]: selectedNavigationItem === navigationItem,
     }
   }
+
   return (
-    <div className={styles.container}>
+    <nav className={styles.container}>
       <h1 className={styles.onGatherLogo} onClick={handleHomeClicked}>
         onGather
       </h1>
@@ -57,6 +58,6 @@ export const TopNav: React.FunctionComponent<Props> = ({
           },
         )}
       </div>
-    </div>
+    </nav>
   )
 }

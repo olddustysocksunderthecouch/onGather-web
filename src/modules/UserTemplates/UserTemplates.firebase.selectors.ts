@@ -11,7 +11,7 @@ const arrayResult = (data: any): any => {
 export const selectUserTemplateDrafts = createSelector(
   firebaseSelectors.selectUid,
   firestoreSelectors.selectData,
-  (uid: string, data: any): any => {
+  (uid: string | null, data: any): any => {
     if (uid && data.userDrafts) {
       return arrayResult(data.userDrafts)
     } else {
@@ -23,7 +23,7 @@ export const selectUserTemplateDrafts = createSelector(
 export const selectUserTemplatePublished = createSelector(
   firebaseSelectors.selectUid,
   firestoreSelectors.selectData,
-  (uid: string, data: any): any => {
+  (uid: string | null, data: any): any => {
     if (uid && data.userPublished) {
       return arrayResult(data.userPublished)
     } else {
