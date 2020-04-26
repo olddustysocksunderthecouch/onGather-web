@@ -24,6 +24,7 @@ export interface Props {
   handleHomeClicked?: () => void
   topNavType: TopNavType
   handleNavigationItemClicked?: (navigationItem: NavigationItem) => void
+  handleContinueWithClicked?: () => void
   selectedNavigationItem?: NavigationItem
   authIsRequired?: boolean
   isAuthenticated?: boolean
@@ -45,11 +46,13 @@ const TopNavLayoutContainer = ({
   authIsRequired = false,
   handleHomeClicked,
   handleNavigationItemClicked,
+  handleContinueWithClicked,
   selectedNavigationItem,
 }: Props): React.FunctionComponentElement<Props> => (
   <TopNavLayout
     isAuthenticated={isAuthenticated}
     authIsRequired={authIsRequired}
+    handleContinueWithClicked={handleContinueWithClicked}
     topNavType={topNavType}
     handleHomeClicked={handleHomeClicked}
     selectedNavigationItem={selectedNavigationItem!}
@@ -67,6 +70,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): any => ({
   handleNavigationItemClicked: (navigationItemClicked: NavigationItem): void =>
     dispatch(navigationItemToActionMap[navigationItemClicked]),
   handleHomeClicked: (): void => dispatch(navigateToHome()),
+  handleContinueWithClicked: (): void => dispatch(signInGoogle()),
 })
 
 export default connect(

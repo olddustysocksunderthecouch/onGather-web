@@ -24,6 +24,7 @@ export const defaultState = (): React.FunctionComponentElement<Props> => (
       topNavType={TopNavType.CreateTemplate}
       handleHomeClicked={(): void => undefined}
       handleNavigationItemClicked={handleNavigationItemClicked}
+      handleContinueWithClicked={(): void => undefined}
       selectedNavigationItem={store.get('selectedNavigationItem')}
     >
       <h1>Children</h1>
@@ -62,6 +63,7 @@ export const authIsRequiredState = (): React.FunctionComponentElement<
       isAuthenticated={false}
       topNavType={TopNavType.CreateTemplate}
       handleHomeClicked={(): void => undefined}
+      handleContinueWithClicked={(): void => undefined}
       handleNavigationItemClicked={handleNavigationItemClicked}
       selectedNavigationItem={store.get('selectedNavigationItem')}
     >
