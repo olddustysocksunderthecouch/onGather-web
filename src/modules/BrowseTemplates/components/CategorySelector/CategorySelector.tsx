@@ -5,18 +5,18 @@ import MoreIcon from './assets/MoreIcon.svg'
 import styles from './CategorySelector.module.scss'
 
 export interface Props {
-  selectedCategory: string
-  handleCategoryPicked: (category: string) => void
+  activeCategory: string
+  handleCategoryClicked: (category: string) => void
 }
 
 export const CategorySelector: React.FunctionComponent<Props> = ({
-  selectedCategory,
-  handleCategoryPicked,
+  activeCategory,
+  handleCategoryClicked,
 }) => {
   const categoryButtonStyle = (category: string): object => {
     return {
       [styles.categoryItem]: true,
-      [styles.categoryItemSelected]: selectedCategory == category,
+      [styles.categoryItemSelected]: activeCategory == category,
     }
   }
   return (
@@ -28,11 +28,11 @@ export const CategorySelector: React.FunctionComponent<Props> = ({
             <button
               key={category}
               className={classes(categoryButtonStyle(category))}
-              onClick={(): void => handleCategoryPicked(category)}
+              onClick={(): void => handleCategoryClicked(category)}
               data-testid={`test-${category}`}
             >
               {category}
-              {category == selectedCategory && (
+              {category == activeCategory && (
                 <div className={styles.selectionIndicator} />
               )}
             </button>

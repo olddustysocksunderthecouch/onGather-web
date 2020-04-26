@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { HowItWorks } from '../HowItWorks'
 import homeBackgroundImage from './../../assets/homeBackgroundImage.svg'
 import homeBackgroundImage2 from './../../assets/homeBackgroundImage2.png'
@@ -22,6 +23,7 @@ export const Home: React.FunctionComponent<Props> = ({ handleClick }) => {
           <br /> more meaningfully
           <br /> on video calls?
         </h1>
+        <Link to="/browse-templates">Pick Template</Link>
       </section>
       <section className={styles.homeSection2}>
         <img

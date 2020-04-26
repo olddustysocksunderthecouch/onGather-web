@@ -7,11 +7,11 @@ import {
   SaveDraftTemplateFailureAction,
   SaveDraftTemplateSuccessAction,
   SetEditorTemplateDataAction,
-  Template,
 } from './types'
+import { TemplateCreation } from '../../common/types'
 
 export const setEditorTemplateData = (
-  template: Template,
+  template: TemplateCreation,
 ): SetEditorTemplateDataAction => ({
   type: UserTemplatesActions.SetEditorTemplateData,
   payload: {

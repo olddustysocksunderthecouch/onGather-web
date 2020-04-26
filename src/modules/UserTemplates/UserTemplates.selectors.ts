@@ -1,14 +1,14 @@
 import { createSelector } from 'reselect'
 import { RootState } from '../../common/redux/types'
-import { UserTemplatesState, TemplateEditorState } from './types'
+import { TemplateEditorState, UserTemplatesState } from './types'
 
-export const selectCreateTemplate = (state: RootState): UserTemplatesState =>
-  state.createTemplate
+export const selectUserTemplates = (state: RootState): UserTemplatesState =>
+  state.userTemplates
 
 export const selectTemplateEditor = createSelector(
-  selectCreateTemplate,
-  (createTemplate: UserTemplatesState): TemplateEditorState =>
-    createTemplate.templateEditor,
+  selectUserTemplates,
+  (userTemplates: UserTemplatesState): TemplateEditorState =>
+    userTemplates.templateEditor,
 )
 
 export const selectTemplateEditorLoading = createSelector(

@@ -1,3 +1,5 @@
+import { TemplateCreation } from '../../common/types'
+
 export enum Category {
   Popular = 'Popular',
   BookClub = 'Book Club',
@@ -8,20 +10,7 @@ export enum Category {
   Discussion = 'Discussion',
 }
 
-export interface Template {
-  status?: 'draft' | 'publish'
-  templateId?: string
-  category?: string
-  title?: string
-  shortDescription?: string
-  mainAimsOutcomes?: string
-  suggestedDuration?: string
-  imageUrl?: string
-  hostInstructions?: string
-  invitationDescription?: string
-}
-
-export interface TemplateEditorState extends Template {
+export interface TemplateEditorState extends TemplateCreation {
   error: string
   loading: string
 }
@@ -48,7 +37,7 @@ export enum UserTemplatesActions {
 export interface SetEditorTemplateDataAction {
   type: typeof UserTemplatesActions.SetEditorTemplateData
   payload: {
-    template: Template
+    template: TemplateCreation
   }
 }
 

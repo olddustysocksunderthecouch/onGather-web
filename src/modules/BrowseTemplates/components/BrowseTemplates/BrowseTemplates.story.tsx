@@ -7,7 +7,11 @@ export default {
 }
 
 export const defaultState = (): React.FunctionComponentElement<Props> => (
-  <BrowseTemplates templates={[]} />
+  <BrowseTemplates
+    templates={[]}
+    activeCategory="Popular"
+    handleCategoryClicked={(): void => undefined}
+  />
 )
 
 defaultState.story = {

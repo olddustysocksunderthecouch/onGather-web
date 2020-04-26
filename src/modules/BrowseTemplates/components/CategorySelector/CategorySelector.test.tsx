@@ -6,7 +6,10 @@ describe('CategorySelector Component', () => {
   it('renders correctly', () => {
     // when we create the component then it should render correctly
     const instance = create(
-      <CategorySelector dummyText={'This is the CategorySelector Component'} />,
+      <CategorySelector
+        handleCategoryClicked={(): void => undefined}
+        activeCategory={'Popular'}
+      />,
     )
     expect(instance.root.type).toBe(CategorySelector)
   })

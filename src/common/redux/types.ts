@@ -4,11 +4,13 @@ import { Store } from 'redux'
 import { Persistor } from 'redux-persist'
 import { AppState } from '../../modules/App/types'
 import { UserTemplatesState } from '../../modules/UserTemplates/types'
+import { BrowseTemplatesState } from '../../modules/BrowseTemplates/types'
 
 export interface RootState {
   app: AppState
   router: RouterState
-  createTemplate: UserTemplatesState
+  userTemplates: UserTemplatesState
+  browseTemplates: BrowseTemplatesState
   firebase: any
   firestore: any
 }

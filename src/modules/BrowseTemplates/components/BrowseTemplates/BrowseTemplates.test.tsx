@@ -5,7 +5,13 @@ import { BrowseTemplates } from './BrowseTemplates'
 describe('BrowseTemplates Component', () => {
   it('renders correctly', () => {
     // when we create the component then it should render correctly
-    const instance = create(<BrowseTemplates templates={[]} />)
+    const instance = create(
+      <BrowseTemplates
+        templates={[]}
+        activeCategory="Popular"
+        handleCategoryClicked={(): void => undefined}
+      />,
+    )
     expect(instance.root.type).toBe(BrowseTemplates)
   })
 })

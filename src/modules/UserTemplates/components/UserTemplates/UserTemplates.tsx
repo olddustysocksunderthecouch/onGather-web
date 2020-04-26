@@ -1,6 +1,6 @@
 import React from 'react'
 import { TemplatePreview } from '../../../../common/components/TemplatePreview'
-import { Template } from '../../types'
+import { Template } from '../../../../common/types'
 import { publishTemplateSuccess } from '../../UserTemplates.actions'
 import styles from './UserTemplates.module.scss'
 

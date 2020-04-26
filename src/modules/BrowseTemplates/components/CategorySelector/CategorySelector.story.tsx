@@ -8,8 +8,8 @@ export default {
 
 export const defaultState = (): React.FunctionComponentElement<Props> => (
   <CategorySelector
-    selectedCategory={'Book Club'}
-    handleCategoryPicked={(): void => undefined}
+    activeCategory={'Book Club'}
+    handleCategoryClicked={(): void => undefined}
   />
 )
 

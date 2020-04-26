@@ -7,13 +7,14 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import React, { ChangeEvent, useEffect, useState } from 'react'
 import { categories } from '../../../../common/constants'
-import { Category, Duration, Template } from '../../types'
+import { TemplateCreation } from '../../../../common/types'
+import { Category, Duration } from '../../types'
 import styles from './CreateTemplate.module.scss'
 
 export interface Props {
   loading: string | null
   error: string | null
-  handleTemplateDataChange: (template: Template) => void
+  handleTemplateDataChange: (template: TemplateCreation) => void
 }
 
 const durations: Duration[] = [
@@ -57,7 +58,7 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
   const [invitationDescription, setInvitationDescription] = useState('')
 
   useEffect(() => {
-    const templateData: Template = {
+    const templateData: TemplateCreation = {
       category: categorySelected,
       title,
       shortDescription,

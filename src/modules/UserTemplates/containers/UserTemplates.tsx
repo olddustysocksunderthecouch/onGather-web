@@ -8,8 +8,8 @@ import { TopNavType } from '../../../common/modules/TopNav/types'
 import { ConnectedReduxProps, RootState } from '../../../common/redux/types'
 import { UserTemplates } from '../components/UserTemplates'
 import { firebaseSelectors as UserTemplatesSelectors } from '../index'
-import { Template } from '../types'
 import { setEditorTemplateData } from '../UserTemplates.actions'
+import { Template } from '../../../common/types'
 
 interface Props extends ConnectedReduxProps<AnyAction> {
   draftTemplates: Template[]

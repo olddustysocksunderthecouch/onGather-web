@@ -5,15 +5,15 @@ import { AnyAction } from 'redux'
 import TopNavLayout from '../../../common/modules/TopNav/containers/TopNavLayout'
 import { TopNavType } from '../../../common/modules/TopNav/types'
 import { ConnectedReduxProps, RootState } from '../../../common/redux/types'
+import { TemplateCreation } from '../../../common/types'
 import { CreateTemplate } from '../components/CreateTemplate'
-import { setEditorTemplateData } from '../UserTemplates.actions'
-import { Template } from '../types'
 import { selectors as CreateTemplateSelectors } from '../index'
+import { setEditorTemplateData } from '../UserTemplates.actions'
 
 interface Props extends ConnectedReduxProps<AnyAction> {
   loading: string | null
   error: string | null
-  handleTemplateDataChange: (template: Template) => void
+  handleTemplateDataChange: (template: TemplateCreation) => void
 }
 
 const CreateTemplateContainer = ({
@@ -36,7 +36,8 @@ const mapStateToProps = (state: RootState): any => ({
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): any => ({
   handleTemplateDataChange: debounce(
-    (template: Template): void => dispatch(setEditorTemplateData(template)),
+    (template: TemplateCreation): void =>
+      dispatch(setEditorTemplateData(template)),
     300,
   ),
 })

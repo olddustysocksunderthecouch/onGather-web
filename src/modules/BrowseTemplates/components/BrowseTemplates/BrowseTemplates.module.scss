@@ -1,0 +1,44 @@
+@import 'src/common/styles/fonts';
+@import 'src/common/styles/variables';
+
+.container {
+  display: flex;
+  flex: 1;
+  justify-content: stretch;
+  flex-direction: column;
+  align-content: center;
+
+  margin: 28px 24px;
+  @media (min-width: $tablet) {
+    margin: 28px 128px;
+  }
+
+  @media (min-width: $desktop) {
+    margin: 56px 192px;
+  }
+
+  @media (min-width: $bigScreen) {
+    margin: 56px 448px;
+  }
+
+  h1 {
+    @include text-style('font-title', 'regular', 'title-l');
+    @media (min-width: $tablet) {
+      @include text-style('font-title', 'regular', 'title-xxl');
+    }
+  }
+  p,
+  button {
+    @include text-style('font-main', 'regular', 'body-s');
+
+    @media (min-width: $tablet) {
+      @include text-style('font-main', 'regular', 'body');
+    }
+  }
+  p {
+    margin-top: 8px;
+  }
+}
+.templates {
+  margin-top: 24px;
+}
