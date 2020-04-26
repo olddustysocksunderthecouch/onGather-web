@@ -26,6 +26,7 @@ const durations: Duration[] = [
   { timeMinutes: '90', timeFormatted: '1 hr 30min' },
   { timeMinutes: '120', timeFormatted: '2 hr' },
 ]
+
 const theme = createMuiTheme({
   palette: {
     primary: grey,

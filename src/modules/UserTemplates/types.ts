@@ -1,10 +1,9 @@
 import { TemplateCreation } from '../../common/types'
 
 export enum Category {
-  Popular = 'Popular',
+  Games = 'Games',
   BookClub = 'Book Club',
   Meditation = 'Meditation',
-  Games = 'Games',
   Craft = 'Craft',
   Workout = 'Workout',
   Discussion = 'Discussion',

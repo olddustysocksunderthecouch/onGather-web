@@ -20,8 +20,10 @@ export const selectTemplateForCategory = createSelector(
   selectActiveCategory,
   (data: any, activeCategory: string): Template[] => {
     if (data.browseTemplates) {
-      const arr = arrayResult(data.browseTemplates)
-      return filterByCategory(arr, activeCategory)
+      const templates = arrayResult(data.browseTemplates)
+      return activeCategory === 'All'
+        ? templates
+        : filterByCategory(templates, activeCategory)
     } else {
       return []
     }

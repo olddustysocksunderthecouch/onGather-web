@@ -1,6 +1,6 @@
 import classes from 'classnames'
 import React from 'react'
-import { categories } from '../../../../common/constants'
+import { browserCategories } from '../../../../common/constants'
 import MoreIcon from './assets/MoreIcon.svg'
 import styles from './CategorySelector.module.scss'
 
@@ -23,7 +23,7 @@ export const CategorySelector: React.FunctionComponent<Props> = ({
     <nav className={styles.container}>
       <img className={styles.leftMoreIcon} src={MoreIcon} alt="More Icon" />
       <div className={styles.horizontalScrollView}>
-        {categories.map((category: string) => {
+        {browserCategories.map((category: string) => {
           return (
             <button
               key={category}

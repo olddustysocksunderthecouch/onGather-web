@@ -5,7 +5,7 @@ import {
 } from './types'
 
 export const initialState: BrowseTemplatesState = {
-  activeCategory: 'Popular',
+  activeCategory: 'All',
 }
 
 export function reducer(
