@@ -71,7 +71,7 @@ const UserTemplatesContainer = ({
   // }, [])
 
   return (
-    <TopNavLayout topNavType={TopNavType.UserTemplates}>
+    <TopNavLayout topNavType={TopNavType.UserTemplates} authIsRequired={true}>
       <UserTemplates
         draftTemplates={draftTemplates}
         publishedTemplates={publishedTemplates}

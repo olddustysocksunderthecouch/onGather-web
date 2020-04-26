@@ -10,6 +10,7 @@ import {
   saveDraftTemplate,
 } from '../../../../modules/UserTemplates/UserTemplates.actions'
 import { RootState } from '../../../redux/types'
+import { selectors as firebaseSelectors } from '../../firebase'
 import { TopNavLayout } from '../components/TopNavLayout'
 import {
   navigateToCreateTemplate,
@@ -24,6 +25,8 @@ export interface Props {
   topNavType: TopNavType
   handleNavigationItemClicked?: (navigationItem: NavigationItem) => void
   selectedNavigationItem?: NavigationItem
+  authIsRequired?: boolean
+  isAuthenticated?: boolean
 }
 
 const navigationItemToActionMap: { [key in NavigationItem]: AnyAction } = {
@@ -38,11 +41,15 @@ const navigationItemToActionMap: { [key in NavigationItem]: AnyAction } = {
 const TopNavLayoutContainer = ({
   children,
   topNavType,
+  isAuthenticated,
+  authIsRequired = false,
   handleHomeClicked,
   handleNavigationItemClicked,
   selectedNavigationItem,
 }: Props): React.FunctionComponentElement<Props> => (
   <TopNavLayout
+    isAuthenticated={isAuthenticated}
+    authIsRequired={authIsRequired}
     topNavType={topNavType}
     handleHomeClicked={handleHomeClicked}
     selectedNavigationItem={selectedNavigationItem!}
@@ -53,9 +60,7 @@ const TopNavLayoutContainer = ({
 )
 
 const mapStateToProps = (state: RootState): any => ({
-  // selectedNavigationItem: TopNavLayoutSelectors.selectActiveNavigationItem(
-  //   state,
-  // ),
+  isAuthenticated: firebaseSelectors.selectIsAuthenticated(state),
 })
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): any => ({

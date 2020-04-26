@@ -8,6 +8,11 @@ export const selectAuth = createSelector(
   (firebase: any): any => firebase.profile,
 )
 
+export const selectIsAuthenticated = createSelector(
+  selectAuth,
+  (profile: any): boolean => !profile.isEmpty,
+)
+
 export const selectUid = createSelector(
   selectAuth,
   (profile: any): string | null => profile.uid,

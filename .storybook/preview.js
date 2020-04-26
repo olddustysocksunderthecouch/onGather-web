@@ -1,1 +1,6 @@
-import '@storybook/addon-console'
+import '@storybook/addon-console';
+import React from "react";
+import { addDecorator } from "@storybook/react";
+import { MemoryRouter } from "react-router";
+
+addDecorator(story => <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>);
