@@ -11,6 +11,7 @@ export const defaultState = (): React.FunctionComponentElement<Props> => (
     loading="Here is an error"
     error="error"
     handleTemplateDataChange={(): void => undefined}
+    handleImageSelected={(): void => undefined}
   />
 )
 

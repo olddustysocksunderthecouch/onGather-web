@@ -1,0 +1,45 @@
+@import 'src/common/styles/fonts';
+@import 'src/common/styles/variables';
+
+.container {
+  min-height: 100px;
+  width: 100%;
+  p {
+    margin: 12px;
+    @include text-style('font-main', 'regular', 'body');
+    color: rgba(0, 0, 0, 0.87);
+  }
+}
+
+.thumbsContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 12px;
+}
+
+.thumb {
+  display: inline-flex;
+  border-radius: 2px;
+  border: 1px solid #eaeaea;
+  margin-bottom: 8px;
+  margin-right: 8px;
+  width: 100px;
+  height: 100px;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+.thumbInner {
+  display: flex;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.img {
+  display: block;
+  width: auto;
+  height: 100%;
+  width: 100%;
+  border-radius: 8px;
+}

@@ -6,7 +6,10 @@ const howItWorks: HowItWorksItem[] = [
   { number: '#1', content: 'Pick a template' },
   { number: '#2', content: 'Edit a pre-written invitation' },
   { number: '#3', content: 'Enter friend’s emails' },
-  { number: '#4', content: 'We send them & you invites' },
+  {
+    number: '#4',
+    content: `We send everyone a Google Calendar invite`,
+  },
 ]
 
 export const HowItWorks: React.FunctionComponent = () => (

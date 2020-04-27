@@ -26,6 +26,9 @@ export enum UserTemplatesActions {
   PublishTemplate = '/UserTemplates/PUBLISH_TEMPLATE',
   PublishTemplateSuccess = '/UserTemplates/PUBLISH_TEMPLATE_SUCCESS',
   PublishTemplateFailure = '/UserTemplates/PUBLISH_TEMPLATE_FAILURE',
+  UploadImage = '/UserTemplates/UPLOAD_IMAGE',
+  UploadImageSuccess = '/UserTemplates/UPLOAD_IMAGE_SUCCESS',
+  UploadImageFailure = '/UserTemplates/UPLOAD_IMAGE_FAILURE',
 }
 
 export interface SetEditorTemplateDataAction {

@@ -27,7 +27,7 @@
     margin-top: 24px;
     @include text-style('font-main', 'regular', 'body');
     @media (min-width: $tablet) {
-      @include text-style('font-main', 'regular', 'title-xl');
+      @include text-style('font-main', 'semibold', 'title-l');
     }
   }
 

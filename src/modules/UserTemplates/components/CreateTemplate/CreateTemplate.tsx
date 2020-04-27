@@ -3,18 +3,21 @@ import FormControl from '@material-ui/core/FormControl'
 import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
 import Select from '@material-ui/core/Select'
+import Slider from '@material-ui/core/Slider'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import React, { ChangeEvent, useEffect, useState } from 'react'
 import { categories, durations } from '../../../../common/constants'
-import { TemplateCreation, Duration } from '../../../../common/types'
+import { Duration, TemplateCreation } from '../../../../common/types'
 import { Category } from '../../types'
+import { UploadImage } from '../UploadImage'
 import styles from './CreateTemplate.module.scss'
 
 export interface Props {
   loading: string | null
   error: string | null
   handleTemplateDataChange: (template: TemplateCreation) => void
+  handleImageSelected: (url: string) => void
 }
 
 const theme = createMuiTheme({
@@ -26,13 +29,31 @@ const theme = createMuiTheme({
   },
 })
 
+const marks = [
+  {
+    value: 0,
+    label: '0',
+  },
+  {
+    value: 10,
+    label: '10',
+  },
+  {
+    value: 20,
+    label: '20',
+  },
+]
+
 export const CreateTemplate: React.FunctionComponent<Props> = ({
   loading,
   error,
   handleTemplateDataChange,
+  handleImageSelected,
 }) => {
   const [categorySelected, setCategorySelected] = useState('')
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>): void => {
+  const handleCategorySelected = (
+    event: React.ChangeEvent<{ value: unknown }>,
+  ): void => {
     setCategorySelected(event.target.value as Category)
   }
   const [durationSelected, setDurationSelected] = useState('')
@@ -40,6 +61,15 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
     event: React.ChangeEvent<{ value: unknown }>,
   ): void => {
     setDurationSelected(event.target.value as string)
+  }
+
+  const [participantRange, setParticipantRange] = useState<number[]>([2, 4])
+
+  const handleParticipantRange = (
+    event: any,
+    newValue: number | number[],
+  ): void => {
+    setParticipantRange(newValue as number[])
   }
 
   const [title, setTitle] = useState('')
@@ -73,11 +103,13 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
 
   return (
     <div className={styles.createTemplate}>
-      <h1>Template Creator</h1>
-      <p>
-        Some text explaining some things. Sometimes it explains even more things
-        about things that you’ve never heard of.
-      </p>
+      <header>
+        <h1>Template Creator</h1>
+        <p>
+          Some text explaining some things. Sometimes it explains even more
+          things about things that you’ve never heard of.
+        </p>
+      </header>
       <ThemeProvider theme={theme}>
         <FormControl
           style={{ marginTop: '36px', width: '300px' }}
@@ -86,7 +118,7 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
           <InputLabel>Category</InputLabel>
           <Select
             value={categorySelected}
-            onChange={handleChange}
+            onChange={handleCategorySelected}
             label="Category"
           >
             {categories.map((category: string) => {
@@ -153,8 +185,23 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
             })}
           </Select>
         </FormControl>
+
+        <h2>Number of participants</h2>
+        <Slider
+          style={{ marginTop: '56px', width: '300px' }}
+          step={1}
+          value={participantRange}
+          onChange={handleParticipantRange}
+          valueLabelDisplay="on"
+          aria-labelledby="discrete-slider-restrict"
+          marks={marks}
+          min={0}
+          max={20}
+          // getAriaValueText={}
+        />
         <form className={styles.form} noValidate autoComplete="on">
-          <button className={styles.uploadButton}>Upload Image</button>
+          <h2>Upload an image</h2>
+          <UploadImage handleImageSelected={handleImageSelected} />
           <h2>Instructions for the host</h2>
           <p>
             e.g. hosting guide, tools they could use, interaction guidelines,

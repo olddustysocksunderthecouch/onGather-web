@@ -14,18 +14,21 @@ interface Props extends ConnectedReduxProps<AnyAction> {
   loading: string | null
   error: string | null
   handleTemplateDataChange: (template: TemplateCreation) => void
+  handleImageSelected: (url: string) => void
 }
 
 const CreateTemplateContainer = ({
   loading,
   error,
   handleTemplateDataChange,
+  handleImageSelected,
 }: Props): React.FunctionComponentElement<Props> => (
   <TopNavLayout topNavType={TopNavType.CreateTemplate}>
     <CreateTemplate
       loading={loading}
       error={error}
       handleTemplateDataChange={handleTemplateDataChange}
+      handleImageSelected={handleImageSelected}
     />
   </TopNavLayout>
 )
