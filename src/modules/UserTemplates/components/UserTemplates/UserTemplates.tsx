@@ -1,7 +1,6 @@
 import React from 'react'
 import { TemplatePreview } from '../../../../common/components/TemplatePreview'
 import { Template } from '../../../../common/types'
-import { publishTemplateSuccess } from '../../UserTemplates.actions'
 import styles from './UserTemplates.module.scss'
 
 export interface Props {
@@ -13,8 +12,8 @@ export const UserTemplates: React.FunctionComponent<Props> = ({
   draftTemplates,
   publishedTemplates,
 }) => (
-  <div>
-    <section className={styles.container}>
+  <div className={styles.container}>
+    <section>
       <h1>Draft Templates</h1>
       {draftTemplates.map((template: Template) => {
         return (
@@ -31,9 +30,9 @@ export const UserTemplates: React.FunctionComponent<Props> = ({
         )
       })}
     </section>
-    <section className={styles.container}>
+    <section>
       <h1>Published Templates</h1>
-      {publishTemplateSuccess.length > 0 ? (
+      {publishedTemplates.length > 0 ? (
         publishedTemplates.map((template: Template) => {
           return (
             <TemplatePreview

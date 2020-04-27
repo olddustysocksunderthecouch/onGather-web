@@ -1,11 +1,21 @@
 import { createSelector } from 'reselect'
 import { selectors as firebaseSelectors } from '../../common/modules/firebase'
 import { selectors as firestoreSelectors } from '../../common/modules/firestore'
+import { Template } from '../../common/types'
 
-const arrayResult = (data: any): any => {
-  return Object.keys(data).map((id) => {
+const arrayResult = (data: any): Template[] => {
+  const array = Object.keys(data).map((id) => {
     return { templateId: id, ...data[id] }
   })
+  return array.reduce(
+    (accumulator: any, currentValue: Template): Template[] => {
+      if (currentValue) {
+        accumulator.push(currentValue)
+      }
+      return accumulator
+    },
+    [],
+  )
 }
 
 export const selectUserTemplateDrafts = createSelector(

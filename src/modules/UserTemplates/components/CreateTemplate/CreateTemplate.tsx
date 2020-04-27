@@ -6,9 +6,9 @@ import Select from '@material-ui/core/Select'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import React, { ChangeEvent, useEffect, useState } from 'react'
-import { categories } from '../../../../common/constants'
-import { TemplateCreation } from '../../../../common/types'
-import { Category, Duration } from '../../types'
+import { categories, durations } from '../../../../common/constants'
+import { TemplateCreation, Duration } from '../../../../common/types'
+import { Category } from '../../types'
 import styles from './CreateTemplate.module.scss'
 
 export interface Props {
@@ -16,16 +16,6 @@ export interface Props {
   error: string | null
   handleTemplateDataChange: (template: TemplateCreation) => void
 }
-
-const durations: Duration[] = [
-  { timeMinutes: '15', timeFormatted: '15 min' },
-  { timeMinutes: '30', timeFormatted: '30 min' },
-  { timeMinutes: '45', timeFormatted: '45 min' },
-  { timeMinutes: '60', timeFormatted: '1 hr' },
-  { timeMinutes: '75', timeFormatted: '1 hr 15min' },
-  { timeMinutes: '90', timeFormatted: '1 hr 30min' },
-  { timeMinutes: '120', timeFormatted: '2 hr' },
-]
 
 const theme = createMuiTheme({
   palette: {

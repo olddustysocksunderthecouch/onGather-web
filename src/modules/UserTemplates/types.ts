@@ -18,11 +18,6 @@ export interface UserTemplatesState {
   templateEditor: TemplateEditorState
 }
 
-export interface Duration {
-  timeMinutes: string
-  timeFormatted: string
-}
-
 export enum UserTemplatesActions {
   SetEditorTemplateData = '/UserTemplates/SET_EDITOR_TEMPLATE_DATA',
   SaveDraftTemplate = '/UserTemplates/SAVE_DRAFT_TEMPLATE',

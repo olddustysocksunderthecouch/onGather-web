@@ -31,7 +31,7 @@ const UserTemplatesContainer = ({
           collection: 'templates',
           where: [
             ['uid', '==', uid],
-            ['status', '==', 'published'],
+            ['status', '==', 'publish'],
           ],
           storeAs: 'userPublished',
         },

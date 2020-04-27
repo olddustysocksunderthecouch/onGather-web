@@ -4,9 +4,18 @@ import { Template } from '../../common/types'
 import { selectActiveCategory } from './BrowseTemplates.selectors'
 
 const arrayResult = (data: any): Template[] => {
-  return Object.keys(data).map((id) => {
+  const array = Object.keys(data).map((id) => {
     return { templateId: id, ...data[id] }
   })
+  return array.reduce(
+    (accumulator: any, currentValue: Template): Template[] => {
+      if (currentValue) {
+        accumulator.push(currentValue)
+      }
+      return accumulator
+    },
+    [],
+  )
 }
 
 const filterByCategory = (

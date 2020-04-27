@@ -26,3 +26,8 @@ export interface TemplateCreation {
   hostInstructions?: string
   invitationDescription?: string
 }
+
+export interface Duration {
+  timeMinutes: string
+  timeFormatted: string
+}

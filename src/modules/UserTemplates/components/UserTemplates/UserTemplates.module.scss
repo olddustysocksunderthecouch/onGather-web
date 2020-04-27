@@ -1,7 +1,31 @@
+@import 'src/common/styles/fonts';
+@import 'src/common/styles/variables';
+
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-content: center;
-  margin: 16px 16px;
+  margin: 28px 24px;
+  @media (min-width: $tablet) {
+    margin: 28px 128px;
+  }
+
+  @media (min-width: $desktop) {
+    margin: 56px 192px;
+  }
+
+  @media (min-width: $bigScreen) {
+    margin: 56px 396px;
+  }
+
+  h1 {
+    @include text-style('font-main', 'semibold', 'title-l');
+    margin-bottom: 24px;
+    @media (min-width: $tablet) {
+      @include text-style('font-main', 'semibold', 'title-xl');
+    }
+  }
+  section {
+    margin-bottom: 24px;
+  }
+
 }

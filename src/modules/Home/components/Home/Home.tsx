@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { HowItWorks } from '../HowItWorks'
-import homeBackgroundImage from './../../assets/homeBackgroundImage.svg'
+import homeBackgroundImage from './../../assets/home-section-1.svg'
 import homeBackgroundImage2 from './../../assets/homeBackgroundImage2.png'
 import styles from './Home.module.scss'
 
@@ -19,11 +19,13 @@ export const Home: React.FunctionComponent<Props> = ({ handleClick }) => {
           className={styles.homeBackgroundImage}
         />
         <h1 className={styles.homePageTitle}>
-          Want to connect with friends
-          <br /> more meaningfully
-          <br /> on video calls?
+          Want to have more
+          <br /> fun & meaningfully
+          <br /> video calls with friends?
         </h1>
-        <Link to="/browse-templates">Pick Template</Link>
+        <Link to="/browse-templates">
+          <button className={styles.buttonSection1}>Pick a template</button>
+        </Link>
       </section>
       <section className={styles.homeSection2}>
         <img
