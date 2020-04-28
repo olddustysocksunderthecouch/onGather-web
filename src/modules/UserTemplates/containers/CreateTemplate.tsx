@@ -8,13 +8,13 @@ import { ConnectedReduxProps, RootState } from '../../../common/redux/types'
 import { TemplateCreation } from '../../../common/types'
 import { CreateTemplate } from '../components/CreateTemplate'
 import { selectors as CreateTemplateSelectors } from '../index'
-import { setEditorTemplateData } from '../UserTemplates.actions'
+import { setEditorTemplateData, uploadImage } from '../UserTemplates.actions'
 
 interface Props extends ConnectedReduxProps<AnyAction> {
   loading: string | null
   error: string | null
   handleTemplateDataChange: (template: TemplateCreation) => void
-  handleImageSelected: (url: string) => void
+  handleImageSelected: (url: File) => void
 }
 
 const CreateTemplateContainer = ({
@@ -43,6 +43,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): any => ({
       dispatch(setEditorTemplateData(template)),
     300,
   ),
+  handleImageSelected: (file: File): void => dispatch(uploadImage(file)),
 })
 
 export default connect(

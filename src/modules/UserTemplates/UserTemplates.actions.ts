@@ -1,5 +1,5 @@
+import { TemplateCreation } from '../../common/types'
 import {
-  UserTemplatesActions,
   PublishTemplateAction,
   PublishTemplateFailureAction,
   PublishTemplateSuccessAction,
@@ -7,8 +7,11 @@ import {
   SaveDraftTemplateFailureAction,
   SaveDraftTemplateSuccessAction,
   SetEditorTemplateDataAction,
+  UploadImageAction,
+  UploadImageFailureAction,
+  UploadImageSuccessAction,
+  UserTemplatesActions,
 } from './types'
-import { TemplateCreation } from '../../common/types'
 
 export const setEditorTemplateData = (
   template: TemplateCreation,
@@ -48,6 +51,25 @@ export const publishTemplateFailure = (
   message: string,
 ): PublishTemplateFailureAction => ({
   type: UserTemplatesActions.PublishTemplateFailure,
+  payload: {
+    message,
+  },
+})
+
+export const uploadImage = (file: File): UploadImageAction => ({
+  type: UserTemplatesActions.UploadImage,
+  payload: { file },
+})
+
+export const uploadImageSuccess = (result: any): UploadImageSuccessAction => ({
+  type: UserTemplatesActions.UploadImageSuccess,
+  payload: { result },
+})
+
+export const uploadImageFailure = (
+  message: string,
+): UploadImageFailureAction => ({
+  type: UserTemplatesActions.UploadImageFailure,
   payload: {
     message,
   },

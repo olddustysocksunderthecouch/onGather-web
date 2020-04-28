@@ -17,7 +17,7 @@ export interface Props {
   loading: string | null
   error: string | null
   handleTemplateDataChange: (template: TemplateCreation) => void
-  handleImageSelected: (url: string) => void
+  handleImageSelected: (url: File) => void
 }
 
 const theme = createMuiTheme({

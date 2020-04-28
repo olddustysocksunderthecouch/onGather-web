@@ -72,6 +72,27 @@ export interface PublishTemplateFailureAction {
   }
 }
 
+export interface UploadImageAction {
+  type: typeof UserTemplatesActions.UploadImage
+  payload: {
+    file: File
+  }
+}
+
+export interface UploadImageSuccessAction {
+  type: typeof UserTemplatesActions.UploadImageSuccess
+  payload: {
+    result: any
+  }
+}
+
+export interface UploadImageFailureAction {
+  type: typeof UserTemplatesActions.UploadImageFailure
+  payload: {
+    message: string
+  }
+}
+
 export type UserTemplatesActionTypes =
   | SetEditorTemplateDataAction
   | SaveDraftTemplateAction
@@ -80,3 +101,6 @@ export type UserTemplatesActionTypes =
   | PublishTemplateAction
   | PublishTemplateSuccessAction
   | PublishTemplateFailureAction
+  | UploadImageAction
+  | UploadImageSuccessAction
+  | UploadImageFailureAction

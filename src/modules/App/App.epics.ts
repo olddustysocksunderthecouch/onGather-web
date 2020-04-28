@@ -51,7 +51,7 @@ export const signInAppEpic$ = (
       ): Observable<SignInGoogleSuccessAction | SignInGoogleFailureAction> => {
         const provider = new firebase.auth.GoogleAuthProvider()
         // provider.addScope('https://www.googleapis.com/auth/calendar.readonly')
-        return from(firebase.auth().signInWithPopup(provider)).pipe(
+        return from(firebase.auth().signInWithRedirect(provider)).pipe(
           flatMap(
             (result: any): Observable<SignInGoogleSuccessAction> => {
               console.log('result: ', result)

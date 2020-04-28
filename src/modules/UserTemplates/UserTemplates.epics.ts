@@ -9,14 +9,19 @@ import {
   PublishTemplateSuccessAction,
   SaveDraftTemplateFailureAction,
   SaveDraftTemplateSuccessAction,
+  UploadImageFailureAction,
+  UploadImageSuccessAction,
   UserTemplatesActions,
   UserTemplatesActionTypes,
+  UploadImageAction,
 } from './types'
 import {
   publishTemplateFailure,
   publishTemplateSuccess,
   saveDraftTemplateFailure,
   saveDraftTemplateSuccess,
+  uploadImageFailure,
+  uploadImageSuccess,
 } from './UserTemplates.actions'
 
 export const saveDraftTemplateEpic$ = (
@@ -68,6 +73,32 @@ export const publishTemplateEpic$ = (
         catchError(
           (error: Error): Observable<PublishTemplateFailureAction> =>
             of(publishTemplateFailure(error.message)),
+        ),
+      ),
+    ),
+  )
+
+export const uploadImageEpic$ = (
+  action$: ActionsObservable<UploadImageAction>,
+  state$: StateObservable<RootState>,
+): Observable<UploadImageSuccessAction | UploadImageFailureAction> =>
+  action$.pipe(
+    ofType<UploadImageAction>(UserTemplatesActions.UploadImage),
+    withLatestFrom(state$),
+    flatMap(([action, state]) =>
+      from(
+        firebase
+          .storage()
+          .ref()
+          .child('mountains.jpg')
+          .put(action.payload.file),
+      ).pipe(
+        flatMap(
+          (result: any): Observable<UploadImageSuccessAction> => of(uploadImageSuccess(result)),
+        ),
+        catchError(
+          (error: Error): Observable<UploadImageFailureAction> =>
+            of(uploadImageFailure(error.message)),
         ),
       ),
     ),

@@ -3,7 +3,7 @@ import { useDropzone } from 'react-dropzone'
 import styles from './UploadImage.module.scss'
 
 export interface Props {
-  handleImageSelected: (url: string) => void
+  handleImageSelected: (url: File) => void
 }
 
 export const UploadImage: React.FunctionComponent<Props> = ({
@@ -21,8 +21,7 @@ export const UploadImage: React.FunctionComponent<Props> = ({
         ) as any,
       )
       const mostRecentImage = acceptedFiles[acceptedFiles.length - 1]
-      handleImageSelected(URL.createObjectURL(mostRecentImage))
-      console.log('setting files', mostRecentImage)
+      handleImageSelected(mostRecentImage)
     },
   })
 
@@ -54,7 +53,9 @@ export const UploadImage: React.FunctionComponent<Props> = ({
         {...getRootProps({ className: 'dropzone' })}
       >
         <input {...getInputProps()} />
-        <p>Drag &apos;n&apos; drop an image here, or click to select one</p>
+        <p>
+          Drag &apos;n&apos; drop an image here, or click/press to select one
+        </p>
         <aside className={styles.thumbsContainer}>{thumbs}</aside>
       </div>
     </section>
