@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { HowItWorks } from '../HowItWorks'
 import homeBackgroundImage from './../../assets/home-section-1.svg'
-import homeBackgroundImage2 from './../../assets/homeBackgroundImage2.png'
+import homeBackgroundImage2 from './../../assets/home-section-2.svg'
 import styles from './Home.module.scss'
 
 export interface Props {
@@ -12,7 +12,7 @@ export interface Props {
 export const Home: React.FunctionComponent<Props> = ({ handleClick }) => {
   return (
     <div className={styles.container}>
-      <section className={styles.homeSection}>
+      <section className={styles.homeSection1}>
         <img
           src={homeBackgroundImage}
           alt="home background"
@@ -24,7 +24,7 @@ export const Home: React.FunctionComponent<Props> = ({ handleClick }) => {
           <br /> video calls with friends?
         </h1>
         <Link to="/browse-templates">
-          <button className={styles.buttonSection1}>Pick a template</button>
+          <button className={styles.buttonSection1}>Browse</button>
         </Link>
       </section>
       <section className={styles.homeSection2}>
@@ -33,13 +33,21 @@ export const Home: React.FunctionComponent<Props> = ({ handleClick }) => {
           alt="home background 2"
           className={styles.homeBackgroundImage2}
         />
-        <h1 className={styles.homePageTitle2}>
-          We&apos;ve got some templates
-          <br /> that will make it easy
-          <br /> to bring everyone together
-        </h1>
+        <div className={styles.homeSection2Content}>
+          <h1 className={styles.homePageTitle2}>
+            We&apos;ve got some
+            <br /> ideas & templates
+            <br /> that make it
+            <br /> much easier
+          </h1>
+          <Link to="/browse-templates">
+            <button className={styles.buttonSection2}>Pick One</button>
+          </Link>
+        </div>
       </section>
-      <HowItWorks />
+      <div className={styles.howItWorks}>
+        <HowItWorks />
+      </div>
     </div>
   )
 }

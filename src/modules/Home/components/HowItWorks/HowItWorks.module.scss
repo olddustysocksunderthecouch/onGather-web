@@ -4,24 +4,23 @@
 .howItWorks {
   display: flex;
   flex-direction: column;
-  height: 600px;
   @media (min-width: $tablet) {
     text-align: center;
-    // justify-self: center;
+    justify-self: stretch;
   }
 }
 .sectionTitle {
   margin-left: 24px;
-  @include text-style('font-title', 'regular', 'title-l');
+  @include text-style('font-main', 'semibold', 'title-l');
   @media (min-width: $tablet) {
-    @include text-style('font-title', 'regular', 'title-xxl');
+    @include text-style('font-main', 'semibold', 'title-xxl');
     margin-left: 0;
   }
 }
 
 .howItWorksList {
   list-style: none;
-  padding: 18px 24px;
+  padding: 24px 24px;
 
   @media (min-width: $tablet) {
     display: flex;
@@ -33,8 +32,10 @@
     align-items: center;
     margin-bottom: 12px;
     height: 60px;
-    border: 1px solid $color-black;
-    border-radius: 14px;
+    border: 1px solid #efefef;
+    box-shadow: 2px 2px 48px rgba(0, 0, 0, 0.04),
+      0px 4px 32px rgba(0, 0, 0, 0.06);
+    border-radius: 16px;
     padding: 4px;
 
     @media (min-width: $tablet) {
@@ -67,5 +68,49 @@
         margin-top: 8px;
       }
     }
+  }
+}
+.wantToHelp {
+  display: flex;
+  flex-direction: column;
+  margin-top: 36px;
+  margin-bottom: 36px;
+  @media (min-width: $tablet) {
+    align-items: center;
+    justify-self: stretch;
+
+  }
+  p {
+    margin: 8px 24px;
+    @include text-style('font-main', 'regular', 'body-s');
+    @media (min-width: $tablet) {
+      @include text-style('font-main', 'regular', 'body');
+    }
+  }
+
+  button {
+    margin: 24px;
+    width: 196px;
+    height: 192px;
+    border-radius: 16px;
+    background-color: $color-tangerine;
+    box-shadow: 2px 2px 48px rgba(0, 0, 0, 0.04),
+    0px 4px 32px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+
+
+    img {
+      margin-bottom: 16px;
+      height: 36px;
+    }
+    @include text-style('font-main', 'regular', 'body-s');
+    @media (min-width: $tablet) {
+      @include text-style('font-main', 'regular', 'body');
+    }
+    color: $color-black;
+
   }
 }
