@@ -78,6 +78,7 @@
   padding: 8px 24px;
   @include text-style('font-main', 'semibold', 'body-s');
   letter-spacing: 0.05em;
+  z-index: 1;
   &:hover {
     opacity: 0.9;
   }
@@ -126,6 +127,7 @@
   top: 24px;
   left: 0;
   margin-left: -32px;
+  z-index: -1;
   @media (min-width: $desktop) {
     margin-left: 0;
     width: 54vw;
