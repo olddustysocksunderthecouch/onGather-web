@@ -14,7 +14,6 @@ export const AuthModal: React.FunctionComponent<Props> = ({
   handleContinueWithClicked,
 }) => {
   const history = useHistory()
-  console.log('auth', isAuthenticationLoading)
   return (
     <div className={styles.authModal}>
       {isAuthenticationLoading ? (

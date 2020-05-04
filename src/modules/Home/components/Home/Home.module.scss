@@ -66,6 +66,10 @@
     padding-top: 440px;
     padding-left: 270px;
   }
+  @media (min-width: 2200px) {
+    padding-top: 440px;
+    padding-left: 300px;
+  }
 }
 
 .buttonSection1 {
@@ -96,6 +100,9 @@
   }
   @media (min-width: $hugeScreen) {
     margin-left: 270px;
+  }
+  @media (min-width: 2200px) {
+    margin-left: 300px;
   }
 }
 
@@ -189,6 +196,18 @@
     top: 600px;
     right: 350px;
   }
+  @media (min-width: 2000px) {
+    top: 800px;
+    right: 350px;
+  }
+  @media (min-width: 2200px) {
+    top: 900px;
+    right: 420px;
+  }
+  @media (min-width: 2400px) {
+    top: 1000px;
+    right: 420px;
+  }
 }
 
 .buttonSection2 {
@@ -255,5 +274,14 @@
   }
   @media (min-width: $hugeScreen) {
     top: 1800px;
+  }
+  @media (min-width: 2000px) {
+    top: 2100px;
+  }
+  @media (min-width: 2200px) {
+    top: 2300px;
+  }
+  @media (min-width: 2400px) {
+    top: 2400px;
   }
 }
