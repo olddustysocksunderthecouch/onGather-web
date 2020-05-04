@@ -26,9 +26,11 @@ export const TemplatePreview: React.FunctionComponent<Props> = ({
   shortDescription,
   handleTemplatePreviewClicked,
 }) => {
-  const duration = durations.filter(
-    (duration: Duration) => suggestedDuration === duration.timeMinutes,
-  )[0]
+  const duration = suggestedDuration
+    ? durations.filter(
+        (duration: Duration) => suggestedDuration === duration.timeMinutes,
+      )[0]
+    : { timeMinutes: '15', timeFormatted: '15 min' }
 
   const formattedAimsOutcomes = mainAimsOutcomes?.split(',').join(' | ')
 

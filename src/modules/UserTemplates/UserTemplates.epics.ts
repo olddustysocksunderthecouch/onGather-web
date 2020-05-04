@@ -9,11 +9,11 @@ import {
   PublishTemplateSuccessAction,
   SaveDraftTemplateFailureAction,
   SaveDraftTemplateSuccessAction,
+  UploadImageAction,
   UploadImageFailureAction,
   UploadImageSuccessAction,
   UserTemplatesActions,
   UserTemplatesActionTypes,
-  UploadImageAction,
 } from './types'
 import {
   publishTemplateFailure,
@@ -94,7 +94,8 @@ export const uploadImageEpic$ = (
           .put(action.payload.file),
       ).pipe(
         flatMap(
-          (result: any): Observable<UploadImageSuccessAction> => of(uploadImageSuccess(result)),
+          (result: any): Observable<UploadImageSuccessAction> =>
+            of(uploadImageSuccess(result)),
         ),
         catchError(
           (error: Error): Observable<UploadImageFailureAction> =>

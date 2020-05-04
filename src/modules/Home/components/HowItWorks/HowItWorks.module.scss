@@ -78,7 +78,6 @@
   @media (min-width: $tablet) {
     align-items: center;
     justify-self: stretch;
-
   }
   p {
     margin: 8px 24px;
@@ -90,27 +89,28 @@
 
   button {
     margin: 24px;
-    width: 196px;
-    height: 192px;
+    width: 208px;
+    height: 128px;
     border-radius: 16px;
-    background-color: $color-tangerine;
+    background-color: $color-malibu;
     box-shadow: 2px 2px 48px rgba(0, 0, 0, 0.04),
-    0px 4px 32px rgba(0, 0, 0, 0.06);
+      0px 4px 32px rgba(0, 0, 0, 0.06);
     display: flex;
     flex-direction: column;
     align-items: stretch;
     justify-content: center;
-
+    &:hover {
+      opacity: 80%;
+    }
 
     img {
       margin-bottom: 16px;
       height: 36px;
     }
-    @include text-style('font-main', 'regular', 'body-s');
+    @include text-style('font-main', 'semibold', 'body');
     @media (min-width: $tablet) {
-      @include text-style('font-main', 'regular', 'body');
+      @include text-style('font-main', 'semibold', 'body');
     }
-    color: $color-black;
-
+    color: $color-white;
   }
 }

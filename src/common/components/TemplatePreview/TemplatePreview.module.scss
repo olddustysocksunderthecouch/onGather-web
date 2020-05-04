@@ -17,7 +17,10 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  border: solid 1px $color-black;
+  background: #ffffff;
+  border: 1px solid #efefef;
+  box-shadow: 2px 2px 48px rgba(0, 0, 0, 0.04), 0px 4px 32px rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
   border-radius: 18px;
   padding: 32px 32px 0px 32px;
   margin-bottom: 16px;
@@ -29,6 +32,7 @@
     background-color: rgba($color: $color-dove-gray, $alpha: 0.3);
   }
 }
+
 .image {
   height: 72px;
   width: 72px;
@@ -82,7 +86,6 @@
 }
 
 .bodyMobile {
-  
   @media (min-width: $tablet) {
     display: none;
   }

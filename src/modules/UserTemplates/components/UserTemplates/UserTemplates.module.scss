@@ -1,5 +1,6 @@
 @import 'src/common/styles/fonts';
 @import 'src/common/styles/variables';
+@import 'src/common/styles/mixins';
 
 .container {
   display: flex;
@@ -18,14 +19,22 @@
   }
 
   h1 {
-    @include text-style('font-main', 'semibold', 'title-l');
-    margin-bottom: 24px;
+    @include text-style('font-main', 'semibold', 'title-xl');
+    margin-bottom: 32px;
     @media (min-width: $tablet) {
-      @include text-style('font-main', 'semibold', 'title-xl');
+      @include text-style('font-main', 'semibold', 'title-xxl');
     }
   }
   section {
     margin-bottom: 24px;
   }
+  .draftTitle {
+    display: flex;
+    justify-content: space-between;
+  }
 
+  .createTemplateButton {
+    @include button;
+    background-color: $color-tangerine;
+  }
 }

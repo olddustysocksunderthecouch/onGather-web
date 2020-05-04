@@ -8,18 +8,27 @@ import { ConnectedReduxProps, RootState } from '../../../common/redux/types'
 import { TemplateCreation } from '../../../common/types'
 import { CreateTemplate } from '../components/CreateTemplate'
 import { selectors as CreateTemplateSelectors } from '../index'
-import { setEditorTemplateData, uploadImage } from '../UserTemplates.actions'
+import {
+  saveDraftTemplate,
+  setEditorTemplateData,
+  uploadImage,
+  publishTemplate,
+} from '../UserTemplates.actions'
 
 interface Props extends ConnectedReduxProps<AnyAction> {
   loading: string | null
   error: string | null
   handleTemplateDataChange: (template: TemplateCreation) => void
   handleImageSelected: (url: File) => void
+  handleSaveDraftClicked: () => void
+  handlePublishClicked: () => void
 }
 
 const CreateTemplateContainer = ({
   loading,
   error,
+  handleSaveDraftClicked,
+  handlePublishClicked,
   handleTemplateDataChange,
   handleImageSelected,
 }: Props): React.FunctionComponentElement<Props> => (
@@ -27,6 +36,8 @@ const CreateTemplateContainer = ({
     <CreateTemplate
       loading={loading}
       error={error}
+      handleSaveDraftClicked={handleSaveDraftClicked}
+      handlePublishClicked={handlePublishClicked}
       handleTemplateDataChange={handleTemplateDataChange}
       handleImageSelected={handleImageSelected}
     />
@@ -38,6 +49,8 @@ const mapStateToProps = (state: RootState): any => ({
 })
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): any => ({
+  handleSaveDraftClicked: (): void => dispatch(saveDraftTemplate()),
+  handlePublishClicked: (): void => dispatch(publishTemplate()),
   handleTemplateDataChange: debounce(
     (template: TemplateCreation): void =>
       dispatch(setEditorTemplateData(template)),

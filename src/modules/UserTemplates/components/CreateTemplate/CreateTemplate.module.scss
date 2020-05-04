@@ -1,5 +1,24 @@
 @import 'src/common/styles/fonts';
 @import 'src/common/styles/variables';
+@import 'src/common/styles/mixins';
+
+.headerTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  .buttonContainer {
+    .publish {
+      @include button;
+      background-color: $color-tangerine;
+    }
+    .saveDraft {
+      @include button;
+      background-color: $color-malibu;
+      margin-right: 16px;
+    }
+  }
+}
 
 .createTemplate {
   display: flex;
@@ -18,9 +37,9 @@
   }
 
   h1 {
-    @include text-style('font-title', 'regular', 'title-l');
+    @include text-style('font-title', 'regular', 'title-xl');
     @media (min-width: $tablet) {
-      @include text-style('font-title', 'regular', 'title-xxl');
+      @include text-style('font-title', 'regular', 'title-xxxl');
     }
   }
   h2 {

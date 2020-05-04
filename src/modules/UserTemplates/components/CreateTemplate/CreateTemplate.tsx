@@ -18,6 +18,8 @@ export interface Props {
   error: string | null
   handleTemplateDataChange: (template: TemplateCreation) => void
   handleImageSelected: (url: File) => void
+  handleSaveDraftClicked: () => void
+  handlePublishClicked: () => void
 }
 
 const theme = createMuiTheme({
@@ -47,6 +49,8 @@ const marks = [
 export const CreateTemplate: React.FunctionComponent<Props> = ({
   loading,
   error,
+  handleSaveDraftClicked,
+  handlePublishClicked,
   handleTemplateDataChange,
   handleImageSelected,
 }) => {
@@ -104,7 +108,20 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
   return (
     <div className={styles.createTemplate}>
       <header>
-        <h1>Template Creator</h1>
+        <div className={styles.headerTop}>
+          <h1>Template Creator</h1>
+          <div className={styles.buttonContainer}>
+            <button
+              className={styles.saveDraft}
+              onClick={handleSaveDraftClicked}
+            >
+              Save draft
+            </button>
+            <button className={styles.publish} onClick={handlePublishClicked}>
+              Publish
+            </button>
+          </div>
+        </div>
         <p>
           Some text explaining some things. Sometimes it explains even more
           things about things that you’ve never heard of.

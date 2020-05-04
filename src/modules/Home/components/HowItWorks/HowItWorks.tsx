@@ -35,7 +35,7 @@ export const HowItWorks: React.FunctionComponent = () => (
         We&apos;ve only been running for a handful of days and our community
         could sure use your help!
       </p>
-      <Link to="/user-templates">
+      <Link to="/user-templates" style={{ textDecoration: 'none' }}>
         <button>
           <img
             src={createTemplateIcon}

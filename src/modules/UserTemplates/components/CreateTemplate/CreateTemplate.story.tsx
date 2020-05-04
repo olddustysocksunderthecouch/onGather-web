@@ -12,6 +12,8 @@ export const defaultState = (): React.FunctionComponentElement<Props> => (
     error="error"
     handleTemplateDataChange={(): void => undefined}
     handleImageSelected={(): void => undefined}
+    handleSaveDraftClicked={(): void => undefined}
+    handlePublishClicked={(): void => undefined}
   />
 )
 
