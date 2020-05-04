@@ -11,10 +11,13 @@
 }
 .sectionTitle {
   margin-left: 24px;
-  @include text-style('font-main', 'semibold', 'title-l');
+  @include text-style('font-title', 'semibold', 'title-l');
   @media (min-width: $tablet) {
-    @include text-style('font-main', 'semibold', 'title-xxl');
-    margin-left: 0;
+    @include text-style('font-title', 'semibold', 'title-xl');
+  }
+  @media (min-width: $bigScreen) {
+    margin-bottom: 24px;
+    @include text-style('font-title', 'semibold', 'title-xxl');
   }
 }
 
@@ -80,9 +83,10 @@
     justify-self: stretch;
   }
   p {
-    margin: 8px 24px;
+    margin: 8px 24px 8px 24px;
     @include text-style('font-main', 'regular', 'body-s');
     @media (min-width: $tablet) {
+      margin: 0px 24px 16px 24px;
       @include text-style('font-main', 'regular', 'body');
     }
   }
