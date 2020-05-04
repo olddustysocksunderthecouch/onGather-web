@@ -20,7 +20,7 @@ export const Home: React.FunctionComponent<Props> = ({ handleClick }) => {
         />
         <h1 className={styles.homePageTitle}>
           Want to have more
-          <br /> fun & meaningfully
+          <br /> fun & meaningful
           <br /> video calls with friends?
         </h1>
         <Link to="/browse-templates">
@@ -37,7 +37,7 @@ export const Home: React.FunctionComponent<Props> = ({ handleClick }) => {
           <h1 className={styles.homePageTitle2}>
             We&apos;ve got some
             <br /> ideas & templates
-            <br /> that make it
+            <br /> that&apos;ll make it
             <br /> much easier
           </h1>
           <Link to="/browse-templates">

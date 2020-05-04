@@ -26,7 +26,7 @@ import * as serviceWorker from './serviceWorker'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBcCau-poIS1r0eTp5zGkfMZMt7O9ForM4',
-  authDomain: 'ongather-b1834.firebaseapp.com',
+  authDomain: 'ongather.com',
   databaseURL: 'https://ongather-b1834.firebaseio.com',
   projectId: 'ongather-b1834',
   storageBucket: 'ongather-b1834.appspot.com',

@@ -28,6 +28,7 @@ export interface Props {
   selectedNavigationItem?: NavigationItem
   authIsRequired?: boolean
   isAuthenticated?: boolean
+  isAuthenticationLoading?: boolean
 }
 
 const navigationItemToActionMap: { [key in NavigationItem]: AnyAction } = {
@@ -44,6 +45,7 @@ const TopNavLayoutContainer = ({
   topNavType,
   isAuthenticated,
   authIsRequired = false,
+  isAuthenticationLoading,
   handleHomeClicked,
   handleNavigationItemClicked,
   handleContinueWithClicked,
@@ -51,6 +53,7 @@ const TopNavLayoutContainer = ({
 }: Props): React.FunctionComponentElement<Props> => (
   <TopNavLayout
     isAuthenticated={isAuthenticated}
+    isAuthenticationLoading={isAuthenticationLoading}
     authIsRequired={authIsRequired}
     handleContinueWithClicked={handleContinueWithClicked}
     topNavType={topNavType}
@@ -64,6 +67,9 @@ const TopNavLayoutContainer = ({
 
 const mapStateToProps = (state: RootState): any => ({
   isAuthenticated: firebaseSelectors.selectIsAuthenticated(state),
+  isAuthenticationLoading: firebaseSelectors.selectIsAuthenticationLoading(
+    state,
+  ),
 })
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): any => ({

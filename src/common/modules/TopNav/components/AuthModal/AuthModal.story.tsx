@@ -7,7 +7,10 @@ export default {
 }
 
 export const defaultState = (): React.FunctionComponentElement<Props> => (
-  <AuthModal handleContinueWithClicked={(): void => undefined} />
+  <AuthModal
+    handleContinueWithClicked={(): void => undefined}
+    isAuthenticationLoading={true}
+  />
 )
 
 defaultState.story = {

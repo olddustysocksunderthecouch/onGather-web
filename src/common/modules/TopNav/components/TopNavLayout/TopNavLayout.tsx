@@ -13,12 +13,14 @@ export interface Props {
   handleContinueWithClicked?: () => void
   authIsRequired: boolean
   isAuthenticated?: boolean
+  isAuthenticationLoading?: boolean
 }
 
 export const TopNavLayout: React.FunctionComponent<Props> = ({
   children,
   topNavType,
   isAuthenticated,
+  isAuthenticationLoading,
   authIsRequired,
   handleHomeClicked,
   handleNavigationItemClicked,
@@ -28,7 +30,10 @@ export const TopNavLayout: React.FunctionComponent<Props> = ({
   <div className={styles.container}>
     {authIsRequired && !isAuthenticated && (
       <div className={styles.authModal}>
-        <AuthModal handleContinueWithClicked={handleContinueWithClicked} />
+        <AuthModal
+          isAuthenticationLoading={isAuthenticationLoading}
+          handleContinueWithClicked={handleContinueWithClicked}
+        />
       </div>
     )}
     <nav className={styles.TopNav}>
