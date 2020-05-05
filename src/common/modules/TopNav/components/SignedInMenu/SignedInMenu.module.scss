@@ -3,6 +3,7 @@
 
 .container {
   align-self: center;
+  z-index: 10;
   .buttonContainer {
     display: flex;
     flex-direction: row;

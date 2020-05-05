@@ -91,10 +91,7 @@ export const SignedInMenu: React.FunctionComponent<Props> = ({
         placement="bottom-end"
       >
         {({ TransitionProps }): any => (
-          <Grow
-            {...TransitionProps}
-            style={{ transformOrigin: 'right top', zIndex: 10 }}
-          >
+          <Grow {...TransitionProps} style={{ transformOrigin: 'right top' }}>
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList autoFocusItem={open} id="menu-list-grow">
