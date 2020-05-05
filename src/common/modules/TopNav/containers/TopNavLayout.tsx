@@ -17,18 +17,21 @@ import {
   navigateToHome,
   navigateToUserTemplates,
 } from '../TopNav.actions'
-import { NavigationItem, TopNavType } from '../types'
+import { NavigationItem, TopNavButton } from '../types'
 
 export interface Props {
   children: ReactNode
   handleHomeClicked?: () => void
-  topNavType: TopNavType
+  topNavButton?: TopNavButton
   handleNavigationItemClicked?: (navigationItem: NavigationItem) => void
   handleContinueWithClicked?: () => void
+  handleSignOutClicked?: () => void
   selectedNavigationItem?: NavigationItem
   authIsRequired?: boolean
   isAuthenticated?: boolean
   isAuthenticationLoading?: boolean
+  displayName?: string
+  profilePic?: string
 }
 
 const navigationItemToActionMap: { [key in NavigationItem]: AnyAction } = {
@@ -42,7 +45,7 @@ const navigationItemToActionMap: { [key in NavigationItem]: AnyAction } = {
 
 const TopNavLayoutContainer = ({
   children,
-  topNavType,
+  topNavButton,
   isAuthenticated,
   authIsRequired = false,
   isAuthenticationLoading,
@@ -50,16 +53,22 @@ const TopNavLayoutContainer = ({
   handleNavigationItemClicked,
   handleContinueWithClicked,
   selectedNavigationItem,
+  displayName,
+  profilePic,
+  handleSignOutClicked,
 }: Props): React.FunctionComponentElement<Props> => (
   <TopNavLayout
+    displayName={displayName}
+    profilePic={profilePic}
     isAuthenticated={isAuthenticated}
     isAuthenticationLoading={isAuthenticationLoading}
     authIsRequired={authIsRequired}
     handleContinueWithClicked={handleContinueWithClicked}
-    topNavType={topNavType}
+    topNavButton={topNavButton}
     handleHomeClicked={handleHomeClicked}
     selectedNavigationItem={selectedNavigationItem!}
     handleNavigationItemClicked={handleNavigationItemClicked!}
+    handleSignOutClicked={handleSignOutClicked}
   >
     {children}
   </TopNavLayout>
@@ -70,6 +79,8 @@ const mapStateToProps = (state: RootState): any => ({
   isAuthenticationLoading: firebaseSelectors.selectIsAuthenticationLoading(
     state,
   ),
+  displayName: firebaseSelectors.selectDisplayName(state),
+  profilePic: firebaseSelectors.selectPhotoURL(state),
 })
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): any => ({
@@ -77,6 +88,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): any => ({
     dispatch(navigationItemToActionMap[navigationItemClicked]),
   handleHomeClicked: (): void => dispatch(navigateToHome()),
   handleContinueWithClicked: (): void => dispatch(signInGoogle()),
+  handleSignOutClicked: (): void => dispatch(signOutGoogle()),
 })
 
 export default connect(

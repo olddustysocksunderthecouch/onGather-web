@@ -31,3 +31,8 @@ export interface Duration {
   timeMinutes: string
   timeFormatted: string
 }
+
+export interface MenuItem {
+  title: string
+  handleItemClicked: (id: string) => void
+}

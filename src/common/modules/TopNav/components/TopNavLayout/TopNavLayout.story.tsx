@@ -1,6 +1,6 @@
 import { State, Store } from '@sambego/storybook-state'
 import React from 'react'
-import { NavigationItem, TopNavType } from '../../types'
+import { NavigationItem } from '../../types'
 import { Props, TopNavLayout } from './TopNavLayout'
 
 export default {
@@ -19,9 +19,11 @@ const handleNavigationItemClicked = (
 export const defaultState = (): React.FunctionComponentElement<Props> => (
   <State store={store}>
     <TopNavLayout
+      displayName="Adrian Bunge"
+      profilePic="https://lh3.googleusercontent.com/a-/AOh14GgKxMbiOlVx7GCEFpCqLZsF6udEzBDOZiMqKyw5"
       authIsRequired={false}
       isAuthenticated={false}
-      topNavType={TopNavType.CreateTemplate}
+      topNavButton={{ text: 'Templates', path: '/templates' }}
       handleHomeClicked={(): void => undefined}
       handleNavigationItemClicked={handleNavigationItemClicked}
       handleContinueWithClicked={(): void => undefined}
@@ -59,9 +61,11 @@ export const authIsRequiredState = (): React.FunctionComponentElement<
 > => (
   <State store={store}>
     <TopNavLayout
+      displayName="Adrian Bunge"
+      profilePic="https://lh3.googleusercontent.com/a-/AOh14GgKxMbiOlVx7GCEFpCqLZsF6udEzBDOZiMqKyw5"
       authIsRequired={true}
       isAuthenticated={false}
-      topNavType={TopNavType.CreateTemplate}
+      topNavButton={{ text: 'Templates', path: '/templates' }}
       handleHomeClicked={(): void => undefined}
       handleContinueWithClicked={(): void => undefined}
       handleNavigationItemClicked={handleNavigationItemClicked}
@@ -97,10 +101,12 @@ authIsRequiredState.story = {
 export const authIsLoadingState = (): React.FunctionComponentElement<Props> => (
   <State store={store}>
     <TopNavLayout
+      displayName="Adrian Bunge"
+      profilePic="https://lh3.googleusercontent.com/a-/AOh14GgKxMbiOlVx7GCEFpCqLZsF6udEzBDOZiMqKyw5"
       authIsRequired={true}
       isAuthenticationLoading={true}
       isAuthenticated={false}
-      topNavType={TopNavType.CreateTemplate}
+      topNavButton={{ text: 'Templates', path: '/templates' }}
       handleHomeClicked={(): void => undefined}
       handleContinueWithClicked={(): void => undefined}
       handleNavigationItemClicked={handleNavigationItemClicked}

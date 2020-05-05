@@ -7,11 +7,9 @@ export enum NavigationItem {
   PublishTemplate = 'Publish',
 }
 
-export enum TopNavType {
-  Home = 'home',
-  HomeSignedIn = 'home',
-  CreateTemplate = 'createTemplate',
-  UserTemplates = 'userTemplates',
+export interface TopNavButton {
+  text: string
+  path: string
 }
 
 export enum TopNavActions {

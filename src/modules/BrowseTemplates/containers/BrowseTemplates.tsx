@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { useFirestoreConnect } from 'react-redux-firebase'
 import { AnyAction } from 'redux'
 import TopNavLayout from '../../../common/modules/TopNav/containers/TopNavLayout'
-import { TopNavType } from '../../../common/modules/TopNav/types'
 import { ConnectedReduxProps, RootState } from '../../../common/redux/types'
 import { Template } from '../../../common/types'
 import { selectActiveCategory } from '../BrowseTemplates.actions'
@@ -32,7 +31,7 @@ const BrowseTemplatesContainer = ({
     },
   ])
   return (
-    <TopNavLayout topNavType={TopNavType.Home}>
+    <TopNavLayout topNavButton={{ text: 'Create', path: '/user-templates' }}>
       <BrowseTemplates
         activeCategory={activeCategory}
         templates={templates}

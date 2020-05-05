@@ -16,7 +16,7 @@ export const CategorySelector: React.FunctionComponent<Props> = ({
   const categoryButtonStyle = (category: string): object => {
     return {
       [styles.categoryItem]: true,
-      [styles.categoryItemSelected]: activeCategory == category,
+      [styles.categoryItemSelected]: activeCategory === category,
     }
   }
   return (

@@ -3,16 +3,15 @@ import React, { Dispatch } from 'react'
 import { connect } from 'react-redux'
 import { AnyAction } from 'redux'
 import TopNavLayout from '../../../common/modules/TopNav/containers/TopNavLayout'
-import { TopNavType } from '../../../common/modules/TopNav/types'
 import { ConnectedReduxProps, RootState } from '../../../common/redux/types'
 import { TemplateCreation } from '../../../common/types'
 import { CreateTemplate } from '../components/CreateTemplate'
 import { selectors as CreateTemplateSelectors } from '../index'
 import {
+  publishTemplate,
   saveDraftTemplate,
   setEditorTemplateData,
   uploadImage,
-  publishTemplate,
 } from '../UserTemplates.actions'
 
 interface Props extends ConnectedReduxProps<AnyAction> {
@@ -32,7 +31,7 @@ const CreateTemplateContainer = ({
   handleTemplateDataChange,
   handleImageSelected,
 }: Props): React.FunctionComponentElement<Props> => (
-  <TopNavLayout topNavType={TopNavType.CreateTemplate}>
+  <TopNavLayout>
     <CreateTemplate
       loading={loading}
       error={error}

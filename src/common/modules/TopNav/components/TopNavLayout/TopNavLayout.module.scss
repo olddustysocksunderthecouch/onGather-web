@@ -14,13 +14,13 @@
   flex-grow: 1;
 }
 
-.authModal{
+.authModal {
   position: absolute;
   z-index: 5;
   width: 100vw;
   height: 100vh;
   backdrop-filter: blur(3px);
-  background-color: rgba($color: $color-dove-gray , $alpha: 0.4);
+  background-color: rgba($color: $color-dove-gray, $alpha: 0.4);
   display: flex;
   justify-content: center;
   align-content: center;

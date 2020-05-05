@@ -1,6 +1,6 @@
 import { State, Store } from '@sambego/storybook-state'
 import React from 'react'
-import { NavigationItem, TopNavType } from '../../types'
+import { NavigationItem } from '../../types'
 import { Props, TopNav } from './TopNav'
 
 export default {
@@ -19,7 +19,10 @@ const handleNavigationItemClicked = (
 export const defaultState = (): React.FunctionComponentElement<Props> => (
   <State store={store}>
     <TopNav
-      topNavType={TopNavType.CreateTemplate}
+      profilePic="https://lh3.googleusercontent.com/a-/AOh14GgKxMbiOlVx7GCEFpCqLZsF6udEzBDOZiMqKyw5"
+      displayName="Adrian Bunge"
+      topNavButton={{ text: 'Templates', path: '/templates' }}
+      isAuthenticated={false}
       handleHomeClicked={(): void => undefined}
       handleNavigationItemClicked={handleNavigationItemClicked}
       selectedNavigationItem={store.get('selectedNavigationItem')}
@@ -29,4 +32,24 @@ export const defaultState = (): React.FunctionComponentElement<Props> => (
 
 defaultState.story = {
   name: 'default',
+}
+
+export const isAuthenticatedState = (): React.FunctionComponentElement<
+  Props
+> => (
+  <State store={store}>
+    <TopNav
+      profilePic="https://lh3.googleusercontent.com/a-/AOh14GgKxMbiOlVx7GCEFpCqLZsF6udEzBDOZiMqKyw5"
+      displayName="Adrian Bunge"
+      topNavButton={{ text: 'Templates', path: '/templates' }}
+      isAuthenticated
+      handleHomeClicked={(): void => undefined}
+      handleNavigationItemClicked={handleNavigationItemClicked}
+      selectedNavigationItem={store.get('selectedNavigationItem')}
+    />
+  </State>
+)
+
+isAuthenticatedState.story = {
+  name: 'is authenticated',
 }

@@ -83,6 +83,9 @@
   @include text-style('font-main', 'semibold', 'body-s');
   letter-spacing: 0.05em;
   z-index: 1;
+  &:focus {
+    outline: none;
+  }
   &:hover {
     opacity: 0.9;
   }
@@ -219,6 +222,9 @@
   padding: 8px 24px;
   @include text-style('font-main', 'semibold', 'body-s');
   letter-spacing: 0.05em;
+  &:focus {
+    outline: none;
+  }
   &:hover {
     opacity: 0.9;
   }

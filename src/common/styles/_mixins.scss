@@ -22,3 +22,27 @@
     padding: 10px 28px;
   }
 }
+
+@mixin button-no-shadow {
+    border-radius: 6px;
+    color: $color-white;
+    padding: 8px 16px;
+    @include text-style('font-main', 'semibold', 'body-s');
+    letter-spacing: 0.03em;
+    z-index: 1;
+    &:hover {
+      opacity: 0.9;
+    }
+    &:focus {
+      outline: none;
+    }
+  
+    @media (min-width: $mobile) {
+      padding: 8px 24px;
+      letter-spacing: 0.05em;
+    }
+    @media (min-width: $desktop) {
+      @include text-style('font-main', 'semibold', 'body-s');
+      padding: 10px 28px;
+    }
+}

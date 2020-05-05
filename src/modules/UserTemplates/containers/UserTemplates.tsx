@@ -5,7 +5,6 @@ import { useFirestore } from 'react-redux-firebase'
 import { AnyAction } from 'redux'
 import { selectors as firebaseSelectors } from '../../../common/modules/firebase'
 import TopNavLayout from '../../../common/modules/TopNav/containers/TopNavLayout'
-import { TopNavType } from '../../../common/modules/TopNav/types'
 import { ConnectedReduxProps, RootState } from '../../../common/redux/types'
 import { Template } from '../../../common/types'
 import { UserTemplates } from '../components/UserTemplates'
@@ -47,31 +46,11 @@ const UserTemplatesContainer = ({
     }
   }, [uid])
 
-  // useEffect(() => {
-  //   return (): void => {
-  //     firestore.unsetListeners([
-  //       {
-  //         collection: 'templates',
-  //         where: [
-  //           ['uid', '==', uid],
-  //           ['status', '==', 'published'],
-  //         ],
-  //         storeAs: 'userPublished',
-  //       },
-  //       {
-  //         collection: 'templates',
-  //         where: [
-  //           ['uid', '==', uid],
-  //           ['status', '==', 'draft'],
-  //         ],
-  //         storeAs: 'userDrafts',
-  //       },
-  //     ])
-  //   }
-  // }, [])
-
   return (
-    <TopNavLayout topNavType={TopNavType.UserTemplates} authIsRequired={true}>
+    <TopNavLayout
+      topNavButton={{ text: 'Browse', path: '/browse-templates' }}
+      authIsRequired={true}
+    >
       <UserTemplates
         draftTemplates={draftTemplates}
         publishedTemplates={publishedTemplates}
