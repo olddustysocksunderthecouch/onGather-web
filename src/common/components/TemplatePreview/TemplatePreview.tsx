@@ -8,13 +8,13 @@ import TimeIcon from './assets/TimeIcon.svg'
 import styles from './TemplatePreview.module.scss'
 
 export interface Props {
-  templateId?: string
+  templateId: string
   title?: string
   gatheringSize?: string
   suggestedDuration?: string
   mainAimsOutcomes?: string
   shortDescription?: string
-  handleTemplatePreviewClicked: (templateId?: string) => void
+  handleTemplatePreviewClicked: (templateId: string) => void
 }
 
 export const TemplatePreview: React.FunctionComponent<Props> = ({
@@ -33,7 +33,6 @@ export const TemplatePreview: React.FunctionComponent<Props> = ({
     : { timeMinutes: '15', timeFormatted: '15 min' }
 
   const formattedAimsOutcomes = mainAimsOutcomes?.split(',').join(' | ')
-
   return (
     <article
       className={styles.templatePreview}
@@ -46,7 +45,7 @@ export const TemplatePreview: React.FunctionComponent<Props> = ({
           alt="Template Image"
         />
         <div className={styles.titleMeta}>
-          <h2>{title}</h2>
+          <h3>{title}</h3>
           <div className={styles.meta}>
             <img src={PeopleIcon} alt="People Icon" />
             <p>{gatheringSize}</p>
@@ -54,7 +53,7 @@ export const TemplatePreview: React.FunctionComponent<Props> = ({
             <p>{duration.timeFormatted}</p>
           </div>
           <div className={styles.bodyDesktop}>
-            <h3>{formattedAimsOutcomes}</h3>
+            <h5>{formattedAimsOutcomes}</h5>
             <p>{shortDescription}</p>
           </div>
           <div className={styles.moreDesktop}>
@@ -64,11 +63,11 @@ export const TemplatePreview: React.FunctionComponent<Props> = ({
         </div>
       </div>
       <div className={styles.bodyMobile}>
-        <h3>{formattedAimsOutcomes}</h3>
+        <h5>{formattedAimsOutcomes}</h5>
         <p>{shortDescription}</p>
       </div>
       <div className={styles.moreMobile}>
-        <h4>MORE INFO</h4>
+        <button>MORE INFO</button>
         <img src={MoreIcon} alt="More Icon" />
       </div>
     </article>

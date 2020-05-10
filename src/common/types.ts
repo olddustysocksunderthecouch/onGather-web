@@ -3,11 +3,13 @@ export interface TemplateFirestoreResult {
   category: string
   title: string
   shortDescription: string
-  mainAimsOutcomes?: string
-  suggestedDuration?: string
-  imageUrl?: string
-  hostInstructions?: string
-  invitationDescription?: string
+  mainAimsOutcomes: string
+  suggestedDuration: string
+  imageUrl: string
+  whatYouDo: string
+  howYouDo: string
+  hostInstructions: string
+  participantRange: number[]
 }
 
 export interface Template extends TemplateFirestoreResult {
@@ -17,14 +19,16 @@ export interface Template extends TemplateFirestoreResult {
 export interface TemplateCreation {
   status?: 'draft' | 'publish'
   templateId?: string
-  category?: string
-  title?: string
-  shortDescription?: string
-  mainAimsOutcomes?: string
-  suggestedDuration?: string
-  imageUrl?: string
-  hostInstructions?: string
-  invitationDescription?: string
+  category: string
+  title: string
+  shortDescription: string
+  mainAimsOutcomes: string
+  suggestedDuration: string
+  imageUrl: string
+  hostInstructions: string
+  whatYouDo: string
+  howYouDo: string
+  participantRange: number[]
 }
 
 export interface Duration {

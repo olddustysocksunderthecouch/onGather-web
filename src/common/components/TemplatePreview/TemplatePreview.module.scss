@@ -54,7 +54,7 @@
   padding-left: 32px;
   display: flex;
   flex-direction: column;
-  h2 {
+  h3 {
     margin: 0;
     @include text-style('font-main', 'semibold', 'body');
     @media (min-width: $tablet) {
@@ -89,8 +89,9 @@
   @media (min-width: $tablet) {
     display: none;
   }
-  h3 {
+  h5 {
     margin-top: 12px;
+    text-transform: capitalize;
     @include text-style('font-main', 'semibold', 'meta');
     letter-spacing: 0.075em;
   }
@@ -105,7 +106,8 @@
   @media (max-width: $tablet) {
     display: none;
   }
-  h3 {
+  h5 {
+    text-transform: capitalize;
     margin-top: 8px;
     @include text-style('font-main', 'semibold', 'meta');
     letter-spacing: 0.075em;
@@ -133,7 +135,7 @@
   bottom: 32px;
 
   padding-top: 42px;
-  h4,
+  button,
   img {
     margin-bottom: 0;
     margin-top: 0;
@@ -144,16 +146,16 @@
   display: flex;
   flex-direction: row;
   align-self: flex-end;
-  h4 {
+  button {
     color: $color-dark-gray;
     letter-spacing: 0.075em;
     margin-right: 8px;
-    margin-top: 2px;
   }
   @include text-style('font-main', 'semibold', 'body-s');
   padding-bottom: 16px;
   margin-top: 16px;
   margin-right: -8px;
+
   @media (min-width: $tablet) {
     display: none;
   }

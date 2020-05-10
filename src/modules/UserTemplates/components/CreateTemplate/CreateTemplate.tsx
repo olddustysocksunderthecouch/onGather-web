@@ -9,17 +9,19 @@ import TextField from '@material-ui/core/TextField'
 import React, { ChangeEvent, useEffect, useState } from 'react'
 import { categories, durations } from '../../../../common/constants'
 import { Duration, TemplateCreation } from '../../../../common/types'
-import { Category } from '../../types'
+import { Category, TemplateEditorState } from '../../types'
 import { UploadImage } from '../UploadImage'
 import styles from './CreateTemplate.module.scss'
 
 export interface Props {
   loading: string | null
   error: string | null
+  selectedTemplateId: string
   handleTemplateDataChange: (template: TemplateCreation) => void
   handleImageSelected: (url: File) => void
   handleSaveDraftClicked: () => void
   handlePublishClicked: () => void
+  initialTemplateEditorData: TemplateEditorState
 }
 
 const theme = createMuiTheme({
@@ -49,25 +51,33 @@ const marks = [
 export const CreateTemplate: React.FunctionComponent<Props> = ({
   loading,
   error,
+  selectedTemplateId,
+  initialTemplateEditorData,
   handleSaveDraftClicked,
   handlePublishClicked,
   handleTemplateDataChange,
   handleImageSelected,
 }) => {
-  const [categorySelected, setCategorySelected] = useState('')
+  const [categorySelected, setCategorySelected] = useState(
+    initialTemplateEditorData.category,
+  )
   const handleCategorySelected = (
     event: React.ChangeEvent<{ value: unknown }>,
   ): void => {
     setCategorySelected(event.target.value as Category)
   }
-  const [durationSelected, setDurationSelected] = useState('')
+  const [durationSelected, setDurationSelected] = useState(
+    initialTemplateEditorData.suggestedDuration,
+  )
   const handleDurationChange = (
     event: React.ChangeEvent<{ value: unknown }>,
   ): void => {
     setDurationSelected(event.target.value as string)
   }
 
-  const [participantRange, setParticipantRange] = useState<number[]>([2, 4])
+  const [participantRange, setParticipantRange] = useState<number[]>(
+    initialTemplateEditorData.participantRange,
+  )
 
   const handleParticipantRange = (
     event: any,
@@ -76,14 +86,24 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
     setParticipantRange(newValue as number[])
   }
 
-  const [title, setTitle] = useState('')
-  const [shortDescription, setShortDescription] = useState('')
-  const [mainAimsOutcomes, setMainAimsOutcomes] = useState('')
-  const [hostInstructions, setHostInstructions] = useState('')
-  const [invitationDescription, setInvitationDescription] = useState('')
+  const [title, setTitle] = useState(initialTemplateEditorData.title)
+  const [shortDescription, setShortDescription] = useState(
+    initialTemplateEditorData.shortDescription,
+  )
+  const [mainAimsOutcomes, setMainAimsOutcomes] = useState(
+    initialTemplateEditorData.mainAimsOutcomes,
+  )
+  const [hostInstructions, setHostInstructions] = useState(
+    initialTemplateEditorData.hostInstructions,
+  )
+  const [whatYouDo, setWhatYouDo] = useState(
+    initialTemplateEditorData.whatYouDo,
+  )
+  const [howYouDo, setHowYouDo] = useState(initialTemplateEditorData.howYouDo)
 
   useEffect(() => {
     const templateData: TemplateCreation = {
+      templateId: selectedTemplateId,
       category: categorySelected,
       title,
       shortDescription,
@@ -91,7 +111,9 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
       suggestedDuration: durationSelected,
       imageUrl: '',
       hostInstructions,
-      invitationDescription,
+      whatYouDo,
+      howYouDo,
+      participantRange,
     }
 
     handleTemplateDataChange(templateData)
@@ -102,7 +124,8 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
     mainAimsOutcomes,
     durationSelected,
     hostInstructions,
-    invitationDescription,
+    whatYouDo,
+    howYouDo,
   ])
 
   return (
@@ -150,6 +173,7 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
 
         <form className={styles.form} noValidate autoComplete="on">
           <TextField
+            value={title}
             style={{ marginTop: '16px', width: '300px' }}
             label="Title"
             variant="outlined"
@@ -158,6 +182,7 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
             }}
           />
           <TextField
+            value={shortDescription}
             style={{ marginTop: '16px' }}
             label="Short Description"
             variant="outlined"
@@ -166,17 +191,6 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
             multiline
             onChange={(event: ChangeEvent<HTMLInputElement>): void => {
               setShortDescription(event.target.value)
-            }}
-          />
-          <TextField
-            style={{ marginTop: '16px' }}
-            id="outlined-basic"
-            label="Main Aims & Outcomes"
-            variant="outlined"
-            fullWidth
-            helperText="Put commas between each item"
-            onChange={(event: ChangeEvent<HTMLInputElement>): void => {
-              setMainAimsOutcomes(event.target.value)
             }}
           />
         </form>
@@ -219,27 +233,40 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
         <form className={styles.form} noValidate autoComplete="on">
           <h2>Upload an image</h2>
           <UploadImage handleImageSelected={handleImageSelected} />
-          <h2>Instructions for the host</h2>
-          <p>
-            e.g. hosting guide, tools they could use, interaction guidelines,
-            specific preparation they need to do
-          </p>
           <TextField
+            value={mainAimsOutcomes}
             style={{ marginTop: '16px' }}
             id="outlined-basic"
-            label="Host Instructions"
+            label="Main Aims & Outcomes (e.g. Community, Fun, Insightful, Exercise)"
+            variant="outlined"
+            fullWidth
+            helperText="Put commas between each item"
+            onChange={(event: ChangeEvent<HTMLInputElement>): void => {
+              setMainAimsOutcomes(event.target.value)
+            }}
+          />
+          <h2>What they&apos;ll do</h2>
+          <p>
+            This description will be added to the google calendar invite which
+            will be sent guests
+          </p>
+          <TextField
+            value={whatYouDo}
+            style={{ marginTop: '16px' }}
+            id="outlined-basic"
+            label="Description"
             variant="outlined"
             rows="4"
             fullWidth
             multiline
             onChange={(event: ChangeEvent<HTMLInputElement>): void => {
-              setHostInstructions(event.target.value)
+              setWhatYouDo(event.target.value)
             }}
           />
-          <h2>Invitation Description</h2>
+          <h2>How they&apos;ll do it</h2>
           <p>
-            This description will be added to the google calendar invite which
-            will be sent guests
+            Do the need to sign up of create an account? If it&apos;s an online
+            board game does some need to create an invite link
           </p>
           <TextField
             style={{ marginTop: '16px' }}
@@ -250,7 +277,25 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
             fullWidth
             multiline
             onChange={(event: ChangeEvent<HTMLInputElement>): void => {
-              setInvitationDescription(event.target.value)
+              setHowYouDo(event.target.value)
+            }}
+          />
+          <h2>Additional info for the host only</h2>
+          <p>
+            e.g. hosting guide, tools they could use, interaction guidelines,
+            specific preparation they need to do
+          </p>
+          <TextField
+            value={hostInstructions}
+            style={{ marginTop: '16px' }}
+            id="outlined-basic"
+            label="Host Instructions"
+            variant="outlined"
+            rows="4"
+            fullWidth
+            multiline
+            onChange={(event: ChangeEvent<HTMLInputElement>): void => {
+              setHostInstructions(event.target.value)
             }}
           />
         </form>

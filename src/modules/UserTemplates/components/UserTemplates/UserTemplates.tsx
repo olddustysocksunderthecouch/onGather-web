@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import createTemplateIcon from '../../../../common/assets/create-template-icon.svg'
 import { TemplatePreview } from '../../../../common/components/TemplatePreview'
 import { Template } from '../../../../common/types'
 import styles from './UserTemplates.module.scss'
@@ -7,49 +8,61 @@ import styles from './UserTemplates.module.scss'
 export interface Props {
   draftTemplates: Template[]
   publishedTemplates: Template[]
+  handleTemplateClicked: (templateId: string) => void
+  handleCreateNewTemplateClicked: () => void
 }
 
 export const UserTemplates: React.FunctionComponent<Props> = ({
   draftTemplates,
   publishedTemplates,
+  handleTemplateClicked,
+  handleCreateNewTemplateClicked,
 }) => (
   <div className={styles.container}>
+    <h1>Your Templates</h1>
     <section>
       <div className={styles.draftTitle}>
-        <h1>Draft Templates</h1>
-        <Link to="/create-template">
-          <button className={styles.createTemplateButton}>Create New</button>
+        <h2>Drafts</h2>
+        <Link to="/create-template" onClick={handleCreateNewTemplateClicked}>
+          <button className={styles.createTemplateButton}>
+            <div>Create New</div>
+            <img
+              src={createTemplateIcon}
+              alt="create template"
+              className={styles.createTemplateIcon}
+            />
+          </button>
         </Link>
       </div>
       {draftTemplates.map((template: Template) => {
         return (
           <TemplatePreview
-            key={template.title}
-            templateId={template.title}
+            key={template.templateId}
+            templateId={template.templateId}
             title={template.title}
             gatheringSize={'2-8 People'}
             suggestedDuration={template.suggestedDuration}
             mainAimsOutcomes={template.mainAimsOutcomes}
             shortDescription={template.shortDescription}
-            handleTemplatePreviewClicked={(): void => undefined}
+            handleTemplatePreviewClicked={handleTemplateClicked}
           />
         )
       })}
     </section>
     <section>
-      <h1>Published Templates</h1>
+      <h2>Published</h2>
       {publishedTemplates.length > 0 ? (
         publishedTemplates.map((template: Template) => {
           return (
             <TemplatePreview
-              key={template.title}
-              templateId={template.title}
+              key={template.templateId}
+              templateId={template.templateId}
               title={template.title}
               gatheringSize={'2-8 People'}
               suggestedDuration={template.suggestedDuration}
               mainAimsOutcomes={template.mainAimsOutcomes}
               shortDescription={template.shortDescription}
-              handleTemplatePreviewClicked={(): void => undefined}
+              handleTemplatePreviewClicked={handleTemplateClicked}
             />
           )
         })

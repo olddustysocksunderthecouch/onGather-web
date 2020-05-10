@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { HowItWorksItem } from '../../types'
-import createTemplateIcon from './../../assets/create-template-icon.svg'
+import createTemplateIcon from '../../../../common/assets/create-template-icon.svg'
 import styles from './HowItWorks.module.scss'
 
 const howItWorks: HowItWorksItem[] = [

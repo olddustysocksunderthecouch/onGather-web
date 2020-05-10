@@ -8,12 +8,28 @@ export default {
 
 export const defaultState = (): React.FunctionComponentElement<Props> => (
   <CreateTemplate
+    selectedTemplateId=""
     loading="Here is an error"
     error="error"
     handleTemplateDataChange={(): void => undefined}
     handleImageSelected={(): void => undefined}
     handleSaveDraftClicked={(): void => undefined}
     handlePublishClicked={(): void => undefined}
+    initialTemplateEditorData={{
+      templateId: '',
+      loading: '',
+      error: '',
+      category: '',
+      title: '',
+      shortDescription: '',
+      mainAimsOutcomes: '',
+      suggestedDuration: '',
+      imageUrl: '',
+      hostInstructions: '',
+      whatYouDo: '',
+      howYouDo: '',
+      participantRange: [1, 2],
+    }}
   />
 )
 

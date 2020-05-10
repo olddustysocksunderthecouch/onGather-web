@@ -11,6 +11,12 @@ export const selectTemplateEditor = createSelector(
     userTemplates.templateEditor,
 )
 
+export const selectSelectedTemplateId = createSelector(
+  selectUserTemplates,
+  (userTemplates: UserTemplatesState): string =>
+    userTemplates.selectedTemplateId,
+)
+
 export const selectTemplateEditorLoading = createSelector(
   selectTemplateEditor,
   (templateEditor: TemplateEditorState): string => templateEditor.loading,

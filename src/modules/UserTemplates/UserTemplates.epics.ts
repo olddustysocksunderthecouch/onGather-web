@@ -2,13 +2,17 @@
 import * as firebase from 'firebase'
 import { ActionsObservable, ofType, StateObservable } from 'redux-observable'
 import { from, Observable, of } from 'rxjs'
-import { catchError, flatMap, withLatestFrom } from 'rxjs/operators'
+import { catchError, flatMap, map, withLatestFrom } from 'rxjs/operators'
 import { RootState } from '../../common/redux/types'
+import { TemplateFirestoreResult } from '../../common/types'
 import {
+  CreateNewTemplateSuccessAction,
+  EditExistingTemplateAction,
   PublishTemplateFailureAction,
   PublishTemplateSuccessAction,
   SaveDraftTemplateFailureAction,
   SaveDraftTemplateSuccessAction,
+  SetExistingTemplateEditorDataAction,
   UploadImageAction,
   UploadImageFailureAction,
   UploadImageSuccessAction,
@@ -16,13 +20,49 @@ import {
   UserTemplatesActionTypes,
 } from './types'
 import {
+  createNewTemplateSuccess,
   publishTemplateFailure,
   publishTemplateSuccess,
   saveDraftTemplateFailure,
   saveDraftTemplateSuccess,
+  setExistingTemplateEditorData,
   uploadImageFailure,
   uploadImageSuccess,
 } from './UserTemplates.actions'
+
+export const createNewTemplateEpic$ = (
+  action$: ActionsObservable<UserTemplatesActionTypes>,
+): Observable<CreateNewTemplateSuccessAction> =>
+  action$.pipe(
+    ofType<UserTemplatesActionTypes>(UserTemplatesActions.CreateNewTemplate),
+    map(() =>
+      createNewTemplateSuccess(
+        firebase.firestore().collection('templates').doc().id,
+      ),
+    ),
+  )
+
+export const editExistingTemplateEpic$ = (
+  action$: ActionsObservable<EditExistingTemplateAction>,
+  state$: StateObservable<RootState>,
+): Observable<SetExistingTemplateEditorDataAction> =>
+  action$.pipe(
+    ofType<EditExistingTemplateAction>(
+      UserTemplatesActions.EditExistingTemplate,
+    ),
+    withLatestFrom(state$),
+    map(([action, state]) => {
+      const templateData = state.firestore.data.userDrafts[
+        action.payload.templateId
+      ]
+        ? state.firestore.data.userDrafts[action.payload.templateId]
+        : state.firestore.data.userPublished[action.payload.templateId]
+      return setExistingTemplateEditorData(
+        action.payload.templateId,
+        templateData as TemplateFirestoreResult,
+      )
+    }),
+  )
 
 export const saveDraftTemplateEpic$ = (
   action$: ActionsObservable<UserTemplatesActionTypes>,
@@ -90,7 +130,7 @@ export const uploadImageEpic$ = (
         firebase
           .storage()
           .ref()
-          .child('mountains.jpg')
+          .child(state.userTemplates.selectedTemplateId)
           .put(action.payload.file),
       ).pipe(
         flatMap(

@@ -7,6 +7,7 @@ import { ConnectedReduxProps, RootState } from '../../../common/redux/types'
 import { TemplateCreation } from '../../../common/types'
 import { CreateTemplate } from '../components/CreateTemplate'
 import { selectors as CreateTemplateSelectors } from '../index'
+import { TemplateEditorState } from '../types'
 import {
   publishTemplate,
   saveDraftTemplate,
@@ -15,17 +16,21 @@ import {
 } from '../UserTemplates.actions'
 
 interface Props extends ConnectedReduxProps<AnyAction> {
+  selectedTemplateId: string
   loading: string | null
   error: string | null
   handleTemplateDataChange: (template: TemplateCreation) => void
   handleImageSelected: (url: File) => void
   handleSaveDraftClicked: () => void
   handlePublishClicked: () => void
+  initialTemplateEditorData: TemplateEditorState
 }
 
 const CreateTemplateContainer = ({
+  selectedTemplateId,
   loading,
   error,
+  initialTemplateEditorData,
   handleSaveDraftClicked,
   handlePublishClicked,
   handleTemplateDataChange,
@@ -33,8 +38,10 @@ const CreateTemplateContainer = ({
 }: Props): React.FunctionComponentElement<Props> => (
   <TopNavLayout>
     <CreateTemplate
+      selectedTemplateId={selectedTemplateId}
       loading={loading}
       error={error}
+      initialTemplateEditorData={initialTemplateEditorData}
       handleSaveDraftClicked={handleSaveDraftClicked}
       handlePublishClicked={handlePublishClicked}
       handleTemplateDataChange={handleTemplateDataChange}
@@ -43,8 +50,12 @@ const CreateTemplateContainer = ({
   </TopNavLayout>
 )
 const mapStateToProps = (state: RootState): any => ({
+  selectedTemplateId: CreateTemplateSelectors.selectSelectedTemplateId(state),
   error: CreateTemplateSelectors.selectTemplateEditorError(state),
   loading: CreateTemplateSelectors.selectTemplateEditorLoading(state),
+  initialTemplateEditorData: CreateTemplateSelectors.selectTemplateEditor(
+    state,
+  ),
 })
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): any => ({

@@ -1,26 +1,33 @@
-import { debounce } from 'debounce'
 import React, { Dispatch, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { useFirestore } from 'react-redux-firebase'
 import { AnyAction } from 'redux'
 import { selectors as firebaseSelectors } from '../../../common/modules/firebase'
 import TopNavLayout from '../../../common/modules/TopNav/containers/TopNavLayout'
+import { navigateToCreateTemplate } from '../../../common/modules/TopNav/TopNav.actions'
 import { ConnectedReduxProps, RootState } from '../../../common/redux/types'
 import { Template } from '../../../common/types'
 import { UserTemplates } from '../components/UserTemplates'
 import { firebaseSelectors as userTemplatesSelectors } from '../index'
-import { setEditorTemplateData } from '../UserTemplates.actions'
+import {
+  createNewTemplate,
+  editExistingTemplate,
+} from '../UserTemplates.actions'
 
 interface Props extends ConnectedReduxProps<AnyAction> {
   uid: string | null
   draftTemplates: Template[]
   publishedTemplates: Template[]
+  handleTemplateClicked: (templateId: string) => void
+  handleCreateNewTemplateClicked: () => void
 }
 
 const UserTemplatesContainer = ({
   uid,
   draftTemplates,
   publishedTemplates,
+  handleTemplateClicked,
+  handleCreateNewTemplateClicked,
 }: Props): React.FunctionComponentElement<Props> => {
   const firestore = useFirestore()
   useEffect(() => {
@@ -54,6 +61,8 @@ const UserTemplatesContainer = ({
       <UserTemplates
         draftTemplates={draftTemplates}
         publishedTemplates={publishedTemplates}
+        handleTemplateClicked={handleTemplateClicked}
+        handleCreateNewTemplateClicked={handleCreateNewTemplateClicked}
       />
     </TopNavLayout>
   )
@@ -65,10 +74,11 @@ const mapStateToProps = (state: RootState): any => ({
 })
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): any => ({
-  handleTemplateDataChange: debounce(
-    (template: Template): void => dispatch(setEditorTemplateData(template)),
-    300,
-  ),
+  handleTemplateClicked: (templateId: string): void => {
+    dispatch(editExistingTemplate(templateId))
+    dispatch(navigateToCreateTemplate())
+  },
+  handleCreateNewTemplateClicked: (): void => dispatch(createNewTemplate()),
 })
 
 export default connect(

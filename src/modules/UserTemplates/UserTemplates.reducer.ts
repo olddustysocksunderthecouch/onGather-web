@@ -5,10 +5,10 @@ import {
 } from './types'
 
 export const initialState: UserTemplatesState = {
+  selectedTemplateId: '',
   templateEditor: {
     loading: '',
     error: '',
-    templateId: '',
     category: '',
     title: '',
     shortDescription: '',
@@ -25,6 +25,38 @@ export function reducer(
   action: UserTemplatesActionTypes,
 ): UserTemplatesState {
   switch (action.type) {
+    case UserTemplatesActions.CreateNewTemplate: {
+      return {
+        ...state,
+        templateEditor: {
+          ...initialState.templateEditor,
+        },
+      }
+    }
+    case UserTemplatesActions.CreateNewTemplateSuccess: {
+      return {
+        ...state,
+        selectedTemplateId: action.payload.templateId,
+      }
+    }
+    case UserTemplatesActions.SetExistingTemplateEditorData: {
+      return {
+        ...state,
+        selectedTemplateId: action.payload.templateId,
+        templateEditor: {
+          ...state.templateEditor,
+          category: action.payload.templateData.category,
+          title: action.payload.templateData.title,
+          shortDescription: action.payload.templateData.shortDescription,
+          mainAimsOutcomes: action.payload.templateData.mainAimsOutcomes,
+          suggestedDuration: action.payload.templateData.suggestedDuration,
+          imageUrl: action.payload.templateData.imageUrl,
+          hostInstructions: action.payload.templateData.hostInstructions,
+          invitationDescription: '',
+        },
+      }
+    }
+
     case UserTemplatesActions.SetEditorTemplateData: {
       return {
         ...state,
