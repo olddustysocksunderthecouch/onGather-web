@@ -32,7 +32,7 @@ export const CategorySelector: React.FunctionComponent<Props> = ({
               data-testid={`test-${category}`}
             >
               {category}
-              {category == activeCategory && (
+              {category === activeCategory && (
                 <div className={styles.selectionIndicator} />
               )}
             </button>

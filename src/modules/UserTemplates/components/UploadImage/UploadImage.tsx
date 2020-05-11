@@ -28,7 +28,7 @@ export const UploadImage: React.FunctionComponent<Props> = ({
   const thumbs = files.map((file: any) => (
     <div className={styles.thumb} key={file.name}>
       <div className={styles.thumbInner}>
-        <img src={file.preview} className={styles.img} />
+        <img src={file.preview} className={styles.img} alt="uploaded" />
       </div>
     </div>
   ))

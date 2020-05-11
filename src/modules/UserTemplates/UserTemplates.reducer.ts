@@ -14,9 +14,11 @@ export const initialState: UserTemplatesState = {
     shortDescription: '',
     mainAimsOutcomes: '',
     suggestedDuration: '',
+    participantRange: [],
     imageUrl: '',
     hostInstructions: '',
-    invitationDescription: '',
+    whatYouDo: '',
+    howYouDo: '',
   },
 }
 
@@ -52,7 +54,9 @@ export function reducer(
           suggestedDuration: action.payload.templateData.suggestedDuration,
           imageUrl: action.payload.templateData.imageUrl,
           hostInstructions: action.payload.templateData.hostInstructions,
-          invitationDescription: '',
+          whatYouDo: action.payload.templateData.whatYouDo,
+          howYouDo: action.payload.templateData.howYouDo,
+          participantRange: action.payload.templateData.participantRange,
         },
       }
     }

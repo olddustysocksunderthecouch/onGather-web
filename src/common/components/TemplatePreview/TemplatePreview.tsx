@@ -39,11 +39,7 @@ export const TemplatePreview: React.FunctionComponent<Props> = ({
       onClick={(): void => handleTemplatePreviewClicked(templateId)}
     >
       <div className={styles.top}>
-        <img
-          className={styles.image}
-          src={PlaceholderImage}
-          alt="Template Image"
-        />
+        <img className={styles.image} src={PlaceholderImage} alt="Template" />
         <div className={styles.titleMeta}>
           <h3>{title}</h3>
           <div className={styles.meta}>

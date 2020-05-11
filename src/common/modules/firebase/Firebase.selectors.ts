@@ -8,27 +8,32 @@ export const selectProfile = createSelector(
   (firebase: any): any => firebase.profile,
 )
 
+export const selectAuth = createSelector(
+  selectFirebase,
+  (firebase: any): any => firebase.auth,
+)
+
 export const selectIsAuthenticated = createSelector(
-  selectProfile,
-  (profile: any): boolean => !profile.isEmpty,
+  selectAuth,
+  (auth: any): boolean => !auth.isEmpty,
 )
 
 export const selectIsAuthenticationLoading = createSelector(
-  selectProfile,
-  (profile: any): boolean => !profile.isLoaded,
+  selectAuth,
+  (auth: any): boolean => !auth.isLoaded,
 )
 
 export const selectUid = createSelector(
-  selectProfile,
-  (profile: any): string | null => profile.uid,
+  selectAuth,
+  (auth: any): string | null => auth.uid,
 )
 
 export const selectPhotoURL = createSelector(
-  selectProfile,
-  (profile: any): any => profile.photoURL,
+  selectAuth,
+  (auth: any): any => auth.photoURL,
 )
 
 export const selectDisplayName = createSelector(
-  selectProfile,
-  (profile: any): any => profile.displayName,
+  selectAuth,
+  (auth: any): any => auth.displayName,
 )

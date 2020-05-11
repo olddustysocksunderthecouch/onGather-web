@@ -51,6 +51,7 @@ const UserTemplatesContainer = ({
         },
       ])
     }
+    // eslint-disable-next-line
   }, [uid])
 
   return (
