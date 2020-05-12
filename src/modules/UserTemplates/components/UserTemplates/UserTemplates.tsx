@@ -8,7 +8,7 @@ import styles from './UserTemplates.module.scss'
 export interface Props {
   draftTemplates: Template[]
   publishedTemplates: Template[]
-  handleTemplateClicked: (templateId: string) => void
+  handleTemplateClicked: (templateId: string, type: string) => void
   handleCreateNewTemplateClicked: () => void
 }
 
@@ -35,16 +35,22 @@ export const UserTemplates: React.FunctionComponent<Props> = ({
         </Link>
       </div>
       {draftTemplates.map((template: Template) => {
+        const gatheringSize =
+          template.participantRange && template.participantRange.length > 1
+            ? `${template.participantRange[0]} - ${template.participantRange[1]} People`
+            : 'None'
         return (
           <TemplatePreview
             key={template.templateId}
             templateId={template.templateId}
             title={template.title}
-            gatheringSize={'2-8 People'}
+            gatheringSize={gatheringSize}
             suggestedDuration={template.suggestedDuration}
             mainAimsOutcomes={template.mainAimsOutcomes}
             shortDescription={template.shortDescription}
-            handleTemplatePreviewClicked={handleTemplateClicked}
+            handleTemplatePreviewClicked={(templateId: string): void =>
+              handleTemplateClicked(templateId, 'userDrafts')
+            }
           />
         )
       })}
@@ -62,7 +68,9 @@ export const UserTemplates: React.FunctionComponent<Props> = ({
               suggestedDuration={template.suggestedDuration}
               mainAimsOutcomes={template.mainAimsOutcomes}
               shortDescription={template.shortDescription}
-              handleTemplatePreviewClicked={handleTemplateClicked}
+              handleTemplatePreviewClicked={(templateId: string): void =>
+                handleTemplateClicked(templateId, 'userPublished')
+              }
             />
           )
         })

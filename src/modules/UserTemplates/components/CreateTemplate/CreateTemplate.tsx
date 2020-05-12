@@ -1,15 +1,20 @@
+import {
+  FormControl,
+  InputLabel,
+  makeStyles,
+  MenuItem,
+  Select,
+  Slider,
+  TextField,
+} from '@material-ui/core'
 import { grey } from '@material-ui/core/colors'
-import FormControl from '@material-ui/core/FormControl'
-import InputLabel from '@material-ui/core/InputLabel'
-import MenuItem from '@material-ui/core/MenuItem'
-import Select from '@material-ui/core/Select'
-import Slider from '@material-ui/core/Slider'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
-import TextField from '@material-ui/core/TextField'
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import React from 'react'
+import { Controller, ErrorMessage, useForm } from 'react-hook-form'
+import { DevTool } from 'react-hook-form-devtools'
 import { categories, durations } from '../../../../common/constants'
 import { Duration, TemplateCreation } from '../../../../common/types'
-import { Category, TemplateEditorState } from '../../types'
+import { TemplateEditorState } from '../../types'
 import { UploadImage } from '../UploadImage'
 import styles from './CreateTemplate.module.scss'
 
@@ -17,36 +22,31 @@ export interface Props {
   loading: string | null
   error: string | null
   selectedTemplateId: string
-  handleTemplateDataChange: (template: TemplateCreation) => void
   handleImageSelected: (url: File) => void
-  handleSaveDraftClicked: () => void
-  handlePublishClicked: () => void
+  handleSaveDraftClicked: (template: TemplateCreation) => void
+  handlePublishClicked: (template: TemplateCreation) => void
   initialTemplateEditorData: TemplateEditorState
 }
 
 const theme = createMuiTheme({
-  palette: {
-    primary: grey,
-  },
-  typography: {
-    fontFamily: 'Raleway',
-  },
+  palette: { primary: grey },
+  typography: { fontFamily: 'Raleway' },
 })
 
 const marks = [
-  {
-    value: 0,
-    label: '0',
-  },
-  {
-    value: 10,
-    label: '10',
-  },
-  {
-    value: 20,
-    label: '20',
-  },
+  { value: 1, label: '1' },
+  { value: 10, label: '10' },
+  { value: 20, label: '20' },
 ]
+
+const helperTextStyles = makeStyles(() => ({
+  error: {
+    '&.MuiFormHelperText-root.Mui-error': {
+      fontSize: 12,
+      width: '400px',
+    },
+  },
+}))
 
 export const CreateTemplate: React.FunctionComponent<Props> = ({
   loading,
@@ -55,94 +55,57 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
   initialTemplateEditorData,
   handleSaveDraftClicked,
   handlePublishClicked,
-  handleTemplateDataChange,
   handleImageSelected,
 }) => {
-  const [categorySelected, setCategorySelected] = useState(
-    initialTemplateEditorData.category,
-  )
-  const handleCategorySelected = (
-    event: React.ChangeEvent<{ value: unknown }>,
-  ): void => {
-    setCategorySelected(event.target.value as Category)
-  }
-  const [durationSelected, setDurationSelected] = useState(
-    initialTemplateEditorData.suggestedDuration,
-  )
-  const handleDurationChange = (
-    event: React.ChangeEvent<{ value: unknown }>,
-  ): void => {
-    setDurationSelected(event.target.value as string)
-  }
+  const { register, errors, handleSubmit, control, watch } = useForm({
+    mode: 'onSubmit',
+    reValidateMode: 'onChange',
+    defaultValues: {
+      category: initialTemplateEditorData.category,
+      title: initialTemplateEditorData.title,
+      shortDescription: initialTemplateEditorData.shortDescription,
+      mainAimsOutcomes: initialTemplateEditorData.mainAimsOutcomes,
+      suggestedDuration: initialTemplateEditorData.suggestedDuration,
+      participantRange:
+        initialTemplateEditorData.participantRange &&
+        initialTemplateEditorData.participantRange.length > 0
+          ? initialTemplateEditorData.participantRange
+          : [2, 4],
+      hostInstructions: initialTemplateEditorData.hostInstructions,
+      whatYouDo: initialTemplateEditorData.whatYouDo,
+      howYouDo: initialTemplateEditorData.howYouDo,
+      imageUrl: initialTemplateEditorData.imageUrl,
+    },
+  })
 
-  const [participantRange, setParticipantRange] = useState<number[]>(
-    initialTemplateEditorData.participantRange,
-  )
+  const watchAllFields = watch()
 
-  const handleParticipantRange = (
-    event: any,
-    newValue: number | number[],
-  ): void => {
-    setParticipantRange(newValue as number[])
-  }
-
-  const [title, setTitle] = useState(initialTemplateEditorData.title)
-  const [shortDescription, setShortDescription] = useState(
-    initialTemplateEditorData.shortDescription,
-  )
-  const [mainAimsOutcomes, setMainAimsOutcomes] = useState(
-    initialTemplateEditorData.mainAimsOutcomes,
-  )
-  const [hostInstructions, setHostInstructions] = useState(
-    initialTemplateEditorData.hostInstructions,
-  )
-  const [whatYouDo, setWhatYouDo] = useState(
-    initialTemplateEditorData.whatYouDo,
-  )
-  const [howYouDo, setHowYouDo] = useState(initialTemplateEditorData.howYouDo)
-
-  useEffect(() => {
-    const templateData: TemplateCreation = {
+  const handleSaveDraftClick = (): void => {
+    handleSaveDraftClicked({
+      ...watchAllFields,
       templateId: selectedTemplateId,
-      category: categorySelected,
-      title,
-      shortDescription,
-      mainAimsOutcomes,
-      suggestedDuration: durationSelected,
-      imageUrl: '',
-      hostInstructions,
-      whatYouDo,
-      howYouDo,
-      participantRange,
-    }
+    })
+  }
 
-    handleTemplateDataChange(templateData)
-  }, [
-    categorySelected,
-    title,
-    shortDescription,
-    mainAimsOutcomes,
-    durationSelected,
-    hostInstructions,
-    whatYouDo,
-    howYouDo,
-  ])
-
+  const helperTestClasses = helperTextStyles()
+  const onSubmit = (): void => {
+    handlePublishClicked({ ...watchAllFields, templateId: selectedTemplateId })
+  }
   return (
     <div className={styles.createTemplate}>
       <header>
         <div className={styles.headerTop}>
           <h1>Template Creator</h1>
           <div className={styles.buttonContainer}>
-            <button
-              className={styles.saveDraft}
-              onClick={handleSaveDraftClicked}
-            >
+            <button className={styles.saveDraft} onClick={handleSaveDraftClick}>
               Save draft
             </button>
-            <button className={styles.publish} onClick={handlePublishClicked}>
-              Publish
-            </button>
+            <input
+              type="submit"
+              form="createTemplateForm"
+              className={styles.publish}
+              value="Publish"
+            />
           </div>
         </div>
         <p>
@@ -150,100 +113,165 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
           things about things that you’ve never heard of.
         </p>
       </header>
-      <ThemeProvider theme={theme}>
-        <FormControl
-          style={{ marginTop: '36px', width: '300px' }}
-          variant="outlined"
-        >
-          <InputLabel>Category</InputLabel>
-          <Select
-            value={categorySelected}
-            onChange={handleCategorySelected}
-            label="Category"
-          >
-            {categories.map((category: string) => {
-              return (
-                <MenuItem key={category} value={category}>
-                  {category}
-                </MenuItem>
-              )
-            })}
-          </Select>
-        </FormControl>
+      {/* <DevTool control={control} /> */}
 
-        <form className={styles.form} noValidate autoComplete="on">
-          <TextField
-            value={title}
-            style={{ marginTop: '16px', width: '300px' }}
-            label="Title"
-            variant="outlined"
-            onChange={(event: ChangeEvent<HTMLInputElement>): void => {
-              setTitle(event.target.value)
+      <UploadImage handleImageSelected={handleImageSelected} />
+
+      <ThemeProvider theme={theme}>
+        <form
+          id="createTemplateForm"
+          className={styles.createForm}
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <FormControl
+            style={{
+              width: 'calc(50% - 4px)',
+              marginRight: '8px',
+              marginTop: '16px',
+              minWidth: '250px',
             }}
+            variant="outlined"
+          >
+            <InputLabel>Category</InputLabel>
+            <Controller
+              name="category"
+              as={
+                <Select label="Category" error={!!errors.category}>
+                  {categories.map((category: string) => {
+                    return (
+                      <MenuItem key={category} value={category}>
+                        {category}
+                      </MenuItem>
+                    )
+                  })}
+                </Select>
+              }
+              control={control}
+              rules={{
+                required: 'Please select a category',
+              }}
+            />
+            <ErrorMessage
+              className={styles.errorMessage}
+              errors={errors}
+              name="category"
+              as="p"
+            />
+          </FormControl>
+          <FormControl
+            style={{
+              width: 'calc(50% - 4px)',
+              minWidth: '250px',
+              marginTop: '16px',
+            }}
+            variant="outlined"
+          >
+            <InputLabel>Suggested Duration</InputLabel>
+            <Controller
+              name="suggestedDuration"
+              as={
+                <Select
+                  label="Suggested Duration"
+                  error={!!errors.suggestedDuration}
+                >
+                  {durations.map((duration: Duration) => {
+                    return (
+                      <MenuItem
+                        key={duration.timeMinutes}
+                        value={duration.timeMinutes}
+                      >
+                        {duration.timeFormatted}
+                      </MenuItem>
+                    )
+                  })}
+                </Select>
+              }
+              rules={{ required: 'Please select a duration' }}
+              control={control}
+            />
+            <ErrorMessage
+              className={styles.errorMessage}
+              errors={errors}
+              name="suggestedDuration"
+              as="p"
+            />
+          </FormControl>
+
+          <TextField
+            style={{ marginTop: '16px', maxWidth: '688px' }}
+            fullWidth
+            FormHelperTextProps={{ classes: helperTestClasses }}
+            label="Title"
+            name="title"
+            variant="outlined"
+            helperText={errors?.title?.message}
+            error={!!errors.title}
+            inputRef={register({
+              required:
+                'A title must be as descriptive as possible (min length 6 char)',
+              minLength: {
+                value: 6,
+                message:
+                  'A title must be as descriptive as possible (min length 6 char)',
+              },
+            })}
           />
           <TextField
-            value={shortDescription}
             style={{ marginTop: '16px' }}
+            FormHelperTextProps={{ classes: helperTestClasses }}
             label="Short Description"
+            name="shortDescription"
             variant="outlined"
             rows="2"
             fullWidth
             multiline
-            onChange={(event: ChangeEvent<HTMLInputElement>): void => {
-              setShortDescription(event.target.value)
-            }}
-          />
-        </form>
-        <FormControl
-          style={{ marginTop: '16px', width: '300px' }}
-          variant="outlined"
-        >
-          <InputLabel>Suggested Duration</InputLabel>
-          <Select
-            value={durationSelected}
-            onChange={handleDurationChange}
-            label="Suggested Duration"
-          >
-            {durations.map((duration: Duration) => {
-              return (
-                <MenuItem
-                  key={duration.timeMinutes}
-                  value={duration.timeMinutes}
-                >
-                  {duration.timeFormatted}
-                </MenuItem>
-              )
+            helperText={errors?.shortDescription?.message}
+            error={!!errors.shortDescription}
+            inputRef={register({
+              required: 'Please add a short description',
+              minLength: {
+                value: 20,
+                message:
+                  'Add a bit more to your description (min length 20 char)',
+              },
+              maxLength: {
+                value: 187,
+                message:
+                  'Please shorten your description (max length 187 char)',
+              },
             })}
-          </Select>
-        </FormControl>
+          />
 
-        <h2>Number of participants</h2>
-        <Slider
-          style={{ marginTop: '56px', width: '300px' }}
-          step={1}
-          value={participantRange}
-          onChange={handleParticipantRange}
-          valueLabelDisplay="on"
-          aria-labelledby="discrete-slider-restrict"
-          marks={marks}
-          min={0}
-          max={20}
-          // getAriaValueText={}
-        />
-        <form className={styles.form} noValidate autoComplete="on">
-          <h2>Upload an image</h2>
-          <UploadImage handleImageSelected={handleImageSelected} />
+          <h2>Number of participants</h2>
+          <Controller
+            name="participantRange"
+            control={control}
+            onChange={([, value]): any => value}
+            as={
+              <Slider
+                style={{ marginTop: '56px' }}
+                step={1}
+                valueLabelDisplay="on"
+                aria-labelledby="discrete-slider-restrict"
+                marks={marks}
+                min={1}
+                max={20}
+              />
+            }
+          />
           <TextField
-            value={mainAimsOutcomes}
             style={{ marginTop: '16px' }}
+            FormHelperTextProps={{ classes: helperTestClasses }}
             id="outlined-basic"
             label="Main Aims & Outcomes (e.g. Community, Fun, Insightful, Exercise)"
             variant="outlined"
             fullWidth
-            helperText="Put commas between each item"
-            onChange={(event: ChangeEvent<HTMLInputElement>): void => {
-              setMainAimsOutcomes(event.target.value)
-            }}
+            name="mainAimsOutcomes"
+            helperText={errors?.title?.message}
+            error={!!errors.title}
+            inputRef={register({
+              required: true,
+            })}
           />
           <h2>What they&apos;ll do</h2>
           <p>
@@ -251,17 +279,24 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
             will be sent guests
           </p>
           <TextField
-            value={whatYouDo}
+            name="whatYouDo"
             style={{ marginTop: '16px' }}
+            FormHelperTextProps={{ classes: helperTestClasses }}
             id="outlined-basic"
             label="Description"
             variant="outlined"
             rows="4"
             fullWidth
             multiline
-            onChange={(event: ChangeEvent<HTMLInputElement>): void => {
-              setWhatYouDo(event.target.value)
-            }}
+            helperText={errors?.whatYouDo?.message}
+            error={!!errors.title}
+            inputRef={register({
+              minLength: {
+                value: 6,
+                message:
+                  'Add a little something here at least (min length 24 char)',
+              },
+            })}
           />
           <h2>How they&apos;ll do it</h2>
           <p>
@@ -269,6 +304,7 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
             board game does some need to create an invite link
           </p>
           <TextField
+            name="howYouDo"
             style={{ marginTop: '16px' }}
             id="outlined-basic"
             label="Description"
@@ -276,9 +312,15 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
             rows="4"
             fullWidth
             multiline
-            onChange={(event: ChangeEvent<HTMLInputElement>): void => {
-              setHowYouDo(event.target.value)
-            }}
+            helperText={errors?.howYouDo?.message}
+            error={!!errors.title}
+            inputRef={register({
+              minLength: {
+                value: 6,
+                message:
+                  'Add a little something here at least (min length 24 char)',
+              },
+            })}
           />
           <h2>Additional info for the host only</h2>
           <p>
@@ -286,7 +328,7 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
             specific preparation they need to do
           </p>
           <TextField
-            value={hostInstructions}
+            name="hostInstructions"
             style={{ marginTop: '16px' }}
             id="outlined-basic"
             label="Host Instructions"
@@ -294,9 +336,6 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
             rows="4"
             fullWidth
             multiline
-            onChange={(event: ChangeEvent<HTMLInputElement>): void => {
-              setHostInstructions(event.target.value)
-            }}
           />
         </form>
       </ThemeProvider>

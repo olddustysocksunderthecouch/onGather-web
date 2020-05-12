@@ -75,8 +75,8 @@ const mapStateToProps = (state: RootState): any => ({
 })
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): any => ({
-  handleTemplateClicked: (templateId: string): void => {
-    dispatch(editExistingTemplate(templateId))
+  handleTemplateClicked: (templateId: string, type: string): void => {
+    dispatch(editExistingTemplate(templateId, type))
     dispatch(navigateToCreateTemplate())
   },
   handleCreateNewTemplateClicked: (): void => dispatch(createNewTemplate()),

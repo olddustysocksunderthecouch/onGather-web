@@ -40,9 +40,10 @@ export const createNewTemplateFailure = (
 
 export const editExistingTemplate = (
   templateId: string,
+  type: string,
 ): EditExistingTemplateAction => ({
   type: UserTemplatesActions.EditExistingTemplate,
-  payload: { templateId },
+  payload: { templateId, type },
 })
 
 export const setExistingTemplateEditorData = (
@@ -62,8 +63,13 @@ export const setEditorTemplateData = (
   },
 })
 
-export const saveDraftTemplate = (): SaveDraftTemplateAction => ({
+export const saveDraftTemplate = (
+  template: TemplateCreation,
+): SaveDraftTemplateAction => ({
   type: UserTemplatesActions.SaveDraftTemplate,
+  payload: {
+    template,
+  },
 })
 
 export const saveDraftTemplateSuccess = (): SaveDraftTemplateSuccessAction => ({
@@ -79,8 +85,13 @@ export const saveDraftTemplateFailure = (
   },
 })
 
-export const publishTemplate = (): PublishTemplateAction => ({
+export const publishTemplate = (
+  template: TemplateCreation,
+): PublishTemplateAction => ({
   type: UserTemplatesActions.PublishTemplate,
+  payload: {
+    template,
+  },
 })
 
 export const publishTemplateSuccess = (): PublishTemplateSuccessAction => ({

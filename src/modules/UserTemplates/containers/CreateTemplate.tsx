@@ -1,4 +1,3 @@
-import { debounce } from 'debounce'
 import React, { Dispatch } from 'react'
 import { connect } from 'react-redux'
 import { AnyAction } from 'redux'
@@ -11,7 +10,6 @@ import { TemplateEditorState } from '../types'
 import {
   publishTemplate,
   saveDraftTemplate,
-  setEditorTemplateData,
   uploadImage,
 } from '../UserTemplates.actions'
 
@@ -19,10 +17,9 @@ interface Props extends ConnectedReduxProps<AnyAction> {
   selectedTemplateId: string
   loading: string | null
   error: string | null
-  handleTemplateDataChange: (template: TemplateCreation) => void
   handleImageSelected: (url: File) => void
-  handleSaveDraftClicked: () => void
-  handlePublishClicked: () => void
+  handleSaveDraftClicked: (template: TemplateCreation) => void
+  handlePublishClicked: (template: TemplateCreation) => void
   initialTemplateEditorData: TemplateEditorState
 }
 
@@ -33,7 +30,6 @@ const CreateTemplateContainer = ({
   initialTemplateEditorData,
   handleSaveDraftClicked,
   handlePublishClicked,
-  handleTemplateDataChange,
   handleImageSelected,
 }: Props): React.FunctionComponentElement<Props> => (
   <TopNavLayout>
@@ -44,7 +40,6 @@ const CreateTemplateContainer = ({
       initialTemplateEditorData={initialTemplateEditorData}
       handleSaveDraftClicked={handleSaveDraftClicked}
       handlePublishClicked={handlePublishClicked}
-      handleTemplateDataChange={handleTemplateDataChange}
       handleImageSelected={handleImageSelected}
     />
   </TopNavLayout>
@@ -59,13 +54,10 @@ const mapStateToProps = (state: RootState): any => ({
 })
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): any => ({
-  handleSaveDraftClicked: (): void => dispatch(saveDraftTemplate()),
-  handlePublishClicked: (): void => dispatch(publishTemplate()),
-  handleTemplateDataChange: debounce(
-    (template: TemplateCreation): void =>
-      dispatch(setEditorTemplateData(template)),
-    300,
-  ),
+  handleSaveDraftClicked: (template: TemplateCreation): void =>
+    dispatch(saveDraftTemplate(template)),
+  handlePublishClicked: (template: TemplateCreation): void =>
+    dispatch(publishTemplate(template)),
   handleImageSelected: (file: File): void => dispatch(uploadImage(file)),
 })
 

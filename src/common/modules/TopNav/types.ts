@@ -3,8 +3,6 @@ export enum NavigationItem {
   Templates = 'Templates',
   SignIn = 'Sign In',
   SignOut = 'Sign Out',
-  SaveDraftTemplate = 'Save Draft',
-  PublishTemplate = 'Publish',
 }
 
 export interface TopNavButton {

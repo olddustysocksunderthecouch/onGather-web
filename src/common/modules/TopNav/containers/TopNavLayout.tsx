@@ -5,10 +5,6 @@ import {
   signInGoogle,
   signOutGoogle,
 } from '../../../../modules/App/App.actions'
-import {
-  publishTemplate,
-  saveDraftTemplate,
-} from '../../../../modules/UserTemplates/UserTemplates.actions'
 import { RootState } from '../../../redux/types'
 import { selectors as firebaseSelectors } from '../../firebase'
 import { TopNavLayout } from '../components/TopNavLayout'
@@ -39,8 +35,6 @@ const navigationItemToActionMap: { [key in NavigationItem]: AnyAction } = {
   [NavigationItem.Templates]: navigateToUserTemplates(),
   [NavigationItem.SignIn]: signInGoogle(),
   [NavigationItem.SignOut]: signOutGoogle(),
-  [NavigationItem.SaveDraftTemplate]: saveDraftTemplate(),
-  [NavigationItem.PublishTemplate]: publishTemplate(),
 }
 
 const TopNavLayoutContainer = ({

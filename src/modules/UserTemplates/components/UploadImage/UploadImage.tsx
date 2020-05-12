@@ -26,11 +26,12 @@ export const UploadImage: React.FunctionComponent<Props> = ({
   })
 
   const thumbs = files.map((file: any) => (
-    <div className={styles.thumb} key={file.name}>
-      <div className={styles.thumbInner}>
-        <img src={file.preview} className={styles.img} alt="uploaded" />
-      </div>
-    </div>
+    <img
+      src={file.preview}
+      className={styles.img}
+      alt="uploaded"
+      key={file.name}
+    />
   ))
 
   useEffect(
@@ -45,18 +46,21 @@ export const UploadImage: React.FunctionComponent<Props> = ({
     <section className={styles.container}>
       <div
         style={{
-          marginTop: '16px',
-          borderRadius: 4,
-          border: '1px dashed #000',
-          minHeight: '100px',
+          height: '240px',
         }}
         {...getRootProps({ className: 'dropzone' })}
       >
         <input {...getInputProps()} />
-        <p>
-          Drag &apos;n&apos; drop an image here, or click/press to select one
-        </p>
-        <aside className={styles.thumbsContainer}>{thumbs}</aside>
+        {files.length < 1 ? (
+          <p>
+            Drag &apos;n&apos; drop an image here, or click/press to select one
+          </p>
+        ) : (
+          <aside className={styles.thumbsContainer}>
+            {thumbs}
+            <button>Change Image</button>
+          </aside>
+        )}
       </div>
     </section>
   )

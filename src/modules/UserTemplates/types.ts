@@ -59,6 +59,7 @@ export interface EditExistingTemplateAction {
   type: typeof UserTemplatesActions.EditExistingTemplate
   payload: {
     templateId: string
+    type: string
   }
 }
 
@@ -79,6 +80,9 @@ export interface SetEditorTemplateDataAction {
 
 export interface SaveDraftTemplateAction {
   type: typeof UserTemplatesActions.SaveDraftTemplate
+  payload: {
+    template: TemplateCreation
+  }
 }
 
 export interface SaveDraftTemplateSuccessAction {
@@ -98,6 +102,9 @@ export interface SaveDraftTemplateFailureAction {
 
 export interface PublishTemplateAction {
   type: typeof UserTemplatesActions.PublishTemplate
+  payload: {
+    template: TemplateCreation
+  }
 }
 
 export interface PublishTemplateSuccessAction {

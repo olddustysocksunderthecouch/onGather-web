@@ -8,14 +8,20 @@
   align-items: center;
   margin-bottom: 16px;
   .buttonContainer {
+    justify-items: right;
     .publish {
       @include button;
+      align-self: flex-end;
       background-color: $color-tangerine;
+      border: none;
     }
     .saveDraft {
       @include button;
       background-color: $color-malibu;
       margin-right: 16px;
+      @media (min-width: 570px) {
+        margin-bottom: 8px;
+      }
     }
   }
 }
@@ -60,6 +66,23 @@
   }
   p {
     margin-top: 8px;
+  }
+
+  header {
+    p {
+      max-width: 700px;
+    }
+  }
+
+  .createForm {
+    align-self: center;
+    max-width: 688px;
+  }
+
+  .errorMessage {
+    @include text-style('font-main', 'regular', 'meta');
+    color: #f44336;
+    margin-left: 14px;
   }
 }
 .MuiTextField-root {

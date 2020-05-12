@@ -8,8 +8,10 @@ import { TemplateFirestoreResult } from '../../common/types'
 import {
   CreateNewTemplateSuccessAction,
   EditExistingTemplateAction,
+  PublishTemplateAction,
   PublishTemplateFailureAction,
   PublishTemplateSuccessAction,
+  SaveDraftTemplateAction,
   SaveDraftTemplateFailureAction,
   SaveDraftTemplateSuccessAction,
   SetExistingTemplateEditorDataAction,
@@ -52,11 +54,10 @@ export const editExistingTemplateEpic$ = (
     ),
     withLatestFrom(state$),
     map(([action, state]) => {
-      const templateData = state.firestore.data.userDrafts[
-        action.payload.templateId
-      ]
-        ? state.firestore.data.userDrafts[action.payload.templateId]
-        : state.firestore.data.userPublished[action.payload.templateId]
+      const templateData =
+        action.payload.type === 'userDrafts'
+          ? state.firestore.data.userDrafts[action.payload.templateId]
+          : state.firestore.data.userPublished[action.payload.templateId]
       return setExistingTemplateEditorData(
         action.payload.templateId,
         templateData as TemplateFirestoreResult,
@@ -65,18 +66,18 @@ export const editExistingTemplateEpic$ = (
   )
 
 export const saveDraftTemplateEpic$ = (
-  action$: ActionsObservable<UserTemplatesActionTypes>,
+  action$: ActionsObservable<SaveDraftTemplateAction>,
   state$: StateObservable<RootState>,
 ): Observable<
   SaveDraftTemplateSuccessAction | SaveDraftTemplateFailureAction
 > =>
   action$.pipe(
-    ofType<UserTemplatesActionTypes>(UserTemplatesActions.SaveDraftTemplate),
+    ofType<SaveDraftTemplateAction>(UserTemplatesActions.SaveDraftTemplate),
     withLatestFrom(state$),
     flatMap(([action, state]) =>
       from(
         firebase.functions().httpsCallable('templates-createUpdate')({
-          ...state.userTemplates.templateEditor,
+          ...action.payload.template,
           status: 'draft',
         }),
       ).pipe(
@@ -93,16 +94,16 @@ export const saveDraftTemplateEpic$ = (
   )
 
 export const publishTemplateEpic$ = (
-  action$: ActionsObservable<UserTemplatesActionTypes>,
+  action$: ActionsObservable<PublishTemplateAction>,
   state$: StateObservable<RootState>,
 ): Observable<PublishTemplateSuccessAction | PublishTemplateFailureAction> =>
   action$.pipe(
-    ofType<UserTemplatesActionTypes>(UserTemplatesActions.PublishTemplate),
+    ofType<PublishTemplateAction>(UserTemplatesActions.PublishTemplate),
     withLatestFrom(state$),
     flatMap(([action, state]) =>
       from(
         firebase.functions().httpsCallable('templates-createUpdate')({
-          ...state.userTemplates.templateEditor,
+          ...action.payload.template,
           status: 'publish',
         }),
       ).pipe(
