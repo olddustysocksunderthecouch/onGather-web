@@ -336,6 +336,7 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
             rows="4"
             fullWidth
             multiline
+            inputRef={register}
           />
         </form>
       </ThemeProvider>

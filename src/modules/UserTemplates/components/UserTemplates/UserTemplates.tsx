@@ -68,8 +68,8 @@ export const UserTemplates: React.FunctionComponent<Props> = ({
               suggestedDuration={template.suggestedDuration}
               mainAimsOutcomes={template.mainAimsOutcomes}
               shortDescription={template.shortDescription}
-              handleTemplatePreviewClicked={(templateId: string): void =>
-                handleTemplateClicked(templateId, 'userPublished')
+              handleTemplatePreviewClicked={(): void =>
+                handleTemplateClicked(template.templateId, 'userPublished')
               }
             />
           )

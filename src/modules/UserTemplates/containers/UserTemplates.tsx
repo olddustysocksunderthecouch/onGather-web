@@ -18,7 +18,7 @@ interface Props extends ConnectedReduxProps<AnyAction> {
   uid: string | null
   draftTemplates: Template[]
   publishedTemplates: Template[]
-  handleTemplateClicked: (templateId: string) => void
+  handleTemplateClicked: (templateId: string, type: string) => void
   handleCreateNewTemplateClicked: () => void
 }
 

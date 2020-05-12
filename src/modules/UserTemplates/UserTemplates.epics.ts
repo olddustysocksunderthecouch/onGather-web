@@ -78,6 +78,7 @@ export const saveDraftTemplateEpic$ = (
       from(
         firebase.functions().httpsCallable('templates-createUpdate')({
           ...action.payload.template,
+          templateId: state.userTemplates.selectedTemplateId,
           status: 'draft',
         }),
       ).pipe(
@@ -104,6 +105,7 @@ export const publishTemplateEpic$ = (
       from(
         firebase.functions().httpsCallable('templates-createUpdate')({
           ...action.payload.template,
+          templateId: state.userTemplates.selectedTemplateId,
           status: 'publish',
         }),
       ).pipe(
