@@ -41,6 +41,7 @@ $font-weights: (
 $font-sizes: (
   'meta': 12px,
   'body-s': 14px,
+  'button': 16px,
   'body': 18px,
   'title-l': 24px,
   'title-xl': 32px,
@@ -51,11 +52,62 @@ $font-sizes: (
 $font-families: (
   'font-title': 'Yeseva_One',
   'font-main': 'Raleway',
-  'font-other': 'Open_Sans'
+  'font-other': 'Open_Sans',
 );
 
 @mixin text-style($font-family, $weight, $size) {
   font-family: map-get($font-families, $font-family);
   font-weight: map-get($font-weights, $weight);
   font-size: map-get($font-sizes, $size);
+}
+
+@mixin font-h6 {
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 26px;
+  letter-spacing: 0.15px;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+}
+
+@mixin font-caption {
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: 0.4px;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+}
+
+@mixin font-body {
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+}
+
+@mixin font-body-small {
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+}
+
+@mixin font-button {
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  letter-spacing: 0.05em;
+  font-feature-settings: 'pnum' on, 'lnum' on;
 }

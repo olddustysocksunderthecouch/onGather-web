@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import createTemplateIcon from '../../../../common/assets/create-template-icon.svg'
+import { CreateNewTemplate } from '../../../../common/components/CreateNewTemplate'
 import { TemplatePreview } from '../../../../common/components/TemplatePreview'
 import { Template } from '../../../../common/types'
 import styles from './UserTemplates.module.scss'
@@ -34,49 +35,57 @@ export const UserTemplates: React.FunctionComponent<Props> = ({
           </button>
         </Link>
       </div>
-      {draftTemplates.map((template: Template) => {
-        const gatheringSize =
-          template.participantRange && template.participantRange.length > 1
-            ? `${template.participantRange[0]} - ${template.participantRange[1]} People`
-            : 'None'
-        return (
-          <TemplatePreview
-            key={template.templateId}
-            templateId={template.templateId}
-            title={template.title}
-            gatheringSize={gatheringSize}
-            suggestedDuration={template.suggestedDuration}
-            mainAimsOutcomes={template.mainAimsOutcomes}
-            shortDescription={template.shortDescription}
-            handleTemplatePreviewClicked={(templateId: string): void =>
-              handleTemplateClicked(templateId, 'userDrafts')
-            }
-          />
-        )
-      })}
+      <div className={styles.templatePreviews}>
+        {draftTemplates.length < 1 ? (
+          <CreateNewTemplate />
+        ) : (
+          draftTemplates.map((template: Template) => {
+            const gatheringSize =
+              template.participantRange && template.participantRange.length > 1
+                ? `${template.participantRange[0]} - ${template.participantRange[1]} People`
+                : 'None'
+            return (
+              <TemplatePreview
+                key={template.templateId}
+                templateId={template.templateId}
+                title={template.title}
+                gatheringSize={gatheringSize}
+                suggestedDuration={template.suggestedDuration}
+                mainAimsOutcomes={template.mainAimsOutcomes}
+                shortDescription={template.shortDescription}
+                handleTemplatePreviewClicked={(templateId: string): void =>
+                  handleTemplateClicked(templateId, 'userDrafts')
+                }
+              />
+            )
+          })
+        )}
+      </div>
     </section>
     <section>
       <h2>Published</h2>
-      {publishedTemplates.length > 0 ? (
-        publishedTemplates.map((template: Template) => {
-          return (
-            <TemplatePreview
-              key={template.templateId}
-              templateId={template.templateId}
-              title={template.title}
-              gatheringSize={'2-8 People'}
-              suggestedDuration={template.suggestedDuration}
-              mainAimsOutcomes={template.mainAimsOutcomes}
-              shortDescription={template.shortDescription}
-              handleTemplatePreviewClicked={(): void =>
-                handleTemplateClicked(template.templateId, 'userPublished')
-              }
-            />
-          )
-        })
-      ) : (
-        <p>You don&apos;t have any templates yet</p>
-      )}
+      <div className={styles.templatePreviews}>
+        {publishedTemplates.length < 1 ? (
+          <CreateNewTemplate />
+        ) : (
+          publishedTemplates.map((template: Template) => {
+            return (
+              <TemplatePreview
+                key={template.templateId}
+                templateId={template.templateId}
+                title={template.title}
+                gatheringSize={'2-8 People'}
+                suggestedDuration={template.suggestedDuration}
+                mainAimsOutcomes={template.mainAimsOutcomes}
+                shortDescription={template.shortDescription}
+                handleTemplatePreviewClicked={(): void =>
+                  handleTemplateClicked(template.templateId, 'userPublished')
+                }
+              />
+            )
+          })
+        )}
+      </div>
     </section>
   </div>
 )

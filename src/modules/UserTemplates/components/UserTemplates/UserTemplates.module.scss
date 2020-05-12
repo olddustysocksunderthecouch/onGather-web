@@ -37,9 +37,15 @@
   section {
     margin-bottom: 24px;
   }
+
   .draftTitle {
     display: flex;
     justify-content: space-between;
+  }
+
+  .templatePreviews {
+    display: flex;
+    flex-wrap: wrap;
   }
 
   .createTemplateButton {
@@ -60,7 +66,7 @@
       letter-spacing: 0.03em;
       padding: 8px 8px 8px 16px;
       @include text-style('font-main', 'semibold', 'body-s');
-     
+
       @media (min-width: $desktop) {
         padding: 10px 8px 10px 24px;
         letter-spacing: 0.05em;
@@ -73,7 +79,7 @@
       width: 16px;
       align-self: center;
       margin-right: 16px;
-    
+
       @media (min-width: $desktop) {
         margin-right: 24px;
       }

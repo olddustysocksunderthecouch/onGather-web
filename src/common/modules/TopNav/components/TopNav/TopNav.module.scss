@@ -41,7 +41,7 @@
 
 .signInButton {
   @include button-no-shadow;
-  background-color: $color-tangerine;
+  background-color: $color-yellow;
   margin: 8px 8px 8px;
 }
 
@@ -51,7 +51,7 @@
   align-content: center;
   align-self: center;
   @include button-no-shadow;
-  background-color: $color-tangerine;
+  background-color: $color-yellow;
   border: none;
   margin: 8px 24px 8px;
   padding: 8px 6px;

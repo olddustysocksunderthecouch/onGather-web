@@ -18,35 +18,40 @@
   .categoryItem {
     border: none;
     background: none;
-    @include text-style('font-main', 'regular', 'body-s');
-    text-transform: uppercase;
-    letter-spacing: 0.075em;
-    margin: 0px 4px 0px 4px;
-    &:focus {
-      outline: none;
-    }
+    @include font-button;
+    text-transform: capitalize;
+    letter-spacing: 0.05em;
+    margin: 0px 16px 0px 16px;
+    color: #A3A3A3;
+
     &.categoryItemSelected{
-      @include text-style('font-main', 'medium', 'body-s');
+      color: $color-black;
     }
   }
   
   .selectionIndicator {
-    height: 1px;
-    width: 60%;
-    margin-left: 20%;
-    margin-top: 1px;
+    height: 2px;
+    width: calc(100% + 8px);
+    margin-left: -4px;
+    margin-top: 2px;
     background-color: $color-black;
-
   }
 
   .leftMoreIcon {
     flex-basis: 20px;
     transform: rotate(180deg);
     background-color: transparent;
+
+    @media (min-width: $tablet) {
+      display: none;
+    }
   }
   .rightMoreIcon {
     flex-basis: 20px;
     z-index: 1;
+    @media (min-width: $tablet) {
+      display: none;
+    }
   }
 }
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import { CreateNewTemplate } from '../../../../common/components/CreateNewTemplate'
 import { TemplatePreview } from '../../../../common/components/TemplatePreview'
 import { Template } from '../../../../common/types'
 import { CategorySelector } from '../CategorySelector'
@@ -18,7 +19,7 @@ export const BrowseTemplates: React.FunctionComponent<Props> = ({
   <div className={styles.container}>
     <header>
       <h1>Pick a template</h1>
-      <p>
+      <p className={styles.browserDescription}>
         We’ve got pre-populated templates appropriate for a variety of types of
         gatherings that you might want to have. Start with one of them or create
         your own template for others to find!
@@ -35,7 +36,7 @@ export const BrowseTemplates: React.FunctionComponent<Props> = ({
             key={template.title}
             templateId={template.title}
             title={template.title}
-            gatheringSize={'2-8 People'}
+            gatheringSize={`${template.participantRange[0]} - ${template.participantRange[1]} People`}
             suggestedDuration={template.suggestedDuration}
             mainAimsOutcomes={template.mainAimsOutcomes}
             shortDescription={template.shortDescription}
@@ -43,6 +44,7 @@ export const BrowseTemplates: React.FunctionComponent<Props> = ({
           />
         )
       })}
+      <CreateNewTemplate />
     </section>
   </div>
 )
