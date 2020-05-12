@@ -87,7 +87,6 @@ export const SignedInMenu: React.FunctionComponent<Props> = ({
         anchorEl={anchorRef.current}
         role={undefined}
         transition
-        disablePortal
         placement="bottom-end"
       >
         {({ TransitionProps }): any => (

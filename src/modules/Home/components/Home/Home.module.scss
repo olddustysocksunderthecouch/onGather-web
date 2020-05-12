@@ -6,7 +6,6 @@
   justify-content: stretch;
   flex-direction: column;
   position: relative;
-  z-index: -1;
   h1 {
     @include text-style('font-main', 'regular', 'body');
 
@@ -24,7 +23,6 @@
 
 .homeSection1 {
   width: 100%;
-  z-index: -1;
 }
 
 .homeBackgroundImage {
@@ -84,7 +82,7 @@
   padding: 8px 24px;
   @include text-style('font-main', 'semibold', 'body-s');
   letter-spacing: 0.05em;
-  z-index: 1;
+  z-index: 100;
   &:focus {
     outline: none;
   }
@@ -224,6 +222,7 @@
   padding: 8px 24px;
   @include text-style('font-main', 'semibold', 'body-s');
   letter-spacing: 0.05em;
+  z-index: 100;
   &:focus {
     outline: none;
   }
