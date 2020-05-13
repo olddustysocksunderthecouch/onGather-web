@@ -1,15 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { HowItWorks } from '../HowItWorks'
 import homeBackgroundImage from './../../assets/home-section-1.svg'
 import homeBackgroundImage2 from './../../assets/home-section-2.svg'
 import styles from './Home.module.scss'
 
-export interface Props {
-  handleClick: () => void
-}
-
-export const Home: React.FunctionComponent<Props> = ({ handleClick }) => {
+export const Home: React.FunctionComponent = () => {
+  useEffect(() => {
+    document.title = 'Home - onGather'
+  }, [])
   return (
     <div className={styles.container}>
       <section className={styles.homeSection1}>

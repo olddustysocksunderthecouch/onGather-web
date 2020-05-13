@@ -32,10 +32,7 @@ const UserTemplatesContainer = ({
   }, [id])
 
   return (
-    <TopNavLayout
-      topNavButton={{ text: 'Browse', path: '/browse-templates' }}
-      authIsRequired={true}
-    >
+    <TopNavLayout topNavButton={{ text: 'Browse', path: '/browse-templates' }}>
       <ViewTemplate template={template} />
     </TopNavLayout>
   )

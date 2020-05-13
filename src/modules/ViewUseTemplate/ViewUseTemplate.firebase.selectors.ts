@@ -1,7 +1,6 @@
 import { createSelector } from 'reselect'
-import { selectors as firebaseSelectors } from '../../common/modules/firebase'
 import { selectors as firestoreSelectors } from '../../common/modules/firestore'
-import { Template, TemplateFirestoreResult } from '../../common/types'
+import { Template } from '../../common/types'
 
 const arrayResult = (data: any): Template[] => {
   const array = Object.keys(data).map((id) => {
@@ -19,10 +18,9 @@ const arrayResult = (data: any): Template[] => {
 }
 
 export const selectSelectedTemplate = createSelector(
-  firebaseSelectors.selectUid,
   firestoreSelectors.selectData,
-  (uid: string | null, data: any): any => {
-    if (uid && data.selectedTemplate) {
+  (data: any): any => {
+    if (data.selectedTemplate) {
       return arrayResult(data.selectedTemplate)[0]
     } else {
       return {}

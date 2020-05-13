@@ -39,6 +39,10 @@ export const TopNavLayout: React.FunctionComponent<Props> = ({
     setSignInClicked(true)
   }
 
+  const handleAuthModalClose =(): void => {
+    setSignInClicked(false)
+  }
+
   return (
     <div className={styles.container}>
       {(authIsRequired || signInClicked || isAuthenticationLoading) &&
@@ -47,6 +51,7 @@ export const TopNavLayout: React.FunctionComponent<Props> = ({
             <AuthModal
               isAuthenticationLoading={isAuthenticationLoading}
               handleContinueWithClicked={handleContinueWithClicked}
+              handleAuthModalClose={handleAuthModalClose}
             />
           </div>
         )}

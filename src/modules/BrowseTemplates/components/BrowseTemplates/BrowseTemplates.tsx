@@ -1,5 +1,4 @@
-import React from 'react'
-import { useHistory } from 'react-router-dom'
+import React, { useEffect } from 'react'
 import { CreateNewTemplate } from '../../../../common/components/CreateNewTemplate'
 import { TemplatePreview } from '../../../../common/components/TemplatePreview'
 import { Template } from '../../../../common/types'
@@ -17,7 +16,9 @@ export const BrowseTemplates: React.FunctionComponent<Props> = ({
   activeCategory,
   handleCategoryClicked,
 }) => {
-  const history = useHistory()
+  useEffect(() => {
+    document.title = 'Browser'
+  }, [])
   return (
     <div className={styles.container}>
       <header>

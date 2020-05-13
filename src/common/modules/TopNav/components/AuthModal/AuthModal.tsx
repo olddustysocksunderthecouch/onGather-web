@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import CloseIcon from './assets/close-icon.svg'
 import GoogleIcon from './assets/google-icon.svg'
 import styles from './AuthModal.module.scss'
@@ -7,13 +7,14 @@ import styles from './AuthModal.module.scss'
 export interface Props {
   handleContinueWithClicked?: () => void
   isAuthenticationLoading?: boolean
+  handleAuthModalClose: () => void
 }
 
 export const AuthModal: React.FunctionComponent<Props> = ({
   isAuthenticationLoading,
   handleContinueWithClicked,
+  handleAuthModalClose,
 }) => {
-  const history = useHistory()
   return (
     <div className={styles.authModal}>
       {isAuthenticationLoading ? (
@@ -27,10 +28,7 @@ export const AuthModal: React.FunctionComponent<Props> = ({
       ) : (
         <Fragment>
           <h1 className={styles.signUpTitle}>Sign in/up</h1>
-          <button
-            className={styles.closeIcon}
-            onClick={(): void => history.goBack()}
-          >
+          <button className={styles.closeIcon} onClick={handleAuthModalClose}>
             <img src={CloseIcon} alt="Google Icon" />
           </button>
           <p className={styles.description}>This will just take a moment...</p>

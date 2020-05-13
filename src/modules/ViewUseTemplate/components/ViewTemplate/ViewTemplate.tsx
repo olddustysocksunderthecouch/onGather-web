@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { durations } from '../../../../common/constants'
 import { Duration, TemplateFirestoreResult } from '../../../../common/types'
 import PeopleIcon from './../../../../common/assets/PeopleIcon.svg'
@@ -10,6 +10,10 @@ export interface Props {
 }
 
 export const ViewTemplate: React.FunctionComponent<Props> = ({ template }) => {
+  useEffect(() => {
+    document.title = template.title ? template.title : 'onGather'
+  }, [template.title])
+
   const duration = template.suggestedDuration
     ? durations.filter(
         (duration: Duration) =>
@@ -21,6 +25,10 @@ export const ViewTemplate: React.FunctionComponent<Props> = ({ template }) => {
     ?.split(',')
     .join(' | ')
 
+  const gatheringSize = template.participantRange
+    ? `${template.participantRange[0]} - ${template.participantRange[1]} People`
+    : '0 People'
+
   return (
     <article className={styles.viewTemplate}>
       <img className={styles.image} src={template.imageUrl} alt="Template" />
@@ -29,7 +37,7 @@ export const ViewTemplate: React.FunctionComponent<Props> = ({ template }) => {
         <h1>{template.title}</h1>
         <div className={styles.meta}>
           <img src={PeopleIcon} alt="People Icon" />
-          {/* <h5>{`${template.participantRange[0]} - ${template.participantRange[1]} People`}</h5> */}
+          <h5>{gatheringSize}</h5>
           <img src={TimeIcon} alt="Time Icon" />
           <h5>{duration.timeFormatted}</h5>
         </div>

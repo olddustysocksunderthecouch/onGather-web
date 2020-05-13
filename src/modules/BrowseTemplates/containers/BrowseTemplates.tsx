@@ -31,7 +31,7 @@ const BrowseTemplatesContainer = ({
     },
   ])
   return (
-    <TopNavLayout topNavButton={{ text: 'Create', path: '/user-templates' }}>
+    <TopNavLayout topNavButton={{ text: 'Templates', path: '/user-templates' }}>
       <BrowseTemplates
         activeCategory={activeCategory}
         templates={templates}

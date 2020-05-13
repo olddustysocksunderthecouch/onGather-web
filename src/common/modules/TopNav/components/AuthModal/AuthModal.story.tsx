@@ -10,6 +10,7 @@ export const defaultState = (): React.FunctionComponentElement<Props> => (
   <AuthModal
     handleContinueWithClicked={(): void => undefined}
     isAuthenticationLoading={true}
+    handleAuthModalClose={(): void => undefined}
   />
 )
 
