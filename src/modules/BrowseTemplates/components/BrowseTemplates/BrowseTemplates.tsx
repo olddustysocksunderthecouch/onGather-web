@@ -1,10 +1,10 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import { CreateNewTemplate } from '../../../../common/components/CreateNewTemplate'
 import { TemplatePreview } from '../../../../common/components/TemplatePreview'
 import { Template } from '../../../../common/types'
 import { CategorySelector } from '../CategorySelector'
 import styles from './BrowseTemplates.module.scss'
-import { useHistory } from 'react-router-dom'
 
 export interface Props {
   templates: Template[]
@@ -43,9 +43,9 @@ export const BrowseTemplates: React.FunctionComponent<Props> = ({
               suggestedDuration={template.suggestedDuration}
               mainAimsOutcomes={template.mainAimsOutcomes}
               shortDescription={template.shortDescription}
-              handleTemplatePreviewClicked={(): void =>
-                history.push(`/view-template/${template.templateId}`)
-              }
+              destinationPath={`/view-template/${template.templateId}`}
+              handleTemplatePreviewClicked={(): void => undefined}
+              openInNewTab={true}
             />
           )
         })}

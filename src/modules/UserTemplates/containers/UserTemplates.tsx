@@ -4,7 +4,6 @@ import { useFirestore } from 'react-redux-firebase'
 import { AnyAction } from 'redux'
 import { selectors as firebaseSelectors } from '../../../common/modules/firebase'
 import TopNavLayout from '../../../common/modules/TopNav/containers/TopNavLayout'
-import { navigateToCreateTemplate } from '../../../common/modules/TopNav/TopNav.actions'
 import { ConnectedReduxProps, RootState } from '../../../common/redux/types'
 import { Template } from '../../../common/types'
 import { UserTemplates } from '../components/UserTemplates'
@@ -77,7 +76,6 @@ const mapStateToProps = (state: RootState): any => ({
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): any => ({
   handleTemplateClicked: (templateId: string, type: string): void => {
     dispatch(editExistingTemplate(templateId, type))
-    dispatch(navigateToCreateTemplate())
   },
   handleCreateNewTemplateClicked: (): void => dispatch(createNewTemplate()),
 })

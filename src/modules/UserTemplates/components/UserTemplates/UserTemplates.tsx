@@ -53,6 +53,7 @@ export const UserTemplates: React.FunctionComponent<Props> = ({
                 suggestedDuration={template.suggestedDuration}
                 mainAimsOutcomes={template.mainAimsOutcomes}
                 shortDescription={template.shortDescription}
+                destinationPath="/create-template"
                 handleTemplatePreviewClicked={(templateId: string): void =>
                   handleTemplateClicked(templateId, 'userDrafts')
                 }
@@ -78,6 +79,7 @@ export const UserTemplates: React.FunctionComponent<Props> = ({
                 suggestedDuration={template.suggestedDuration}
                 mainAimsOutcomes={template.mainAimsOutcomes}
                 shortDescription={template.shortDescription}
+                destinationPath="/create-template"
                 handleTemplatePreviewClicked={(): void =>
                   handleTemplateClicked(template.templateId, 'userPublished')
                 }

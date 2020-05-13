@@ -1,9 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { durations } from '../../constants'
 import { Duration } from '../../types'
 import PeopleIcon from './../../assets/PeopleIcon.svg'
-import PlaceholderImage from './assets/PlaceholderImage.jpg'
 import TimeIcon from './../../assets/TimeIcon.svg'
+import PlaceholderImage from './assets/PlaceholderImage.jpg'
 import styles from './TemplatePreview.module.scss'
 
 export interface Props {
@@ -14,6 +15,8 @@ export interface Props {
   mainAimsOutcomes?: string
   shortDescription?: string
   handleTemplatePreviewClicked: (templateId: string) => void
+  openInNewTab?: boolean
+  destinationPath: string
 }
 
 export const TemplatePreview: React.FunctionComponent<Props> = ({
@@ -24,6 +27,8 @@ export const TemplatePreview: React.FunctionComponent<Props> = ({
   mainAimsOutcomes,
   shortDescription,
   handleTemplatePreviewClicked,
+  destinationPath,
+  openInNewTab = false,
 }) => {
   const duration = suggestedDuration
     ? durations.filter(
@@ -34,25 +39,29 @@ export const TemplatePreview: React.FunctionComponent<Props> = ({
   const formattedAimsOutcomes = mainAimsOutcomes?.split(',').join(' | ')
 
   return (
-    <article
-      className={styles.templatePreview}
-      onClick={(): void => handleTemplatePreviewClicked(templateId)}
-    >
-      <img className={styles.image} src={PlaceholderImage} alt="Template" />
+    <article className={styles.templatePreview}>
+      <Link
+        to={destinationPath}
+        onClick={(): void => handleTemplatePreviewClicked(templateId)}
+        target={openInNewTab ? '_blank' : '_self'}
+        className={styles.link}
+      >
+        <img className={styles.image} src={PlaceholderImage} alt="Template" />
 
-      <div className={styles.content}>
-        <h5>{formattedAimsOutcomes}</h5>
-        <h3>{title}</h3>
-        <div className={styles.meta}>
-          <img src={PeopleIcon} alt="People Icon" />
-          <p>{gatheringSize}</p>
-          <img src={TimeIcon} alt="Time Icon" />
-          <p>{duration.timeFormatted}</p>
+        <div className={styles.content}>
+          <h5>{formattedAimsOutcomes}</h5>
+          <h3>{title}</h3>
+          <div className={styles.meta}>
+            <img src={PeopleIcon} alt="People Icon" />
+            <p>{gatheringSize}</p>
+            <img src={TimeIcon} alt="Time Icon" />
+            <p>{duration.timeFormatted}</p>
+          </div>
+          <p className={styles.shortDescription}>{shortDescription}</p>
+          <div className={styles.spacer} />
         </div>
-        <p className={styles.shortDescription}>{shortDescription}</p>
-        <div className={styles.spacer} />
-      </div>
-      <button className={styles.viewTemplate}>View Template</button>
+        <button className={styles.viewTemplate}>View Template</button>
+      </Link>
     </article>
   )
 }

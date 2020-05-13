@@ -17,6 +17,7 @@ export const defaultState = (): React.FunctionComponentElement<Props> => (
       'A simple book club that gets people together to discuss the various books they’ve read'
     }
     handleTemplatePreviewClicked={(): void => undefined}
+    destinationPath=""
   />
 )
 

@@ -7,15 +7,18 @@
   flex-direction: column;
   margin: 28px 24px;
   @media (min-width: $tablet) {
-    margin: 28px 128px;
+    margin: 28px 64px;
   }
 
   @media (min-width: $desktop) {
-    margin: 56px 192px;
+    margin: 56px 120px;
   }
 
   @media (min-width: $bigScreen) {
-    margin: 56px 396px;
+    margin: 56px 160px;
+  }  
+  @media (min-width: $hugeScreen) {
+    margin: 56px 300px;
   }
 
   h1 {
