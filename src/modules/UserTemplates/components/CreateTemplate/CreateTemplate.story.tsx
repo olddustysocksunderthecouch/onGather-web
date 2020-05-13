@@ -29,6 +29,9 @@ export const defaultState = (): React.FunctionComponentElement<Props> => (
       howYouDo: '',
       participantRange: [1, 2],
     }}
+    handleFetchImages={(): void => undefined}
+    areNextImagesLoading={true}
+    imageSearchResults={{} as any}
   />
 )
 

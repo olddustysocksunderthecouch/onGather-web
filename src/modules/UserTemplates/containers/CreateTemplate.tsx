@@ -1,3 +1,4 @@
+import { debounce } from 'debounce'
 import React, { Dispatch } from 'react'
 import { connect } from 'react-redux'
 import { AnyAction } from 'redux'
@@ -6,10 +7,11 @@ import { ConnectedReduxProps, RootState } from '../../../common/redux/types'
 import { TemplateCreation } from '../../../common/types'
 import { CreateTemplate } from '../components/CreateTemplate'
 import { selectors as CreateTemplateSelectors } from '../index'
-import { TemplateEditorState } from '../types'
+import { ImageSearchResult, TemplateEditorState } from '../types'
 import {
   publishTemplate,
   saveDraftTemplate,
+  searchForImages,
   uploadImage,
 } from '../UserTemplates.actions'
 
@@ -21,6 +23,9 @@ interface Props extends ConnectedReduxProps<AnyAction> {
   handleSaveDraftClicked: (template: TemplateCreation) => void
   handlePublishClicked: (template: TemplateCreation) => void
   initialTemplateEditorData: TemplateEditorState
+  imageSearchResults: ImageSearchResult[]
+  handleFetchImages: (searchTerm: string, page: number) => void
+  areNextImagesLoading: boolean
 }
 
 const CreateTemplateContainer = ({
@@ -31,6 +36,9 @@ const CreateTemplateContainer = ({
   handleSaveDraftClicked,
   handlePublishClicked,
   handleImageSelected,
+  imageSearchResults,
+  handleFetchImages,
+  areNextImagesLoading,
 }: Props): React.FunctionComponentElement<Props> => (
   <TopNavLayout>
     <CreateTemplate
@@ -41,6 +49,9 @@ const CreateTemplateContainer = ({
       handleSaveDraftClicked={handleSaveDraftClicked}
       handlePublishClicked={handlePublishClicked}
       handleImageSelected={handleImageSelected}
+      imageSearchResults={imageSearchResults}
+      handleFetchImages={handleFetchImages}
+      areNextImagesLoading={areNextImagesLoading}
     />
   </TopNavLayout>
 )
@@ -51,6 +62,10 @@ const mapStateToProps = (state: RootState): any => ({
   initialTemplateEditorData: CreateTemplateSelectors.selectTemplateEditor(
     state,
   ),
+  imageSearchResults: CreateTemplateSelectors.selectImageSearchResults(state),
+  areNextImagesLoading: CreateTemplateSelectors.selectImageSearchResultsLoading(
+    state,
+  ),
 })
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): any => ({
@@ -59,6 +74,11 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): any => ({
   handlePublishClicked: (template: TemplateCreation): void =>
     dispatch(publishTemplate(template)),
   handleImageSelected: (file: File): void => dispatch(uploadImage(file)),
+  handleFetchImages: debounce(
+    (searchTerm: string, page: number): void =>
+      dispatch(searchForImages(searchTerm, page)),
+    300,
+  ),
 })
 
 export default connect(

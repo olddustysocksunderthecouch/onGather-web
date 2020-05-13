@@ -1,3 +1,1 @@
-import { ImagePicker } from './ImagePicker'
-
-export { ImagePicker as AuthModal }
+export { ImagePicker } from './ImagePicker'

@@ -13,7 +13,7 @@ import React, { Fragment } from 'react'
 import { Controller, ErrorMessage, useForm } from 'react-hook-form'
 import { categories, durations } from '../../../../common/constants'
 import { Duration, TemplateCreation } from '../../../../common/types'
-import { TemplateEditorState } from '../../types'
+import { TemplateEditorState, ImageSearchResult } from '../../types'
 import { ImagePicker } from '../ImagePicker/ImagePicker'
 import { UploadImage } from '../UploadImage'
 import styles from './CreateTemplate.module.scss'
@@ -26,6 +26,9 @@ export interface Props {
   handleSaveDraftClicked: (template: TemplateCreation) => void
   handlePublishClicked: (template: TemplateCreation) => void
   initialTemplateEditorData: TemplateEditorState
+  imageSearchResults: ImageSearchResult[]
+  handleFetchImages: (searchTerm: string, page: number) => void
+  areNextImagesLoading: boolean
 }
 
 const theme = createMuiTheme({
@@ -56,6 +59,9 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
   handleSaveDraftClicked,
   handlePublishClicked,
   handleImageSelected,
+  imageSearchResults,
+  handleFetchImages,
+  areNextImagesLoading,
 }) => {
   const { register, errors, handleSubmit, control, watch } = useForm({
     mode: 'onSubmit',
@@ -358,8 +364,11 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
       {true && (
         <div className={styles.authModal}>
           <ImagePicker
-            handleContinueWithClicked={(): void => undefined}
-            handleAuthModalClose={(): void => undefined}
+            areNextImagesLoading={areNextImagesLoading}
+            imageSearchResults={imageSearchResults}
+            handleFetchImages={handleFetchImages}
+            handleSelectedImage={(): void => undefined}
+            selectedImage=""
           />
         </div>
       )}

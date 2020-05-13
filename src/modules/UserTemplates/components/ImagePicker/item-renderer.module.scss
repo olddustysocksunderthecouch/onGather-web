@@ -1,0 +1,32 @@
+@import 'src/common/styles/variables';
+@import 'src/common/styles/fonts';
+
+
+.loadingText {
+  @include font-body;
+  color: $color-alto-gray;
+  text-align: center;
+}
+
+.imgContainer {
+  img {
+    width: calc(100% + 5px);
+    height: calc(100% + 5px);
+    box-sizing: border-box;
+  }
+  &.selected {
+    img {
+      border: 10px solid $color-yellow;
+    }
+  }
+
+  img.tick {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    z-index: 100;
+    border: none;
+    width: 20%;
+    height: 20%;
+  }
+}

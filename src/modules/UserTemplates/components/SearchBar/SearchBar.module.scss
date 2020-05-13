@@ -1,0 +1,50 @@
+@import 'src/common/styles/variables';
+@import 'src/common/styles/fonts';
+@import 'src/common/styles/mixins';
+
+.container {
+  background-color: $color-mid-gray;
+  display: flex;
+  justify-content: center;
+  padding: 8px 12px 12px 12px;
+  flex: 0 0 60px;
+}
+
+.inputContainer {
+  background-color: $color-light-gray;
+  display: flex;
+  flex: 1 0;
+  align-items: center;
+  padding: 8px 12px;
+
+  .searchIcon {
+    margin-right: 8px;
+    height: 13px;
+    display: flex;
+    flex: 0 0;
+  }
+
+  input {
+    @include font-body-small;
+    background-color: $color-light-gray;
+    border: none;
+    display: flex;
+    flex: 1 0;
+    outline: none;
+    color: $color-white;
+  }
+
+  input::placeholder {
+    color: $color-lightest-gray;
+  }
+
+  .closeIcon {
+    display: none;
+    margin-left: 8px;
+    height: 10px;
+
+    &.show {
+      display: block;
+    }
+  }
+}
