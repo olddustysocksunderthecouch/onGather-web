@@ -1,0 +1,89 @@
+@import 'src/common/styles/fonts';
+@import 'src/common/styles/variables';
+@import 'src/common/styles/mixins';
+
+.viewTemplate {
+  display: flex;
+  flex-direction: column;
+
+  .image {
+    height: 240px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 0px 0px 16px 16px;
+  }
+}
+
+.content {
+  margin: 12% 9%;
+  h3 {
+    @include font-caption;
+    color: $color-dark-yellow;
+
+    @media (min-width: $desktop) {
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  }
+
+  h1 {
+    @include font-h6;
+    margin-top: 8px;
+  }
+  h2 {
+    @include font-h6;
+    margin-top: 44px;
+  }
+  p {
+    @include font-body;
+  }
+
+  .meta {
+    display: flex;
+    flex-direction: row;
+
+    @media (min-width: $tablet) {
+      margin-top: 12px;
+    }
+
+    h5 {
+      display: flex;
+      @include font-caption;
+      padding-right: 16px;
+      justify-self: center;
+    }
+
+    img {
+      padding-top: 0px;
+      padding-right: 8px;
+    }
+  }
+
+  .hostInstructions {
+    margin-bottom: 36px;
+  }
+}
+
+.shortDescription {
+  @include font-body;
+  margin-top: 20px;
+  @media (min-width: $desktop) {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  @media (min-width: $bigScreen) {
+    @include font-body;
+  }
+}
+
+.useThisTemplateButton {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  @include button;
+  background-color: $color-red;
+}

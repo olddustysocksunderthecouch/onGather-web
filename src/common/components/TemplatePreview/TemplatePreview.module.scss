@@ -19,7 +19,8 @@
     background-color: rgba($color: $color-dove-gray, $alpha: 0.03);
   }
   &:active {
-    box-shadow: 2px 2px 48px rgba(0, 0, 0, 0.1), 0px 4px 32px rgba(0, 0, 0, 0.06);
+    box-shadow: 2px 2px 48px rgba(0, 0, 0, 0.1),
+      0px 4px 32px rgba(0, 0, 0, 0.06);
   }
 
   @media (min-width: $desktop) {
@@ -66,7 +67,7 @@
     @media (min-width: $desktop) {
       display: -webkit-box;
       -webkit-line-clamp: 1;
-      -webkit-box-orient: vertical;  
+      -webkit-box-orient: vertical;
       overflow: hidden;
     }
   }
@@ -101,11 +102,11 @@
     @media (min-width: $desktop) {
       display: -webkit-box;
       -webkit-line-clamp: 4;
-      -webkit-box-orient: vertical;  
+      -webkit-box-orient: vertical;
       overflow: hidden;
     }
     @media (min-width: $bigScreen) {
-      @include font-body
+      @include font-body;
     }
   }
 

@@ -1,9 +1,9 @@
 import React from 'react'
 import { durations } from '../../constants'
 import { Duration } from '../../types'
-import PeopleIcon from './assets/PeopleIcon.svg'
+import PeopleIcon from './../../assets/PeopleIcon.svg'
 import PlaceholderImage from './assets/PlaceholderImage.jpg'
-import TimeIcon from './assets/TimeIcon.svg'
+import TimeIcon from './../../assets/TimeIcon.svg'
 import styles from './TemplatePreview.module.scss'
 
 export interface Props {

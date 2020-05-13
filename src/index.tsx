@@ -16,6 +16,7 @@ import { configureStoreAndPersistor } from './common/redux'
 import { history } from './common/redux/store'
 import './index.scss'
 import { BrowseTemplateContainer } from './modules/BrowseTemplates'
+import { ViewTemplateContainer } from './modules/ViewUseTemplate'
 import { HomeContainer } from './modules/Home'
 import { PrivacyPolicyContainer } from './modules/PrivacyPolicy'
 import {
@@ -81,6 +82,11 @@ ReactDOM.render(
               exact
               path="/browse-templates"
               component={BrowseTemplateContainer}
+            />
+            <Route
+              exact
+              path="/view-template/:id"
+              component={ViewTemplateContainer}
             />
             <Route render={(): JSX.Element => <div>404 Not Found</div>} />
           </Switch>
