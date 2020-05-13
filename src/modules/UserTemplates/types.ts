@@ -13,10 +13,32 @@ export interface TemplateEditorState extends TemplateCreation {
   error: string
   loading: string
 }
+export interface ImageSearch {
+  searchTerm: string | null
+  imageSearchResults: ImageSearchResult[]
+  loading: boolean
+  error: string | null
+}
 
 export interface UserTemplatesState {
   selectedTemplateId: string
   templateEditor: TemplateEditorState
+  imageSearch: ImageSearch
+}
+
+export interface ImageUrls {
+  thumb: string
+  small: string
+  regular: string
+  full: string
+  raw: string
+}
+
+export interface ImageSearchResult {
+  images: ImageUrls
+  attributionName: string
+  attributionLink: string
+  altDescription: string
 }
 
 export enum UserTemplatesActions {
@@ -35,6 +57,9 @@ export enum UserTemplatesActions {
   UploadImage = '/UserTemplates/UPLOAD_IMAGE',
   UploadImageSuccess = '/UserTemplates/UPLOAD_IMAGE_SUCCESS',
   UploadImageFailure = '/UserTemplates/UPLOAD_IMAGE_FAILURE',
+  SearchForImages = '/UserTemplates/SEARCH_FOR_IMAGES',
+  SearchForImagesSuccess = '/UserTemplates/SEARCH_FOR_IMAGES_SUCCESS',
+  SearchForImagesFailure = '/UserTemplates/SEARCH_FOR_IMAGES_FAILURE',
 }
 
 export interface CreateNewTemplateAction {
@@ -139,6 +164,28 @@ export interface UploadImageFailureAction {
   }
 }
 
+export interface SearchForImagesAction {
+  type: typeof UserTemplatesActions.SearchForImages
+  payload: {
+    searchTerm: string
+    page: number
+  }
+}
+
+export interface SearchForImagesSuccessAction {
+  type: typeof UserTemplatesActions.SearchForImagesSuccess
+  payload: {
+    imageSearchResults: ImageSearchResult[]
+  }
+}
+
+export interface SearchForImagesFailureAction {
+  type: typeof UserTemplatesActions.SearchForImagesFailure
+  payload: {
+    error: string
+  }
+}
+
 export type UserTemplatesActionTypes =
   | CreateNewTemplateAction
   | CreateNewTemplateSuccessAction
@@ -155,3 +202,6 @@ export type UserTemplatesActionTypes =
   | UploadImageAction
   | UploadImageSuccessAction
   | UploadImageFailureAction
+  | SearchForImagesAction
+  | SearchForImagesSuccessAction
+  | SearchForImagesFailureAction

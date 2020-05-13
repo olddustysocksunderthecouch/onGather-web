@@ -136,3 +136,16 @@
     color: $color-red;
   }
 }
+
+.authModal {
+  position: absolute;
+  z-index: 10;
+  width: 100vw;
+  height: calc(100% - 52px);
+  backdrop-filter: blur(3px);
+  background-color: rgba($color: $color-dove-gray, $alpha: 0.4);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}

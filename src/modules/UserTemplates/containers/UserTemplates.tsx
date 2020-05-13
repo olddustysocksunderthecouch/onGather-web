@@ -11,6 +11,7 @@ import { firebaseSelectors as userTemplatesSelectors } from '../index'
 import {
   createNewTemplate,
   editExistingTemplate,
+  searchForImages,
 } from '../UserTemplates.actions'
 
 interface Props extends ConnectedReduxProps<AnyAction> {
@@ -76,6 +77,7 @@ const mapStateToProps = (state: RootState): any => ({
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): any => ({
   handleTemplateClicked: (templateId: string, type: string): void => {
     dispatch(editExistingTemplate(templateId, type))
+    dispatch(searchForImages('cat', 1))
   },
   handleCreateNewTemplateClicked: (): void => dispatch(createNewTemplate()),
 })

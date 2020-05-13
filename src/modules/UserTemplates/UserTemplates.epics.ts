@@ -8,12 +8,16 @@ import { TemplateFirestoreResult } from '../../common/types'
 import {
   CreateNewTemplateSuccessAction,
   EditExistingTemplateAction,
+  ImageSearchResult,
   PublishTemplateAction,
   PublishTemplateFailureAction,
   PublishTemplateSuccessAction,
   SaveDraftTemplateAction,
   SaveDraftTemplateFailureAction,
   SaveDraftTemplateSuccessAction,
+  SearchForImagesAction,
+  SearchForImagesFailureAction,
+  SearchForImagesSuccessAction,
   SetExistingTemplateEditorDataAction,
   UploadImageAction,
   UploadImageFailureAction,
@@ -27,6 +31,8 @@ import {
   publishTemplateSuccess,
   saveDraftTemplateFailure,
   saveDraftTemplateSuccess,
+  searchForImagesFailure,
+  searchForImagesSuccess,
   setExistingTemplateEditorData,
   uploadImageFailure,
   uploadImageSuccess,
@@ -143,6 +149,51 @@ export const uploadImageEpic$ = (
         catchError(
           (error: Error): Observable<UploadImageFailureAction> =>
             of(uploadImageFailure(error.message)),
+        ),
+      ),
+    ),
+  )
+
+export const searchForImagesEpic$ = (
+  action$: ActionsObservable<SearchForImagesAction>,
+  state$: StateObservable<RootState>,
+): Observable<SearchForImagesSuccessAction | SearchForImagesFailureAction> =>
+  action$.pipe(
+    ofType<SearchForImagesAction>(UserTemplatesActions.SearchForImages),
+    withLatestFrom(state$),
+    flatMap(([action, state]) =>
+      from(
+        firebase.functions().httpsCallable('unsplashed-searchImages')({
+          searchTerm: action.payload.searchTerm,
+          page: action.payload.page,
+        }),
+      ).pipe(
+        flatMap(
+          (result: any): Observable<SearchForImagesSuccessAction> => {
+            const data = result.data.body.results as any[]
+            console.log('data', data)
+            const formattedResults: ImageSearchResult[] = data.reduce(
+              (
+                accumulator: ImageSearchResult[],
+                currentValue: any,
+              ): ImageSearchResult[] => {
+                accumulator.push({
+                  images: currentValue.urls,
+                  attributionName: currentValue.user.username,
+                  attributionLink: `${currentValue.user.links.html}?utm_source=onGather&utm_medium=referral`,
+                  altDescription: currentValue.alt_description,
+                })
+                return accumulator
+              },
+              [],
+            )
+
+            return of(searchForImagesSuccess(formattedResults))
+          },
+        ),
+        catchError(
+          (error: Error): Observable<SearchForImagesFailureAction> =>
+            of(searchForImagesFailure(error.message)),
         ),
       ),
     ),

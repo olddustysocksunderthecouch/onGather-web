@@ -20,6 +20,12 @@ export const initialState: UserTemplatesState = {
     whatYouDo: '',
     howYouDo: '',
   },
+  imageSearch: {
+    searchTerm: null,
+    loading: false,
+    imageSearchResults: [],
+    error: null,
+  },
 }
 
 export function reducer(
@@ -131,6 +137,41 @@ export function reducer(
         },
       }
     }
+    case UserTemplatesActions.SearchForImages: {
+      const updateImages =
+        action.payload.page > 1 ? [...state.imageSearch.imageSearchResults] : []
+      return {
+        ...state,
+        imageSearch: {
+          searchTerm: action.payload.searchTerm,
+          loading: true,
+          imageSearchResults: updateImages,
+          error: null,
+        },
+      }
+    }
+    case UserTemplatesActions.SearchForImagesSuccess:
+      return {
+        ...state,
+        imageSearch: {
+          searchTerm: state.imageSearch.searchTerm,
+          loading: false,
+          imageSearchResults: [...state.imageSearch.imageSearchResults].concat(
+            action.payload.imageSearchResults,
+          ),
+          error: null,
+        },
+      }
+    case UserTemplatesActions.SearchForImagesFailure:
+      return {
+        ...state,
+        imageSearch: {
+          searchTerm: state.imageSearch.searchTerm,
+          loading: false,
+          imageSearchResults: [...state.imageSearch.imageSearchResults],
+          error: action.payload.error,
+        },
+      }
   }
   return state
 }

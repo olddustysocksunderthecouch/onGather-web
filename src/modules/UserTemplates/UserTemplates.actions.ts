@@ -10,12 +10,16 @@ import {
   SaveDraftTemplateAction,
   SaveDraftTemplateFailureAction,
   SaveDraftTemplateSuccessAction,
+  SearchForImagesAction,
+  SearchForImagesFailureAction,
+  SearchForImagesSuccessAction,
   SetEditorTemplateDataAction,
   SetExistingTemplateEditorDataAction,
   UploadImageAction,
   UploadImageFailureAction,
   UploadImageSuccessAction,
   UserTemplatesActions,
+  ImageSearchResult,
 } from './types'
 
 export const createNewTemplate = (): CreateNewTemplateAction => ({
@@ -123,5 +127,34 @@ export const uploadImageFailure = (
   type: UserTemplatesActions.UploadImageFailure,
   payload: {
     message,
+  },
+})
+
+export const searchForImages = (
+  searchTerm: string,
+  page: number,
+): SearchForImagesAction => ({
+  type: UserTemplatesActions.SearchForImages,
+  payload: {
+    searchTerm,
+    page,
+  },
+})
+
+export const searchForImagesSuccess = (
+  imageSearchResults: ImageSearchResult[],
+): SearchForImagesSuccessAction => ({
+  type: UserTemplatesActions.SearchForImagesSuccess,
+  payload: {
+    imageSearchResults,
+  },
+})
+
+export const searchForImagesFailure = (
+  error: string,
+): SearchForImagesFailureAction => ({
+  type: UserTemplatesActions.SearchForImagesFailure,
+  payload: {
+    error,
   },
 })

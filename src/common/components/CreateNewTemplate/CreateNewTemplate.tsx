@@ -5,7 +5,7 @@ import styles from './CreateNewTemplate.module.scss'
 export const CreateNewTemplate: React.FunctionComponent = () => (
   <Link
     className={styles.createNewTemplate}
-    to="/user-templates"
+    to="create-template"
     style={{ textDecoration: 'none' }}
   >
     <button>
