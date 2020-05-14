@@ -12,6 +12,7 @@ export const defaultState = (): React.FunctionComponentElement<Props> => (
     imageSearchResults={{} as any}
     handleFetchImages={(): void => undefined}
     handleSelectedImage={(): void => undefined}
+    handleCloseImagePicker={(): void => undefined}
   />
 )
 

@@ -7,12 +7,14 @@ import { SearchBar } from '../SearchBar'
 import CloseIcon from './../../../../common/assets/close-icon.svg'
 import styles from './ImagePicker.module.scss'
 import { createItemData, renderItem } from './item-renderer'
+import { ImageUrls } from '../../../../common/types'
 
 export interface Props {
   areNextImagesLoading: boolean
   imageSearchResults: ImageSearchResult[]
   handleFetchImages: (searchTerm: string, page: number) => void
-  handleSelectedImage: (selectedImage: ImageSearchResult) => void
+  handleSelectedImage: (selectedImageUrls: ImageUrls) => void
+  handleCloseImagePicker: () => void
 }
 
 export const ImagePicker: React.FunctionComponent<Props> = ({
@@ -20,6 +22,7 @@ export const ImagePicker: React.FunctionComponent<Props> = ({
   areNextImagesLoading,
   handleFetchImages,
   handleSelectedImage,
+  handleCloseImagePicker,
 }) => {
   const { width, height } = useWindowDimensions()
   const searchBarHeight = 59
@@ -29,20 +32,17 @@ export const ImagePicker: React.FunctionComponent<Props> = ({
 
   let rowWidth: number
   switch (true) {
-    case width <= 425:
+    case width <= 768:
       rowWidth = width * 0.9
       break
-    case width <= 768:
+    case width <= 1024:
       rowWidth = width * 0.6
       break
-    case width <= 1024:
+    case width <= 1440:
       rowWidth = width * 0.5
       break
-    case width <= 1440:
-      rowWidth = width * 0.4
-      break
     case width <= 1600:
-      rowWidth = width * 0.35
+      rowWidth = width * 0.4
       break
     default:
       rowWidth = width * 0.35
@@ -78,7 +78,7 @@ export const ImagePicker: React.FunctionComponent<Props> = ({
         <h3>
           <a href="https://unsplash.com/">Images from Unsplashed</a>
         </h3>
-        <button className={styles.closeIcon}>
+        <button className={styles.closeIcon} onClick={handleCloseImagePicker}>
           <img src={CloseIcon} alt="close icon" />
         </button>
       </div>

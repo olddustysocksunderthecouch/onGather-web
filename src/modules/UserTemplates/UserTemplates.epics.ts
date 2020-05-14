@@ -170,8 +170,7 @@ export const searchForImagesEpic$ = (
       ).pipe(
         flatMap(
           (result: any): Observable<SearchForImagesSuccessAction> => {
-            const data = result.data.body.results as any[]
-            console.log('data', data)
+            const data = result.data.body as any[]
             const formattedResults: ImageSearchResult[] = data.reduce(
               (
                 accumulator: ImageSearchResult[],

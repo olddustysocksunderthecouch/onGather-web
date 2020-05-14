@@ -4,12 +4,12 @@ import { durations } from '../../constants'
 import { Duration } from '../../types'
 import PeopleIcon from './../../assets/PeopleIcon.svg'
 import TimeIcon from './../../assets/TimeIcon.svg'
-import PlaceholderImage from './assets/PlaceholderImage.jpg'
 import styles from './TemplatePreview.module.scss'
 
 export interface Props {
   templateId: string
   title?: string
+  image?: string
   gatheringSize?: string
   suggestedDuration?: string
   mainAimsOutcomes?: string
@@ -22,6 +22,7 @@ export interface Props {
 export const TemplatePreview: React.FunctionComponent<Props> = ({
   templateId,
   title,
+  image,
   gatheringSize,
   suggestedDuration,
   mainAimsOutcomes,
@@ -46,7 +47,7 @@ export const TemplatePreview: React.FunctionComponent<Props> = ({
         target={openInNewTab ? '_blank' : '_self'}
         className={styles.link}
       >
-        <img className={styles.image} src={PlaceholderImage} alt="Template" />
+        <img className={styles.image} src={image} alt="Template" />
 
         <div className={styles.content}>
           <h5>{formattedAimsOutcomes}</h5>

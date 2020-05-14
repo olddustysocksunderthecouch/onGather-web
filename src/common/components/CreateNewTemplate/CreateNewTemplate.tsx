@@ -3,11 +3,7 @@ import { Link } from 'react-router-dom'
 import styles from './CreateNewTemplate.module.scss'
 
 export const CreateNewTemplate: React.FunctionComponent = () => (
-  <Link
-    className={styles.createNewTemplate}
-    to="create-template"
-    style={{ textDecoration: 'none' }}
-  >
+  <Link className={styles.createNewTemplate} to="create-template">
     <button>
       <svg
         width="64"

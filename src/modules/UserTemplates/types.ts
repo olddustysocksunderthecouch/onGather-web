@@ -1,4 +1,8 @@
-import { TemplateCreation, TemplateFirestoreResult } from '../../common/types'
+import {
+  ImageUrls,
+  TemplateCreation,
+  TemplateFirestoreResult,
+} from '../../common/types'
 
 export enum Category {
   Games = 'Games',
@@ -24,14 +28,6 @@ export interface UserTemplatesState {
   selectedTemplateId: string
   templateEditor: TemplateEditorState
   imageSearch: ImageSearch
-}
-
-export interface ImageUrls {
-  thumb: string
-  small: string
-  regular: string
-  full: string
-  raw: string
 }
 
 export interface ImageSearchResult {

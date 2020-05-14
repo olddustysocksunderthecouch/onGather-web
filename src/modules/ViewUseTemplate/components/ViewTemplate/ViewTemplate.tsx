@@ -31,7 +31,11 @@ export const ViewTemplate: React.FunctionComponent<Props> = ({ template }) => {
 
   return (
     <article className={styles.viewTemplate}>
-      <img className={styles.image} src={template.imageUrl} alt="Template" />
+      <img
+        className={styles.image}
+        src={template.imageUrls?.regular}
+        alt="Template"
+      />
       <div className={styles.content}>
         <h3>{formattedAimsOutcomes}</h3>
         <h1>{template.title}</h1>

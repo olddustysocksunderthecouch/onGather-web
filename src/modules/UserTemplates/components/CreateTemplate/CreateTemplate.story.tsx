@@ -11,7 +11,6 @@ export const defaultState = (): React.FunctionComponentElement<Props> => (
     selectedTemplateId=""
     loading="Here is an error"
     error="error"
-    handleImageSelected={(): void => undefined}
     handleSaveDraftClicked={(): void => undefined}
     handlePublishClicked={(): void => undefined}
     initialTemplateEditorData={{
@@ -23,7 +22,7 @@ export const defaultState = (): React.FunctionComponentElement<Props> => (
       shortDescription: '',
       mainAimsOutcomes: '',
       suggestedDuration: '',
-      imageUrl: '',
+      imageUrls: '' as any,
       hostInstructions: '',
       whatYouDo: '',
       howYouDo: '',

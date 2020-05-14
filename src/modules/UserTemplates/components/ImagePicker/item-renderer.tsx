@@ -49,7 +49,7 @@ export const renderItem = ({
           backgroundColor: '#A4A4A4',
           objectFit: 'cover',
         }}
-        onClick={(): void => handleImageClicked(imageSearchResults[index])}
+        onClick={(): void => handleImageClicked(images)}
       />
       <div className={styles.attribution}>
         <a href={attributionLink}>{attributionName}</a>

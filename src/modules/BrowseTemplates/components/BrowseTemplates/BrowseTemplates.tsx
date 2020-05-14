@@ -40,6 +40,7 @@ export const BrowseTemplates: React.FunctionComponent<Props> = ({
               key={template.title}
               templateId={template.title}
               title={template.title}
+              image={template.imageUrls?.small}
               gatheringSize={`${template.participantRange[0]} - ${template.participantRange[1]} People`}
               suggestedDuration={template.suggestedDuration}
               mainAimsOutcomes={template.mainAimsOutcomes}

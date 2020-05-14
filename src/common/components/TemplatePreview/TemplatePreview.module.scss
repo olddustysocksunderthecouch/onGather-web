@@ -25,7 +25,6 @@
 
   @media (min-width: $desktop) {
     width: calc(50% - 8px);
-    flex-direction: row;
     justify-items: start;
     align-items: flex-start;
     height: 302px;
@@ -40,8 +39,12 @@
 
   .link {
     display: flex;
+    flex-direction: column;
     height: 100%;
     width: 100%;
+    @media (min-width: $desktop) {
+      flex-direction: row;
+    }
   }
 }
 

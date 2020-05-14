@@ -19,7 +19,6 @@ interface Props extends ConnectedReduxProps<AnyAction> {
   selectedTemplateId: string
   loading: string | null
   error: string | null
-  handleImageSelected: (url: File) => void
   handleSaveDraftClicked: (template: TemplateCreation) => void
   handlePublishClicked: (template: TemplateCreation) => void
   initialTemplateEditorData: TemplateEditorState
@@ -35,7 +34,6 @@ const CreateTemplateContainer = ({
   initialTemplateEditorData,
   handleSaveDraftClicked,
   handlePublishClicked,
-  handleImageSelected,
   imageSearchResults,
   handleFetchImages,
   areNextImagesLoading,
@@ -48,7 +46,6 @@ const CreateTemplateContainer = ({
       initialTemplateEditorData={initialTemplateEditorData}
       handleSaveDraftClicked={handleSaveDraftClicked}
       handlePublishClicked={handlePublishClicked}
-      handleImageSelected={handleImageSelected}
       imageSearchResults={imageSearchResults}
       handleFetchImages={handleFetchImages}
       areNextImagesLoading={areNextImagesLoading}
