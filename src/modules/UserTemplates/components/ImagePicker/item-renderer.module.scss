@@ -1,7 +1,6 @@
 @import 'src/common/styles/variables';
 @import 'src/common/styles/fonts';
 
-
 .loadingText {
   @include font-body;
   color: $color-alto-gray;
@@ -9,24 +8,22 @@
 }
 
 .imgContainer {
+  position: relative;
   img {
     width: calc(100% + 5px);
     height: calc(100% + 5px);
     box-sizing: border-box;
   }
-  &.selected {
-    img {
-      border: 10px solid $color-yellow;
-    }
-  }
 
-  img.tick {
+  &:hover .attribution {
+    display: flex;
     position: absolute;
-    right: 16px;
-    top: 16px;
-    z-index: 100;
-    border: none;
-    width: 20%;
-    height: 20%;
+    left: 0;
+    bottom: -5px;
+    width: calc(100% + 5px);
+    padding: 4px 6px;
+    background-color: rgba($color: $color-light-gray, $alpha: 0.4);
+    color: black;
+    @include font-body-small
   }
 }

@@ -1,6 +1,53 @@
 @import 'src/common/styles/variables';
+@import 'src/common/styles/fonts';
 
 .container {
-  background-color: $color-light-gray;
-  width: 40%;
+  background-color: $color-white;
+  width: calc(90% + 16px);
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 12px;
+  border-radius: 16px;
+  border: $color-black solid 1px;
+
+  @media (min-width: $tablet) {
+    width: calc(60% + 16px);
+  }
+  @media (min-width: $desktop) {
+    width: calc(50% + 16px);
+  }
+  @media (min-width: $bigScreen) {
+    width: calc(40% + 16px);
+  }
+  @media (min-width: $hugeScreen) {
+    width: calc(35% + 16px);
+  }
+
+  .topLine {
+    margin-top: 12px;
+    margin-bottom: 8px;
+  }
+  .bottomLine {
+    margin-top: 4px;
+    margin-bottom: 6px;
+  }
+  .title {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    position: relative;
+    padding-top: 24px;
+    padding-bottom: 16px;
+
+    h3 {
+      @include font-h6;
+    }
+    .closeIcon {
+      height: 24px;
+      width: 24px;
+      position: absolute;
+      top: 16px;
+      right: 16px;
+    }
+  }
 }

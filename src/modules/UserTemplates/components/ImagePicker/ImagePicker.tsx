@@ -2,17 +2,17 @@ import React, { useState } from 'react'
 import { VariableSizeGrid as Grid } from 'react-window'
 import InfiniteLoader from 'react-window-infinite-loader'
 import { useWindowDimensions } from '../../../../common/hooks'
+import { ImageSearchResult } from '../../types'
 import { SearchBar } from '../SearchBar'
+import CloseIcon from './../../../../common/assets/close-icon.svg'
 import styles from './ImagePicker.module.scss'
 import { createItemData, renderItem } from './item-renderer'
-import { ImageSearchResult } from '../../types'
 
 export interface Props {
   areNextImagesLoading: boolean
   imageSearchResults: ImageSearchResult[]
   handleFetchImages: (searchTerm: string, page: number) => void
   handleSelectedImage: (selectedImage: ImageSearchResult) => void
-  selectedImage: string
 }
 
 export const ImagePicker: React.FunctionComponent<Props> = ({
@@ -20,13 +20,33 @@ export const ImagePicker: React.FunctionComponent<Props> = ({
   areNextImagesLoading,
   handleFetchImages,
   handleSelectedImage,
-  selectedImage,
 }) => {
   const { width, height } = useWindowDimensions()
   const searchBarHeight = 59
   const topNavHeight = 72
   const bottomNavHeight = 49
   const gridHeight = height - searchBarHeight - topNavHeight - bottomNavHeight
+
+  let rowWidth: number
+  switch (true) {
+    case width <= 425:
+      rowWidth = width * 0.9
+      break
+    case width <= 768:
+      rowWidth = width * 0.6
+      break
+    case width <= 1024:
+      rowWidth = width * 0.5
+      break
+    case width <= 1440:
+      rowWidth = width * 0.4
+      break
+    case width <= 1600:
+      rowWidth = width * 0.35
+      break
+    default:
+      rowWidth = width * 0.35
+  }
 
   const isImageLoaded = (index: number): boolean =>
     index < imageSearchResults.length
@@ -36,8 +56,7 @@ export const ImagePicker: React.FunctionComponent<Props> = ({
   const itemData = createItemData(
     imageSearchResults,
     handleSelectedImage,
-    width,
-    selectedImage,
+    rowWidth,
   )
 
   const handleSearchTermChange = (term: string): void => {
@@ -55,10 +74,20 @@ export const ImagePicker: React.FunctionComponent<Props> = ({
 
   return (
     <div className={styles.container}>
+      <div className={styles.title}>
+        <h3>
+          <a href="https://unsplash.com/">Images from Unsplashed</a>
+        </h3>
+        <button className={styles.closeIcon}>
+          <img src={CloseIcon} alt="close icon" />
+        </button>
+      </div>
+      <hr className={styles.topLine} />
       <SearchBar
-        placeholderText={'Search GIFs'}
+        placeholderText={'Search & select an image'}
         handleSearchTermChanged={handleSearchTermChange}
       />
+      <hr className={styles.bottomLine} />
       <InfiniteLoader
         isItemLoaded={isImageLoaded}
         itemCount={gridItemCount}
@@ -69,13 +98,11 @@ export const ImagePicker: React.FunctionComponent<Props> = ({
           <Grid
             itemData={itemData}
             columnCount={2}
-            columnWidth={(): number => width / 5}
+            columnWidth={(): number => rowWidth / 2}
             height={gridHeight}
             rowCount={gridItemCount / 2}
-            rowHeight={(index): number =>
-              isImageLoaded(index * 2) && index > 10 ? width / 5 : width / 5
-            }
-            width={width * 0.4}
+            rowHeight={(): number => rowWidth / 3}
+            width={rowWidth}
             ref={ref}
             onItemsRendered={({
               visibleRowStartIndex,

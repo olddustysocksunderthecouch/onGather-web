@@ -368,7 +368,6 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
             imageSearchResults={imageSearchResults}
             handleFetchImages={handleFetchImages}
             handleSelectedImage={(): void => undefined}
-            selectedImage=""
           />
         </div>
       )}

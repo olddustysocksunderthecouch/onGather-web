@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
-import CloseIcon from './assets/close-icon.svg'
+import CloseIcon from './../../../../assets/close-icon.svg'
 import GoogleIcon from './assets/google-icon.svg'
 import styles from './AuthModal.module.scss'
 
@@ -29,7 +29,7 @@ export const AuthModal: React.FunctionComponent<Props> = ({
         <Fragment>
           <h1 className={styles.signUpTitle}>Sign in/up</h1>
           <button className={styles.closeIcon} onClick={handleAuthModalClose}>
-            <img src={CloseIcon} alt="Google Icon" />
+            <img src={CloseIcon} alt="Close Icon" />
           </button>
           <p className={styles.description}>This will just take a moment...</p>
           <button

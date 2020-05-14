@@ -3,39 +3,34 @@
 @import 'src/common/styles/mixins';
 
 .container {
-  background-color: $color-mid-gray;
   display: flex;
   justify-content: center;
-  padding: 8px 12px 12px 12px;
-  flex: 0 0 60px;
 }
 
 .inputContainer {
-  background-color: $color-light-gray;
   display: flex;
   flex: 1 0;
   align-items: center;
   padding: 8px 12px;
 
   .searchIcon {
-    margin-right: 8px;
-    height: 13px;
+    margin-right: 16px;
+    height: 24px;
     display: flex;
     flex: 0 0;
   }
 
   input {
-    @include font-body-small;
-    background-color: $color-light-gray;
+    @include font-body;
+    color: $color-darker-gray;
     border: none;
     display: flex;
     flex: 1 0;
     outline: none;
-    color: $color-white;
   }
 
   input::placeholder {
-    color: $color-lightest-gray;
+    color: $color-mid-gray;
   }
 
   .closeIcon {
