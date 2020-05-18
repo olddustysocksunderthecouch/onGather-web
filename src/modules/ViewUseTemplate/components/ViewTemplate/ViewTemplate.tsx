@@ -49,7 +49,7 @@ export const ViewTemplate: React.FunctionComponent<Props> = ({ template }) => {
         <h2>What you&apos;ll do</h2>
         <p>{template.whatYouDo}</p>
         <h2>How you&apos;ll do it</h2>
-        <p>{template.whatYouDo}</p>
+        <p>{template.howYouDo}</p>
         <h2>Host Instructions</h2>
         <p className={styles.hostInstructions}>{template.hostInstructions}</p>
       </div>

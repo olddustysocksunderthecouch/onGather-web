@@ -38,6 +38,7 @@
   }
   p {
     @include font-body;
+    white-space: pre-line;
   }
 
   .meta {

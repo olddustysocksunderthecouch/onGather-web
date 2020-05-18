@@ -9,7 +9,7 @@ const arrayResult = (data: any): Template[] => {
   })
   return array.reduce(
     (accumulator: any, currentValue: Template): Template[] => {
-      if (currentValue) {
+      if (currentValue && currentValue.status !== null) {
         accumulator.push(currentValue)
       }
       return accumulator

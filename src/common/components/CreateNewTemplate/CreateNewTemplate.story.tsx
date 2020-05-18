@@ -6,7 +6,9 @@ export default {
   component: CreateNewTemplate,
 }
 
-export const defaultState = (): React.ReactElement => <CreateNewTemplate />
+export const defaultState = (): React.ReactElement => (
+  <CreateNewTemplate handleCreateNewClick={(): void => undefined} />
+)
 
 defaultState.story = {
   name: 'default',

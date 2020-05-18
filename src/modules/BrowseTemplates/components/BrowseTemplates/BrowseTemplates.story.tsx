@@ -11,6 +11,7 @@ export const defaultState = (): React.FunctionComponentElement<Props> => (
     templates={[]}
     activeCategory="Popular"
     handleCategoryClicked={(): void => undefined}
+    handleCreateNewTemplateClicked={(): void => undefined}
   />
 )
 

@@ -9,12 +9,14 @@ export interface Props {
   templates: Template[]
   activeCategory: string
   handleCategoryClicked: (category: string) => void
+  handleCreateNewTemplateClicked: () => void
 }
 
 export const BrowseTemplates: React.FunctionComponent<Props> = ({
   templates,
   activeCategory,
   handleCategoryClicked,
+  handleCreateNewTemplateClicked,
 }) => {
   useEffect(() => {
     document.title = 'Browser'
@@ -51,7 +53,9 @@ export const BrowseTemplates: React.FunctionComponent<Props> = ({
             />
           )
         })}
-        <CreateNewTemplate />
+        <CreateNewTemplate
+          handleCreateNewClick={handleCreateNewTemplateClicked}
+        />
       </section>
     </div>
   )

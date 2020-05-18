@@ -18,78 +18,84 @@ export const UserTemplates: React.FunctionComponent<Props> = ({
   publishedTemplates,
   handleTemplateClicked,
   handleCreateNewTemplateClicked,
-}) => (
-  <div className={styles.container}>
-    <h1>Your Templates</h1>
-    <section>
-      <div className={styles.draftTitle}>
-        <h2>Drafts</h2>
-        <Link to="/create-template" onClick={handleCreateNewTemplateClicked}>
-          <button className={styles.createTemplateButton}>
-            <div>Create New</div>
-            <img
-              src={createTemplateIcon}
-              alt="create template"
-              className={styles.createTemplateIcon}
+}) => {
+  const gatheringSize = (participantRange: number[]): string =>
+    participantRange && participantRange.length > 1
+      ? `${participantRange[0]} - ${participantRange[1]} People`
+      : 'None'
+  return (
+    <div className={styles.container}>
+      <h1>Your Templates</h1>
+      <section>
+        <div className={styles.draftTitle}>
+          <h2>Drafts</h2>
+          <Link to="/create-template" onClick={handleCreateNewTemplateClicked}>
+            <button className={styles.createTemplateButton}>
+              <div>Create New</div>
+              <img
+                src={createTemplateIcon}
+                alt="create template"
+                className={styles.createTemplateIcon}
+              />
+            </button>
+          </Link>
+        </div>
+        <div className={styles.templatePreviews}>
+          {draftTemplates.length < 1 ? (
+            <CreateNewTemplate
+              handleCreateNewClick={handleCreateNewTemplateClicked}
             />
-          </button>
-        </Link>
-      </div>
-      <div className={styles.templatePreviews}>
-        {draftTemplates.length < 1 ? (
-          <CreateNewTemplate />
-        ) : (
-          draftTemplates.map((template: Template) => {
-            const gatheringSize =
-              template.participantRange && template.participantRange.length > 1
-                ? `${template.participantRange[0]} - ${template.participantRange[1]} People`
-                : 'None'
-            return (
-              <TemplatePreview
-                key={template.templateId}
-                templateId={template.templateId}
-                title={template.title}
-                image={template.imageUrls?.small}
-                gatheringSize={gatheringSize}
-                suggestedDuration={template.suggestedDuration}
-                mainAimsOutcomes={template.mainAimsOutcomes}
-                shortDescription={template.shortDescription}
-                destinationPath="/create-template"
-                handleTemplatePreviewClicked={(templateId: string): void =>
-                  handleTemplateClicked(templateId, 'userDrafts')
-                }
-              />
-            )
-          })
-        )}
-      </div>
-    </section>
-    <section>
-      <h2>Published</h2>
-      <div className={styles.templatePreviews}>
-        {publishedTemplates.length < 1 ? (
-          <CreateNewTemplate />
-        ) : (
-          publishedTemplates.map((template: Template) => {
-            return (
-              <TemplatePreview
-                key={template.templateId}
-                templateId={template.templateId}
-                title={template.title}
-                image={template.imageUrls?.small}
-                gatheringSize={'2-8 People'}
-                suggestedDuration={template.suggestedDuration}
-                mainAimsOutcomes={template.mainAimsOutcomes}
-                shortDescription={template.shortDescription}
-                destinationPath="/create-template"
-                handleTemplatePreviewClicked={(): void =>
-                  handleTemplateClicked(template.templateId, 'userPublished')
-                }
-              />
-            )
-          })
-        )}
-      </div>
-    </section>
-  </div>
-)
+          ) : (
+            draftTemplates.map((template: Template) => {
+              return (
+                <TemplatePreview
+                  key={template.templateId}
+                  templateId={template.templateId}
+                  title={template.title}
+                  image={template.imageUrls?.small}
+                  gatheringSize={gatheringSize(template.participantRange)}
+                  suggestedDuration={template.suggestedDuration}
+                  mainAimsOutcomes={template.mainAimsOutcomes}
+                  shortDescription={template.shortDescription}
+                  destinationPath="/create-template"
+                  handleTemplatePreviewClicked={(templateId: string): void =>
+                    handleTemplateClicked(templateId, 'userDrafts')
+                  }
+                />
+              )
+            })
+          )}
+        </div>
+      </section>
+      <section>
+        <h2>Published</h2>
+        <div className={styles.templatePreviews}>
+          {publishedTemplates.length < 1 ? (
+            <CreateNewTemplate
+              handleCreateNewClick={handleCreateNewTemplateClicked}
+            />
+          ) : (
+            publishedTemplates.map((template: Template) => {
+              return (
+                <TemplatePreview
+                  key={template.templateId}
+                  templateId={template.templateId}
+                  title={template.title}
+                  image={template.imageUrls?.small}
+                  gatheringSize={gatheringSize(template.participantRange)}
+                  suggestedDuration={template.suggestedDuration}
+                  mainAimsOutcomes={template.mainAimsOutcomes}
+                  shortDescription={template.shortDescription}
+                  destinationPath="/create-template"
+                  handleTemplatePreviewClicked={(): void =>
+                    handleTemplateClicked(template.templateId, 'userPublished')
+                  }
+                />
+              )
+            })
+          )}
+        </div>
+      </section>
+    </div>
+  )
+}
