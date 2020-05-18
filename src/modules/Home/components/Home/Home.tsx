@@ -19,7 +19,7 @@ export const Home: React.FunctionComponent = () => {
         />
         <h1 className={styles.homePageTitle}>
           Want to have more
-          <br /> fun & meaningful
+          <br /> meaningful & fun
           <br /> video calls with friends?
         </h1>
         <Link to="/browse-templates">

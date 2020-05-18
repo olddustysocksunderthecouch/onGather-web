@@ -126,8 +126,12 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
             </div>
           </div>
           <p>
-            Some text explaining some things. Sometimes it explains even more
-            things about things that you’ve never heard of.
+            Hey! Now that you&apos;re here, describe something that others could
+            do on a video call. Perhaps it&apos;s something you do often or
+            something that you&apos;ve just discovered. See the Browser for some
+            examples but be as creative as you&apos;d like. When you&apos;re
+            happy with what you&apos;ve written click Publish and it will be
+            made public in the Template Browser.
           </p>
         </header>
         {/* <DevTool control={control} /> */}

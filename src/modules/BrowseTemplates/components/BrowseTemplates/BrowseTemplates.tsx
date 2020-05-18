@@ -24,9 +24,9 @@ export const BrowseTemplates: React.FunctionComponent<Props> = ({
       <header>
         <h1>Pick a template</h1>
         <p className={styles.browserDescription}>
-          We’ve got pre-populated templates appropriate for a variety of types
-          of gatherings that you might want to have. Start with one of them or
-          create your own template for others to find!
+          Our templates contain guides for things you could do on a video call.
+          Customizing them and sending invitations (calendar/email) is super
+          easy.
         </p>
       </header>
       <CategorySelector
