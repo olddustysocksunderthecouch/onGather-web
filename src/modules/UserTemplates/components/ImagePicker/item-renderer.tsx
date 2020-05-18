@@ -14,7 +14,18 @@ export const renderItem = ({
   const index = rowIndex * 2 + columnIndex
   const showLoading = index >= imageSearchResults.length - 1
   if (showLoading) {
-    return <></>
+    return (
+      <div
+        style={{
+          ...style,
+          left: style.left + 2,
+          top: style.top + 2,
+          width: rowWidth / 2 - 10,
+          height: rowWidth / 3 - 10,
+        }}
+        className={styles.loadingContainers}
+      ></div>
+    )
   }
 
   const {
@@ -46,7 +57,6 @@ export const renderItem = ({
         src={images.small}
         alt={altDescription}
         style={{
-          backgroundColor: '#A4A4A4',
           objectFit: 'cover',
         }}
         onClick={(): void => handleImageClicked(images)}
