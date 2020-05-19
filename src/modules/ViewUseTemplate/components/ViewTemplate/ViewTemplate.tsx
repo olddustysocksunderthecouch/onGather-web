@@ -67,7 +67,14 @@ export const ViewTemplate: React.FunctionComponent<Props> = ({ template }) => {
           </Fragment>
         )}
       </div>
-      <button className={styles.useThisTemplateButton}>
+      <button
+        className={styles.useThisTemplateButton}
+        onClick={(): void =>
+          alert(
+            'This feature is still being built & should be available by the end of May (touch wood)',
+          )
+        }
+      >
         Use this template
       </button>
     </article>
