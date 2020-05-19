@@ -11,7 +11,6 @@ import { firebaseSelectors as userTemplatesSelectors } from '../index'
 import {
   createNewTemplate,
   editExistingTemplate,
-  searchForImages,
 } from '../UserTemplates.actions'
 
 interface Props extends ConnectedReduxProps<AnyAction> {

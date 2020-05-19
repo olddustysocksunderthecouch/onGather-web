@@ -29,6 +29,7 @@ const UserTemplatesContainer = ({
       where: [['templateId', '==', id]],
       storeAs: 'selectedTemplate',
     })
+    // eslint-disable-next-line
   }, [id])
 
   return (
