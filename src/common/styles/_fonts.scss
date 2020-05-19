@@ -101,6 +101,16 @@ $font-families: (
   font-feature-settings: 'pnum' on, 'lnum' on;
 }
 
+@mixin font-body-large {
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: 0.444444px;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+}
+
 @mixin font-button {
   font-family: Raleway;
   font-style: normal;
@@ -109,5 +119,14 @@ $font-families: (
   line-height: 19px;
   text-align: center;
   letter-spacing: 0.05em;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+}
+
+@mixin font-h2 {
+  font-family: Yeseva One;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 34px;
+  line-height: 39px;
   font-feature-settings: 'pnum' on, 'lnum' on;
 }

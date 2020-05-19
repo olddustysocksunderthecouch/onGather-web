@@ -5,6 +5,18 @@
 .viewTemplate {
   display: flex;
   flex-direction: column;
+  margin: 0px 8px;
+  @media (min-width: $tablet) {
+    margin: 0px 128px;
+  }
+
+  @media (min-width: $desktop) {
+    margin: 0px 192px;
+  }
+
+  @media (min-width: $bigScreen) {
+    margin: 0px 396px;
+  }
 
   .image {
     height: 240px;
@@ -15,30 +27,36 @@
 }
 
 .content {
-  margin: 12% 9%;
+  align-self: center;
+  max-width: 688px;
+  margin-top: 24px;
+  margin: 32px 16px 72px 16px;
+
+  @media (min-width: $tablet) {
+    margin: 36px 16px 72px 16px;
+  }
+
+  @media (min-width: $desktop) {
+    margin: 48px 32px 72px 32px;
+  }
+
+  @media (min-width: $bigScreen) {
+    margin: 64px 32px 72px 32px;
+  }
   h3 {
     @include font-caption;
     color: $color-dark-yellow;
-
-    @media (min-width: $desktop) {
-      display: -webkit-box;
-      -webkit-line-clamp: 1;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
   }
 
   h1 {
-    @include font-h6;
+    @include font-h2;
     margin-top: 8px;
+    padding-bottom: 8px;
   }
   h2 {
     @include font-h6;
     margin-top: 44px;
-  }
-  p {
-    @include font-body;
-    white-space: pre-line;
+    margin-bottom: 16px;
   }
 
   .meta {
@@ -50,35 +68,27 @@
     }
 
     h5 {
-      display: flex;
       @include font-caption;
       padding-right: 16px;
       justify-self: center;
+      margin-top: 2px;
     }
 
     img {
-      padding-top: 0px;
       padding-right: 8px;
     }
   }
 
-  .hostInstructions {
-    margin-bottom: 36px;
+  .descriptionBody {
+    @include font-body;
+    white-space: pre-line;
   }
 }
 
 .shortDescription {
-  @include font-body;
+  @include font-body-large;
   margin-top: 20px;
-  @media (min-width: $desktop) {
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  @media (min-width: $bigScreen) {
-    @include font-body;
-  }
+  font-size: 18px;
 }
 
 .useThisTemplateButton {

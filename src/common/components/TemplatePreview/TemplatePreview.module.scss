@@ -130,4 +130,5 @@
   right: 24px;
   @include button-no-shadow;
   background-color: $color-yellow;
+  cursor: pointer;
 }

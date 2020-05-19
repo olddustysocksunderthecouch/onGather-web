@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import { durations } from '../../../../common/constants'
 import { Duration, TemplateFirestoreResult } from '../../../../common/types'
 import PeopleIcon from './../../../../common/assets/PeopleIcon.svg'
@@ -46,12 +46,26 @@ export const ViewTemplate: React.FunctionComponent<Props> = ({ template }) => {
           <h5>{duration.timeFormatted}</h5>
         </div>
         <p className={styles.shortDescription}>{template.shortDescription}</p>
-        <h2>What you&apos;ll do</h2>
-        <p>{template.whatYouDo}</p>
-        <h2>How you&apos;ll do it</h2>
-        <p>{template.howYouDo}</p>
-        <h2>Host Instructions</h2>
-        <p className={styles.hostInstructions}>{template.hostInstructions}</p>
+        {template.whatYouDo && (
+          <Fragment>
+            <h2>What you&apos;ll do</h2>
+            <p className={styles.descriptionBody}>{template.whatYouDo}</p>
+          </Fragment>
+        )}
+        {template.howYouDo && (
+          <Fragment>
+            <h2>How you&apos;ll do it</h2>
+            <p className={styles.descriptionBody}>{template.howYouDo}</p>
+          </Fragment>
+        )}
+        {template.hostInstructions && (
+          <Fragment>
+            <h2>Host Instructions</h2>
+            <p className={styles.descriptionBody}>
+              {template.hostInstructions}
+            </p>
+          </Fragment>
+        )}
       </div>
       <button className={styles.useThisTemplateButton}>
         Use this template
