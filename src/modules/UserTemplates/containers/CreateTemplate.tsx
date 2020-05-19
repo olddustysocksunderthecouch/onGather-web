@@ -25,12 +25,14 @@ interface Props extends ConnectedReduxProps<AnyAction> {
   imageSearchResults: ImageSearchResult[]
   handleFetchImages: (searchTerm: string, page: number) => void
   areNextImagesLoading: boolean
+  searchTerm: string
 }
 
 const CreateTemplateContainer = ({
   selectedTemplateId,
   loading,
   error,
+  searchTerm,
   initialTemplateEditorData,
   handleSaveDraftClicked,
   handlePublishClicked,
@@ -43,6 +45,7 @@ const CreateTemplateContainer = ({
       selectedTemplateId={selectedTemplateId}
       loading={loading}
       error={error}
+      searchTerm={searchTerm}
       initialTemplateEditorData={initialTemplateEditorData}
       handleSaveDraftClicked={handleSaveDraftClicked}
       handlePublishClicked={handlePublishClicked}
@@ -56,6 +59,7 @@ const mapStateToProps = (state: RootState): any => ({
   selectedTemplateId: CreateTemplateSelectors.selectSelectedTemplateId(state),
   error: CreateTemplateSelectors.selectTemplateEditorError(state),
   loading: CreateTemplateSelectors.selectTemplateEditorLoading(state),
+  searchTerm: CreateTemplateSelectors.selectImageSearchTerm(state),
   initialTemplateEditorData: CreateTemplateSelectors.selectTemplateEditor(
     state,
   ),

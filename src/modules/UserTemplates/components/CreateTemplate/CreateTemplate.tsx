@@ -27,6 +27,7 @@ export interface Props {
   imageSearchResults: ImageSearchResult[]
   handleFetchImages: (searchTerm: string, page: number) => void
   areNextImagesLoading: boolean
+  searchTerm: string
 }
 
 const theme = createMuiTheme({
@@ -59,6 +60,7 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
   imageSearchResults,
   handleFetchImages,
   areNextImagesLoading,
+  searchTerm,
 }) => {
   const [showImagePicker, setShowImagePicker] = useState(false)
   const [selectedImages, setSelectedImages] = useState<ImageUrls | null>(
@@ -401,6 +403,7 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
       {showImagePicker && (
         <div className={styles.authModal}>
           <ImagePicker
+            searchTerm={searchTerm}
             areNextImagesLoading={areNextImagesLoading}
             imageSearchResults={imageSearchResults}
             handleFetchImages={handleFetchImages}

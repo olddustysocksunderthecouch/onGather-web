@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
+import AutoSizer from 'react-virtualized-auto-sizer'
 import { VariableSizeGrid as Grid } from 'react-window'
 import InfiniteLoader from 'react-window-infinite-loader'
 import { useWindowDimensions } from '../../../../common/hooks'
+import { ImageUrls } from '../../../../common/types'
 import { ImageSearchResult } from '../../types'
 import { SearchBar } from '../SearchBar'
 import CloseIcon from './../../../../common/assets/close-icon.svg'
 import styles from './ImagePicker.module.scss'
 import { createItemData, renderItem } from './item-renderer'
-import { ImageUrls } from '../../../../common/types'
 
 export interface Props {
   areNextImagesLoading: boolean
@@ -15,6 +16,7 @@ export interface Props {
   handleFetchImages: (searchTerm: string, page: number) => void
   handleSelectedImage: (selectedImageUrls: ImageUrls) => void
   handleCloseImagePicker: () => void
+  searchTerm: string
 }
 
 export const ImagePicker: React.FunctionComponent<Props> = ({
@@ -23,12 +25,9 @@ export const ImagePicker: React.FunctionComponent<Props> = ({
   handleFetchImages,
   handleSelectedImage,
   handleCloseImagePicker,
+  searchTerm: searchTermFromState,
 }) => {
-  const { width, height } = useWindowDimensions()
-  const searchBarHeight = 59
-  const topNavHeight = 72
-  const bottomNavHeight = 49
-  const gridHeight = height - searchBarHeight - topNavHeight - bottomNavHeight
+  const { width } = useWindowDimensions()
 
   let rowWidth: number
   switch (true) {
@@ -51,7 +50,7 @@ export const ImagePicker: React.FunctionComponent<Props> = ({
   const isImageLoaded = (index: number): boolean =>
     index < imageSearchResults.length
   const gridItemCount = imageSearchResults.length + 2
-  const [searchTerm, setSearchTerm] = useState('')
+  const [searchTerm, setSearchTerm] = useState(searchTermFromState)
 
   const itemData = createItemData(
     imageSearchResults,
@@ -84,44 +83,51 @@ export const ImagePicker: React.FunctionComponent<Props> = ({
       </div>
       <hr className={styles.topLine} />
       <SearchBar
+        initialValue={searchTermFromState}
         placeholderText={'Search & select an image'}
         handleSearchTermChanged={handleSearchTermChange}
       />
       <hr className={styles.bottomLine} />
-      <InfiniteLoader
-        isItemLoaded={isImageLoaded}
-        itemCount={gridItemCount}
-        loadMoreItems={loadMoreImages}
-        minimumBatchSize={20}
-      >
-        {({ ref, onItemsRendered }): JSX.Element => (
-          <Grid
-            itemData={itemData}
-            columnCount={2}
-            columnWidth={(): number => rowWidth / 2}
-            height={gridHeight}
-            rowCount={gridItemCount / 2}
-            rowHeight={(): number => rowWidth / 3}
-            width={rowWidth}
-            ref={ref}
-            onItemsRendered={({
-              visibleRowStartIndex,
-              visibleRowStopIndex,
-              overscanRowStopIndex,
-              overscanRowStartIndex,
-            }): void => {
-              onItemsRendered({
-                overscanStartIndex: overscanRowStartIndex * 2,
-                overscanStopIndex: overscanRowStopIndex * 2,
-                visibleStartIndex: visibleRowStartIndex * 2,
-                visibleStopIndex: visibleRowStopIndex * 2,
-              })
-            }}
-          >
-            {renderItem}
-          </Grid>
-        )}
-      </InfiniteLoader>
+      <div style={{ height: '100%' }}>
+        <AutoSizer disableWidth>
+          {({ height }: { height: number }): any => (
+            <InfiniteLoader
+              isItemLoaded={isImageLoaded}
+              itemCount={gridItemCount}
+              loadMoreItems={loadMoreImages}
+              minimumBatchSize={20}
+            >
+              {({ ref, onItemsRendered }): JSX.Element => (
+                <Grid
+                  itemData={itemData}
+                  columnCount={2}
+                  columnWidth={(): number => rowWidth / 2}
+                  height={height}
+                  rowCount={gridItemCount / 2}
+                  rowHeight={(): number => rowWidth / 3}
+                  width={rowWidth}
+                  ref={ref}
+                  onItemsRendered={({
+                    visibleRowStartIndex,
+                    visibleRowStopIndex,
+                    overscanRowStopIndex,
+                    overscanRowStartIndex,
+                  }): void => {
+                    onItemsRendered({
+                      overscanStartIndex: overscanRowStartIndex * 2,
+                      overscanStopIndex: overscanRowStopIndex * 2,
+                      visibleStartIndex: visibleRowStartIndex * 2,
+                      visibleStopIndex: visibleRowStopIndex * 2,
+                    })
+                  }}
+                >
+                  {renderItem}
+                </Grid>
+              )}
+            </InfiniteLoader>
+          )}
+        </AutoSizer>
+      </div>
     </div>
   )
 }

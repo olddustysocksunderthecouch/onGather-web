@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect'
 import { RootState } from '../../common/redux/types'
 import {
+  ImageSearch,
   ImageSearchResult,
   TemplateEditorState,
   UserTemplatesState,
@@ -21,16 +22,25 @@ export const selectSelectedTemplateId = createSelector(
     userTemplates.selectedTemplateId,
 )
 
-export const selectImageSearchResults = createSelector(
+export const selectImageSearch = createSelector(
   selectUserTemplates,
-  (userTemplates: UserTemplatesState): ImageSearchResult[] =>
-    userTemplates.imageSearch.imageSearchResults,
+  (userTemplates: UserTemplatesState): ImageSearch => userTemplates.imageSearch,
+)
+
+export const selectImageSearchTerm = createSelector(
+  selectImageSearch,
+  (imageSearch: ImageSearch): string | null => imageSearch.searchTerm,
+)
+
+export const selectImageSearchResults = createSelector(
+  selectImageSearch,
+  (imageSearch: ImageSearch): ImageSearchResult[] =>
+    imageSearch.imageSearchResults,
 )
 
 export const selectImageSearchResultsLoading = createSelector(
-  selectUserTemplates,
-  (userTemplates: UserTemplatesState): boolean =>
-    userTemplates.imageSearch.loading,
+  selectImageSearch,
+  (imageSearch: ImageSearch): boolean => imageSearch.loading,
 )
 
 export const selectTemplateEditorLoading = createSelector(

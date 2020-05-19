@@ -20,8 +20,8 @@ export const renderItem = ({
           ...style,
           left: style.left + 2,
           top: style.top + 2,
-          width: rowWidth / 2 - 10,
-          height: rowWidth / 3 - 10,
+          width: rowWidth / 2 - 5,
+          height: rowWidth / 3 - 5,
         }}
         className={styles.loadingContainers}
       ></div>
@@ -61,6 +61,7 @@ export const renderItem = ({
         }}
         onClick={(): void => handleImageClicked(images)}
       />
+      <h1>{index}</h1>
       <div className={styles.attribution}>
         <a href={attributionLink}>{attributionName}</a>
       </div>

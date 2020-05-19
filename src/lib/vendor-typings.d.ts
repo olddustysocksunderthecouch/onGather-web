@@ -2,6 +2,7 @@ declare module 'js-parametrize'
 declare module 'classnames'
 declare module 'redux-firestore/lib/reducer'
 declare module 'react-redux-firebase/lib/reducer'
+declare module 'react-virtualized-auto-sizer'
 
 declare module 'ramda' {
   export function F(...rest: any[]): any
