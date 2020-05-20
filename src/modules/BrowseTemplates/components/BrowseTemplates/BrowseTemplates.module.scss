@@ -28,15 +28,15 @@
     }
   }
   .browserDescription {
-    margin-top: 12px;
-    letter-spacing: 0.25px;
-    line-height: 24px;
     max-width: 650px;
-
-    @include font-body-small;
+    margin-top: 12px;
+    
+    line-height: 26px;
+    letter-spacing: 0.25px;
+    @include font-body;
 
     @media (min-width: $tablet) {
-      @include font-body;
+      @include font-body-large;
     }
   }
 }

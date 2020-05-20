@@ -18,12 +18,9 @@ const UserTemplatesContainer = ({
   template,
 }: Props): React.FunctionComponentElement<Props> => {
   const { id } = useParams()
-  console.log('id', id)
-
   const firestore = useFirestore()
 
   useEffect(() => {
-    console.log('listen for id', id)
     firestore.get({
       collection: 'templates',
       where: [['templateId', '==', id]],

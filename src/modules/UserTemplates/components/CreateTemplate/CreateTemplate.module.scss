@@ -64,12 +64,10 @@
       @include text-style('font-main', 'regular', 'body');
     }
   }
-  p {
-    margin-top: 8px;
-  }
 
   header {
     p {
+      margin-top: 8px;
       max-width: 720px;
       line-height: 26px;
     }

@@ -30,18 +30,18 @@
   align-self: center;
   max-width: 688px;
   margin-top: 24px;
-  margin: 32px 16px 72px 16px;
+  margin: 32px 16px 0px 16px;
 
   @media (min-width: $tablet) {
-    margin: 36px 16px 72px 16px;
+    margin: 36px 16px 0px 16px;
   }
 
   @media (min-width: $desktop) {
-    margin: 48px 32px 72px 32px;
+    margin: 48px 32px 0px 32px;
   }
 
   @media (min-width: $bigScreen) {
-    margin: 64px 32px 72px 32px;
+    margin: 64px 32px 0px 32px;
   }
   h3 {
     @include font-caption;
@@ -49,9 +49,12 @@
   }
 
   h1 {
-    @include font-h2;
     margin-top: 8px;
     padding-bottom: 8px;
+    @include text-style('font-title', 'regular', 'title-xl');
+    @media (min-width: $tablet) {
+      @include text-style('font-title', 'regular', 'title-xxl');
+    }
   }
   h2 {
     @include font-h6;
@@ -82,6 +85,9 @@
   .descriptionBody {
     @include font-body;
     white-space: pre-line;
+    &:last-child {
+      margin-bottom: 96px;
+    }
   }
 }
 

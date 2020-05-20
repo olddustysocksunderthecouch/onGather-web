@@ -8,19 +8,21 @@
   flex-direction: column;
   flex-wrap: wrap;
   width: 100%;
-  background: #ffffff;
+  background-color: $color-white;
   border: 1px solid #efefef;
-  box-shadow: 2px 2px 48px rgba(0, 0, 0, 0.04), 0px 4px 32px rgba(0, 0, 0, 0.06);
+  box-shadow: 2px 2px 36px rgba(0, 0, 0, 0.04), 0px 4px 28px rgba(0, 0, 0, 0.06);
   border-radius: 16px;
   border-radius: 18px;
   margin-bottom: 16px;
   cursor: pointer;
+
   &:hover {
-    background-color: rgba($color: $color-dove-gray, $alpha: 0.03);
+    box-shadow: 2px 2px 36px rgba(0, 0, 0, 0.08),
+      0px 4px 28px rgba(0, 0, 0, 0.06);
   }
+
   &:active {
-    box-shadow: 2px 2px 48px rgba(0, 0, 0, 0.1),
-      0px 4px 32px rgba(0, 0, 0, 0.06);
+    background-color: rgba($color: $color-dove-gray, $alpha: 0.01);
   }
 
   @media (min-width: $desktop) {
@@ -32,6 +34,7 @@
     &:nth-child(even) {
       margin-left: 8px;
     }
+
     &:nth-child(odd) {
       margin-right: 8px;
     }

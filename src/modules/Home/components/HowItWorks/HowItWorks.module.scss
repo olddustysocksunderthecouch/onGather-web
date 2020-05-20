@@ -13,6 +13,7 @@
   margin-left: 24px;
   @include text-style('font-title', 'semibold', 'title-l');
   @media (min-width: $tablet) {
+    margin-bottom: 24px;
     @include text-style('font-title', 'semibold', 'title-xl');
   }
   @media (min-width: $bigScreen) {
@@ -83,7 +84,7 @@
     justify-self: stretch;
   }
   p {
-    margin: 8px 24px 8px 24px;
+    margin: 18px 24px 8px 24px;
     @include text-style('font-main', 'regular', 'body-s');
     @media (min-width: $tablet) {
       margin: 0px 24px 16px 24px;
