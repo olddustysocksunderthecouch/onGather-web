@@ -9,7 +9,7 @@
   margin-top: 40px;
   border: 1px dashed #000;
   border-radius: 16px;
-  background: #F8F8F8;
+  background: #f8f8f8;
 
   p {
     margin: 12px;
@@ -30,10 +30,9 @@
     bottom: 16px;
     right: 16px;
     background-color: $color-dove-gray;
-    @include button-no-shadow
+    @include button-no-shadow;
   }
 }
-
 
 .img {
   border-radius: 16px;

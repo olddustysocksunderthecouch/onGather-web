@@ -1,5 +1,5 @@
-import { TopNavActions } from '../modules/TopNav/types'
 import { UserTemplatesActions } from '../../modules/UserTemplates/types'
+import { TopNavActions } from '../modules/TopNav/types'
 
 export const actionRouteMap = {
   [TopNavActions.NavigateToCreateTemplate]: '/create-template',

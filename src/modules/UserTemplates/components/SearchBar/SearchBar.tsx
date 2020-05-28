@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import React, { ChangeEvent, useEffect, useState, useRef } from 'react'
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
 import closeIcon from './assets/CloseIcon.svg'
 import searchIcon from './assets/SearchIcon.svg'
 import styles from './SearchBar.module.scss'

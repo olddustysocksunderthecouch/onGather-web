@@ -4,6 +4,7 @@ import {
   CreateNewTemplateFailureAction,
   CreateNewTemplateSuccessAction,
   EditExistingTemplateAction,
+  ImageSearchResult,
   PublishTemplateAction,
   PublishTemplateFailureAction,
   PublishTemplateSuccessAction,
@@ -19,7 +20,6 @@ import {
   UploadImageFailureAction,
   UploadImageSuccessAction,
   UserTemplatesActions,
-  ImageSearchResult,
 } from './types'
 
 export const createNewTemplate = (): CreateNewTemplateAction => ({

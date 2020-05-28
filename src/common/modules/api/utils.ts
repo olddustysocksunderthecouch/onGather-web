@@ -1,4 +1,4 @@
-import { Observable, of, from, throwError } from 'rxjs'
+import { from, Observable, of, throwError } from 'rxjs'
 import { fromFetch } from 'rxjs/fetch'
 import { flatMap } from 'rxjs/operators'
 import { FetchOptions } from './types'

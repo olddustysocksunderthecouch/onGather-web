@@ -39,7 +39,7 @@ export const TopNavLayout: React.FunctionComponent<Props> = ({
     setSignInClicked(true)
   }
 
-  const handleAuthModalClose =(): void => {
+  const handleAuthModalClose = (): void => {
     setSignInClicked(false)
   }
 

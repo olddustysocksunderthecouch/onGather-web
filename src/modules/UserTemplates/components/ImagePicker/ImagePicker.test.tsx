@@ -1,5 +1,5 @@
 import React from 'react'
-import { create, act } from 'react-test-renderer'
+import { act, create } from 'react-test-renderer'
 import mock from '../../__mocks__/mock-image-search-response.json'
 import { ChooseImageList } from './ImagePicker'
 

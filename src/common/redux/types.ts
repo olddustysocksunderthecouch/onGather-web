@@ -3,8 +3,8 @@ import { Dispatch } from 'react'
 import { Store } from 'redux'
 import { Persistor } from 'redux-persist'
 import { AppState } from '../../modules/App/types'
-import { UserTemplatesState } from '../../modules/UserTemplates/types'
 import { BrowseTemplatesState } from '../../modules/BrowseTemplates/types'
+import { UserTemplatesState } from '../../modules/UserTemplates/types'
 
 export interface RootState {
   app: AppState

@@ -69,21 +69,4 @@ describe('App Reducer', () => {
       expect(state).toEqual(initialState)
     })
   })
-  describe('Onboarded Action', () => {
-    it('should return a new copy of state, set state.onbaorded to true', () => {
-      // given ... we create an onboarded action
-      const action = fromActions.onboarded()
-
-      // when ... we run the reducer and pass it our initialState and this action
-      const state = SUT.reducer(initialState, action)
-
-      // then
-      // ... should set the loading value of state to false
-      expect(state.onboarded).toBe(true)
-
-      // ... should not the affect the rest of the state
-      state.onboarded = initialState.onboarded
-      expect(state).toEqual(initialState)
-    })
-  })
 })

@@ -30,7 +30,7 @@
   @include text-style('font-main', 'semibold', 'body-s');
   letter-spacing: 0.03em;
   z-index: 1;
-  
+
   &:active {
     opacity: 0.9;
   }

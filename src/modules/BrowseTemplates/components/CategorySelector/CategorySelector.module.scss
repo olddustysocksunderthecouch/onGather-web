@@ -22,13 +22,13 @@
     text-transform: capitalize;
     letter-spacing: 0.05em;
     margin: 0px 16px 0px 16px;
-    color: #A3A3A3;
+    color: #a3a3a3;
 
-    &.categoryItemSelected{
+    &.categoryItemSelected {
       color: $color-black;
     }
   }
-  
+
   .selectionIndicator {
     height: 2px;
     width: calc(100% + 8px);

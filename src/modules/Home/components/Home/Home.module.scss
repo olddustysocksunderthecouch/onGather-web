@@ -61,7 +61,7 @@
   @media (min-width: $bigScreen) {
     padding-top: 380px;
     padding-left: 220px;
-  }  
+  }
   @media (min-width: $hugeScreen) {
     padding-top: 440px;
     padding-left: 270px;
@@ -97,7 +97,7 @@
   }
   @media (min-width: 1200px) {
     margin-left: 96px;
-  }  
+  }
   @media (min-width: $bigScreen) {
     margin-left: 220px;
   }
@@ -142,7 +142,7 @@
     margin-left: 0;
     width: 54vw;
   }
-  
+
   @media (min-width: $bigScreen) {
     margin-left: 0;
     width: 42vw;
@@ -161,7 +161,6 @@
   }
 }
 
-
 .homeSection2Content {
   position: absolute;
   right: 10vw;
@@ -169,7 +168,7 @@
 
   @media (min-width: 375px) {
     top: 172px;
-  }  
+  }
   @media (min-width: 410px) {
     top: 210px;
   }

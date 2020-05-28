@@ -1,7 +1,7 @@
 import {
   connectRouter,
-  RouterState,
   LocationChangeAction,
+  RouterState,
 } from 'connected-react-router'
 import { History } from 'history'
 import { Reducer } from 'redux'

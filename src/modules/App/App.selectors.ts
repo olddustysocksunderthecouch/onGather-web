@@ -1,5 +1,5 @@
-import { RootState } from '../../common/redux/types'
 import { createSelector } from 'reselect'
+import { RootState } from '../../common/redux/types'
 import { AppState } from './types'
 
 export const selectApp = (state: RootState): AppState => state.app

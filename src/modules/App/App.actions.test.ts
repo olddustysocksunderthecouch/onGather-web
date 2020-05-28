@@ -31,24 +31,4 @@ describe('App Actions', () => {
       expect(action.type).toEqual(AppActions.InitAppFailure)
     })
   })
-
-  describe('startedOnboarding', () => {
-    it('should return an action of type AppActions.StartedOnboarding', () => {
-      // when ... we call the startedOnboarding action creator
-      const action = SUT.startedOnboarding()
-
-      // then we should expect it to create an action with the correct type
-      expect(action.type).toEqual(AppActions.StartedOnboarding)
-    })
-  })
-
-  describe('onboarded', () => {
-    it('should return an action of type AppActions.Onboarded', () => {
-      // when ... we call the onboarded action creator
-      const action = SUT.onboarded()
-
-      // then ... we should expect it to create an action with the correct type
-      expect(action.type).toEqual(AppActions.Onboarded)
-    })
-  })
 })
