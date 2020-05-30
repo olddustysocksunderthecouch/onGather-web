@@ -8,14 +8,16 @@ import { ConnectedReduxProps, RootState } from '../../../common/redux/types'
 import { TemplateFirestoreResult } from '../../../common/types'
 import { ViewTemplate } from '../components/ViewTemplate'
 import { firebaseSelectors as firebaseViewUseTemplateSelectors } from '../index'
+import { utilizeTemplate } from '../ViewUseTemplate.actions'
 
 interface Props extends ConnectedReduxProps<AnyAction> {
   template: TemplateFirestoreResult
-  handleCreateNewTemplateClicked: () => void
+  handleUseTemplateClicked: () => void
 }
 
 const UserTemplatesContainer = ({
   template,
+  handleUseTemplateClicked,
 }: Props): React.FunctionComponentElement<Props> => {
   const { id } = useParams()
   const firestore = useFirestore()
@@ -31,7 +33,10 @@ const UserTemplatesContainer = ({
 
   return (
     <TopNavLayout topNavButton={{ text: 'Browse', path: '/browse-templates' }}>
-      <ViewTemplate template={template} />
+      <ViewTemplate
+        template={template}
+        handleUseTemplateClicked={handleUseTemplateClicked}
+      />
     </TopNavLayout>
   )
 }
@@ -40,7 +45,7 @@ const mapStateToProps = (state: RootState): any => ({
 })
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): any => ({
-  handleCreateNewTemplateClicked: (): void => undefined,
+  handleUseTemplateClicked: (): void => dispatch(utilizeTemplate()),
 })
 
 export default connect(

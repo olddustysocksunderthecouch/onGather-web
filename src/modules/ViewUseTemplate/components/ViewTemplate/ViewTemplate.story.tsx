@@ -37,7 +37,10 @@ const template: TemplateFirestoreResult = {
 }
 
 export const defaultState = (): React.FunctionComponentElement<Props> => (
-  <ViewTemplate template={template} />
+  <ViewTemplate
+    handleUseTemplateClicked={(): void => undefined}
+    template={template}
+  />
 )
 
 defaultState.story = {

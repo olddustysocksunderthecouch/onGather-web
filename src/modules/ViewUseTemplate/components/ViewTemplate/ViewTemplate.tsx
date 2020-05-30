@@ -6,10 +6,14 @@ import TimeIcon from './../../../../common/assets/TimeIcon.svg'
 import styles from './ViewTemplate.module.scss'
 
 export interface Props {
+  handleUseTemplateClicked: () => void
   template: TemplateFirestoreResult
 }
 
-export const ViewTemplate: React.FunctionComponent<Props> = ({ template }) => {
+export const ViewTemplate: React.FunctionComponent<Props> = ({
+  template,
+  handleUseTemplateClicked,
+}) => {
   useEffect(() => {
     document.title = template.title ? template.title : 'onGather'
   }, [template.title])
@@ -69,11 +73,12 @@ export const ViewTemplate: React.FunctionComponent<Props> = ({ template }) => {
       </div>
       <button
         className={styles.useThisTemplateButton}
-        onClick={(): void =>
+        onClick={(): void => {
           alert(
             'This feature is still being built & should be available by the end of May (touch wood)',
           )
-        }
+          return handleUseTemplateClicked()
+        }}
       >
         Use this template
       </button>
