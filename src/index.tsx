@@ -22,7 +22,7 @@ import {
   CreateTemplateContainer,
   UserTemplatesContainer,
 } from './modules/UserTemplates'
-import { ViewTemplateContainer } from './modules/ViewUseTemplate'
+import { ViewTemplateContainer } from './modules/ViewUtilizeTemplate'
 import * as serviceWorker from './serviceWorker'
 
 const firebaseConfig = {

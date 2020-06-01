@@ -1,10 +1,10 @@
 import React from 'react'
 import { TemplateFirestoreResult } from '../../../../common/types'
-import { Props, UseTemplate } from './UseTemplate'
+import { Props, UtilizeTemplate } from './UtilizeTemplate'
 
 export default {
-  title: 'Views/UseTemplate',
-  component: UseTemplate,
+  title: 'Views/UtilizeTemplate',
+  component: UtilizeTemplate,
 }
 
 const template: TemplateFirestoreResult = {
@@ -37,7 +37,7 @@ const template: TemplateFirestoreResult = {
 }
 
 export const defaultState = (): React.FunctionComponentElement<Props> => (
-  <UseTemplate template={template} />
+  <UtilizeTemplate template={template} />
 )
 
 defaultState.story = {

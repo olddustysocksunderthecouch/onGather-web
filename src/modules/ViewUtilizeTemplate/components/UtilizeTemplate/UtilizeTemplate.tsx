@@ -6,6 +6,6 @@ export interface Props {
   template: TemplateFirestoreResult
 }
 
-export const UseTemplate: React.FunctionComponent<Props> = ({ template }) => (
-  <article className={styles.templatePreview}></article>
-)
+export const UtilizeTemplate: React.FunctionComponent<Props> = ({
+  template,
+}) => <article className={styles.templatePreview}></article>
