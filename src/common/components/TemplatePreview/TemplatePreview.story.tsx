@@ -2,7 +2,7 @@ import React from 'react'
 import { Props, TemplatePreview } from './TemplatePreview'
 
 export default {
-  title: 'Components/TemplatePreview',
+  title: 'Components/Common/TemplatePreview',
   component: TemplatePreview,
 }
 

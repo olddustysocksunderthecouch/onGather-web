@@ -2,7 +2,7 @@ import React from 'react'
 import { SearchBar } from './SearchBar'
 
 export default {
-  title: 'Components/Common/SearchBar',
+  title: 'Components/UserTemplates/SearchBar',
   component: SearchBar,
 }
 

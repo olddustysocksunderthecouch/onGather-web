@@ -2,7 +2,7 @@ import React from 'react'
 import { CreateNewTemplate } from './CreateNewTemplate'
 
 export default {
-  title: 'Components/CreateNewTemplate',
+  title: 'Components/Common/CreateNewTemplate',
   component: CreateNewTemplate,
 }
 

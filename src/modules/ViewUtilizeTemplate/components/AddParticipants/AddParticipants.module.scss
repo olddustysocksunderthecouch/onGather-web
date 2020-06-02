@@ -1,0 +1,27 @@
+@import 'src/common/styles/fonts';
+@import 'src/common/styles/variables';
+@import 'src/common/styles/mixins';
+
+.addParticipantsContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 400px;
+  border: 1px solid $color-light-gray;
+  border-radius: 8px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  padding: 24px;
+
+
+  .emailList {
+    padding: 16px 8px;
+    .emailListItem {
+      padding: 16px 0px;
+      @include font-body;
+      &:hover {
+        background-color: rgba($color: $color-dove-gray, $alpha: 0.1);
+      }
+    }
+  }
+}

@@ -19,6 +19,7 @@ import { Controller, ErrorMessage, useForm } from 'react-hook-form'
 import { DevTool } from 'react-hook-form-devtools'
 import { durations } from '../../../../common/constants'
 import { Duration, Template } from '../../../../common/types'
+import { AddParticipants } from '../AddParticipants'
 import styles from './UtilizeTemplate.module.scss'
 
 export interface Props {
@@ -228,6 +229,8 @@ export const UtilizeTemplate: React.FunctionComponent<Props> = ({
                 },
               })}
             />
+
+            <AddParticipants handleEmailsEntered={(): void => undefined} />
           </form>
         </ThemeProvider>
       </MuiPickersUtilsProvider>
