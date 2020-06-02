@@ -1,13 +1,14 @@
 import React, { Fragment, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { durations } from '../../../../common/constants'
-import { Duration, TemplateFirestoreResult } from '../../../../common/types'
+import { Duration, Template } from '../../../../common/types'
 import PeopleIcon from './../../../../common/assets/PeopleIcon.svg'
 import TimeIcon from './../../../../common/assets/TimeIcon.svg'
 import styles from './ViewTemplate.module.scss'
 
 export interface Props {
   handleUseTemplateClicked: () => void
-  template: TemplateFirestoreResult
+  template: Template
 }
 
 export const ViewTemplate: React.FunctionComponent<Props> = ({
@@ -71,17 +72,23 @@ export const ViewTemplate: React.FunctionComponent<Props> = ({
           </Fragment>
         )}
       </div>
-      <button
-        className={styles.useThisTemplateButton}
-        onClick={(): void => {
-          alert(
-            'This feature is still being built & should be available by the end of May (touch wood)',
-          )
-          return handleUseTemplateClicked()
-        }}
+      <Link
+        className={styles.createNewTemplate}
+        to={`/edit-send-invites/${template.templateId}`}
+        // onClick={handleCreateNewClick}
       >
-        Use this template
-      </button>
+        <button
+          className={styles.useThisTemplateButton}
+          onClick={(): void => {
+            // alert(
+            //   'This feature is still being built & should be available by the end of May (touch wood)',
+            // )
+            // return handleUseTemplateClicked()
+          }}
+        >
+          Use this template
+        </button>
+      </Link>
     </article>
   )
 }

@@ -2,87 +2,100 @@
 @import 'src/common/styles/variables';
 @import 'src/common/styles/mixins';
 
-.container {
+.viewTemplate {
   display: flex;
   flex-direction: column;
-  margin: 28px 24px;
+  margin: 0px 8px;
   @media (min-width: $tablet) {
-    margin: 28px 128px;
+    margin: 0px 128px;
   }
 
   @media (min-width: $desktop) {
-    margin: 56px 192px;
+    margin: 0px 192px;
   }
 
   @media (min-width: $bigScreen) {
-    margin: 56px 396px;
+    margin: 0px 396px;
+  }
+
+  .image {
+    height: 240px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 0px 0px 16px 16px;
+  }
+}
+
+.content {
+  align-self: center;
+  max-width: 688px;
+  margin-top: 24px;
+  margin: 32px 16px 0px 16px;
+
+  @media (min-width: $tablet) {
+    margin: 36px 16px 0px 16px;
+  }
+
+  @media (min-width: $desktop) {
+    margin: 48px 32px 0px 32px;
+  }
+
+  @media (min-width: $bigScreen) {
+    margin: 64px 32px 0px 32px;
+  }
+  h3 {
+    @include font-caption;
+    color: $color-dark-yellow;
   }
 
   h1 {
-    margin-bottom: 36px;
+    margin-top: 8px;
+    margin-bottom: 16px;
     @include text-style('font-title', 'regular', 'title-xl');
+
     @media (min-width: $tablet) {
-      @include text-style('font-title', 'regular', 'title-xxxl');
+      @include text-style('font-title', 'regular', 'title-xxl');
     }
   }
-
   h2 {
-    padding-top: 4px;
-    margin-bottom: 32px;
-    @include text-style('font-main', 'semibold', 'title-l');
-    @media (min-width: $tablet) {
-      @include text-style('font-main', 'semibold', 'title-xl');
-    }
-  }
-  section {
-    margin-bottom: 24px;
+    @include font-h6;
+    margin-top: 44px;
+    margin-bottom: 16px;
   }
 
-  .draftTitle {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .templatePreviews {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .createTemplateButton {
+  .meta {
     display: flex;
     flex-direction: row;
-    border-radius: 6px;
-    color: $color-white;
-    box-shadow: 3px 3px 6px rgba(207, 207, 207, 0.8);
-    background-color: $color-malibu;
-    &:hover {
-      opacity: 0.9;
-    }
-    &:focus {
-      outline: none;
+
+    @media (min-width: $tablet) {
+      margin-top: 12px;
     }
 
-    div {
-      letter-spacing: 0.03em;
-      padding: 8px 8px 8px 16px;
-      @include text-style('font-main', 'semibold', 'body-s');
-
-      @media (min-width: $desktop) {
-        padding: 10px 8px 10px 24px;
-        letter-spacing: 0.05em;
-        @include text-style('font-main', 'semibold', 'body-s');
-      }
+    h5 {
+      @include font-caption;
+      padding-right: 16px;
+      justify-self: center;
+      margin-top: 2px;
     }
 
     img {
-      height: 16px;
-      width: 16px;
-      align-self: center;
-      margin-right: 16px;
-
-      @media (min-width: $desktop) {
-        margin-right: 24px;
-      }
+      padding-right: 8px;
     }
   }
+  .createForm {
+    display: flex;
+    flex-direction: column;
+    justify-items: left;
+  }
+  .timeContainer {
+    margin-top: 16px;
+  }
+}
+
+.useThisTemplateButton {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  @include button;
+  background-color: $color-red;
 }

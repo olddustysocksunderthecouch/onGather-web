@@ -6,7 +6,7 @@ import { AnyAction } from 'redux'
 import TopNavLayout from '../../../common/modules/TopNav/containers/TopNavLayout'
 import { ConnectedReduxProps, RootState } from '../../../common/redux/types'
 import { Template } from '../../../common/types'
-import { ViewTemplate } from '../components/ViewTemplate'
+import { UtilizeTemplate } from '../components/UtilizeTemplate'
 import { firebaseSelectors as firebaseViewUseTemplateSelectors } from '../index'
 import { utilizeTemplate } from '../ViewUseTemplate.actions'
 
@@ -15,7 +15,7 @@ interface Props extends ConnectedReduxProps<AnyAction> {
   handleUseTemplateClicked: () => void
 }
 
-const ViewTemplatesContainer = ({
+const UtilizeTemplateContainer = ({
   template,
   handleUseTemplateClicked,
 }: Props): React.FunctionComponentElement<Props> => {
@@ -33,9 +33,9 @@ const ViewTemplatesContainer = ({
 
   return (
     <TopNavLayout topNavButton={{ text: 'Browse', path: '/browse-templates' }}>
-      <ViewTemplate
+      <UtilizeTemplate
         template={template}
-        handleUseTemplateClicked={handleUseTemplateClicked}
+        // handleUseTemplateClicked={handleUseTemplateClicked}
       />
     </TopNavLayout>
   )
@@ -51,4 +51,4 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): any => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ViewTemplatesContainer)
+)(UtilizeTemplateContainer)

@@ -23,6 +23,7 @@ import {
   UserTemplatesContainer,
 } from './modules/UserTemplates'
 import { ViewTemplateContainer } from './modules/ViewUtilizeTemplate'
+import { UtilizeTemplateContainer } from './modules/ViewUtilizeTemplate'
 import * as serviceWorker from './serviceWorker'
 
 const firebaseConfig = {
@@ -87,6 +88,11 @@ ReactDOM.render(
               exact
               path="/view-template/:id"
               component={ViewTemplateContainer}
+            />
+            <Route
+              exact
+              path="/edit-send-invites/:id"
+              component={UtilizeTemplateContainer}
             />
             <Route render={(): JSX.Element => <div>404 Not Found</div>} />
           </Switch>

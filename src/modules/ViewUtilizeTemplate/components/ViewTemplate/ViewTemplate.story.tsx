@@ -1,5 +1,5 @@
 import React from 'react'
-import { TemplateFirestoreResult } from '../../../../common/types'
+import { Template } from '../../../../common/types'
 import { Props, ViewTemplate } from './ViewTemplate'
 
 export default {
@@ -7,7 +7,8 @@ export default {
   component: ViewTemplate,
 }
 
-const template: TemplateFirestoreResult = {
+const template: Template = {
+  templateId: 'some-id',
   status: 'publish',
   category: 'Popular',
   title: 'Bookclub: Same book',
