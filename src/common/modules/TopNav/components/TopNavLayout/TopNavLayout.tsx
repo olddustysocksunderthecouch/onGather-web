@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from 'react'
 import { NavigationItem, TopNavButton } from '../../types'
-import { AuthModal } from '../AuthModal'
+import { AuthModal } from '../../../../components/AuthModal'
 import { TopNav } from '../TopNav'
 import styles from './TopNavLayout.module.scss'
 

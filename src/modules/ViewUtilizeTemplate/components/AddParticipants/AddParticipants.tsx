@@ -21,21 +21,18 @@ export const AddParticipants: React.FunctionComponent<Props> = ({
   const [error, setError] = useState('')
 
   const handleValidEmailEntered = (): void => {
-    setEmailAddresses((previousArray: string[]): string[] => [
-      currentEmailAddress,
-      ...previousArray,
-    ])
-    setCurrentEmailAddress('')
-    handleEmailsEntered(emailAddresses)
-  }
-  const handleEnterPressed = (): void => {
-    isEmailValid(currentEmailAddress)
-      ? handleValidEmailEntered()
-      : setError('Invalid Email Address')
+    if (!emailAddresses.includes(currentEmailAddress)) {
+      setEmailAddresses([currentEmailAddress, ...emailAddresses])
+      handleEmailsEntered([currentEmailAddress, ...emailAddresses])
+      setCurrentEmailAddress('')
+    } else {
+      setError("You've already entered this email address")
+    }
   }
   const handleEmailDelete = (emailToDelete: string): void => {
     const newState = emailAddresses.filter((item) => item !== emailToDelete)
     setEmailAddresses(newState)
+    handleEmailsEntered(newState)
   }
 
   return (
@@ -46,15 +43,16 @@ export const AddParticipants: React.FunctionComponent<Props> = ({
           fullWidth
           name="email"
           variant="standard"
-          placeholder="Enter your guest’s email"
+          placeholder="+ Press enter after each guest's email"
           value={currentEmailAddress}
-          // autoComplete="email"
+          autoComplete="email"
           type="email"
-          autoComplete="username email"
           onChange={(event): void => setCurrentEmailAddress(event.target.value)}
           onKeyPress={(event): void => {
             if (event.key === 'Enter') {
-              handleEnterPressed()
+              isEmailValid(currentEmailAddress)
+                ? handleValidEmailEntered()
+                : setError('Invalid Email Address')
               event.preventDefault()
             } else {
               setError('')

@@ -8,8 +8,7 @@ export default {
 
 export const defaultState = (): React.FunctionComponentElement<Props> => (
   <PermissionRationalModal
-    handleContinueWithClicked={(): void => undefined}
-    userEmail="adrian@nona.digital"
+    handleScopeRequestClicked={(): void => undefined}
     handleAuthModalClose={(): void => undefined}
   />
 )

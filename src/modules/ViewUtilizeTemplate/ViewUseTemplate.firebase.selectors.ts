@@ -27,3 +27,19 @@ export const selectSelectedTemplate = createSelector(
     }
   },
 )
+
+export const selectCalendarEventScopeIsEnabled = createSelector(
+  firestoreSelectors.selectData,
+  (data: any): boolean => {
+    if (data.user) {
+      const flattenedUserObject = Object.values(data.user)[0] as any
+      if (flattenedUserObject.scopes) {
+        return flattenedUserObject.scopes.includes('calendar.event')
+      } else {
+        return false
+      }
+    } else {
+      return false
+    }
+  },
+)

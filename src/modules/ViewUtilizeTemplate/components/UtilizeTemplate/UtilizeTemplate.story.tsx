@@ -38,7 +38,14 @@ const template: Template = {
 }
 
 export const defaultState = (): React.FunctionComponentElement<Props> => (
-  <UtilizeTemplate template={template} />
+  <UtilizeTemplate
+    isAuthenticated={false}
+    scopeIsGranted={true}
+    template={template}
+    handleScopeRequest={(): void => undefined}
+    handleUseTemplateClicked={(): void => undefined}
+    handleContinueWithGoogleClicked={(): void => undefined}
+  />
 )
 
 defaultState.story = {

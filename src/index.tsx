@@ -15,6 +15,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { configureStoreAndPersistor } from './common/redux'
 import { history } from './common/redux/store'
 import './index.scss'
+import { AuthRedirectContainer } from './modules/Auth'
 import { BrowseTemplateContainer } from './modules/BrowseTemplates'
 import { HomeContainer } from './modules/Home'
 import { PrivacyPolicyContainer } from './modules/PrivacyPolicy'
@@ -22,8 +23,10 @@ import {
   CreateTemplateContainer,
   UserTemplatesContainer,
 } from './modules/UserTemplates'
-import { ViewTemplateContainer } from './modules/ViewUtilizeTemplate'
-import { UtilizeTemplateContainer } from './modules/ViewUtilizeTemplate'
+import {
+  UtilizeTemplateContainer,
+  ViewTemplateContainer,
+} from './modules/ViewUtilizeTemplate'
 import * as serviceWorker from './serviceWorker'
 
 const firebaseConfig = {
@@ -94,6 +97,7 @@ ReactDOM.render(
               path="/edit-send-invites/:id"
               component={UtilizeTemplateContainer}
             />
+            <Route path="/auth/*" component={AuthRedirectContainer} />
             <Route render={(): JSX.Element => <div>404 Not Found</div>} />
           </Switch>
         </ConnectedRouter>

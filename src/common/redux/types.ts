@@ -5,9 +5,11 @@ import { Persistor } from 'redux-persist'
 import { AppState } from '../../modules/App/types'
 import { BrowseTemplatesState } from '../../modules/BrowseTemplates/types'
 import { UserTemplatesState } from '../../modules/UserTemplates/types'
+import { AuthState } from '../../modules/Auth/types'
 
 export interface RootState {
   app: AppState
+  auth: AuthState
   router: RouterState
   userTemplates: UserTemplatesState
   browseTemplates: BrowseTemplatesState

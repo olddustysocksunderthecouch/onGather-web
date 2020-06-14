@@ -22,7 +22,7 @@ const reduxPersistConfig = {
   key: 'root',
   storage,
   stateReconciler: autoMergeLevel2,
-  whitelist: ['app'],
+  whitelist: ['auth'],
 }
 
 export const history = createBrowserHistory()

@@ -1,3 +1,11 @@
+export interface ImageUrls {
+  thumb: string
+  small: string
+  regular: string
+  full: string
+  raw: string
+}
+
 export interface TemplateFirestoreResult {
   status: 'draft' | 'publish'
   category: string
@@ -10,14 +18,6 @@ export interface TemplateFirestoreResult {
   howYouDo: string
   hostInstructions: string
   participantRange: number[]
-}
-
-export interface ImageUrls {
-  thumb: string
-  small: string
-  regular: string
-  full: string
-  raw: string
 }
 
 export interface Template extends TemplateFirestoreResult {
@@ -39,6 +39,23 @@ export interface TemplateCreation {
   participantRange: number[]
 }
 
+export interface Gathering {
+  templateId: string
+  title: string
+  personalizedShortDescription: string
+  whatYouDo: string
+  howYouDo: string
+  hostInstructions: string
+  organizerUid: string
+  organizerEmail: string
+  inviteeEmails: string[]
+  startTimestamp: Date
+  duration: string
+  videoCallProvider: string
+  videoCallUrl: string
+  createdTimestamp: Date
+}
+
 export interface Duration {
   timeMinutes: string
   timeFormatted: string
@@ -47,4 +64,13 @@ export interface Duration {
 export interface MenuItem {
   title: string
   handleItemClicked: (id: string) => void
+}
+
+export interface User {
+  displayName: string
+  email: string
+  photoURL: string
+  uid: string
+  scopes?: string[]
+  scopeError?: string
 }

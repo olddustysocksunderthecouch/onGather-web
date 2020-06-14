@@ -1,5 +1,5 @@
 // Firebase App (the core Firebase SDK) is always required and must be listed first
-import * as firebase from 'firebase'
+import { firestore, functions, storage } from 'firebase'
 import { ActionsObservable, ofType, StateObservable } from 'redux-observable'
 import { from, Observable, of } from 'rxjs'
 import { catchError, flatMap, map, withLatestFrom } from 'rxjs/operators'
@@ -44,9 +44,7 @@ export const createNewTemplateEpic$ = (
   action$.pipe(
     ofType<UserTemplatesActionTypes>(UserTemplatesActions.CreateNewTemplate),
     map(() =>
-      createNewTemplateSuccess(
-        firebase.firestore().collection('templates').doc().id,
-      ),
+      createNewTemplateSuccess(firestore().collection('templates').doc().id),
     ),
   )
 
@@ -82,7 +80,7 @@ export const saveDraftTemplateEpic$ = (
     withLatestFrom(state$),
     flatMap(([action, state]) =>
       from(
-        firebase.functions().httpsCallable('templates-createUpdate')({
+        functions().httpsCallable('templates-createUpdateTemplate')({
           ...action.payload.template,
           templateId: state.userTemplates.selectedTemplateId,
           status: 'draft',
@@ -109,7 +107,7 @@ export const publishTemplateEpic$ = (
     withLatestFrom(state$),
     flatMap(([action, state]) =>
       from(
-        firebase.functions().httpsCallable('templates-createUpdate')({
+        functions().httpsCallable('templates-createUpdateTemplate')({
           ...action.payload.template,
           templateId: state.userTemplates.selectedTemplateId,
           status: 'publish',
@@ -136,8 +134,7 @@ export const uploadImageEpic$ = (
     withLatestFrom(state$),
     flatMap(([action, state]) =>
       from(
-        firebase
-          .storage()
+        storage()
           .ref()
           .child(state.userTemplates.selectedTemplateId)
           .put(action.payload.file),
@@ -163,7 +160,7 @@ export const searchForImagesEpic$ = (
     withLatestFrom(state$),
     flatMap(([action, state]) =>
       from(
-        firebase.functions().httpsCallable('unsplashed-searchImages')({
+        functions().httpsCallable('unsplash-searchImages')({
           searchTerm: action.payload.searchTerm,
           page: action.payload.page,
         }),

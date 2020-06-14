@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
-import CloseIcon from './../../../../assets/close-icon.svg'
+import CloseIcon from './../../assets/close-icon.svg'
 import GoogleIcon from './assets/google-icon.svg'
 import styles from './AuthModal.module.scss'
 
