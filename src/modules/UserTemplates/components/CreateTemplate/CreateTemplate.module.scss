@@ -56,26 +56,30 @@
     }
   }
 
-  p,
-  button {
-    @include text-style('font-main', 'regular', 'body-s');
-
-    @media (min-width: $tablet) {
-      @include text-style('font-main', 'regular', 'body');
-    }
-  }
-
   header {
     p {
       margin-top: 8px;
       max-width: 720px;
       line-height: 26px;
+      @include text-style('font-main', 'regular', 'body-s');
+
+      @media (min-width: $tablet) {
+        @include text-style('font-main', 'regular', 'body');
+      }
     }
   }
 
   .createForm {
     align-self: center;
     max-width: 688px;
+    p {
+      margin-top: 8px;
+      @include text-style('font-main', 'regular', 'body-s');
+
+      @media (min-width: $tablet) {
+        @include text-style('font-main', 'regular', 'body-s');
+      }
+    }
   }
   .imageBox {
     height: 240px;

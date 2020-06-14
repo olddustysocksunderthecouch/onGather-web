@@ -12,7 +12,7 @@ export interface Props {
   image?: string
   gatheringSize?: string
   suggestedDuration?: string
-  mainAimsOutcomes?: string
+  mainAimsOutcomes?: string[]
   shortDescription?: string
   handleTemplatePreviewClicked: (templateId: string) => void
   openInNewTab?: boolean
@@ -37,7 +37,9 @@ export const TemplatePreview: React.FunctionComponent<Props> = ({
       )[0]
     : { timeMinutes: '0', timeFormatted: '0 min' }
 
-  const formattedAimsOutcomes = mainAimsOutcomes?.split(',').join(' | ')
+  const formattedAimsOutcomes = mainAimsOutcomes
+    ? mainAimsOutcomes.join(' | ')
+    : ''
 
   return (
     <article className={styles.templatePreview}>

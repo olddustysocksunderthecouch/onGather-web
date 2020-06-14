@@ -14,7 +14,8 @@ const template: Template = {
   title: 'Bookclub: Same book',
   shortDescription:
     'A simple book club that gets people reading together and diving into the finer details of a book. Let’s put a character limit on here and see what happens. It’s quite a bit of words that.',
-  mainAimsOutcomes: 'Deep Insight | Common Interest | Topic Centred',
+  personalizedDescription: 'A personal touch of something or other',
+  mainAimsOutcomes: ['Great Conversation', 'Gain Insights', 'Book Sharing'],
   suggestedDuration: '120',
   imageUrls: {
     raw:
@@ -35,6 +36,7 @@ const template: Template = {
   hostInstructions:
     'A simple book club that gets people reading together and diving into the finer details of a book.',
   participantRange: [2, 8],
+  callProviders: ['Google Meet (Hangouts)'],
 }
 
 export const defaultState = (): React.FunctionComponentElement<Props> => (

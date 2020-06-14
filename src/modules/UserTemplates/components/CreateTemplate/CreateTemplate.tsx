@@ -1,4 +1,5 @@
 import {
+  Chip,
   FormControl,
   InputLabel,
   makeStyles,
@@ -7,13 +8,20 @@ import {
   Slider,
   TextField,
 } from '@material-ui/core'
-import { grey } from '@material-ui/core/colors'
+import Checkbox from '@material-ui/core/Checkbox'
+import { grey, orange } from '@material-ui/core/colors'
+import ListItemText from '@material-ui/core/ListItemText'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import React, { Fragment, useState } from 'react'
 import { Controller, ErrorMessage, useForm } from 'react-hook-form'
-import { categories, durations } from '../../../../common/constants'
+import {
+  callProviders,
+  categories,
+  durations,
+} from '../../../../common/constants'
 import { Duration, ImageUrls, TemplateCreation } from '../../../../common/types'
 import { ImageSearchResult, TemplateEditorState } from '../../types'
+import { AddMainAimsOutcomes } from '../AddMainAimsOutcomes'
 import { ImagePicker } from '../ImagePicker/ImagePicker'
 import styles from './CreateTemplate.module.scss'
 
@@ -31,7 +39,7 @@ export interface Props {
 }
 
 const theme = createMuiTheme({
-  palette: { primary: grey },
+  palette: { primary: grey, secondary: orange },
   typography: { fontFamily: 'Raleway' },
 })
 
@@ -67,7 +75,15 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
     initialTemplateEditorData.imageUrls,
   )
 
-  const { register, errors, handleSubmit, control, watch } = useForm({
+  const {
+    register,
+    errors,
+    handleSubmit,
+    control,
+    watch,
+    setValue,
+    getValues,
+  } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     defaultValues: {
@@ -76,6 +92,8 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
       shortDescription: initialTemplateEditorData.shortDescription,
       mainAimsOutcomes: initialTemplateEditorData.mainAimsOutcomes,
       suggestedDuration: initialTemplateEditorData.suggestedDuration,
+      personalizedDescription:
+        initialTemplateEditorData.personalizedDescription,
       participantRange:
         initialTemplateEditorData.participantRange &&
         initialTemplateEditorData.participantRange.length > 0
@@ -85,6 +103,11 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
       whatYouDo: initialTemplateEditorData.whatYouDo,
       howYouDo: initialTemplateEditorData.howYouDo,
       imageUrl: initialTemplateEditorData.imageUrls,
+      callProviders:
+        initialTemplateEditorData.callProviders &&
+        initialTemplateEditorData.callProviders.length > 0
+          ? initialTemplateEditorData.callProviders
+          : ['Google Meet (Hangouts)'],
     },
   })
 
@@ -106,6 +129,7 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
       imageUrls: selectedImages,
     })
   }
+
   return (
     <Fragment>
       <div className={styles.createTemplate}>
@@ -131,9 +155,11 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
             Hey! Now that you&apos;re here, describe something that others could
             do on a video call. Perhaps it&apos;s something you do often or
             something that you&apos;ve just discovered. See the Browser for some
-            examples but be as creative as you&apos;d like. When you&apos;re
-            happy with what you&apos;ve written click Publish and it will be
-            made public in the Template Browser.
+            examples but be as creative as you&apos;d like.
+            <br></br>
+            <br></br>
+            When you&apos;re happy with what you&apos;ve written click Publish
+            and it will be made public in the Template Browser.
           </p>
         </header>
         {/* <DevTool control={control} /> */}
@@ -253,6 +279,7 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
               label="Title"
               name="title"
               variant="outlined"
+              rowsMax="3"
               helperText={errors?.title?.message}
               error={!!errors.title}
               inputRef={register({
@@ -270,8 +297,10 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
               FormHelperTextProps={{ classes: helperTestClasses }}
               label="Short Description"
               name="shortDescription"
+              placeholder="This description should entice people you have a look at the template you've created and consider using it"
               variant="outlined"
               rows="2"
+              rowsMax="6"
               fullWidth
               multiline
               helperText={errors?.shortDescription?.message}
@@ -290,7 +319,34 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
                 },
               })}
             />
-
+            <h2>Personalized message & description</h2>
+            <p>
+              This together with the &quot;What/How you&apos;ll do it&quot;
+              sections below will be sent to the guests of the person using this
+              template
+            </p>
+            <TextField
+              style={{ marginTop: '16px' }}
+              FormHelperTextProps={{ classes: helperTestClasses }}
+              label="Personalized message/description"
+              placeholder="E.g. Hi! Would you like to play some online chess... "
+              name="personalizedDescription"
+              variant="outlined"
+              rows="2"
+              rowsMax="6"
+              fullWidth
+              multiline
+              helperText={errors?.personalizedDescription?.message}
+              error={!!errors.personalizedDescription}
+              inputRef={register({
+                required: 'Add the personal touch that every invitation needs',
+                minLength: {
+                  value: 20,
+                  message:
+                    'Add a bit more to your description (min length 20 char)',
+                },
+              })}
+            />
             <h2>Number of participants</h2>
             <Controller
               name="participantRange"
@@ -308,38 +364,89 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
                 />
               }
             />
-            <TextField
-              style={{ marginTop: '16px' }}
-              FormHelperTextProps={{ classes: helperTestClasses }}
-              id="outlined-basic"
-              label="Main Aims & Outcomes (e.g. Community, Fun, Insightful, Exercise)"
-              variant="outlined"
-              fullWidth
-              name="mainAimsOutcomes"
-              helperText={errors?.title?.message}
-              error={!!errors.title}
-              inputRef={register({
-                required: true,
-              })}
-            />
-            <h2>What they&apos;ll do</h2>
+            <h2>Main Aims & Outcomes</h2>
             <p>
-              This description will be added to the google calendar invite which
-              will be sent guests
+              e.g. Community, Fun, Insightful, Exercise, Conversation Started
+            </p>
+            <Controller
+              as={<AddMainAimsOutcomes onChange={(value): any => value} />}
+              name="mainAimsOutcomes"
+              control={control}
+            />
+
+            <h2>Suggested Video/Voice Call Providers</h2>
+            <FormControl
+              style={{
+                width: '100%',
+                marginTop: '16px',
+              }}
+            >
+              <Controller
+                name="callProviders"
+                as={
+                  <Select
+                    multiple
+                    fullWidth
+                    variant="outlined"
+                    renderValue={(selected): any => (
+                      <div className={styles.chips}>
+                        {(selected as string[]).map((value) => (
+                          <Chip
+                            key={value}
+                            label={value}
+                            style={{ marginRight: '4px' }}
+                          />
+                        ))}
+                      </div>
+                    )}
+                  >
+                    {callProviders.map((provider: string): any => (
+                      <MenuItem key={provider} value={provider}>
+                        <Checkbox
+                          checked={
+                            provider
+                              ? (getValues(
+                                  'callProviders',
+                                ) as string[]).indexOf(provider) > -1
+                              : false
+                          }
+                        />
+                        <ListItemText primary={provider} />
+                      </MenuItem>
+                    ))}
+                  </Select>
+                }
+                rules={{ required: 'Please select a duration' }}
+                control={control}
+              />
+              <ErrorMessage
+                className={styles.errorMessage}
+                errors={errors}
+                name="callProviders"
+                as="p"
+              />
+            </FormControl>
+            <h2>What you&apos;ll do</h2>
+            <p>
+              Describe what exactly the participants will do while on the
+              video/voice call
             </p>
             <TextField
               name="whatYouDo"
               style={{ marginTop: '16px' }}
               FormHelperTextProps={{ classes: helperTestClasses }}
               id="outlined-basic"
-              label="Description"
+              label="What you'll do"
+              placeholder="e.g. Play a friendly chess match and see how comes out on top on chess.com"
               variant="outlined"
               rows="4"
+              rowsMax="14"
               fullWidth
               multiline
               helperText={errors?.whatYouDo?.message}
-              error={!!errors.title}
+              error={!!errors.whatYouDo}
               inputRef={register({
+                required: 'Add a little more info here',
                 minLength: {
                   value: 6,
                   message:
@@ -347,22 +454,24 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
                 },
               })}
             />
-            <h2>How they&apos;ll do it</h2>
+            <h2>How you&apos;ll do it</h2>
             <p>
-              Do the need to sign up of create an account? If it&apos;s an
-              online board game does some need to create an invite link
+              Do the participants have to do any preparation ahead of time (e.g.
+              download an app, prepare a topic)?
             </p>
             <TextField
               name="howYouDo"
               style={{ marginTop: '16px' }}
               id="outlined-basic"
-              label="Description"
+              label="How you'll do it"
               variant="outlined"
               rows="4"
+              rowsMax="14"
               fullWidth
               multiline
+              placeholder="e.g. 1) You'll need to create an account on chess.com 2) Just before the game, one of you will need to go to the following link..."
               helperText={errors?.howYouDo?.message}
-              error={!!errors.title}
+              error={!!errors.howYouDo}
               inputRef={register({
                 minLength: {
                   value: 6,
@@ -372,10 +481,7 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
               })}
             />
             <h2>Additional info for the host only</h2>
-            <p>
-              e.g. hosting guide, tools they could use, interaction guidelines,
-              specific preparation they need to do
-            </p>
+            <p></p>
             <TextField
               name="hostInstructions"
               style={{ marginTop: '16px' }}
@@ -383,8 +489,11 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
               label="Host Instructions"
               variant="outlined"
               rows="4"
+              rowsMax="14"
               fullWidth
               multiline
+              placeholder="e.g. hosting guide, tools they could use, interaction guidelines,
+              specific preparation they need to do"
               inputRef={register}
             />
           </form>

@@ -17,7 +17,7 @@ export const initialState: AuthState = {
   gatheringDraft: {
     title: '',
     templateId: '',
-    personalizedShortDescription: '',
+    personalizedDescription: '',
     whatYouDo: '',
     howYouDo: '',
     hostInstructions: '',
@@ -26,8 +26,8 @@ export const initialState: AuthState = {
     inviteeEmails: [],
     startTimestamp: new Date(),
     duration: '',
-    videoCallProvider: '',
-    videoCallUrl: '',
+    callProvider: '',
+    callUrl: '',
     createdTimestamp: new Date(),
   },
 }

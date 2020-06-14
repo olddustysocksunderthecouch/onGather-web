@@ -28,3 +28,14 @@ export const durations: Duration[] = [
   { timeMinutes: '90', timeFormatted: '1 hr 30min' },
   { timeMinutes: '120', timeFormatted: '2 hr' },
 ]
+
+export const callProviders: string[] = [
+  'Google Meet (Hangouts)',
+  'Zoom',
+  'Discord',
+  'WhatsApp',
+  'Skype',
+  'FaceTime',
+  'Facebook',
+  'Other',
+]

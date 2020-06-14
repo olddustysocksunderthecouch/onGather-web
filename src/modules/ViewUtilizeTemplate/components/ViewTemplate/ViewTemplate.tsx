@@ -27,8 +27,8 @@ export const ViewTemplate: React.FunctionComponent<Props> = ({
     : { timeMinutes: '0', timeFormatted: '0 min' }
 
   const formattedAimsOutcomes = template.mainAimsOutcomes
-    ?.split(',')
-    .join(' | ')
+    ? template.mainAimsOutcomes.join(' | ')
+    : ''
 
   const gatheringSize = template.participantRange
     ? `${template.participantRange[0]} - ${template.participantRange[1]} People`

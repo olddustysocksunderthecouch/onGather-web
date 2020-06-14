@@ -75,7 +75,7 @@ export const ImagePicker: React.FunctionComponent<Props> = ({
     <div className={styles.container}>
       <div className={styles.title}>
         <h3>
-          <a href="https://unsplash.com/">Images from Unsplashed</a>
+          <a href="https://unsplash.com/">Images from Unsplash</a>
         </h3>
         <button className={styles.closeIcon} onClick={handleCloseImagePicker}>
           <img src={CloseIcon} alt="close icon" />

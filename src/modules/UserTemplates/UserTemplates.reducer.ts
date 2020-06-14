@@ -12,9 +12,11 @@ export const initialState: UserTemplatesState = {
     category: '',
     title: '',
     shortDescription: '',
-    mainAimsOutcomes: '',
+    personalizedDescription: '',
+    mainAimsOutcomes: [],
     suggestedDuration: '',
     participantRange: [],
+    callProviders: [],
     imageUrls: {
       thumb: '',
       small: '',
@@ -62,6 +64,8 @@ export function reducer(
           category: action.payload.templateData.category,
           title: action.payload.templateData.title,
           shortDescription: action.payload.templateData.shortDescription,
+          personalizedDescription:
+            action.payload.templateData.personalizedDescription,
           mainAimsOutcomes: action.payload.templateData.mainAimsOutcomes,
           suggestedDuration: action.payload.templateData.suggestedDuration,
           imageUrls: action.payload.templateData.imageUrls,
@@ -69,6 +73,7 @@ export function reducer(
           whatYouDo: action.payload.templateData.whatYouDo,
           howYouDo: action.payload.templateData.howYouDo,
           participantRange: action.payload.templateData.participantRange,
+          callProviders: action.payload.templateData.callProviders,
         },
       }
     }

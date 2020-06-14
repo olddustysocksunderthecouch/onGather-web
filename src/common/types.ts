@@ -11,7 +11,9 @@ export interface TemplateFirestoreResult {
   category: string
   title: string
   shortDescription: string
-  mainAimsOutcomes: string
+  personalizedDescription: string
+  mainAimsOutcomes: string[]
+  callProviders: string[]
   suggestedDuration: string
   imageUrls: ImageUrls | null
   whatYouDo: string
@@ -30,7 +32,9 @@ export interface TemplateCreation {
   category: string
   title: string
   shortDescription: string
-  mainAimsOutcomes: string
+  personalizedDescription: string
+  mainAimsOutcomes: string[]
+  callProviders: string[]
   suggestedDuration: string
   imageUrls: ImageUrls | null
   hostInstructions: string
@@ -42,7 +46,7 @@ export interface TemplateCreation {
 export interface Gathering {
   templateId: string
   title: string
-  personalizedShortDescription: string
+  personalizedDescription: string
   whatYouDo: string
   howYouDo: string
   hostInstructions: string
@@ -51,9 +55,13 @@ export interface Gathering {
   inviteeEmails: string[]
   startTimestamp: Date
   duration: string
-  videoCallProvider: string
-  videoCallUrl: string
+  callProvider: string
+  callUrl: string
   createdTimestamp: Date
+}
+
+export interface CallProvider {
+  provider: string
 }
 
 export interface Duration {

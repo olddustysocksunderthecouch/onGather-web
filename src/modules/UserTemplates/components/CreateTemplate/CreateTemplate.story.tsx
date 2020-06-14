@@ -20,13 +20,15 @@ export const defaultState = (): React.FunctionComponentElement<Props> => (
       category: '',
       title: '',
       shortDescription: '',
-      mainAimsOutcomes: '',
+      personalizedDescription: '',
+      mainAimsOutcomes: ['Great Conversation', 'Gain Insights', 'Book Sharing'],
       suggestedDuration: '',
       imageUrls: '' as any,
       hostInstructions: '',
       whatYouDo: '',
       howYouDo: '',
       participantRange: [1, 2],
+      callProviders: [],
     }}
     handleFetchImages={(): void => undefined}
     areNextImagesLoading={true}

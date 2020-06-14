@@ -4,7 +4,7 @@ import { AnyAction } from 'redux'
 import {
   signInGoogle,
   signOutGoogle,
-} from '../../../../modules/App/App.actions'
+} from '../../../../modules/Auth/Auth.actions'
 import { RootState } from '../../../redux/types'
 import { selectors as firebaseSelectors } from '../../firebase'
 import { TopNavLayout } from '../components/TopNavLayout'
