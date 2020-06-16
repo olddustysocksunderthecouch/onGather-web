@@ -7,7 +7,7 @@ export default {
 }
 
 export const defaultState = (): React.ReactElement => (
-  <AddParticipants handleEmailsEntered={(): void => undefined} />
+  <AddParticipants onChange={(): void => undefined} value={[]} />
 )
 
 defaultState.story = {

@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect'
 import { selectIsAuthenticated } from '../../common/modules/firebase/Firebase.selectors'
 import { RootState } from '../../common/redux/types'
-import { Gathering } from '../../common/types'
+import { GatheringDraft } from '../../common/types'
 import { AuthState, CalendarEventScopeStatus } from './types'
 
 export const selectAuth = (state: RootState): AuthState => state.auth
@@ -11,15 +11,14 @@ export const selectCalendarEventScopeStatus = createSelector(
   (auth: AuthState): CalendarEventScopeStatus => auth.calendarEventScopeStatus,
 )
 
-export const selectTemplateEditSend = createSelector(
+export const selectGatheringDraft = createSelector(
   selectAuth,
-  (auth: AuthState): Gathering => auth.gatheringDraft,
+  (auth: AuthState): GatheringDraft => auth.gatheringDraft,
 )
 
-export const selectEditSendTemplateId = createSelector(
-  selectTemplateEditSend,
-  (editSendTemplateDraft: Gathering): string =>
-    editSendTemplateDraft.templateId,
+export const selectDraftGatheringTemplateId = createSelector(
+  selectGatheringDraft,
+  (gatheringDraft: GatheringDraft): string => gatheringDraft.templateId,
 )
 
 export const selectShouldFetchScope = createSelector(

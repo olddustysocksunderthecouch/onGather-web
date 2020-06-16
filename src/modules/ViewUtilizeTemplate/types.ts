@@ -1,28 +1,27 @@
+import { Gathering } from '../../common/types'
+
 export enum ViewUseTemplateActions {
-  UtilizeTemplate = '/UserTemplates/UTILIZE_TEMPLATE',
-  UtilizeTemplateSuccess = '/UserTemplates/UTILIZE_TEMPLATE_SUCCESS',
-  UtilizeTemplateFailure = '/UserTemplates/UTILIZE_TEMPLATE_FAILURE',
+  CreateGathering = '/UserTemplates/CREATE_GATHERING',
+  CreateGatheringSuccess = '/UserTemplates/CREATE_GATHERING_SUCCESS',
+  CreateGatheringFailure = '/UserTemplates/CREATE_GATHERING_FAILURE',
 }
 
-export interface UtilizeTemplateAction {
-  type: typeof ViewUseTemplateActions.UtilizeTemplate
+export interface CreateGatheringAction {
+  type: typeof ViewUseTemplateActions.CreateGathering
+  payload: { gathering: Gathering }
 }
 
-export interface UtilizeTemplateSuccessAction {
-  type: typeof ViewUseTemplateActions.UtilizeTemplateSuccess
-  payload: {
-    templateId: string
-  }
+export interface CreateGatheringSuccessAction {
+  type: typeof ViewUseTemplateActions.CreateGatheringSuccess
+  payload: { templateId: string }
 }
 
-export interface UtilizeTemplateFailureAction {
-  type: typeof ViewUseTemplateActions.UtilizeTemplateFailure
-  payload: {
-    message: string
-  }
+export interface CreateGatheringFailureAction {
+  type: typeof ViewUseTemplateActions.CreateGatheringFailure
+  payload: { message: string }
 }
 
 export type ViewUseTemplateActionTypes =
-  | UtilizeTemplateAction
-  | UtilizeTemplateSuccessAction
-  | UtilizeTemplateFailureAction
+  | CreateGatheringAction
+  | CreateGatheringSuccessAction
+  | CreateGatheringFailureAction

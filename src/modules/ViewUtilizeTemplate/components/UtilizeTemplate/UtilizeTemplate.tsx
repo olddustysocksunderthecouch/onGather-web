@@ -16,22 +16,29 @@ import {
 } from '@material-ui/pickers'
 import React, { useEffect, useState } from 'react'
 import { Controller, ErrorMessage, useForm } from 'react-hook-form'
-import { DevTool } from 'react-hook-form-devtools'
 import { AuthModal } from '../../../../common/components/AuthModal'
 import { durations } from '../../../../common/constants'
-import { Duration, Template, Gathering } from '../../../../common/types'
+import {
+  Duration,
+  Gathering,
+  GatheringDraft,
+  Template,
+} from '../../../../common/types'
+import { mergeDateAndTime } from '../../../../common/utils'
 import { AddParticipants } from '../AddParticipants'
 import { PermissionRationalModal } from '../PermissionRationalModal'
 import { SendingConfirmationModal } from '../SendingConfirmationModal'
 import styles from './UtilizeTemplate.module.scss'
 
 export interface Props {
+  gatheringDraft: GatheringDraft
   template: Template
-  handleUseTemplateClicked: () => void
+  fromState: boolean
   scopeIsGranted: boolean
   isAuthenticated: boolean
   handleContinueWithGoogleClicked: () => void
-  handleScopeRequest: (templateEditSend: Gathering) => void
+  handleScopeRequest: (gathering: GatheringDraft) => void
+  handleSendGatheringInvite: (gathering: Gathering) => void
 }
 
 const theme = createMuiTheme({
@@ -48,101 +55,83 @@ const helperTextStyles = makeStyles(() => ({
   },
 }))
 
-const event = {
-  summary: 'Google I/O 2015',
-  location: '800 Howard St., San Francisco, CA 94103',
-  description: "A chance to hear more about Google's developer products.",
-  start: {
-    dateTime: '2015-05-28T09:00:00-07:00',
-    timeZone: 'America/Los_Angeles',
-  },
-  end: {
-    dateTime: '2015-05-28T17:00:00-07:00',
-    timeZone: 'America/Los_Angeles',
-  },
-  attendees: [{ email: 'adrian.bunge@gmail.com' }],
-  reminders: {
-    useDefault: false,
-    overrides: [
-      { method: 'email', minutes: 24 * 60 },
-      { method: 'popup', minutes: 10 },
-    ],
-  },
-}
-
 export const UtilizeTemplate: React.FunctionComponent<Props> = ({
   template,
-  handleUseTemplateClicked,
+  fromState,
+  gatheringDraft,
   scopeIsGranted,
   isAuthenticated,
   handleScopeRequest,
   handleContinueWithGoogleClicked,
+  handleSendGatheringInvite,
 }) => {
-  const {
-    register,
-    errors,
-    handleSubmit,
-    control,
-    reset,
-    watch,
-    getValues,
-  } = useForm({
+  const { register, errors, control, reset, watch } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
   })
 
   useEffect(() => {
-    const renderWhatYouDo = template.whatYouDo
-      ? `\n\nWhat you'll do \n\n${template.whatYouDo}`
-      : ''
-    const renderHowYouDo = template.howYouDo
-      ? `\n\nHow you'll do it \n\n${template.howYouDo}`
-      : ''
-    const renderHostInstructions = template.hostInstructions
-      ? `\n\nHost Instructions Link: \n\n https://ongather.com/view-template/${template.templateId}`
-      : ''
-    const inviteDescription = template.shortDescription
-      ? `${template.shortDescription}${renderWhatYouDo}${renderHowYouDo}${renderHostInstructions}`
-      : ''
-
-    reset({
-      title: template.title,
-      description: inviteDescription,
-      duration: template.suggestedDuration,
-    })
-  }, [reset, template])
+    if (fromState) {
+      reset({
+        title: gatheringDraft.title,
+        whatYouDo: gatheringDraft.whatYouDo,
+        howYouDo: gatheringDraft.howYouDo,
+        duration: gatheringDraft.duration,
+        personalizedDescription: gatheringDraft.personalizedDescription,
+      })
+    } else {
+      reset({
+        title: template.title,
+        whatYouDo: template.whatYouDo,
+        howYouDo: template.howYouDo,
+        duration: template.suggestedDuration,
+        personalizedDescription: template.personalizedDescription,
+      })
+    }
+  }, [reset, template, fromState])
 
   const watchAllFields = watch()
 
   const helperTestClasses = helperTextStyles()
-  const onSubmit = (): void => {
-    // handlePublishClicked({
-    //   ...watchAllFields,
-    //   // templateId: selectedTemplateId,
-    //   // imageUrls: selectedImages,
-    // })
-  }
-  const [date, setDate] = useState(new Date())
-  const [time, setTime] = useState(new Date())
 
-  const handleEmailsEntered = (emailEntered: string[]) => {
-    console.log('emailEntered', emailEntered)
-  }
+  const [dateSelected, setDateSelected] = useState(new Date())
+  const [timeSelected, setTimeSelected] = useState(new Date())
 
   const handleScopeRequestClicked = (): void => {
     handleScopeRequest({
-      ...watchAllFields,
       templateId: template.templateId,
-      organizerUid: 'some uid',
-      organizerEmail: '',
-      inviteeEmails: [''],
-      startTimestamp: new Date(),
-      duration: '',
-      videoCallProvider: '',
-      videoCallUrl: '',
-      category: '',
-      createdTimestamp: new Date(),
-    } as any)
+      title: watchAllFields.title,
+      personalizedDescription: watchAllFields.personalizedDescription,
+      whatYouDo: watchAllFields.whatYouDo,
+      howYouDo: watchAllFields.howYouDo,
+      inviteeEmails: watchAllFields.inviteeEmails,
+      startTimestamp: mergeDateAndTime(
+        dateSelected,
+        timeSelected,
+      ).toISOString(),
+      duration: watchAllFields.duration,
+      callProvider: '',
+      callUrl: '',
+    })
+  }
+  const handleSendGatheringInviteClicked = (): void => {
+    handleSendGatheringInvite({
+      templateId: template.templateId,
+      title: watchAllFields.title,
+      personalizedDescription: watchAllFields.personalizedDescription,
+      whatYouDo: watchAllFields.whatYouDo,
+      howYouDo: watchAllFields.howYouDo,
+      inviteeEmails: watchAllFields.inviteeEmails,
+      startTimestamp: mergeDateAndTime(
+        dateSelected,
+        timeSelected,
+      ).toISOString(),
+      duration: watchAllFields.duration,
+      callProvider: '',
+      callUrl: '',
+      imageUrls: template.imageUrls,
+      hostInstructions: template.hostInstructions,
+    })
   }
 
   const [authModalIsVisible, setAuthModalVisible] = useState(false)
@@ -185,7 +174,7 @@ export const UtilizeTemplate: React.FunctionComponent<Props> = ({
       {confirmModalIsVisible && (
         <div className={styles.modal}>
           <SendingConfirmationModal
-            handleContinueWithClicked={(): void => undefined}
+            handleContinueWithClicked={handleSendGatheringInviteClicked}
             handleAuthModalClose={(): void => setConfirmModalIsVisible(false)}
           />
         </div>
@@ -194,28 +183,16 @@ export const UtilizeTemplate: React.FunctionComponent<Props> = ({
         <header>
           <div className={styles.headerTop}>
             <h1>Edit & Send Invites</h1>
-            <div className={styles.buttonContainer}>
-              <input
-                type="submit"
-                form="createTemplateForm"
-                className={styles.publish}
-                value="Publish"
-              />
-            </div>
           </div>
           <p>
             Hey! Now that you&apos;re here, describe something that others could
             do on a video call.
           </p>
         </header>
-        <DevTool control={control} />
+        {/* <DevTool control={control} /> */}
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <ThemeProvider theme={theme}>
-            <form
-              id="createTemplateForm"
-              className={styles.createForm}
-              onSubmit={handleSubmit(onSubmit)}
-            >
+            <form id="utilizeTemplateForm" className={styles.createForm}>
               <TextField
                 style={{ marginTop: '16px', maxWidth: '688px' }}
                 fullWidth
@@ -223,7 +200,7 @@ export const UtilizeTemplate: React.FunctionComponent<Props> = ({
                 label="Title"
                 name="title"
                 variant="outlined"
-                InputLabelProps={{ shrink: getValues('title') }}
+                InputLabelProps={{ shrink: true }}
                 helperText={errors?.title?.message}
                 error={!!errors.title}
                 inputRef={register({
@@ -244,29 +221,33 @@ export const UtilizeTemplate: React.FunctionComponent<Props> = ({
                 variant="inline"
                 label="Date"
                 inputVariant="outlined"
-                value={date}
+                value={dateSelected}
                 onChange={(selectedDate: any): void =>
-                  setDate(new Date(selectedDate))
+                  setDateSelected(new Date(selectedDate))
                 }
               />
               <div className={styles.timeContainer}>
                 <TimePicker
+                  style={{
+                    width: 'calc(50% - 4px)',
+                    minWidth: '250px',
+                    marginRight: '8px',
+                  }}
                   disableToolbar
                   variant="inline"
                   label="Start Time"
                   minutesStep={5}
                   ampm={false}
                   inputVariant="outlined"
-                  value={time}
+                  value={timeSelected}
                   onChange={(selectedDate: any): void =>
-                    setTime(new Date(selectedDate))
+                    setTimeSelected(new Date(selectedDate))
                   }
                 />
                 <FormControl
                   style={{
                     width: 'calc(50% - 4px)',
-                    // minWidth: '250px',
-                    // marginTop: '16px',
+                    minWidth: '250px',
                   }}
                   variant="outlined"
                 >
@@ -299,34 +280,87 @@ export const UtilizeTemplate: React.FunctionComponent<Props> = ({
                   />
                 </FormControl>
               </div>
-              <AddParticipants
-                handleEmailsEntered={(emailEntered): void =>
-                  console.log('emailEntered', emailEntered)
-                }
-              />
 
+              <Controller
+                name="inviteeEmails"
+                as={
+                  <AddParticipants
+                    onChange={(value): any => value}
+                    error={!!errors.attendeeEmails}
+                  />
+                }
+                rules={{
+                  validate: (value): boolean | string =>
+                    value.length > 1 || 'error',
+                }}
+                control={control}
+              />
+              <h2>Invitation Description</h2>
               <TextField
                 style={{ marginTop: '16px' }}
                 FormHelperTextProps={{ classes: helperTestClasses }}
-                label="Description"
-                name="description"
+                label="Personalized message"
+                placeholder="E.g. Hey! Would you like to play some online chess... "
+                name="personalizedDescription"
                 variant="outlined"
+                rows="2"
+                rowsMax="6"
                 fullWidth
                 multiline
-                InputLabelProps={{ shrink: getValues('description') }}
-                helperText={errors?.description?.message}
-                error={!!errors.description}
+                InputLabelProps={{ shrink: true }}
+                helperText={errors?.personalizedDescription?.message}
+                error={!!errors.personalizedDescription}
                 inputRef={register({
-                  required: 'Please add a short description',
+                  required:
+                    'Add the personal touch that every invitation needs',
                   minLength: {
                     value: 20,
                     message:
                       'Add a bit more to your description (min length 20 char)',
                   },
-                  maxLength: {
-                    value: 187,
+                })}
+              />
+              <TextField
+                name="whatYouDo"
+                style={{ marginTop: '16px' }}
+                FormHelperTextProps={{ classes: helperTestClasses }}
+                label="What you'll do"
+                InputLabelProps={{ shrink: true }}
+                placeholder="e.g. Play a friendly chess match and see how comes out on top on chess.com"
+                variant="outlined"
+                rows="4"
+                rowsMax="14"
+                fullWidth
+                multiline
+                helperText={errors?.whatYouDo?.message}
+                error={!!errors.whatYouDo}
+                inputRef={register({
+                  required: 'Add a little more info here',
+                  minLength: {
+                    value: 6,
                     message:
-                      'Please shorten your description (max length 187 char)',
+                      'Add a little something here at least (min length 24 char)',
+                  },
+                })}
+              />
+              <TextField
+                name="howYouDo"
+                style={{ marginTop: '16px' }}
+                label="How you'll do it"
+                variant="outlined"
+                rows="4"
+                rowsMax="14"
+                fullWidth
+                multiline
+                placeholder="e.g. 1) You'll need to create an account on chess.com 2) Just before the game, one of you will need to go to the following link..."
+                InputLabelProps={{ shrink: true }}
+                helperText={errors?.howYouDo?.message}
+                error={!!errors.howYouDo}
+                inputRef={register({
+                  minLength: {
+                    value: 6,
+                    message:
+                      'Add a little something here at least (min length 24 char)',
                   },
                 })}
               />

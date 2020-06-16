@@ -14,6 +14,7 @@ import ListItemText from '@material-ui/core/ListItemText'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import React, { Fragment, useState } from 'react'
 import { Controller, ErrorMessage, useForm } from 'react-hook-form'
+import { DevTool } from 'react-hook-form-devtools'
 import {
   callProviders,
   categories,
@@ -75,41 +76,35 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
     initialTemplateEditorData.imageUrls,
   )
 
-  const {
-    register,
-    errors,
-    handleSubmit,
-    control,
-    watch,
-    setValue,
-    getValues,
-  } = useForm({
-    mode: 'onSubmit',
-    reValidateMode: 'onChange',
-    defaultValues: {
-      category: initialTemplateEditorData.category,
-      title: initialTemplateEditorData.title,
-      shortDescription: initialTemplateEditorData.shortDescription,
-      mainAimsOutcomes: initialTemplateEditorData.mainAimsOutcomes,
-      suggestedDuration: initialTemplateEditorData.suggestedDuration,
-      personalizedDescription:
-        initialTemplateEditorData.personalizedDescription,
-      participantRange:
-        initialTemplateEditorData.participantRange &&
-        initialTemplateEditorData.participantRange.length > 0
-          ? initialTemplateEditorData.participantRange
-          : [2, 4],
-      hostInstructions: initialTemplateEditorData.hostInstructions,
-      whatYouDo: initialTemplateEditorData.whatYouDo,
-      howYouDo: initialTemplateEditorData.howYouDo,
-      imageUrl: initialTemplateEditorData.imageUrls,
-      callProviders:
-        initialTemplateEditorData.callProviders &&
-        initialTemplateEditorData.callProviders.length > 0
-          ? initialTemplateEditorData.callProviders
-          : ['Google Meet (Hangouts)'],
+  const { register, errors, handleSubmit, control, watch, getValues } = useForm(
+    {
+      mode: 'onSubmit',
+      reValidateMode: 'onChange',
+      defaultValues: {
+        category: initialTemplateEditorData.category,
+        title: initialTemplateEditorData.title,
+        shortDescription: initialTemplateEditorData.shortDescription,
+        mainAimsOutcomes: initialTemplateEditorData.mainAimsOutcomes,
+        suggestedDuration: initialTemplateEditorData.suggestedDuration,
+        personalizedDescription:
+          initialTemplateEditorData.personalizedDescription,
+        participantRange:
+          initialTemplateEditorData.participantRange &&
+          initialTemplateEditorData.participantRange.length > 0
+            ? initialTemplateEditorData.participantRange
+            : [2, 4],
+        hostInstructions: initialTemplateEditorData.hostInstructions,
+        whatYouDo: initialTemplateEditorData.whatYouDo,
+        howYouDo: initialTemplateEditorData.howYouDo,
+        imageUrl: initialTemplateEditorData.imageUrls,
+        callProviders:
+          initialTemplateEditorData.callProviders &&
+          initialTemplateEditorData.callProviders.length > 0
+            ? initialTemplateEditorData.callProviders
+            : ['Google Meet (Hangouts)'],
+      },
     },
-  })
+  )
 
   const watchAllFields = watch()
 
@@ -162,7 +157,7 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
             and it will be made public in the Template Browser.
           </p>
         </header>
-        {/* <DevTool control={control} /> */}
+        <DevTool control={control} />
 
         <div
           className={styles.imageBox}
@@ -369,8 +364,17 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
               e.g. Community, Fun, Insightful, Exercise, Conversation Started
             </p>
             <Controller
-              as={<AddMainAimsOutcomes onChange={(value): any => value} />}
+              as={
+                <AddMainAimsOutcomes
+                  onChange={(value): any => value}
+                  error={!!errors.mainAimsOutcomes}
+                />
+              }
               name="mainAimsOutcomes"
+              rules={{
+                validate: (value): boolean | string =>
+                  value.length > 1 || 'error',
+              }}
               control={control}
             />
 

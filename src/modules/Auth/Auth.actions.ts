@@ -22,6 +22,7 @@ import {
   SignOutGoogleAction,
   SignOutGoogleSuccessAction,
   SignOutGoogleFailureAction,
+  RequestScopeErrorAction,
 } from './types'
 
 export const signInGoogle = (): SignInGoogleAction => ({
@@ -98,17 +99,23 @@ export const signInAndRequestScope = (
   payload: { templateEditSend },
 })
 
-export const requestScope = (
-  templateEditSend: Gathering,
-): RequestScopeAction => ({
+export const requestScope = (gathering: Gathering): RequestScopeAction => ({
   type: AuthActions.RequestScope,
-  payload: { templateEditSend },
+  payload: { gathering },
 })
 
 export const requestingScope = (): RequestingScopeAction => ({
   type: AuthActions.RequestingScope,
 })
 
+export const requestScopeError = (
+  message: string,
+): RequestScopeErrorAction => ({
+  type: AuthActions.RequestScopeError,
+  payload: {
+    message,
+  },
+})
 export const generateAuthUrl = (): GenerateAuthUrlAction => ({
   type: AuthActions.GenerateAuthUrl,
 })

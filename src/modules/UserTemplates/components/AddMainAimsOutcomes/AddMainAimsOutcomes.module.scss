@@ -2,7 +2,7 @@
 @import 'src/common/styles/variables';
 @import 'src/common/styles/mixins';
 
-.addMainAimsOutcomesContainer {
+.containerStyle {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -12,47 +12,21 @@
   margin-top: 16px;
   padding: 16px;
 
+  &.containerStyleError {
+    border: 1px solid $color-red;
+  }
+
   .mainAimOutcomeList {
     padding: 8px 0px;
     display: flex;
     flex-wrap: wrap;
-
-    .mainAimOutcomeListItem {
-      color: rgba(0, 0, 0, 0.87);
-      height: 32px;
-      margin: 4px 3px;
-      display: inline-flex;
-      font-size: 0.8125rem;
-      line-height: 1rem;
-      box-sizing: border-box;
-      align-items: center;
-      white-space: nowrap;
-      border-radius: 16px;
-      vertical-align: middle;
-      justify-content: center;
-      background-color: #e0e0e0;
-      .chipLabel {
-        overflow: hidden;
-        white-space: nowrap;
-        padding-left: 12px;
-        padding-right: 12px;
-        text-overflow: ellipsis;
-      }
-      .chipDeleteIcon {
-        fill: currentColor;
-        display: inline-block;
-        color: rgba(0, 0, 0, 0.26);
-        &:hover {
-          color:rgba(0, 0, 0, 0.4);
-        }
-        flex-shrink: 0;
-        user-select: none;
-        width: 22px;
-        cursor: pointer;
-        height: 22px;
-        margin: 0 5px 0 -6px;
-        -webkit-tap-highlight-color: transparent;
-      }
-    }
   }
+}
+.errorTextAims {
+  font-size: 12px;
+  font-family: 'Raleway';
+  font-weight: 400;
+  color: $color-red;
+  margin-left: 14px;
+  margin-top: 8px;
 }

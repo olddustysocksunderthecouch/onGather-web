@@ -20,15 +20,11 @@ export const initialState: AuthState = {
     personalizedDescription: '',
     whatYouDo: '',
     howYouDo: '',
-    hostInstructions: '',
-    organizerUid: '',
-    organizerEmail: '',
     inviteeEmails: [],
-    startTimestamp: new Date(),
+    startTimestamp: new Date().toISOString(),
     duration: '',
     callProvider: '',
     callUrl: '',
-    createdTimestamp: new Date(),
   },
 }
 
@@ -86,7 +82,13 @@ export function reducer(
       return {
         ...state,
         calendarEventScopeStatus: CalendarEventScopeStatus.IsRequestingScope,
-        gatheringDraft: action.payload.templateEditSend,
+        gatheringDraft: action.payload.gathering,
+      }
+    case AuthActions.RequestScopeError:
+      return {
+        ...state,
+        calendarEventScopeStatus: CalendarEventScopeStatus.Error,
+        error: action.payload.message,
       }
     case AuthActions.PurgeAuthState:
       return {

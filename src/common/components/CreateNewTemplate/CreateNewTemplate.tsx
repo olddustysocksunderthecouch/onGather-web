@@ -11,7 +11,7 @@ export const CreateNewTemplate: React.FunctionComponent<Props> = ({
 }) => (
   <Link
     className={styles.createNewTemplate}
-    to="create-template"
+    to="user-templates"
     onClick={handleCreateNewClick}
   >
     <button>
@@ -27,7 +27,7 @@ export const CreateNewTemplate: React.FunctionComponent<Props> = ({
           fill="#E0E0E0"
         />
       </svg>
-      Create a new template
+      Create a template from scratch
     </button>
   </Link>
 )

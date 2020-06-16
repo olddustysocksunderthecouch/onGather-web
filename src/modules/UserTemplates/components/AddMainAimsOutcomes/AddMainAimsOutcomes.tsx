@@ -5,12 +5,14 @@ import {
   ThemeProvider,
 } from '@material-ui/core'
 import { grey } from '@material-ui/core/colors'
+import classes from 'classnames'
 import React, { useState } from 'react'
 import styles from './AddMainAimsOutcomes.module.scss'
 
 export interface Props {
   value?: string[]
-  onChange: (handleEmailsEntered: string[]) => void
+  onChange: (mainAimsOutcomesEntered: string[]) => void
+  error?: boolean
 }
 
 const theme = createMuiTheme({
@@ -21,10 +23,11 @@ const theme = createMuiTheme({
 export const AddMainAimsOutcomes: React.FunctionComponent<Props> = ({
   onChange,
   value = [],
+  error = false,
 }) => {
   const [mainAimsOutcomes, setMainAimsOutcomes] = useState<string[]>(value)
   const [currentMainAimOutcome, setCurrentMainAimOutcome] = useState('')
-  const [error, setError] = useState('')
+  const [inputError, setInputError] = useState('')
 
   const handleValidMainAimOutcomeEntered = (): void => {
     if (!mainAimsOutcomes.includes(currentMainAimOutcome)) {
@@ -32,7 +35,7 @@ export const AddMainAimsOutcomes: React.FunctionComponent<Props> = ({
       onChange([currentMainAimOutcome, ...mainAimsOutcomes])
       setCurrentMainAimOutcome('')
     } else {
-      setError("You've already entered this email address")
+      setInputError("You've already entered this main aim / outcome")
     }
   }
   const handleMainAimOutcomeDelete = (mainAimOutcomeToDelete: string): void => {
@@ -42,17 +45,21 @@ export const AddMainAimsOutcomes: React.FunctionComponent<Props> = ({
     setMainAimsOutcomes(newState)
     onChange(newState)
   }
-
+  const containerStyles = (): object => {
+    return {
+      [styles.containerStyle]: true,
+      [styles.containerStyleError]: error,
+    }
+  }
   return (
     <ThemeProvider theme={theme}>
-      <form className={styles.addMainAimsOutcomesContainer}>
+      <div className={classes(containerStyles())}>
         <TextField
           style={{ marginTop: '0px' }}
           fullWidth
           variant="standard"
           placeholder="+ Press enter after each main aim or outcome"
           value={currentMainAimOutcome}
-          autoComplete="email"
           onChange={(event): void =>
             setCurrentMainAimOutcome(event.target.value)
           }
@@ -60,14 +67,14 @@ export const AddMainAimsOutcomes: React.FunctionComponent<Props> = ({
             if (event.key === 'Enter') {
               currentMainAimOutcome.length > 1
                 ? handleValidMainAimOutcomeEntered()
-                : setError('Invalid aim / outcome')
+                : setInputError('Invalid aim / outcome')
               event.preventDefault()
             } else {
-              setError('')
+              setInputError('')
             }
           }}
-          helperText={error}
-          error={!!error}
+          helperText={inputError}
+          error={!!inputError}
         />
         <ul className={styles.mainAimOutcomeList}>
           {mainAimsOutcomes.map((mainAimOutcome: string) => {
@@ -85,7 +92,12 @@ export const AddMainAimsOutcomes: React.FunctionComponent<Props> = ({
             )
           })}
         </ul>
-      </form>
+      </div>
+      {error && (
+        <div className={styles.errorTextAims}>
+          Please enter at least 2 main aims or outcomes
+        </div>
+      )}
     </ThemeProvider>
   )
 }

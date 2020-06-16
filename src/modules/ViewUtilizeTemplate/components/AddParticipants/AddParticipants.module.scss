@@ -2,7 +2,7 @@
 @import 'src/common/styles/variables';
 @import 'src/common/styles/mixins';
 
-.addParticipantsContainer {
+.containerStyle {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -10,16 +10,21 @@
   border: 1px solid $color-light-gray;
   border-radius: 8px;
   margin-top: 16px;
-  padding: 24px;
-
-  .emailList {
-    padding: 16px 8px;
-    .emailListItem {
-      padding: 16px 0px;
-      @include font-body;
-      &:hover {
-        background-color: rgba($color: $color-dove-gray, $alpha: 0.1);
-      }
-    }
+  padding: 16px;
+  &.containerStyleError {
+    border: 1px solid $color-red;
   }
+  .emailList {
+    padding: 8px 0px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+.errorText {
+  font-size: 12px;
+  font-family: 'Raleway';
+  font-weight: 400;
+  color: $color-red;
+  margin-left: 14px;
+  margin-top: 8px;
 }

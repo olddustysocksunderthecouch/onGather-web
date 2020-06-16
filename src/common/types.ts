@@ -43,21 +43,22 @@ export interface TemplateCreation {
   participantRange: number[]
 }
 
-export interface Gathering {
+export interface GatheringDraft {
   templateId: string
   title: string
   personalizedDescription: string
   whatYouDo: string
   howYouDo: string
-  hostInstructions: string
-  organizerUid: string
-  organizerEmail: string
   inviteeEmails: string[]
-  startTimestamp: Date
+  startTimestamp: string
   duration: string
   callProvider: string
-  callUrl: string
-  createdTimestamp: Date
+  callUrl?: string
+}
+
+export interface Gathering extends GatheringDraft {
+  imageUrls: ImageUrls | null
+  hostInstructions: string
 }
 
 export interface CallProvider {

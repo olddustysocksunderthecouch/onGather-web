@@ -5,40 +5,37 @@ import { from, Observable, of } from 'rxjs'
 import { catchError, flatMap, withLatestFrom } from 'rxjs/operators'
 import { RootState } from '../../common/redux/types'
 import {
-  UtilizeTemplateAction,
-  UtilizeTemplateFailureAction,
-  UtilizeTemplateSuccessAction,
+  CreateGatheringAction,
+  CreateGatheringFailureAction,
+  CreateGatheringSuccessAction,
   ViewUseTemplateActions,
 } from './types'
 import {
-  utilizeTemplateFailure,
-  utilizeTemplateSuccess,
+  createGatheringFailure,
+  createGatheringSuccess,
 } from './ViewUseTemplate.actions'
 
-export const generateAuthUrlEpic$ = (
-  action$: ActionsObservable<UtilizeTemplateAction>,
+export const createGatheringEpic$ = (
+  action$: ActionsObservable<CreateGatheringAction>,
   state$: StateObservable<RootState>,
-): Observable<UtilizeTemplateSuccessAction | UtilizeTemplateFailureAction> =>
+): Observable<CreateGatheringSuccessAction | CreateGatheringFailureAction> =>
   action$.pipe(
-    ofType<UtilizeTemplateAction>(ViewUseTemplateActions.UtilizeTemplate),
+    ofType<CreateGatheringAction>(ViewUseTemplateActions.CreateGathering),
     withLatestFrom(state$),
     flatMap(([action, state]) =>
       from(
-        functions().httpsCallable('gatherings-createGathering')({
-          eventName: 'Firebase Event',
-          description: 'This is a sample description',
-          startTime: '2020-6-01T10:00:00',
-          endTime: '2020-6-01T13:00:00',
-        }),
+        functions().httpsCallable('gatherings-createGathering')(
+          action.payload.gathering,
+        ),
       ).pipe(
         flatMap(
-          (result: any): Observable<UtilizeTemplateSuccessAction> => {
-            return of(utilizeTemplateSuccess(result))
+          (result: any): Observable<CreateGatheringSuccessAction> => {
+            return of(createGatheringSuccess(result))
           },
         ),
         catchError(
-          (error: Error): Observable<UtilizeTemplateFailureAction> =>
-            of(utilizeTemplateFailure(error.message)),
+          (error: Error): Observable<CreateGatheringFailureAction> =>
+            of(createGatheringFailure(error.message)),
         ),
       ),
     ),

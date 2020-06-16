@@ -8,7 +8,6 @@ import { ConnectedReduxProps, RootState } from '../../../common/redux/types'
 import { Template } from '../../../common/types'
 import { ViewTemplate } from '../components/ViewTemplate'
 import { firebaseSelectors as firebaseViewUseTemplateSelectors } from '../index'
-import { utilizeTemplate } from '../ViewUseTemplate.actions'
 
 interface Props extends ConnectedReduxProps<AnyAction> {
   template: Template
@@ -45,7 +44,7 @@ const mapStateToProps = (state: RootState): any => ({
 })
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): any => ({
-  handleUseTemplateClicked: (): void => dispatch(utilizeTemplate()),
+  // handleUseTemplateClicked: (): void => dispatch(utilizeTemplate()),
 })
 
 export default connect(

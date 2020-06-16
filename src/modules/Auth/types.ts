@@ -1,4 +1,4 @@
-import { Gathering, User } from '../../common/types'
+import { Gathering, User, GatheringDraft } from '../../common/types'
 
 export enum CalendarEventScopeStatus {
   NotFetched = 'NotFetched',
@@ -12,7 +12,7 @@ export enum CalendarEventScopeStatus {
 }
 
 export interface AuthState {
-  gatheringDraft: Gathering
+  gatheringDraft: GatheringDraft
   calendarEventScopeStatus: CalendarEventScopeStatus
   error: string
   user: User
@@ -35,6 +35,8 @@ export enum AuthActions {
   GenerateAuthUrlFailure = '/Auth/GENERATE_AUTH_URL_FAILURE',
   SignInAndRequestScope = '/Auth/SIGN_IN_AND_REQUEST_SCOPE',
   RequestScope = '/Auth/REQUEST_SCOPE',
+  RequestScopeError = '/Auth/REQUEST_SCOPE_ERROR',
+  RequestScopeSuccess = '/Auth/REQUEST_SCOPE_SUCCESS',
   RequestingScope = '/Auth/REQUESTING_SCOPE',
   SendCode = '/Auth/SEND_CODE',
   SendCodeSuccess = '/Auth/SEND_CODE_SUCCESS',
@@ -122,7 +124,12 @@ export interface SendCodeAction {
 
 export interface RequestScopeAction {
   type: typeof AuthActions.RequestScope
-  payload: { templateEditSend: Gathering }
+  payload: { gathering: Gathering }
+}
+
+export interface RequestScopeErrorAction {
+  type: typeof AuthActions.RequestScopeError
+  payload: { message: string }
 }
 
 export interface RequestingScopeAction {
@@ -166,6 +173,7 @@ export type AuthActionTypes =
   | SignInAndRequestScopeAction
   | RequestScopeAction
   | RequestingScopeAction
+  | RequestScopeErrorAction
   | SendCodeAction
   | SendCodeSuccessAction
   | SendCodeFailureAction

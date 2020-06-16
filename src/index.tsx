@@ -93,7 +93,6 @@ ReactDOM.render(
               component={ViewTemplateContainer}
             />
             <Route
-              exact
               path="/edit-send-invites/:id"
               component={UtilizeTemplateContainer}
             />

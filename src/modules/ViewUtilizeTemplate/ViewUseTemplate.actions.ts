@@ -1,25 +1,29 @@
+import { Gathering } from '../../common/types'
 import {
-  UtilizeTemplateAction,
-  UtilizeTemplateFailureAction,
-  UtilizeTemplateSuccessAction,
+  CreateGatheringAction,
+  CreateGatheringFailureAction,
+  CreateGatheringSuccessAction,
   ViewUseTemplateActions,
 } from './types'
 
-export const utilizeTemplate = (): UtilizeTemplateAction => ({
-  type: ViewUseTemplateActions.UtilizeTemplate,
+export const createGathering = (
+  gathering: Gathering,
+): CreateGatheringAction => ({
+  type: ViewUseTemplateActions.CreateGathering,
+  payload: { gathering },
 })
 
-export const utilizeTemplateSuccess = (
+export const createGatheringSuccess = (
   templateId: string,
-): UtilizeTemplateSuccessAction => ({
-  type: ViewUseTemplateActions.UtilizeTemplateSuccess,
+): CreateGatheringSuccessAction => ({
+  type: ViewUseTemplateActions.CreateGatheringSuccess,
   payload: { templateId },
 })
 
-export const utilizeTemplateFailure = (
+export const createGatheringFailure = (
   message: string,
-): UtilizeTemplateFailureAction => ({
-  type: ViewUseTemplateActions.UtilizeTemplateFailure,
+): CreateGatheringFailureAction => ({
+  type: ViewUseTemplateActions.CreateGatheringFailure,
   payload: {
     message,
   },
