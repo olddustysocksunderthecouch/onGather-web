@@ -59,7 +59,7 @@ export const AddParticipants: React.FunctionComponent<Props> = ({
           fullWidth
           name="email"
           variant="standard"
-          placeholder="+ Press enter after each guest's email"
+          placeholder="+ Press ENTER after each guest's email"
           value={currentEmailAddress}
           autoComplete="email"
           type="email"
@@ -74,7 +74,7 @@ export const AddParticipants: React.FunctionComponent<Props> = ({
               setInputError('')
             }
           }}
-          helperText={inputError}
+          helperText={inputError || 'Press ENTER to add'}
           error={!!inputError}
         />
         <ul className={styles.emailList}>

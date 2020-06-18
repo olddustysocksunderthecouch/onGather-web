@@ -90,6 +90,12 @@ export function reducer(
         calendarEventScopeStatus: CalendarEventScopeStatus.Error,
         error: action.payload.message,
       }
+    case AuthActions.SendCode:
+      return {
+        ...state,
+        calendarEventScopeStatus: CalendarEventScopeStatus.RequestIsGranted,
+        error: '',
+      }
     case AuthActions.PurgeAuthState:
       return {
         ...initialState,

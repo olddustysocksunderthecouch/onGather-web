@@ -36,5 +36,6 @@ export const selectShouldFetchScope = createSelector(
 export const selectCalendarEventScopeIsGranted = createSelector(
   selectCalendarEventScopeStatus,
   (calendarEventScopeStatus: CalendarEventScopeStatus): boolean =>
-    calendarEventScopeStatus === CalendarEventScopeStatus.FetchedIsGranted,
+    calendarEventScopeStatus === CalendarEventScopeStatus.FetchedIsGranted ||
+    calendarEventScopeStatus === CalendarEventScopeStatus.RequestIsGranted,
 )

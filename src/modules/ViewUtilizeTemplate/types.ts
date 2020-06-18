@@ -1,5 +1,17 @@
 import { Gathering } from '../../common/types'
 
+export enum CreateGatheringStatus {
+  None = 'None',
+  Creating = 'Creating',
+  Success = 'Success',
+  Error = 'Error',
+}
+
+export interface ViewUseTemplateState {
+  createGatheringStatus: CreateGatheringStatus
+  error: string
+}
+
 export enum ViewUseTemplateActions {
   CreateGathering = '/UserTemplates/CREATE_GATHERING',
   CreateGatheringSuccess = '/UserTemplates/CREATE_GATHERING_SUCCESS',
@@ -13,7 +25,6 @@ export interface CreateGatheringAction {
 
 export interface CreateGatheringSuccessAction {
   type: typeof ViewUseTemplateActions.CreateGatheringSuccess
-  payload: { templateId: string }
 }
 
 export interface CreateGatheringFailureAction {

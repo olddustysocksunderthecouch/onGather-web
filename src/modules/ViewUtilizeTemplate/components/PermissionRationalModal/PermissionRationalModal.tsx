@@ -4,17 +4,17 @@ import styles from './PermissionRationalModal.module.scss'
 
 export interface Props {
   handleScopeRequestClicked: () => void
-  handleAuthModalClose: () => void
+  handleCloseModalClicked: () => void
 }
 
 export const PermissionRationalModal: React.FunctionComponent<Props> = ({
   handleScopeRequestClicked,
-  handleAuthModalClose,
+  handleCloseModalClicked,
 }) => {
   return (
     <div className={styles.authModal}>
       <h1 className={styles.signUpTitle}>We need your permission...</h1>
-      <button className={styles.closeIcon} onClick={handleAuthModalClose}>
+      <button className={styles.closeIcon} onClick={handleCloseModalClicked}>
         <img src={CloseIcon} alt="Close Icon" />
       </button>
       <p className={styles.description}>

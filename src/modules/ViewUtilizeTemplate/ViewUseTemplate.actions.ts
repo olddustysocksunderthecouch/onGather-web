@@ -13,11 +13,8 @@ export const createGathering = (
   payload: { gathering },
 })
 
-export const createGatheringSuccess = (
-  templateId: string,
-): CreateGatheringSuccessAction => ({
+export const createGatheringSuccess = (): CreateGatheringSuccessAction => ({
   type: ViewUseTemplateActions.CreateGatheringSuccess,
-  payload: { templateId },
 })
 
 export const createGatheringFailure = (

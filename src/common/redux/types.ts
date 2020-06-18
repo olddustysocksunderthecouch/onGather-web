@@ -3,15 +3,17 @@ import { Dispatch } from 'react'
 import { Store } from 'redux'
 import { Persistor } from 'redux-persist'
 import { AppState } from '../../modules/App/types'
+import { AuthState } from '../../modules/Auth/types'
 import { BrowseTemplatesState } from '../../modules/BrowseTemplates/types'
 import { UserTemplatesState } from '../../modules/UserTemplates/types'
-import { AuthState } from '../../modules/Auth/types'
+import { ViewUseTemplateState } from '../../modules/ViewUtilizeTemplate/types'
 
 export interface RootState {
   app: AppState
   auth: AuthState
   router: RouterState
   userTemplates: UserTemplatesState
+  viewUseTemplate: ViewUseTemplateState
   browseTemplates: BrowseTemplatesState
   firebase: any
   firestore: any

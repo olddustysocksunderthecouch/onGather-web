@@ -75,17 +75,8 @@ export const ViewTemplate: React.FunctionComponent<Props> = ({
       <Link
         className={styles.createNewTemplate}
         to={`/edit-send-invites/${template.templateId}`}
-        // onClick={handleCreateNewClick}
       >
-        <button
-          className={styles.useThisTemplateButton}
-          onClick={(): void => {
-            // alert(
-            //   'This feature is still being built & should be available by the end of May (touch wood)',
-            // )
-            // return handleUseTemplateClicked()
-          }}
-        >
+        <button className={styles.useThisTemplateButton}>
           Use this template
         </button>
       </Link>

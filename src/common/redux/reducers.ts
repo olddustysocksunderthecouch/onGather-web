@@ -6,6 +6,7 @@ import { reducer as appReducer } from '../../modules/App'
 import { reducer as authReducer } from '../../modules/Auth'
 import { reducer as browseTemplatesReducer } from '../../modules/BrowseTemplates'
 import { reducer as userTemplatesReducer } from '../../modules/UserTemplates'
+import { reducer as viewUseTemplateReducer } from '../../modules/ViewUtilizeTemplate'
 import { createRoutingReducer } from '../routing'
 import { RootState } from './types'
 
@@ -20,6 +21,7 @@ const createRootReducer = (history: History): Reducer<RootState> =>
     app: appReducer,
     auth: authReducer,
     userTemplates: userTemplatesReducer,
+    viewUseTemplate: viewUseTemplateReducer,
     browseTemplates: browseTemplatesReducer,
     firebase,
     firestore,

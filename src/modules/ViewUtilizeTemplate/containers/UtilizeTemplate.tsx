@@ -15,7 +15,11 @@ import {
 } from '../../Auth/Auth.actions'
 import { CalendarEventScopeStatus } from '../../Auth/types'
 import { UtilizeTemplate } from '../components/UtilizeTemplate'
-import { firebaseSelectors as firebaseViewUseTemplateSelectors } from '../index'
+import {
+  firebaseSelectors as firebaseViewUseTemplateSelectors,
+  selectors as viewUseTemplateSelectors,
+} from '../index'
+import { CreateGatheringStatus } from '../types'
 import { createGathering } from '../ViewUseTemplate.actions'
 
 interface Props extends ConnectedReduxProps<AnyAction> {
@@ -23,6 +27,7 @@ interface Props extends ConnectedReduxProps<AnyAction> {
   template: Template
   gatheringDraft: GatheringDraft
   calendarEventScopeStatus: CalendarEventScopeStatus
+  createGatheringStatus: CreateGatheringStatus
   isAuthenticated: boolean
   scopeIsGranted: boolean
   handleUseTemplateClicked: () => void
@@ -42,6 +47,7 @@ const UtilizeTemplateContainer = ({
   isAuthenticated,
   scopeIsGranted,
   calendarEventScopeStatus,
+  createGatheringStatus,
   handleFetchScopes,
   handleScopeRequest,
   handleContinueWithGoogleClicked,
@@ -52,14 +58,15 @@ const UtilizeTemplateContainer = ({
   const firestore = useFirestore()
 
   useEffect(() => {
+    console.log('calendarEventScopeStatus', calendarEventScopeStatus)
     if (
       isAuthenticated &&
-      !fromState &&
+      calendarEventScopeStatus !== CalendarEventScopeStatus.RequestIsGranted &&
       calendarEventScopeStatus !== CalendarEventScopeStatus.FetchedIsGranted
     ) {
       handleFetchScopes()
     }
-  }, [isAuthenticated, calendarEventScopeStatus, fromState, handleFetchScopes])
+  }, [])
 
   useEffect(() => {
     firestore.get({
@@ -78,6 +85,7 @@ const UtilizeTemplateContainer = ({
         fromState={fromState}
         gatheringDraft={gatheringDraft}
         scopeIsGranted={scopeIsGranted}
+        createGatheringStatus={createGatheringStatus}
         handleContinueWithGoogleClicked={handleContinueWithGoogleClicked}
         handleScopeRequest={handleScopeRequest}
         handleSendGatheringInvite={handleSendGatheringInvite}
@@ -91,6 +99,9 @@ const mapStateToProps = (state: RootState): any => ({
   gatheringDraft: authSelectors.selectGatheringDraft(state),
   calendarEventScopeStatus: authSelectors.selectCalendarEventScopeStatus(state),
   scopeIsGranted: authSelectors.selectCalendarEventScopeIsGranted(state),
+  createGatheringStatus: viewUseTemplateSelectors.selectCreateGatheringStatus(
+    state,
+  ),
 })
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): any => ({

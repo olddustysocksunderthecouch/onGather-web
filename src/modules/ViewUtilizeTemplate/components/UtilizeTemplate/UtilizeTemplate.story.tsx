@@ -1,5 +1,6 @@
 import React from 'react'
 import { gatheringDraftMock, templateMock } from '../../../../common/mockData'
+import { CreateGatheringStatus } from '../../types'
 import { Props, UtilizeTemplate } from './UtilizeTemplate'
 
 export default {
@@ -9,6 +10,7 @@ export default {
 
 export const defaultState = (): React.FunctionComponentElement<Props> => (
   <UtilizeTemplate
+    createGatheringStatus={CreateGatheringStatus.Creating}
     isAuthenticated={false}
     scopeIsGranted={true}
     fromState={true}

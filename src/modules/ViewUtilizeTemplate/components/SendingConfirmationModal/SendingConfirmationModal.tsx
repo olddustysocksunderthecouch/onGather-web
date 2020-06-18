@@ -4,17 +4,17 @@ import styles from './SendingConfirmationModal.module.scss'
 
 export interface Props {
   handleContinueWithClicked?: () => void
-  handleAuthModalClose: () => void
+  handleCloseModalClicked: () => void
 }
 
 export const SendingConfirmationModal: React.FunctionComponent<Props> = ({
   handleContinueWithClicked,
-  handleAuthModalClose,
+  handleCloseModalClicked,
 }) => {
   return (
     <div className={styles.authModal}>
       <h1 className={styles.signUpTitle}>Just to confirm...</h1>
-      <button className={styles.closeIcon} onClick={handleAuthModalClose}>
+      <button className={styles.closeIcon} onClick={handleCloseModalClicked}>
         <img src={CloseIcon} alt="Close Icon" />
       </button>
       <button

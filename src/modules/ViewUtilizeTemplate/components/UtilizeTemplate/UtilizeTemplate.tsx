@@ -16,6 +16,7 @@ import {
 } from '@material-ui/pickers'
 import React, { useEffect, useState } from 'react'
 import { Controller, ErrorMessage, useForm } from 'react-hook-form'
+import { DevTool } from 'react-hook-form-devtools'
 import { AuthModal } from '../../../../common/components/AuthModal'
 import { durations } from '../../../../common/constants'
 import {
@@ -25,7 +26,9 @@ import {
   Template,
 } from '../../../../common/types'
 import { mergeDateAndTime } from '../../../../common/utils'
+import { CreateGatheringStatus } from '../../types'
 import { AddParticipants } from '../AddParticipants'
+import { CreatingSuccessErrorModal } from '../LoadingSuccessErrorModal/CreatingSuccessErrorModal'
 import { PermissionRationalModal } from '../PermissionRationalModal'
 import { SendingConfirmationModal } from '../SendingConfirmationModal'
 import styles from './UtilizeTemplate.module.scss'
@@ -36,6 +39,7 @@ export interface Props {
   fromState: boolean
   scopeIsGranted: boolean
   isAuthenticated: boolean
+  createGatheringStatus: CreateGatheringStatus
   handleContinueWithGoogleClicked: () => void
   handleScopeRequest: (gathering: GatheringDraft) => void
   handleSendGatheringInvite: (gathering: Gathering) => void
@@ -61,6 +65,7 @@ export const UtilizeTemplate: React.FunctionComponent<Props> = ({
   gatheringDraft,
   scopeIsGranted,
   isAuthenticated,
+  createGatheringStatus,
   handleScopeRequest,
   handleContinueWithGoogleClicked,
   handleSendGatheringInvite,
@@ -74,28 +79,29 @@ export const UtilizeTemplate: React.FunctionComponent<Props> = ({
     if (fromState) {
       reset({
         title: gatheringDraft.title,
+        date: gatheringDraft.startTimestamp,
+        time: gatheringDraft.startTimestamp,
+        duration: gatheringDraft.duration,
+        inviteeEmails: gatheringDraft.inviteeEmails,
         whatYouDo: gatheringDraft.whatYouDo,
         howYouDo: gatheringDraft.howYouDo,
-        duration: gatheringDraft.duration,
         personalizedDescription: gatheringDraft.personalizedDescription,
       })
     } else {
       reset({
         title: template.title,
+        date: new Date(),
+        time: new Date(),
+        duration: template.suggestedDuration,
         whatYouDo: template.whatYouDo,
         howYouDo: template.howYouDo,
-        duration: template.suggestedDuration,
         personalizedDescription: template.personalizedDescription,
       })
     }
   }, [reset, template, fromState])
 
   const watchAllFields = watch()
-
   const helperTestClasses = helperTextStyles()
-
-  const [dateSelected, setDateSelected] = useState(new Date())
-  const [timeSelected, setTimeSelected] = useState(new Date())
 
   const handleScopeRequestClicked = (): void => {
     handleScopeRequest({
@@ -106,8 +112,8 @@ export const UtilizeTemplate: React.FunctionComponent<Props> = ({
       howYouDo: watchAllFields.howYouDo,
       inviteeEmails: watchAllFields.inviteeEmails,
       startTimestamp: mergeDateAndTime(
-        dateSelected,
-        timeSelected,
+        watchAllFields.date,
+        watchAllFields.time,
       ).toISOString(),
       duration: watchAllFields.duration,
       callProvider: '',
@@ -123,8 +129,8 @@ export const UtilizeTemplate: React.FunctionComponent<Props> = ({
       howYouDo: watchAllFields.howYouDo,
       inviteeEmails: watchAllFields.inviteeEmails,
       startTimestamp: mergeDateAndTime(
-        dateSelected,
-        timeSelected,
+        watchAllFields.date,
+        watchAllFields.time,
       ).toISOString(),
       duration: watchAllFields.duration,
       callProvider: '',
@@ -151,6 +157,11 @@ export const UtilizeTemplate: React.FunctionComponent<Props> = ({
       : setPermissionRationalModalVisible(true)
   }
 
+  const [
+    loadingSuccessErrorModalIsVisible,
+    setLoadingSuccessErrorModalIsVisible,
+  ] = useState(false)
+
   return (
     <div className={styles.utilizeTemplate}>
       {authModalIsVisible && (
@@ -165,7 +176,7 @@ export const UtilizeTemplate: React.FunctionComponent<Props> = ({
         <div className={styles.modal}>
           <PermissionRationalModal
             handleScopeRequestClicked={handleScopeRequestClicked}
-            handleAuthModalClose={(): void =>
+            handleCloseModalClicked={(): void =>
               setPermissionRationalModalVisible(false)
             }
           />
@@ -174,8 +185,24 @@ export const UtilizeTemplate: React.FunctionComponent<Props> = ({
       {confirmModalIsVisible && (
         <div className={styles.modal}>
           <SendingConfirmationModal
-            handleContinueWithClicked={handleSendGatheringInviteClicked}
-            handleAuthModalClose={(): void => setConfirmModalIsVisible(false)}
+            handleContinueWithClicked={(): void => {
+              setLoadingSuccessErrorModalIsVisible(true)
+              setConfirmModalIsVisible(false)
+              return handleSendGatheringInviteClicked()
+            }}
+            handleCloseModalClicked={(): void =>
+              setConfirmModalIsVisible(false)
+            }
+          />
+        </div>
+      )}
+      {loadingSuccessErrorModalIsVisible && (
+        <div className={styles.modal}>
+          <CreatingSuccessErrorModal
+            createGatheringStatus={createGatheringStatus}
+            handleCloseModalClicked={(): void =>
+              setLoadingSuccessErrorModalIsVisible(false)
+            }
           />
         </div>
       )}
@@ -185,11 +212,12 @@ export const UtilizeTemplate: React.FunctionComponent<Props> = ({
             <h1>Edit & Send Invites</h1>
           </div>
           <p>
-            Hey! Now that you&apos;re here, describe something that others could
-            do on a video call.
+            Select a date, time and add a few of your friend&apos;s emails and
+            we&apos;ll send everyone a calendar invite and email with all the
+            details.
           </p>
         </header>
-        {/* <DevTool control={control} /> */}
+        <DevTool control={control} />
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <ThemeProvider theme={theme}>
             <form id="utilizeTemplateForm" className={styles.createForm}>
@@ -213,36 +241,46 @@ export const UtilizeTemplate: React.FunctionComponent<Props> = ({
                   },
                 })}
               />
-              <DatePicker
-                style={{
-                  marginTop: '16px',
-                }}
-                disableToolbar
-                variant="inline"
-                label="Date"
-                inputVariant="outlined"
-                value={dateSelected}
-                onChange={(selectedDate: any): void =>
-                  setDateSelected(new Date(selectedDate))
+              <Controller
+                name="date"
+                as={
+                  <DatePicker
+                    onChange={(value): any => value}
+                    value={(value: any): any => value}
+                    style={{
+                      marginTop: '16px',
+                    }}
+                    autoOk
+                    variant="inline"
+                    label="Date"
+                    inputVariant="outlined"
+                  />
                 }
+                rules={{ required: 'Please a date' }}
+                control={control}
               />
               <div className={styles.timeContainer}>
-                <TimePicker
-                  style={{
-                    width: 'calc(50% - 4px)',
-                    minWidth: '250px',
-                    marginRight: '8px',
-                  }}
-                  disableToolbar
-                  variant="inline"
-                  label="Start Time"
-                  minutesStep={5}
-                  ampm={false}
-                  inputVariant="outlined"
-                  value={timeSelected}
-                  onChange={(selectedDate: any): void =>
-                    setTimeSelected(new Date(selectedDate))
+                <Controller
+                  name="time"
+                  as={
+                    <TimePicker
+                      style={{
+                        width: 'calc(50% - 4px)',
+                        minWidth: '250px',
+                        marginRight: '8px',
+                      }}
+                      autoOk
+                      variant="inline"
+                      label="Start Time"
+                      minutesStep={5}
+                      ampm={false}
+                      inputVariant="outlined"
+                      onChange={(value): any => value}
+                      value={(value: any): any => value}
+                    />
                   }
+                  rules={{ required: 'Please a date' }}
+                  control={control}
                 />
                 <FormControl
                   style={{

@@ -8,7 +8,7 @@ describe('SendingConfirmationModal Component', () => {
     const instance = create(
       <SendingConfirmationModal
         handleContinueWithClicked={(): void => undefined}
-        handleAuthModalClose={(): void => undefined}
+        handleCloseModalClicked={(): void => undefined}
       />,
     )
     expect(instance.root.type).toBe(SendingConfirmationModal)

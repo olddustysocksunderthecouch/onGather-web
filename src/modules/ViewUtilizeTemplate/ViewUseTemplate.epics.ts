@@ -29,8 +29,8 @@ export const createGatheringEpic$ = (
         ),
       ).pipe(
         flatMap(
-          (result: any): Observable<CreateGatheringSuccessAction> => {
-            return of(createGatheringSuccess(result))
+          (): Observable<CreateGatheringSuccessAction> => {
+            return of(createGatheringSuccess())
           },
         ),
         catchError(

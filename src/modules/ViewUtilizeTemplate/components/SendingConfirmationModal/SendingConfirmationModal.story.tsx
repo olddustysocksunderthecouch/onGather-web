@@ -9,7 +9,7 @@ export default {
 export const defaultState = (): React.FunctionComponentElement<Props> => (
   <SendingConfirmationModal
     handleContinueWithClicked={(): void => undefined}
-    handleAuthModalClose={(): void => undefined}
+    handleCloseModalClicked={(): void => undefined}
   />
 )
 

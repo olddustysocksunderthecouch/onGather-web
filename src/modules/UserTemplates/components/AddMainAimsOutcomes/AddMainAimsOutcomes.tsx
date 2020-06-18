@@ -73,7 +73,7 @@ export const AddMainAimsOutcomes: React.FunctionComponent<Props> = ({
               setInputError('')
             }
           }}
-          helperText={inputError}
+          helperText={inputError || 'Press ENTER'}
           error={!!inputError}
         />
         <ul className={styles.mainAimOutcomeList}>
