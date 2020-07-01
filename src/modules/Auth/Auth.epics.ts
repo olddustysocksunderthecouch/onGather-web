@@ -1,5 +1,6 @@
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import { auth, firestore, functions } from 'firebase'
+import { getFirebase } from 'react-redux-firebase'
 import { ActionsObservable, ofType, StateObservable } from 'redux-observable'
 import { from, Observable, of } from 'rxjs'
 import {
@@ -8,6 +9,7 @@ import {
   map,
   mergeMap,
   withLatestFrom,
+  switchMap,
 } from 'rxjs/operators'
 import { RootState } from '../../common/redux/types'
 import { User } from '../../common/types'
@@ -95,6 +97,7 @@ export const signOutAppEpic$ = (
     ofType<AuthActionTypes>(AuthActions.SignOutGoogle),
     mergeMap(() => {
       auth().signOut()
+      getFirebase().logout()
       return of(purgeAuthState(), signOutGoogleSuccess())
     }),
   )
@@ -188,7 +191,7 @@ export const fetchScopesEpic$ = (
       return from(
         firestore().collection('users').doc(state.firebase.auth.uid).get(),
       ).pipe(
-        flatMap(
+        switchMap(
           (
             result: any,
           ): Observable<

@@ -132,6 +132,7 @@ export const UtilizeTemplate: React.FunctionComponent<Props> = ({
         watchAllFields.date,
         watchAllFields.time,
       ).toISOString(),
+      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       duration: watchAllFields.duration,
       callProvider: '',
       callUrl: '',

@@ -59,6 +59,7 @@ export interface GatheringDraft {
 export interface Gathering extends GatheringDraft {
   imageUrls: ImageUrls | null
   hostInstructions: string
+  timeZone: string
 }
 
 export interface CallProvider {
