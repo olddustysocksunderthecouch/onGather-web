@@ -1,7 +1,8 @@
 import { ConnectedRouter } from 'connected-react-router'
-import * as firebase from 'firebase'
+import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
+import 'firebase/analytics'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
@@ -57,6 +58,7 @@ const rrfProps = {
 
 firebase.initializeApp(firebaseConfig)
 firebase.firestore()
+firebase.analytics()
 
 const rootElement = document.getElementById('root')
 ReactDOM.render(
@@ -69,7 +71,7 @@ ReactDOM.render(
             <Route exact path="/home" component={HomeContainer} />
             <Route
               exact
-              path="/privacy-policy"
+              path="/terms-and-conditions"
               component={PrivacyPolicyContainer}
             />
             <Route

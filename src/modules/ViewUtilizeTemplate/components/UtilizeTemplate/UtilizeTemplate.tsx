@@ -408,7 +408,7 @@ export const UtilizeTemplate: React.FunctionComponent<Props> = ({
         </MuiPickersUtilsProvider>
         {!isAuthenticated && (
           <button
-            className={styles.useThisTemplateButton}
+            className={styles.signInSendButton}
             onClick={(): void => setAuthModalVisible(true)}
           >
             Sign up/in
@@ -416,7 +416,7 @@ export const UtilizeTemplate: React.FunctionComponent<Props> = ({
         )}
         {isAuthenticated && (
           <button
-            className={styles.useThisTemplateButton}
+            className={styles.signInSendButton}
             onClick={handleSendButtonClicked}
           >
             Send Invitations

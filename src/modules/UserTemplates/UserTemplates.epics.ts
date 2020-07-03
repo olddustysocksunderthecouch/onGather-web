@@ -1,5 +1,7 @@
-// Firebase App (the core Firebase SDK) is always required and must be listed first
-import { firestore, functions, storage } from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/firestore'
+import 'firebase/functions'
+import 'firebase/storage'
 import { ActionsObservable, ofType, StateObservable } from 'redux-observable'
 import { from, Observable, of } from 'rxjs'
 import { catchError, flatMap, map, withLatestFrom } from 'rxjs/operators'
@@ -44,7 +46,9 @@ export const createNewTemplateEpic$ = (
   action$.pipe(
     ofType<UserTemplatesActionTypes>(UserTemplatesActions.CreateNewTemplate),
     map(() =>
-      createNewTemplateSuccess(firestore().collection('templates').doc().id),
+      createNewTemplateSuccess(
+        firebase.firestore().collection('templates').doc().id,
+      ),
     ),
   )
 
@@ -80,7 +84,7 @@ export const saveDraftTemplateEpic$ = (
     withLatestFrom(state$),
     flatMap(([action, state]) =>
       from(
-        functions().httpsCallable('templates-createUpdateTemplate')({
+        firebase.functions().httpsCallable('templates-createUpdateTemplate')({
           ...action.payload.template,
           templateId: state.userTemplates.selectedTemplateId,
           status: 'draft',
@@ -107,7 +111,7 @@ export const publishTemplateEpic$ = (
     withLatestFrom(state$),
     flatMap(([action, state]) =>
       from(
-        functions().httpsCallable('templates-createUpdateTemplate')({
+        firebase.functions().httpsCallable('templates-createUpdateTemplate')({
           ...action.payload.template,
           templateId: state.userTemplates.selectedTemplateId,
           status: 'publish',
@@ -134,7 +138,8 @@ export const uploadImageEpic$ = (
     withLatestFrom(state$),
     flatMap(([action, state]) =>
       from(
-        storage()
+        firebase
+          .storage()
           .ref()
           .child(state.userTemplates.selectedTemplateId)
           .put(action.payload.file),
@@ -160,7 +165,7 @@ export const searchForImagesEpic$ = (
     withLatestFrom(state$),
     flatMap(([action, state]) =>
       from(
-        functions().httpsCallable('unsplash-searchImages')({
+        firebase.functions().httpsCallable('unsplash-searchImages')({
           searchTerm: action.payload.searchTerm,
           page: action.payload.page,
         }),

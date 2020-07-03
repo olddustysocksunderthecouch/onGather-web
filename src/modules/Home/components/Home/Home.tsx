@@ -5,7 +5,13 @@ import homeBackgroundImage from './../../assets/home-section-1.svg'
 import homeBackgroundImage2 from './../../assets/home-section-2.svg'
 import styles from './Home.module.scss'
 
-export const Home: React.FunctionComponent = () => {
+export interface Props {
+  handleBrowseButtonClicked: (buttonDescription: string) => void
+}
+
+export const Home: React.FunctionComponent<Props> = ({
+  handleBrowseButtonClicked,
+}) => {
   useEffect(() => {
     document.title = 'Home - onGather'
   }, [])
@@ -22,7 +28,10 @@ export const Home: React.FunctionComponent = () => {
           <br /> meaningful & fun
           <br /> video calls with friends?
         </h1>
-        <Link to="/browse-templates">
+        <Link
+          to="/browse-templates"
+          onClick={(): void => handleBrowseButtonClicked('top')}
+        >
           <button className={styles.buttonSection1}>Browse</button>
         </Link>
       </section>
@@ -39,7 +48,10 @@ export const Home: React.FunctionComponent = () => {
             <br /> that&apos;ll make it
             <br /> much easier
           </h1>
-          <Link to="/browse-templates">
+          <Link
+            to="/browse-templates"
+            onClick={(): void => handleBrowseButtonClicked('middle')}
+          >
             <button className={styles.buttonSection2}>Pick One</button>
           </Link>
         </div>

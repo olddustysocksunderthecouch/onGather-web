@@ -1,5 +1,7 @@
-// Firebase App (the core Firebase SDK) is always required and must be listed first
-import { auth, firestore, functions } from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/auth'
+import 'firebase/firestore'
+import 'firebase/functions'
 import { getFirebase } from 'react-redux-firebase'
 import { ActionsObservable, ofType, StateObservable } from 'redux-observable'
 import { from, Observable, of } from 'rxjs'
@@ -8,8 +10,8 @@ import {
   flatMap,
   map,
   mergeMap,
-  withLatestFrom,
   switchMap,
+  withLatestFrom,
 } from 'rxjs/operators'
 import { RootState } from '../../common/redux/types'
 import { User } from '../../common/types'
@@ -62,12 +64,12 @@ export const signInAppEpic$ = (
       (
         action,
       ): Observable<SignInGoogleSuccessAction | SignInGoogleFailureAction> => {
-        const provider = new auth.GoogleAuthProvider()
+        const provider = new firebase.auth.GoogleAuthProvider()
         provider.setCustomParameters({
           // eslint-disable-next-line @typescript-eslint/camelcase
           include_granted_scopes: true,
         })
-        return from(auth().signInWithPopup(provider)).pipe(
+        return from(firebase.auth().signInWithPopup(provider)).pipe(
           flatMap(
             (result: any): Observable<SignInGoogleSuccessAction> => {
               console.log('result: ', result)
@@ -77,6 +79,7 @@ export const signInAppEpic$ = (
                 email: result.user.email,
                 photoURL: result.user.photoURL,
               }
+              window.ga('set', 'userId', result.user.uid)
 
               return of(signInGoogleSuccess(user))
             },
@@ -96,7 +99,7 @@ export const signOutAppEpic$ = (
   action$.pipe(
     ofType<AuthActionTypes>(AuthActions.SignOutGoogle),
     mergeMap(() => {
-      auth().signOut()
+      firebase.auth().signOut()
       getFirebase().logout()
       return of(purgeAuthState(), signOutGoogleSuccess())
     }),
@@ -110,7 +113,9 @@ export const generateAuthUrlEpic$ = (
     ofType<GenerateAuthUrlAction>(AuthActions.GenerateAuthUrl),
     withLatestFrom(state$),
     flatMap(([action, state]) =>
-      from(functions().httpsCallable('googleCalendar-generateAuthUrl')()).pipe(
+      from(
+        firebase.functions().httpsCallable('googleCalendar-generateAuthUrl')(),
+      ).pipe(
         flatMap(
           (result: any): Observable<GenerateAuthUrlSuccessAction> => {
             return of(generateAuthUrlSuccess(result))
@@ -161,7 +166,9 @@ export const sendCodeEpic$ = (
     withLatestFrom(state$),
     flatMap(([action, state]) =>
       from(
-        functions().httpsCallable('auth-getAndStoreToken')(action.payload.code),
+        firebase.functions().httpsCallable('auth-getAndStoreToken')(
+          action.payload.code,
+        ),
       ).pipe(
         flatMap(
           (result: any): Observable<SendCodeSuccessAction> =>
@@ -189,7 +196,11 @@ export const fetchScopesEpic$ = (
     withLatestFrom(state$),
     flatMap(([action, state]) => {
       return from(
-        firestore().collection('users').doc(state.firebase.auth.uid).get(),
+        firebase
+          .firestore()
+          .collection('users')
+          .doc(state.firebase.auth.uid)
+          .get(),
       ).pipe(
         switchMap(
           (

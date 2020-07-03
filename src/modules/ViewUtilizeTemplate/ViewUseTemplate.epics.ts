@@ -1,5 +1,5 @@
-// Firebase App (the core Firebase SDK) is always required and must be listed first
-import { functions } from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/functions'
 import { ActionsObservable, ofType, StateObservable } from 'redux-observable'
 import { from, Observable, of } from 'rxjs'
 import { catchError, flatMap, withLatestFrom } from 'rxjs/operators'
@@ -24,7 +24,7 @@ export const createGatheringEpic$ = (
     withLatestFrom(state$),
     flatMap(([action, state]) =>
       from(
-        functions().httpsCallable('gatherings-createGathering')(
+        firebase.functions().httpsCallable('gatherings-createGathering')(
           action.payload.gathering,
         ),
       ).pipe(

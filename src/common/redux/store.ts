@@ -1,3 +1,5 @@
+import GoogleAnalytics from '@redux-beacon/google-analytics'
+import logger from '@redux-beacon/logger'
 import { routerMiddleware } from 'connected-react-router'
 import { createBrowserHistory } from 'history'
 import { getFirebase } from 'react-redux-firebase'
@@ -8,12 +10,14 @@ import {
   PreloadedState,
   StoreEnhancer,
 } from 'redux'
+import { createMiddleware } from 'redux-beacon'
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
 import { createEpicMiddleware } from 'redux-observable'
 import { persistReducer, persistStore } from 'redux-persist'
 import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2'
 import storage from 'redux-persist/lib/storage'
 import thunk from 'redux-thunk'
+import { eventsMap } from './analytics'
 import rootEpic from './epics'
 import createRootReducer from './reducers'
 import { ReduxStoreAndPersistor, RootPreloadedState, RootState } from './types'
@@ -27,6 +31,12 @@ const reduxPersistConfig = {
 
 export const history = createBrowserHistory()
 
+const gaMiddleware = createMiddleware(
+  eventsMap,
+  GoogleAnalytics(),
+  process.env.NODE_ENV !== 'production' ? {} : { logger },
+)
+
 export const configureStoreAndPersistor = (
   preloadedState?: PreloadedState<RootPreloadedState>,
 ): ReduxStoreAndPersistor => {
@@ -36,6 +46,7 @@ export const configureStoreAndPersistor = (
     createdRouterMiddleWare,
     epicMiddleware,
     thunk.withExtraArgument(getFirebase),
+    gaMiddleware,
   ]
   const middlewareEnhancer = applyMiddleware(...middlewares)
   const enhancers = [middlewareEnhancer]

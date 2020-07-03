@@ -59,10 +59,24 @@ const UtilizeTemplateContainer = ({
 
   useEffect(() => {
     console.log('calendarEventScopeStatus', calendarEventScopeStatus)
+    console.log('isAuthenticated', isAuthenticated)
     if (
       isAuthenticated &&
       calendarEventScopeStatus !== CalendarEventScopeStatus.RequestIsGranted &&
-      calendarEventScopeStatus !== CalendarEventScopeStatus.FetchedIsGranted
+      calendarEventScopeStatus !== CalendarEventScopeStatus.FetchedIsGranted &&
+      calendarEventScopeStatus !== CalendarEventScopeStatus.FetchedNotGranted &&
+      calendarEventScopeStatus !== CalendarEventScopeStatus.Fetching
+    ) {
+      handleFetchScopes()
+    }
+  }, [isAuthenticated, calendarEventScopeStatus])
+
+  useEffect(() => {
+    if (
+      isAuthenticated &&
+      calendarEventScopeStatus !== CalendarEventScopeStatus.RequestIsGranted &&
+      calendarEventScopeStatus !== CalendarEventScopeStatus.FetchedIsGranted &&
+      calendarEventScopeStatus !== CalendarEventScopeStatus.Fetching
     ) {
       handleFetchScopes()
     }

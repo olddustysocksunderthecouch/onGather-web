@@ -7,7 +7,7 @@ import TimeIcon from './../../../../common/assets/TimeIcon.svg'
 import styles from './ViewTemplate.module.scss'
 
 export interface Props {
-  handleUseTemplateClicked: () => void
+  handleUseTemplateClicked: (title: string, templateId: string) => void
   template: Template
 }
 
@@ -73,11 +73,13 @@ export const ViewTemplate: React.FunctionComponent<Props> = ({
         )}
       </div>
       <Link
-        className={styles.createNewTemplate}
         to={`/edit-send-invites/${template.templateId}`}
+        onClick={(): void =>
+          handleUseTemplateClicked(template.title, template.templateId)
+        }
       >
         <button className={styles.useThisTemplateButton}>
-          Use this template
+          Create a Gathering with this Activity
         </button>
       </Link>
     </article>

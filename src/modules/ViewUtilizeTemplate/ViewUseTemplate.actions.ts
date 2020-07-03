@@ -3,6 +3,7 @@ import {
   CreateGatheringAction,
   CreateGatheringFailureAction,
   CreateGatheringSuccessAction,
+  UtilizeThisTemplateAction,
   ViewUseTemplateActions,
 } from './types'
 
@@ -23,5 +24,16 @@ export const createGatheringFailure = (
   type: ViewUseTemplateActions.CreateGatheringFailure,
   payload: {
     message,
+  },
+})
+
+export const utilizeThisTemplate = (
+  title: string,
+  templateId: string,
+): UtilizeThisTemplateAction => ({
+  type: ViewUseTemplateActions.UtilizeThisTemplate,
+  payload: {
+    title,
+    templateId,
   },
 })

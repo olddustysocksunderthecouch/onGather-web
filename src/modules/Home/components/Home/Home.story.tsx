@@ -6,7 +6,9 @@ export default {
   component: Home,
 }
 
-export const defaultState = (): React.ReactElement => <Home />
+export const defaultState = (): React.ReactElement => (
+  <Home handleBrowseButtonClicked={(): void => undefined} />
+)
 
 defaultState.story = {
   name: 'default',

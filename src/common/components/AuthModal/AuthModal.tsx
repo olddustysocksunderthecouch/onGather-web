@@ -45,7 +45,12 @@ export const AuthModal: React.FunctionComponent<Props> = ({
           </button>
           <p>
             *By continuing you agree to the{' '}
-            <Link to="/">Terms & Conditions</Link>
+            <Link
+              style={{ textDecoration: 'underline' }}
+              to="/terms-and-conditions"
+            >
+              Terms & Conditions
+            </Link>
           </p>
         </Fragment>
       )}

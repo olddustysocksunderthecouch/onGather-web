@@ -16,6 +16,7 @@ export enum ViewUseTemplateActions {
   CreateGathering = '/UserTemplates/CREATE_GATHERING',
   CreateGatheringSuccess = '/UserTemplates/CREATE_GATHERING_SUCCESS',
   CreateGatheringFailure = '/UserTemplates/CREATE_GATHERING_FAILURE',
+  UtilizeThisTemplate = '/UserTemplates/UTILIZE_THIS_TEMPLATE',
 }
 
 export interface CreateGatheringAction {
@@ -32,7 +33,16 @@ export interface CreateGatheringFailureAction {
   payload: { message: string }
 }
 
+export interface UtilizeThisTemplateAction {
+  type: typeof ViewUseTemplateActions.UtilizeThisTemplate
+  payload: {
+    title: string
+    templateId: string
+  }
+}
+
 export type ViewUseTemplateActionTypes =
   | CreateGatheringAction
   | CreateGatheringSuccessAction
   | CreateGatheringFailureAction
+  | UtilizeThisTemplateAction
