@@ -49,12 +49,6 @@ export function reducer(
         },
       }
     }
-    case UserTemplatesActions.CreateNewTemplateSuccess: {
-      return {
-        ...state,
-        selectedTemplateId: action.payload.templateId,
-      }
-    }
     case UserTemplatesActions.SetExistingTemplateEditorData: {
       return {
         ...state,

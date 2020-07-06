@@ -39,8 +39,6 @@ export interface ImageSearchResult {
 
 export enum UserTemplatesActions {
   CreateNewTemplate = '/UserTemplates/CREATE_NEW_TEMPLATE',
-  CreateNewTemplateSuccess = '/UserTemplates/CREATE_NEW_TEMPLATE_SUCCESS',
-  CreateNewTemplateFailure = '/UserTemplates/CREATE_NEW_TEMPLATE_FAILURE',
   EditExistingTemplate = '/UserTemplates/EDIT_EXISTING_TEMPLATE',
   SetExistingTemplateEditorData = '/UserTemplates/SET_EXISTING_TEMPLATE_EDITOR_DATA',
   SetEditorTemplateData = '/UserTemplates/SET_EDITOR_TEMPLATE_DATA',
@@ -60,20 +58,6 @@ export enum UserTemplatesActions {
 
 export interface CreateNewTemplateAction {
   type: typeof UserTemplatesActions.CreateNewTemplate
-}
-
-export interface CreateNewTemplateSuccessAction {
-  type: typeof UserTemplatesActions.CreateNewTemplateSuccess
-  payload: {
-    templateId: string
-  }
-}
-
-export interface CreateNewTemplateFailureAction {
-  type: typeof UserTemplatesActions.CreateNewTemplateFailure
-  payload: {
-    message: string
-  }
 }
 
 export interface EditExistingTemplateAction {
@@ -184,8 +168,6 @@ export interface SearchForImagesFailureAction {
 
 export type UserTemplatesActionTypes =
   | CreateNewTemplateAction
-  | CreateNewTemplateSuccessAction
-  | CreateNewTemplateFailureAction
   | EditExistingTemplateAction
   | SetExistingTemplateEditorDataAction
   | SetEditorTemplateDataAction

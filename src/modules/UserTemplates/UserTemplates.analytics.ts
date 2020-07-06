@@ -2,6 +2,10 @@ import { trackEvent, trackException } from '@redux-beacon/google-analytics'
 import { UserTemplatesActions } from './types'
 
 export default {
+  [UserTemplatesActions.CreateNewTemplate]: trackEvent(() => ({
+    category: 'UserTemplates',
+    action: 'CreateNewTemplate',
+  })),
   [UserTemplatesActions.SaveDraftTemplate]: trackEvent((action) => ({
     category: 'UserTemplates',
     action: 'SaveDraftTemplate',

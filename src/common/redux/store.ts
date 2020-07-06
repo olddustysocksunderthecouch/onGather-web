@@ -34,7 +34,7 @@ export const history = createBrowserHistory()
 const gaMiddleware = createMiddleware(
   eventsMap,
   GoogleAnalytics(),
-  process.env.NODE_ENV !== 'production' ? {} : { logger },
+  process.env.NODE_ENV !== 'production' ? { logger } : {},
 )
 
 export const configureStoreAndPersistor = (

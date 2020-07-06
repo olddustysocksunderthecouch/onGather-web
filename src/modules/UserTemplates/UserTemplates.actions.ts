@@ -1,8 +1,6 @@
 import { TemplateCreation, TemplateFirestoreResult } from '../../common/types'
 import {
   CreateNewTemplateAction,
-  CreateNewTemplateFailureAction,
-  CreateNewTemplateSuccessAction,
   EditExistingTemplateAction,
   ImageSearchResult,
   PublishTemplateAction,
@@ -24,22 +22,6 @@ import {
 
 export const createNewTemplate = (): CreateNewTemplateAction => ({
   type: UserTemplatesActions.CreateNewTemplate,
-})
-
-export const createNewTemplateSuccess = (
-  templateId: string,
-): CreateNewTemplateSuccessAction => ({
-  type: UserTemplatesActions.CreateNewTemplateSuccess,
-  payload: { templateId },
-})
-
-export const createNewTemplateFailure = (
-  message: string,
-): CreateNewTemplateFailureAction => ({
-  type: UserTemplatesActions.CreateNewTemplateFailure,
-  payload: {
-    message,
-  },
 })
 
 export const editExistingTemplate = (

@@ -79,8 +79,8 @@ export const UtilizeTemplate: React.FunctionComponent<Props> = ({
     if (fromState) {
       reset({
         title: gatheringDraft.title,
-        date: gatheringDraft.startTimestamp,
-        time: gatheringDraft.startTimestamp,
+        date: new Date(gatheringDraft.startTimestamp),
+        time: new Date(gatheringDraft.startTimestamp),
         duration: gatheringDraft.duration,
         inviteeEmails: gatheringDraft.inviteeEmails,
         whatYouDo: gatheringDraft.whatYouDo,
@@ -322,6 +322,7 @@ export const UtilizeTemplate: React.FunctionComponent<Props> = ({
 
               <Controller
                 name="inviteeEmails"
+                defaultValue={[]}
                 as={
                   <AddParticipants
                     onChange={(value): any => value}

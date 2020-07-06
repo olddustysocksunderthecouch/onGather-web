@@ -22,8 +22,8 @@ export const CreatingSuccessErrorModal: React.FunctionComponent<Props> = ({
         <div className={styles.creatingModal}>
           <h1 className={styles.modalTitle}>Creating...</h1>
           <p className={styles.creatingDescription}>
-            We&apos;re sending everyone an email and adding the gathering to
-            everyone&apos;s email
+            We&apos;re sending everyone an email & adding the gathering to
+            everyone&apos;s Google calendar
           </p>
           <div className={styles.loadingBar}></div>
         </div>

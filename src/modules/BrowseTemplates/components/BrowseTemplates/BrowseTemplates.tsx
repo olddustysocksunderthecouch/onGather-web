@@ -36,26 +36,29 @@ export const BrowseTemplates: React.FunctionComponent<Props> = ({
         handleCategoryClicked={handleCategoryClicked}
       />
       <section className={styles.templates}>
-        {templates.map((template: Template) => {
-          return (
-            <TemplatePreview
-              key={template.title}
-              templateId={template.title}
-              title={template.title}
-              image={template.imageUrls?.small}
-              gatheringSize={`${template.participantRange[0]} - ${template.participantRange[1]} People`}
-              suggestedDuration={template.suggestedDuration}
-              mainAimsOutcomes={template.mainAimsOutcomes}
-              shortDescription={template.shortDescription}
-              destinationPath={`/view-template/${template.templateId}`}
-              handleTemplatePreviewClicked={(): void => undefined}
-              openInNewTab={true}
-            />
-          )
-        })}
-        <CreateNewTemplate
-          handleCreateNewClick={handleCreateNewTemplateClicked}
-        />
+        {templates.length > 0 ? (
+          templates.map((template: Template) => {
+            return (
+              <TemplatePreview
+                key={template.title}
+                templateId={template.title}
+                title={template.title}
+                image={template.imageUrls?.small}
+                gatheringSize={`${template.participantRange[0]} - ${template.participantRange[1]} People`}
+                suggestedDuration={template.suggestedDuration}
+                mainAimsOutcomes={template.mainAimsOutcomes}
+                shortDescription={template.shortDescription}
+                destinationPath={`/view-template/${template.templateId}`}
+                handleTemplatePreviewClicked={(): void => undefined}
+                openInNewTab={true}
+              />
+            )
+          })
+        ) : (
+          <CreateNewTemplate
+            handleCreateNewClick={handleCreateNewTemplateClicked}
+          />
+        )}
       </section>
     </div>
   )

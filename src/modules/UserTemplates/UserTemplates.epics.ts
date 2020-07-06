@@ -8,7 +8,6 @@ import { catchError, flatMap, map, withLatestFrom } from 'rxjs/operators'
 import { RootState } from '../../common/redux/types'
 import { TemplateFirestoreResult } from '../../common/types'
 import {
-  CreateNewTemplateSuccessAction,
   EditExistingTemplateAction,
   ImageSearchResult,
   PublishTemplateAction,
@@ -25,10 +24,8 @@ import {
   UploadImageFailureAction,
   UploadImageSuccessAction,
   UserTemplatesActions,
-  UserTemplatesActionTypes,
 } from './types'
 import {
-  createNewTemplateSuccess,
   publishTemplateFailure,
   publishTemplateSuccess,
   saveDraftTemplateFailure,
@@ -39,18 +36,6 @@ import {
   uploadImageFailure,
   uploadImageSuccess,
 } from './UserTemplates.actions'
-
-export const createNewTemplateEpic$ = (
-  action$: ActionsObservable<UserTemplatesActionTypes>,
-): Observable<CreateNewTemplateSuccessAction> =>
-  action$.pipe(
-    ofType<UserTemplatesActionTypes>(UserTemplatesActions.CreateNewTemplate),
-    map(() =>
-      createNewTemplateSuccess(
-        firebase.firestore().collection('templates').doc().id,
-      ),
-    ),
-  )
 
 export const editExistingTemplateEpic$ = (
   action$: ActionsObservable<EditExistingTemplateAction>,
