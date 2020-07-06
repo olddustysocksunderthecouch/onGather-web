@@ -130,7 +130,7 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
       <div className={styles.createTemplate}>
         <header>
           <div className={styles.headerTop}>
-            <h1>Template Creator</h1>
+            <h1>Activity Creator</h1>
             <div className={styles.buttonContainer}>
               <button
                 className={styles.saveDraft}
@@ -147,14 +147,15 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
             </div>
           </div>
           <p>
-            Hey! Now that you&apos;re here, describe something that others could
-            do on a video call. Perhaps it&apos;s something you do often or
-            something that you&apos;ve just discovered. See the Browser for some
-            examples but be as creative as you&apos;d like.
+            Hey! Now that you&apos;re here, describe an activity that others
+            could do on a video call. Perhaps it&apos;s something you do often
+            or something that you&apos;ve just discovered. See the Browser for
+            some examples but be as creative as you&apos;d like.
             <br></br>
             <br></br>
             When you&apos;re happy with what you&apos;ve written click Publish
-            and it will be made public in the Template Browser.
+            and it will be made <strong>public</strong> to all other users in
+            the Activity Browser.
           </p>
         </header>
         <DevTool control={control} />
@@ -292,7 +293,7 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
               FormHelperTextProps={{ classes: helperTestClasses }}
               label="Short Description"
               name="shortDescription"
-              placeholder="This description should entice people you have a look at the template you've created and consider using it"
+              placeholder="This description should entice people you have a look at the activity you've created and consider using it"
               variant="outlined"
               rows="2"
               rowsMax="6"
@@ -318,7 +319,7 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
             <p>
               This together with the &quot;What/How you&apos;ll do it&quot;
               sections below will be sent to the guests of the person using this
-              template
+              activity
             </p>
             <TextField
               style={{ marginTop: '16px' }}

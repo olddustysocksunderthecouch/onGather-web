@@ -62,9 +62,15 @@
       max-width: 720px;
       line-height: 26px;
       @include text-style('font-main', 'regular', 'body-s');
+      strong {
+        @include text-style('font-main', 'bold', 'body-s');
+      }
 
       @media (min-width: $tablet) {
         @include text-style('font-main', 'regular', 'body');
+        strong {
+          @include text-style('font-main', 'bold', 'body');
+        }
       }
     }
   }

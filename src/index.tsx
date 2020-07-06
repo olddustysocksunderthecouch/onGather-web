@@ -86,7 +86,7 @@ ReactDOM.render(
             />
             <Route
               exact
-              path="/browse-templates"
+              path="/browse-activities"
               component={BrowseTemplateContainer}
             />
             <Route

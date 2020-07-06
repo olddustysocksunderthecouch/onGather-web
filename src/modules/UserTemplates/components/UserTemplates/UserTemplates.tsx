@@ -25,7 +25,7 @@ export const UserTemplates: React.FunctionComponent<Props> = ({
       : 'None'
   return (
     <div className={styles.container}>
-      <h1>Your Templates</h1>
+      <h1>Your Activities</h1>
       <section>
         <div className={styles.draftTitle}>
           <h2>Drafts</h2>

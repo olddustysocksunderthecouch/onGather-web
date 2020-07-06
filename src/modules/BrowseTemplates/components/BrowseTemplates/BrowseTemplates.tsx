@@ -24,11 +24,11 @@ export const BrowseTemplates: React.FunctionComponent<Props> = ({
   return (
     <div className={styles.container}>
       <header>
-        <h1>Pick a template</h1>
+        <h1>Pick an activity</h1>
         <p className={styles.browserDescription}>
-          Our templates contain guides for things you could do on a video call.
-          Customizing them and sending invitations (calendar/email) is super
-          easy.
+          Each activity contains a guide for something you could do on a video
+          call. Pick one, customize it, then send it (calendar/email) -
+          it&apos;s that easy
         </p>
       </header>
       <CategorySelector

@@ -32,7 +32,9 @@ const ViewTemplatesContainer = ({
   }, [id])
 
   return (
-    <TopNavLayout topNavButton={{ text: 'Browse', path: '/browse-templates' }}>
+    <TopNavLayout
+      topNavButton={{ text: 'Browse Activities', path: '/browse-activities' }}
+    >
       <ViewTemplate
         template={template}
         handleUseTemplateClicked={handleUseTemplateClicked}
