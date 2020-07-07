@@ -7,14 +7,14 @@ import Popper from '@material-ui/core/Popper'
 import React, { useEffect, useRef } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useWindowDimensions } from '../../../../hooks'
-import { TopNavButton } from '../../types'
+import { TopNavItem } from '../../types'
 import DropArrowIcon from './assets/drop-arrow.svg'
 import styles from './SignedInMenu.module.scss'
 
 export interface Props {
   displayName?: string
   profilePic?: string
-  topNavButton?: TopNavButton
+  topNavItems?: TopNavItem[]
   handleSignOutClicked?: () => void
 }
 
@@ -22,7 +22,7 @@ export const SignedInMenu: React.FunctionComponent<Props> = ({
   displayName,
   profilePic,
   handleSignOutClicked,
-  topNavButton,
+  topNavItems,
 }) => {
   const [open, setOpen] = React.useState(false)
   const anchorRef = useRef<HTMLButtonElement>(null)
@@ -60,12 +60,19 @@ export const SignedInMenu: React.FunctionComponent<Props> = ({
   const history = useHistory()
   const { width } = useWindowDimensions()
 
-  const topNavButtonMenuItem =
-    width < 450 && topNavButton ? (
-      <MenuItem onClick={(): void => history.push(topNavButton.path)}>
-        {topNavButton.text}
-      </MenuItem>
-    ) : undefined
+  const topNavMenuItems =
+    width < 720 && topNavItems
+      ? topNavItems.map((topNavItem: TopNavItem) => {
+          return (
+            <MenuItem
+              onClick={(): void => history.push(topNavItem.path)}
+              key={topNavItem.text}
+            >
+              {topNavItem.text}
+            </MenuItem>
+          )
+        })
+      : undefined
 
   return (
     <div className={styles.container}>
@@ -75,7 +82,7 @@ export const SignedInMenu: React.FunctionComponent<Props> = ({
         onClick={handleToggle}
       >
         <img src={profilePic} alt="Profile Pic" className={styles.profilePic} />
-        <p>{displayName}</p>
+        {/* <p>{displayName}</p> */}
         <img
           src={DropArrowIcon}
           alt="drop arrow"
@@ -94,7 +101,7 @@ export const SignedInMenu: React.FunctionComponent<Props> = ({
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList autoFocusItem={open} id="menu-list-grow">
-                  {topNavButtonMenuItem}
+                  {topNavMenuItems}
                   <MenuItem onClick={handleSignOutClick}>Logout</MenuItem>
                 </MenuList>
               </ClickAwayListener>

@@ -54,10 +54,7 @@ const UserTemplatesContainer = ({
   }, [uid])
 
   return (
-    <TopNavLayout
-      topNavButton={{ text: 'Browse Activities', path: '/browse-activities' }}
-      authIsRequired={true}
-    >
+    <TopNavLayout activeNavPath="/user-templates" authIsRequired={true}>
       <UserTemplates
         draftTemplates={draftTemplates}
         publishedTemplates={publishedTemplates}

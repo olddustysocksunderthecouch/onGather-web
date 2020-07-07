@@ -5,7 +5,7 @@ export enum NavigationItem {
   SignOut = 'Sign Out',
 }
 
-export interface TopNavButton {
+export interface TopNavItem {
   text: string
   path: string
 }

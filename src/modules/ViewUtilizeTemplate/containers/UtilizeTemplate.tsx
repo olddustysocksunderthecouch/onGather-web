@@ -93,9 +93,7 @@ const UtilizeTemplateContainer = ({
   }, [id])
 
   return (
-    <TopNavLayout
-      topNavButton={{ text: 'Browse Activities', path: '/browse-activities' }}
-    >
+    <TopNavLayout activeNavPath="/edit-send-invites">
       <UtilizeTemplate
         isAuthenticated={isAuthenticated}
         template={template}

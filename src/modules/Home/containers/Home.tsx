@@ -13,7 +13,7 @@ interface Props extends ConnectedReduxProps<AnyAction> {
 const HomeContainer = ({
   handleBrowseButtonClicked,
 }: Props): React.FunctionComponentElement<Props> => (
-  <TopNavLayout topNavButton={{ text: 'Templates', path: '/user-templates' }}>
+  <TopNavLayout activeNavPath="/home">
     <Home handleBrowseButtonClicked={handleBrowseButtonClicked} />
   </TopNavLayout>
 )

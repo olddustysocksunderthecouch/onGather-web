@@ -40,7 +40,7 @@ const CreateTemplateContainer = ({
   handleFetchImages,
   areNextImagesLoading,
 }: Props): React.FunctionComponentElement<Props> => (
-  <TopNavLayout authIsRequired>
+  <TopNavLayout authIsRequired activeNavPath="/create-template">
     <CreateTemplate
       selectedTemplateId={selectedTemplateId}
       loading={loading}

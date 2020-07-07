@@ -45,20 +45,16 @@
   background-color: $color-yellow;
   margin: 8px 8px 8px;
 }
-
-.topNavButton {
-  display: flex;
-  justify-content: center;
-  align-content: center;
+.topNavLinks {
+  @include font-button;
   align-self: center;
-  @include button-no-shadow;
-  background-color: $color-malibu;
-  border: none;
-  margin: 8px 24px 8px;
-  padding: 8px 6px;
 
-  p {
-    padding: 0;
-    margin: 0;
+  .navItem {
+    margin-right: 20px;
+    @include font-button;
+
+    &.navItemSelected {
+      color: $color-dark-yellow;
+    }
   }
 }

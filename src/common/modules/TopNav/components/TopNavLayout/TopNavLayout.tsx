@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from 'react'
-import { NavigationItem, TopNavButton } from '../../types'
 import { AuthModal } from '../../../../components/AuthModal'
+import { NavigationItem } from '../../types'
 import { TopNav } from '../TopNav'
 import styles from './TopNavLayout.module.scss'
 
@@ -11,7 +11,7 @@ export interface Props {
   handleHomeClicked?: () => void
   handleNavigationItemClicked: (navigationItemClicked: NavigationItem) => void
   selectedNavigationItem: NavigationItem
-  topNavButton?: TopNavButton
+  activeNavPath?: string
   handleContinueWithClicked?: () => void
   handleSignOutClicked?: () => void
   authIsRequired: boolean
@@ -23,7 +23,7 @@ export const TopNavLayout: React.FunctionComponent<Props> = ({
   children,
   displayName,
   profilePic,
-  topNavButton,
+  activeNavPath,
   isAuthenticated,
   isAuthenticationLoading,
   authIsRequired,
@@ -60,7 +60,7 @@ export const TopNavLayout: React.FunctionComponent<Props> = ({
           isAuthenticated={isAuthenticated}
           displayName={displayName}
           profilePic={profilePic}
-          topNavButton={topNavButton}
+          activeNavPath={activeNavPath}
           handleHomeClicked={handleHomeClicked}
           handleNavigationItemClicked={handleNavigationItemClicked}
           selectedNavigationItem={selectedNavigationItem}

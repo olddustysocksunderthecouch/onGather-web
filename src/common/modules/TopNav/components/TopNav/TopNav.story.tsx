@@ -21,7 +21,7 @@ export const defaultState = (): React.FunctionComponentElement<Props> => (
     <TopNav
       profilePic="https://lh3.googleusercontent.com/a-/AOh14GgKxMbiOlVx7GCEFpCqLZsF6udEzBDOZiMqKyw5"
       displayName="Adrian Bunge"
-      topNavButton={{ text: 'Templates', path: '/templates' }}
+      activeNavPath="/templates"
       isAuthenticated={false}
       handleHomeClicked={(): void => undefined}
       handleNavigationItemClicked={handleNavigationItemClicked}
@@ -41,7 +41,7 @@ export const isAuthenticatedState = (): React.FunctionComponentElement<
     <TopNav
       profilePic="https://lh3.googleusercontent.com/a-/AOh14GgKxMbiOlVx7GCEFpCqLZsF6udEzBDOZiMqKyw5"
       displayName="Adrian Bunge"
-      topNavButton={{ text: 'Templates', path: '/templates' }}
+      activeNavPath="/templates"
       isAuthenticated
       handleHomeClicked={(): void => undefined}
       handleNavigationItemClicked={handleNavigationItemClicked}

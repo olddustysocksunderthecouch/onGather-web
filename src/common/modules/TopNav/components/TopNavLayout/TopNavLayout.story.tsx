@@ -23,7 +23,7 @@ export const defaultState = (): React.FunctionComponentElement<Props> => (
       profilePic="https://lh3.googleusercontent.com/a-/AOh14GgKxMbiOlVx7GCEFpCqLZsF6udEzBDOZiMqKyw5"
       authIsRequired={false}
       isAuthenticated={false}
-      topNavButton={{ text: 'Templates', path: '/templates' }}
+      activeNavPath="/templates"
       handleHomeClicked={(): void => undefined}
       handleNavigationItemClicked={handleNavigationItemClicked}
       handleContinueWithClicked={(): void => undefined}
@@ -65,7 +65,7 @@ export const authIsRequiredState = (): React.FunctionComponentElement<
       profilePic="https://lh3.googleusercontent.com/a-/AOh14GgKxMbiOlVx7GCEFpCqLZsF6udEzBDOZiMqKyw5"
       authIsRequired={true}
       isAuthenticated={false}
-      topNavButton={{ text: 'Templates', path: '/templates' }}
+      activeNavPath="/templates"
       handleHomeClicked={(): void => undefined}
       handleContinueWithClicked={(): void => undefined}
       handleNavigationItemClicked={handleNavigationItemClicked}
@@ -106,7 +106,7 @@ export const authIsLoadingState = (): React.FunctionComponentElement<Props> => (
       authIsRequired={true}
       isAuthenticationLoading={true}
       isAuthenticated={false}
-      topNavButton={{ text: 'Templates', path: '/templates' }}
+      activeNavPath="/templates"
       handleHomeClicked={(): void => undefined}
       handleContinueWithClicked={(): void => undefined}
       handleNavigationItemClicked={handleNavigationItemClicked}

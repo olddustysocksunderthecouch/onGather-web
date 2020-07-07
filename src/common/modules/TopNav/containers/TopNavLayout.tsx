@@ -13,12 +13,12 @@ import {
   navigateToHome,
   navigateToUserTemplates,
 } from '../TopNav.actions'
-import { NavigationItem, TopNavButton } from '../types'
+import { NavigationItem } from '../types'
 
 export interface Props {
   children: ReactNode
   handleHomeClicked?: () => void
-  topNavButton?: TopNavButton
+  activeNavPath?: string
   handleNavigationItemClicked?: (navigationItem: NavigationItem) => void
   handleContinueWithClicked?: () => void
   handleSignOutClicked?: () => void
@@ -39,7 +39,7 @@ const navigationItemToActionMap: { [key in NavigationItem]: AnyAction } = {
 
 const TopNavLayoutContainer = ({
   children,
-  topNavButton,
+  activeNavPath,
   isAuthenticated,
   authIsRequired = false,
   isAuthenticationLoading,
@@ -58,7 +58,7 @@ const TopNavLayoutContainer = ({
     isAuthenticationLoading={isAuthenticationLoading}
     authIsRequired={authIsRequired}
     handleContinueWithClicked={handleContinueWithClicked}
-    topNavButton={topNavButton}
+    activeNavPath={activeNavPath}
     handleHomeClicked={handleHomeClicked}
     selectedNavigationItem={selectedNavigationItem!}
     handleNavigationItemClicked={handleNavigationItemClicked!}
