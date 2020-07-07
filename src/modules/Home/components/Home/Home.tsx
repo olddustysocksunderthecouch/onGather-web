@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { HowItWorks } from '../HowItWorks'
 import homeBackgroundImage from './../../assets/home-section-1.svg'
 import homeBackgroundImage2 from './../../assets/home-section-2.svg'
+import homeBackgroundImage3 from './../../assets/home-section-3.png'
 import styles from './Home.module.scss'
 
 export interface Props {
@@ -59,6 +60,30 @@ export const Home: React.FunctionComponent<Props> = ({
           </Link>
         </div>
       </section>
+      <section className={styles.homeSection3}>
+        <div className={styles.homeSection3Content}>
+          <h1 className={styles.homePageTitle2}>
+            Be the person that makes video calls fun & exciting
+          </h1>
+          <p>
+            It&apos;s a simple process: pick an activity (or create your own),
+            add a video call link, set a date, invite your friends. We’ll take
+            care of sending everyone a beautiful invitation on email & calendar!
+          </p>
+          <Link
+            to="/browse-activities"
+            onClick={(): void => handleBrowseButtonClicked('middle')}
+          >
+            <button className={styles.buttonSection2}>Find an activity</button>
+          </Link>
+        </div>
+        <img
+          src={homeBackgroundImage3}
+          alt="home background 3"
+          className={styles.homeBackgroundImage3}
+        />
+      </section>
+
       <div className={styles.howItWorks}>
         <HowItWorks />
       </div>

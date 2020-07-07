@@ -73,7 +73,7 @@
   }
   @media (min-width: $bigScreen) {
     padding-top: 120px;
-    margin-left: 160px;
+    margin-left: 120px;
   }
   @media (min-width: $hugeScreen) {
     padding-top: 120px;
@@ -82,6 +82,10 @@
   @media (min-width: 2200px) {
     padding-top: 200px;
     margin-left: 200px;
+  }
+  @media (min-width: 2400px) {
+    padding-top: 240px;
+    margin-left: 240px;
   }
 }
 
@@ -114,17 +118,15 @@
   left: 0;
   margin-left: -32px;
   z-index: -1;
+
+  @media (min-width: $bigMobile) {
+    top: 220px;
+  }
+
   @media (min-width: $desktop) {
     margin-left: 0;
     margin-top: 300px;
     width: 60vw;
-  }
-
-  @media (min-width: $bigScreen) {
-    top: 96px;
-    margin-left: 0;
-    width: 42vw;
-    margin-top: -256px;
   }
 
   @media (min-width: $bigScreen) {
@@ -135,31 +137,29 @@
   @media (min-width: $hugeScreen) {
     margin-left: 0;
     width: 42vw;
-    margin-top: -300px;
-  
+    margin-top: -400px;
   }
 
   @media (min-width: 2000px) {
     margin-left: 0;
     width: 42vw;
-    margin-top: -320px;
+    margin-top: -450px;
   }
 }
 
 .homeSection2Content {
   position: absolute;
   right: 5vw;
-  top: 190px;
+  top: 200px;
 
   max-width: 532px;
-
 
   @media (min-width: 410px) {
     top: 240px;
   }
 
   @media (min-width: $bigMobile) {
-    top: 320px;
+    top: 340px;
   }
   @media (min-width: 550px) {
     top: 400px;
@@ -176,12 +176,12 @@
     }
   }
   @media (min-width: 1200px) {
-    top: 780px;
+    top: 720px;
     right: 128px;
   }
   @media (min-width: $bigScreen) {
-    top: 700px;
-    right: 120px;
+    top: 850px;
+    right: 100px;
   }
   @media (min-width: $hugeScreen) {
     top: 700px;
@@ -204,10 +204,10 @@
 .buttonSection2 {
   margin-top: 16px;
   border-radius: 6px;
-  background-color: $color-yellow;
+  background-color: $color-red;
   color: $color-white;
   box-shadow: 3px 3px 6px rgba(207, 207, 207, 0.8);
-  padding: 8px 24px;
+  padding: 16px 24px;
   @include text-style('font-main', 'semibold', 'body-s');
   letter-spacing: 0.05em;
   z-index: 100;
@@ -219,12 +219,12 @@
   }
   @media (min-width: $desktop) {
     @include text-style('font-main', 'semibold', 'body');
-    padding: 10px 28px;
+    padding: 16px 28px;
     margin-top: 24px;
   }
 }
 
-.howItWorks {
+.homeSection3 {
   position: absolute;
   top: 950px;
   width: 100%;
@@ -259,10 +259,7 @@
     top: 2100px;
   }
   @media (min-width: 1200px) {
-    top: 1660px;
-  }
-  @media (min-width: 1300px) {
-    top: 1700px;
+    top: 2200px;
   }
   @media (min-width: $bigScreen) {
     top: 2200px;
@@ -271,12 +268,166 @@
     top: 2100px;
   }
   @media (min-width: 2000px) {
-    top: 2200px;
+    top: 1800px;
   }
   @media (min-width: 2200px) {
-    top: 2300px;
+    top: 2000px;
   }
   @media (min-width: 2400px) {
-    top: 2600px;
+    top: 2200px;
+  }
+
+  .homeSection3Content {
+    position: absolute;
+    left: 10vw;
+    top: 130px;
+    max-width: 532px;
+
+    @media (min-width: 375px) {
+      top: 140px;
+    }
+    @media (min-width: 410px) {
+      top: 200px;
+    }
+
+    @media (min-width: $bigMobile) {
+      top: 250px;
+    }
+    @media (min-width: 550px) {
+      top: 300px;
+    }
+    @media (min-width: $toTablet) {
+      top: 320px;
+    }
+
+    @media (min-width: $desktop) {
+      top: 120px;
+      left: 72px;
+      p {
+        @include font-headline-6;
+      }
+    }
+    @media (min-width: 1200px) {
+      top: 260px;
+      left: 128px;
+    }
+    @media (min-width: $bigScreen) {
+      top: 260px;
+      left: 120px;
+    }
+    @media (min-width: $hugeScreen) {
+      top: 250px;
+      left: 180px;
+    }
+    @media (min-width: 2000px) {
+      top: 700px;
+      left: 140px;
+    }
+    @media (min-width: 2200px) {
+      top: 850px;
+      left: 200px;
+    }
+    @media (min-width: 2400px) {
+      top: 1000px;
+      left: 300px;
+    }
+  }
+
+  .homeBackgroundImage3 {
+    width: 90vw;
+    position: absolute;
+    top: 220px;
+    right: 0;
+    margin-left: -32px;
+    z-index: -1;
+
+    @media (min-width: 375px) {
+      top: 240px;
+    }
+    @media (min-width: 410px) {
+      top: 280px;
+    }
+    @media (min-width: $bigMobile) {
+      top: 300px;
+    }
+    @media (min-width: $desktop) {
+      top: 100px;
+      width: 80vw;
+    }
+    @media (min-width: 1200px) {
+      top: 100px;
+      width: 80vw;
+    }
+    @media (min-width: $bigScreen) {
+      top: 0px;
+      width: 58vw;
+      margin-top: -300px;
+      margin-right: -100px;
+    }
+    @media (min-width: $hugeScreen) {
+      width: 60vw;
+      margin-top: -300px;
+    }
+  }
+}
+
+.howItWorks {
+  position: absolute;
+  top: 1650px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 375px) {
+    top: 1840px;
+  }
+
+  @media (min-width: 410px) {
+    top: 1950px;
+  }
+
+  @media (min-width: $mobile) {
+    top: 2000px;
+  }
+
+  @media (min-width: $bigMobile) {
+    top: 2280px;
+  }
+  @media (min-width: $toTablet) {
+    top: 3100px;
+  }
+  @media (min-width: $tablet) {
+    top: 3200px;
+  }
+
+  @media (min-width: 800px) {
+    top: 3500px;
+  }
+  @media (min-width: 900px) {
+    top: 3600px;
+  }
+  @media (min-width: $desktop) {
+    top: 3500px;
+  }
+  @media (min-width: 1200px) {
+    top: 3850px;
+  }
+  @media (min-width: 1300px) {
+    top: 4000px;
+  }
+  @media (min-width: $bigScreen) {
+    top: 3300px;
+  }
+  @media (min-width: $hugeScreen) {
+    top: 3550px;
+  }
+  @media (min-width: 2000px) {
+    top: 3400px;
+  }
+  @media (min-width: 2200px) {
+    top: 3800px;
+  }
+  @media (min-width: 2400px) {
+    top: 4200px;
   }
 }
