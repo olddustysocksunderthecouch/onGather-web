@@ -2,7 +2,7 @@ import React from 'react'
 import { AddParticipants } from './AddParticipants'
 
 export default {
-  title: 'Components/ViewUtilizeTemplates/AddParticipants',
+  title: 'Components/ViewUtilizeTemplate/AddParticipants',
   component: AddParticipants,
 }
 

@@ -43,7 +43,7 @@ export const CreatingSuccessErrorModal: React.FunctionComponent<Props> = ({
           <p className={styles.description}>
             The invitations have been sent out to everyone via email!
           </p>
-          <Link to="/browse-templates">
+          <Link to="/browse-activities">
             <button className={styles.browseButton}>
               Browse more template
             </button>

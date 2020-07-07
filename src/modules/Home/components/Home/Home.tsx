@@ -23,17 +23,16 @@ export const Home: React.FunctionComponent<Props> = ({
           alt="home background"
           className={styles.homeBackgroundImage}
         />
-        <h1 className={styles.homePageTitle}>
-          Want to have more
-          <br /> meaningful & fun
-          <br /> video calls with friends?
-        </h1>
-        <Link
-          to="/browse-templates"
-          onClick={(): void => handleBrowseButtonClicked('top')}
-        >
-          <button className={styles.buttonSection1}>Browse</button>
-        </Link>
+        <div className={styles.homeTopContent}>
+          <h1>
+            Struggling to connect with your friends/ loved one’s over video
+            calls?
+          </h1>
+          <p>
+            Not seeing them in person is tough... and regular calls can get
+            boring and feel like a chore
+          </p>
+        </div>
       </section>
       <section className={styles.homeSection2}>
         <img
@@ -43,16 +42,20 @@ export const Home: React.FunctionComponent<Props> = ({
         />
         <div className={styles.homeSection2Content}>
           <h1 className={styles.homePageTitle2}>
-            We&apos;ve got some
-            <br /> ideas & templates
-            <br /> that&apos;ll make it
-            <br /> much easier
+            Imagine you could easily organise doing new activities on video
+            calls
           </h1>
+          <p>
+            Picture a games night, meditation session, casual book club or semi
+            structured conversations
+          </p>
           <Link
-            to="/browse-templates"
+            to="/browse-activities"
             onClick={(): void => handleBrowseButtonClicked('middle')}
           >
-            <button className={styles.buttonSection2}>Pick One</button>
+            <button className={styles.buttonSection2}>
+              Browse our activities
+            </button>
           </Link>
         </div>
       </section>

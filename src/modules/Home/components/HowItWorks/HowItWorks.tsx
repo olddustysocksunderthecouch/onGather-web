@@ -1,16 +1,26 @@
 import React, { Fragment } from 'react'
-import { Link } from 'react-router-dom'
-import createTemplateIcon from '../../../../common/assets/create-template-icon.svg'
+import CustomizedIcon from '../../assets/home-customize.svg'
+import FriendsIcon from '../../assets/home-friends.svg'
+import PickActivityIcon from '../../assets/home-pick-activity.svg'
+import SendMailIcon from '../../assets/home-send-mail.svg'
+import VideoCallIcon from '../../assets/home-video-call.svg'
 import { HowItWorksItem } from '../../types'
 import styles from './HowItWorks.module.scss'
 
 const howItWorks: HowItWorksItem[] = [
-  { number: '#1', content: 'Pick a template' },
-  { number: '#2', content: 'Edit a pre-written invitation' },
-  { number: '#3', content: 'Enter friend’s emails' },
+  { icon: PickActivityIcon, content: 'Pick an activity' },
+  { icon: CustomizedIcon, content: 'Customise the pre-written invitation' },
   {
-    number: '#4',
-    content: `We send everyone a Google Calendar invite`,
+    icon: VideoCallIcon,
+    content: 'Choose & use any video calling app/service',
+  },
+  {
+    icon: FriendsIcon,
+    content: 'Add your friend’s with their email addresses',
+  },
+  {
+    icon: SendMailIcon,
+    content: `We’ll send a calendar & email invite`,
   },
 ]
 
@@ -21,30 +31,15 @@ export const HowItWorks: React.FunctionComponent = () => (
       <ul className={styles.howItWorksList}>
         {howItWorks.map((howItWorksItem: HowItWorksItem) => {
           return (
-            <li className={styles.listItem} key={howItWorksItem.number}>
-              <p className={styles.listItemNumber}>{howItWorksItem.number}</p>
-              <p className={styles.listItemContent}>{howItWorksItem.content}</p>
+            <li className={styles.listItem} key={howItWorksItem.icon}>
+              <img className={styles.listItemIcon} src={howItWorksItem.icon} />
+              <div className={styles.listItemContent}>
+                {howItWorksItem.content}
+              </div>
             </li>
           )
         })}
       </ul>
-    </section>
-    <section className={styles.wantToHelp}>
-      <h2 className={styles.sectionTitle}>Wanna help make templates?</h2>
-      <p>
-        We&apos;ve only been running for a handful of days and our community
-        could sure use your help!
-      </p>
-      <Link to="/user-templates" style={{ textDecoration: 'none' }}>
-        <button>
-          <img
-            src={createTemplateIcon}
-            alt="create template"
-            className={styles.createTemplateIcon}
-          />
-          Create a template
-        </button>
-      </Link>
     </section>
   </Fragment>
 )

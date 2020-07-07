@@ -55,7 +55,7 @@ const UserTemplatesContainer = ({
 
   return (
     <TopNavLayout
-      topNavButton={{ text: 'Browse', path: '/browse-templates' }}
+      topNavButton={{ text: 'Browse Activities', path: '/browse-activities' }}
       authIsRequired={true}
     >
       <UserTemplates

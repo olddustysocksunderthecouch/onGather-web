@@ -101,10 +101,20 @@ $font-families: (
   font-feature-settings: 'pnum' on, 'lnum' on;
 }
 
+@mixin font-body-mid {
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+}
+
 @mixin font-body-large {
   font-family: Raleway;
   font-style: normal;
-  font-weight: 500;
+  font-weight: normal;
   font-size: 18px;
   line-height: 26px;
   letter-spacing: 0.444444px;
@@ -128,5 +138,32 @@ $font-families: (
   font-weight: normal;
   font-size: 34px;
   line-height: 39px;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+}
+
+@mixin font-headline-2 {
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 42px;
+  line-height: 59px;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+}
+
+@mixin font-headline-5 {
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 24px;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+}
+
+@mixin font-headline-6 {
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 28px;
+  line-height: 36px;
   font-feature-settings: 'pnum' on, 'lnum' on;
 }

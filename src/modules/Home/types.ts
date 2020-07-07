@@ -1,5 +1,5 @@
 export interface HowItWorksItem {
-  number: string
+  icon: string
   content: string
 }
 

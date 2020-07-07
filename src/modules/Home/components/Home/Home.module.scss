@@ -7,16 +7,21 @@
   flex-direction: column;
   position: relative;
   h1 {
-    @include text-style('font-main', 'regular', 'body');
+    @include font-headline-5;
+    width: 276px;
 
-    @media (min-width: $tablet) {
-      @include text-style('font-main', 'regular', 'title-l');
-    }
     @media (min-width: $desktop) {
-      @include text-style('font-main', 'regular', 'title-xl');
+      width: 532px;
+      @include font-headline-2;
     }
-    @media (min-width: $bigScreen) {
-      @include text-style('font-main', 'regular', 'title-xxl');
+  }
+  p {
+    @include font-body-mid;
+    width: 276px;
+    margin-top: 8px;
+    @media (min-width: $desktop) {
+      width: 532px;
+      @include font-headline-6;
     }
   }
 }
@@ -30,82 +35,53 @@
   position: absolute;
   right: 0;
   z-index: -1;
-  top: 56px;
+  top: 128px;
   @media (min-width: $tablet) {
     top: 32px;
   }
   @media (min-width: $desktop) {
-    top: 0px;
+    top: 172px;
     width: 64vw;
   }
   @media (min-width: $bigScreen) {
+    top: 100px;
+    width: 72vw;
+  }
+  @media (min-width: $hugeScreen) {
     top: 0px;
+    width: 52vw;
+  }
+  @media (min-width: 2200px) {
+    top: 50px;
     width: 50vw;
-    margin-top: -96px;
   }
 }
 
-.homePageTitle {
+.homeTopContent {
   padding-top: 10vw;
-  padding-left: 10vw;
+  margin-left: 10vw;
   justify-content: flex-start;
   align-content: stretch;
+  width: 532px;
   @media (min-width: $desktop) {
     padding-top: 72px;
-    padding-left: 72px;
+    margin-left: 72px;
   }
   @media (min-width: 1200px) {
     padding-top: 96px;
-    padding-left: 96px;
-  }
-  @media (min-width: $bigScreen) {
-    padding-top: 380px;
-    padding-left: 220px;
-  }
-  @media (min-width: $hugeScreen) {
-    padding-top: 440px;
-    padding-left: 270px;
-  }
-  @media (min-width: 2200px) {
-    padding-top: 440px;
-    padding-left: 300px;
-  }
-}
-
-.buttonSection1 {
-  margin-top: 16px;
-  margin-left: 10vw;
-  border-radius: 6px;
-  background-color: $color-yellow;
-  color: $color-white;
-  box-shadow: 3px 3px 6px rgba(207, 207, 207, 0.8);
-  padding: 8px 24px;
-  @include text-style('font-main', 'semibold', 'body-s');
-  letter-spacing: 0.05em;
-  z-index: 100;
-  &:focus {
-    outline: none;
-  }
-  &:hover {
-    opacity: 0.9;
-  }
-  @media (min-width: $desktop) {
-    margin-left: 72px;
-    @include text-style('font-main', 'semibold', 'body');
-    padding: 10px 28px;
-    margin-top: 24px;
-  }
-  @media (min-width: 1200px) {
     margin-left: 96px;
   }
   @media (min-width: $bigScreen) {
-    margin-left: 220px;
+    padding-top: 120px;
+    margin-left: 160px;
   }
   @media (min-width: $hugeScreen) {
-    margin-left: 270px;
+    padding-top: 120px;
+    margin-left: 140px;
   }
   @media (min-width: 2200px) {
-    margin-left: 300px;
+    padding-top: 200px;
+    margin-left: 200px;
   }
 }
 
@@ -127,23 +103,25 @@
     top: 80px;
   }
   @media (min-width: $bigScreen) {
-    top: 0px;
+    top: 400px;
   }
 }
 
 .homeBackgroundImage2 {
   width: 90vw;
   position: absolute;
-  top: 24px;
+  top: 180px;
   left: 0;
   margin-left: -32px;
   z-index: -1;
   @media (min-width: $desktop) {
     margin-left: 0;
-    width: 54vw;
+    margin-top: 300px;
+    width: 60vw;
   }
 
   @media (min-width: $bigScreen) {
+    top: 96px;
     margin-left: 0;
     width: 42vw;
     margin-top: -256px;
@@ -151,40 +129,51 @@
 
   @media (min-width: $bigScreen) {
     margin-left: 0;
-    width: 50vw;
-    margin-top: -256px;
+    width: 46vw;
+    margin-top: -100px;
   }
   @media (min-width: $hugeScreen) {
     margin-left: 0;
     width: 42vw;
-    margin-top: -256px;
+    margin-top: -300px;
+  
+  }
+
+  @media (min-width: 2000px) {
+    margin-left: 0;
+    width: 42vw;
+    margin-top: -320px;
   }
 }
 
 .homeSection2Content {
   position: absolute;
-  right: 10vw;
-  top: 130px;
+  right: 5vw;
+  top: 190px;
 
-  @media (min-width: 375px) {
-    top: 172px;
-  }
+  max-width: 532px;
+
+
   @media (min-width: 410px) {
-    top: 210px;
+    top: 240px;
   }
 
   @media (min-width: $bigMobile) {
-    top: 272px;
-  }
-  @media (min-width: $toTablet) {
-    top: 480px;
+    top: 320px;
   }
   @media (min-width: 550px) {
     top: 400px;
   }
+  @media (min-width: $toTablet) {
+    top: 520px;
+  }
+
   @media (min-width: $desktop) {
-    top: 664px;
-    right: 72px;
+    top: 580px;
+    right: 36px;
+    p {
+      @include font-headline-6;
+    }
   }
   @media (min-width: 1200px) {
     top: 780px;
@@ -192,18 +181,18 @@
   }
   @media (min-width: $bigScreen) {
     top: 700px;
-    right: 240px;
+    right: 120px;
   }
   @media (min-width: $hugeScreen) {
-    top: 600px;
-    right: 350px;
+    top: 700px;
+    right: 180px;
   }
   @media (min-width: 2000px) {
-    top: 800px;
-    right: 350px;
+    top: 700px;
+    right: 300px;
   }
   @media (min-width: 2200px) {
-    top: 900px;
+    top: 850px;
     right: 420px;
   }
   @media (min-width: 2400px) {
@@ -267,7 +256,7 @@
     top: 2100px;
   }
   @media (min-width: $desktop) {
-    top: 1400px;
+    top: 2100px;
   }
   @media (min-width: 1200px) {
     top: 1660px;
@@ -276,18 +265,18 @@
     top: 1700px;
   }
   @media (min-width: $bigScreen) {
-    top: 1750px;
+    top: 2200px;
   }
   @media (min-width: $hugeScreen) {
-    top: 1900px;
+    top: 2100px;
   }
   @media (min-width: 2000px) {
-    top: 2100px;
+    top: 2200px;
   }
   @media (min-width: 2200px) {
     top: 2300px;
   }
   @media (min-width: 2400px) {
-    top: 2400px;
+    top: 2600px;
   }
 }

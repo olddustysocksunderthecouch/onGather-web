@@ -34,88 +34,50 @@
   li {
     display: flex;
     align-items: center;
-    margin-bottom: 12px;
-    height: 60px;
+    margin-bottom: 8px;
+    height: 80px;
     border: 1px solid #efefef;
     box-shadow: 2px 2px 48px rgba(0, 0, 0, 0.04),
       0px 4px 32px rgba(0, 0, 0, 0.06);
-    border-radius: 16px;
-    padding: 4px;
+    border-radius: 8px;
 
     @media (min-width: $tablet) {
-      width: 196px;
-      height: 192px;
+      width: 202px;
+      height: 237px;
       flex-direction: column;
-      margin-right: 12px;
+      margin-right: 16px;
       align-items: flex-start;
     }
 
     p {
       margin-bottom: 0;
     }
-    .listItemNumber {
-      @include text-style('font-other', 'regular', 'body-s');
-      color: $color-darker-gray;
-      margin-left: 24px;
+    .listItemIcon {
+      height: 64px;
+      width: 64px;
+      margin: 8px 16px 8px 16px;
+      object-fit: fill;
+
       @media (min-width: $tablet) {
         margin-top: 24px;
+        height: 120px;
+        width: 120px;
+        padding: 0px;
+        align-self: center;
+        margin-left: 0px;
+        margin-right: 0px;
       }
     }
     .listItemContent {
-      @include text-style('font-main', 'regular', 'body-s');
-      margin-left: 24px;
+      @include font-body-large;
       text-align: left;
+      margin-right: 16px;
       @media (min-width: $tablet) {
-        @include text-style('font-main', 'regular', 'body');
-        line-height: 24px;
-        margin-right: 12px;
-        margin-top: 8px;
+        @include font-body-mid;
+        margin: 16px 8px 24px 8px;
+        text-align: center;
+        align-self: stretch;
       }
     }
-  }
-}
-.wantToHelp {
-  display: flex;
-  flex-direction: column;
-  margin-top: 36px;
-  margin-bottom: 36px;
-  @media (min-width: $tablet) {
-    align-items: center;
-    justify-self: stretch;
-  }
-  p {
-    margin: 18px 24px 8px 24px;
-    @include text-style('font-main', 'regular', 'body-s');
-    @media (min-width: $tablet) {
-      margin: 0px 24px 16px 24px;
-      @include text-style('font-main', 'regular', 'body');
-    }
-  }
-
-  button {
-    margin: 24px;
-    width: 208px;
-    height: 128px;
-    border-radius: 16px;
-    background-color: $color-yellow;
-    box-shadow: 2px 2px 48px rgba(0, 0, 0, 0.04),
-      0px 4px 32px rgba(0, 0, 0, 0.06);
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: center;
-    &:hover {
-      opacity: 80%;
-    }
-
-    img {
-      margin-bottom: 16px;
-      height: 36px;
-    }
-    @include text-style('font-main', 'semibold', 'body');
-    @media (min-width: $tablet) {
-      @include text-style('font-main', 'semibold', 'body');
-    }
-    color: $color-white;
   }
 }

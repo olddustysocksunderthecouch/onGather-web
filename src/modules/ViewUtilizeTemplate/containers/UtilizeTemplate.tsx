@@ -65,7 +65,8 @@ const UtilizeTemplateContainer = ({
       calendarEventScopeStatus !== CalendarEventScopeStatus.RequestIsGranted &&
       calendarEventScopeStatus !== CalendarEventScopeStatus.FetchedIsGranted &&
       calendarEventScopeStatus !== CalendarEventScopeStatus.FetchedNotGranted &&
-      calendarEventScopeStatus !== CalendarEventScopeStatus.Fetching
+      calendarEventScopeStatus !== CalendarEventScopeStatus.Fetching &&
+      calendarEventScopeStatus !== CalendarEventScopeStatus.Error
     ) {
       handleFetchScopes()
     }
