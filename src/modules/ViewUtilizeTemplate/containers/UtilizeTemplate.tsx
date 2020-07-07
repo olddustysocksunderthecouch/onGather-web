@@ -58,27 +58,29 @@ const UtilizeTemplateContainer = ({
   const firestore = useFirestore()
 
   useEffect(() => {
-    console.log('calendarEventScopeStatus', calendarEventScopeStatus)
+    console.log('enter 1st useEffect', calendarEventScopeStatus)
     console.log('isAuthenticated', isAuthenticated)
     if (
       isAuthenticated &&
-      calendarEventScopeStatus !== CalendarEventScopeStatus.RequestIsGranted &&
-      calendarEventScopeStatus !== CalendarEventScopeStatus.FetchedIsGranted &&
-      calendarEventScopeStatus !== CalendarEventScopeStatus.FetchedNotGranted &&
-      calendarEventScopeStatus !== CalendarEventScopeStatus.Fetching &&
-      calendarEventScopeStatus !== CalendarEventScopeStatus.Error
+      (calendarEventScopeStatus ===
+        CalendarEventScopeStatus.FetchedNotGranted ||
+        calendarEventScopeStatus === CalendarEventScopeStatus.NotFetched ||
+        calendarEventScopeStatus === CalendarEventScopeStatus.Error)
     ) {
+      console.log('enter 1st conditional', calendarEventScopeStatus)
       handleFetchScopes()
     }
-  }, [isAuthenticated, calendarEventScopeStatus])
+  }, [isAuthenticated])
 
   useEffect(() => {
+    console.log('enter 2nd useEffect', calendarEventScopeStatus)
     if (
       isAuthenticated &&
-      calendarEventScopeStatus !== CalendarEventScopeStatus.RequestIsGranted &&
-      calendarEventScopeStatus !== CalendarEventScopeStatus.FetchedIsGranted &&
-      calendarEventScopeStatus !== CalendarEventScopeStatus.Fetching
+      (calendarEventScopeStatus === CalendarEventScopeStatus.Error ||
+        calendarEventScopeStatus === CalendarEventScopeStatus.NotFetched ||
+        calendarEventScopeStatus === CalendarEventScopeStatus.FetchedNotGranted)
     ) {
+      console.log('enter 2nd conditional', calendarEventScopeStatus)
       handleFetchScopes()
     }
   }, [])

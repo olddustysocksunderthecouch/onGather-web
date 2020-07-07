@@ -21,7 +21,7 @@ export interface Props {
 const topNavItems: TopNavItem[] = [
   { text: 'Browse Activities', path: '/browse-activities' },
   { text: 'Your Activities', path: '/user-templates' },
-  { text: 'Your Gatherings', path: '/gatherings' },
+  // { text: 'Your Gatherings', path: '/gatherings' },
 ]
 
 export const TopNav: React.FunctionComponent<Props> = ({

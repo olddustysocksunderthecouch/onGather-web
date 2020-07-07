@@ -27,7 +27,7 @@ export const CreateNewTemplate: React.FunctionComponent<Props> = ({
           fill="#E0E0E0"
         />
       </svg>
-      Create a template from scratch
+      Create an activity from scratch
     </button>
   </Link>
 )
