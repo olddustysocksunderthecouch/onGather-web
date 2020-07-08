@@ -21,6 +21,8 @@ export const BrowseTemplates: React.FunctionComponent<Props> = ({
   useEffect(() => {
     document.title = 'Browser'
   }, [])
+
+  console.log('process.env.NODE_ENV', process.env.NODE_ENV)
   return (
     <div className={styles.container}>
       <header>
@@ -48,7 +50,7 @@ export const BrowseTemplates: React.FunctionComponent<Props> = ({
                 suggestedDuration={template.suggestedDuration}
                 mainAimsOutcomes={template.mainAimsOutcomes}
                 shortDescription={template.shortDescription}
-                destinationPath={`/view-template/${template.templateId}`}
+                destinationPath={`/activity/${template.templateId}`}
                 handleTemplatePreviewClicked={(): void => undefined}
                 openInNewTab={true}
               />

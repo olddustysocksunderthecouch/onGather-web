@@ -32,7 +32,7 @@ const ViewTemplatesContainer = ({
   }, [id])
 
   return (
-    <TopNavLayout activeNavPath="/view-template">
+    <TopNavLayout activeNavPath="/activity">
       <ViewTemplate
         template={template}
         handleUseTemplateClicked={handleUseTemplateClicked}

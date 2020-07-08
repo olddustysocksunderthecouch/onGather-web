@@ -1,5 +1,4 @@
 import GoogleAnalytics from '@redux-beacon/google-analytics'
-import logger from '@redux-beacon/logger'
 import { routerMiddleware } from 'connected-react-router'
 import { createBrowserHistory } from 'history'
 import { getFirebase } from 'react-redux-firebase'
@@ -34,7 +33,7 @@ export const history = createBrowserHistory()
 const gaMiddleware = createMiddleware(
   eventsMap,
   GoogleAnalytics(),
-  process.env.NODE_ENV !== 'production' ? { logger } : {},
+  // Uncomment to debug { logger }
 )
 
 export const configureStoreAndPersistor = (
@@ -46,8 +45,11 @@ export const configureStoreAndPersistor = (
     createdRouterMiddleWare,
     epicMiddleware,
     thunk.withExtraArgument(getFirebase),
-    gaMiddleware,
   ]
+  if (process.env.NODE_ENV !== 'development') {
+    middlewares.push(gaMiddleware)
+  }
+
   const middlewareEnhancer = applyMiddleware(...middlewares)
   const enhancers = [middlewareEnhancer]
   const composedEnhancers: StoreEnhancer = composeWithDevTools(...enhancers)

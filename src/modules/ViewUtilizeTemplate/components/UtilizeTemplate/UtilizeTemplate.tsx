@@ -269,6 +269,7 @@ export const UtilizeTemplate: React.FunctionComponent<Props> = ({
                         width: 'calc(50% - 4px)',
                         minWidth: '250px',
                         marginRight: '8px',
+                        marginTop: '16px',
                       }}
                       autoOk
                       variant="inline"
@@ -287,6 +288,7 @@ export const UtilizeTemplate: React.FunctionComponent<Props> = ({
                   style={{
                     width: 'calc(50% - 4px)',
                     minWidth: '250px',
+                    marginTop: '16px',
                   }}
                   variant="outlined"
                 >

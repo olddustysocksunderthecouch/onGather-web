@@ -91,7 +91,7 @@ ReactDOM.render(
             />
             <Route
               exact
-              path="/view-template/:id"
+              path="/activity/:id"
               component={ViewTemplateContainer}
             />
             <Route
