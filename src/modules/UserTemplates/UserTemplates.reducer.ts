@@ -32,6 +32,7 @@ export const initialState: UserTemplatesState = {
     searchTerm: null,
     loading: false,
     imageSearchResults: [],
+    totalImagesAvailable: null,
     error: null,
   },
 }
@@ -145,6 +146,8 @@ export function reducer(
     case UserTemplatesActions.SearchForImages: {
       const updateImages =
         action.payload.page > 1 ? [...state.imageSearch.imageSearchResults] : []
+      const updateTotalImagesAvailable =
+        action.payload.page === 1 ? 0 : state.imageSearch.totalImagesAvailable
       return {
         ...state,
         imageSearch: {
@@ -152,21 +155,29 @@ export function reducer(
           loading: true,
           imageSearchResults: updateImages,
           error: null,
+          totalImagesAvailable: updateTotalImagesAvailable,
         },
       }
     }
-    case UserTemplatesActions.SearchForImagesSuccess:
+    case UserTemplatesActions.SearchForImagesSuccess: {
+      const updateImages =
+        state.imageSearch.searchTerm === action.payload.searchTerm ||
+        action.payload.searchTerm.length === 0
+          ? [...state.imageSearch.imageSearchResults].concat(
+              action.payload.imageSearchResults,
+            )
+          : [...state.imageSearch.imageSearchResults]
       return {
         ...state,
         imageSearch: {
           searchTerm: state.imageSearch.searchTerm,
           loading: false,
-          imageSearchResults: [...state.imageSearch.imageSearchResults].concat(
-            action.payload.imageSearchResults,
-          ),
+          imageSearchResults: updateImages,
+          totalImagesAvailable: action.payload.totalImagesAvailable,
           error: null,
         },
       }
+    }
     case UserTemplatesActions.SearchForImagesFailure:
       return {
         ...state,
@@ -175,6 +186,7 @@ export function reducer(
           loading: false,
           imageSearchResults: [...state.imageSearch.imageSearchResults],
           error: action.payload.error,
+          totalImagesAvailable: state.imageSearch.totalImagesAvailable,
         },
       }
   }

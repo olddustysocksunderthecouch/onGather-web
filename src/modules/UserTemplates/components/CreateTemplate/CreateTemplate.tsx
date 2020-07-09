@@ -34,6 +34,7 @@ export interface Props {
   handlePublishClicked: (template: TemplateCreation) => void
   initialTemplateEditorData: TemplateEditorState
   imageSearchResults: ImageSearchResult[]
+  totalImagesAvailable: number
   handleFetchImages: (searchTerm: string, page: number) => void
   areNextImagesLoading: boolean
   searchTerm: string
@@ -67,6 +68,7 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
   handleSaveDraftClicked,
   handlePublishClicked,
   imageSearchResults,
+  totalImagesAvailable,
   handleFetchImages,
   areNextImagesLoading,
   searchTerm,
@@ -520,6 +522,7 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
             searchTerm={searchTerm}
             areNextImagesLoading={areNextImagesLoading}
             imageSearchResults={imageSearchResults}
+            totalImagesAvailable={totalImagesAvailable}
             handleFetchImages={handleFetchImages}
             handleSelectedImage={(selectedImageUrls: ImageUrls): void => {
               setShowImagePicker(false)

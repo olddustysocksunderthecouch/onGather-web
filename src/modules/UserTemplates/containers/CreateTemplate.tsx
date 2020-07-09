@@ -23,6 +23,7 @@ interface Props extends ConnectedReduxProps<AnyAction> {
   handlePublishClicked: (template: TemplateCreation) => void
   initialTemplateEditorData: TemplateEditorState
   imageSearchResults: ImageSearchResult[]
+  totalImagesAvailable: number
   handleFetchImages: (searchTerm: string, page: number) => void
   areNextImagesLoading: boolean
   searchTerm: string
@@ -37,6 +38,7 @@ const CreateTemplateContainer = ({
   handleSaveDraftClicked,
   handlePublishClicked,
   imageSearchResults,
+  totalImagesAvailable,
   handleFetchImages,
   areNextImagesLoading,
 }: Props): React.FunctionComponentElement<Props> => (
@@ -50,6 +52,7 @@ const CreateTemplateContainer = ({
       handleSaveDraftClicked={handleSaveDraftClicked}
       handlePublishClicked={handlePublishClicked}
       imageSearchResults={imageSearchResults}
+      totalImagesAvailable={totalImagesAvailable}
       handleFetchImages={handleFetchImages}
       areNextImagesLoading={areNextImagesLoading}
     />
@@ -64,6 +67,9 @@ const mapStateToProps = (state: RootState): any => ({
     state,
   ),
   imageSearchResults: CreateTemplateSelectors.selectImageSearchResults(state),
+  totalImagesAvailable: CreateTemplateSelectors.selectImageSearchTotalPagesAvailable(
+    state,
+  ),
   areNextImagesLoading: CreateTemplateSelectors.selectImageSearchResultsLoading(
     state,
   ),

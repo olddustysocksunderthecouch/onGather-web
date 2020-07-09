@@ -124,11 +124,15 @@ export const searchForImages = (
 })
 
 export const searchForImagesSuccess = (
+  searchTerm: string,
   imageSearchResults: ImageSearchResult[],
+  totalImagesAvailable: number,
 ): SearchForImagesSuccessAction => ({
   type: UserTemplatesActions.SearchForImagesSuccess,
   payload: {
+    searchTerm,
     imageSearchResults,
+    totalImagesAvailable,
   },
 })
 

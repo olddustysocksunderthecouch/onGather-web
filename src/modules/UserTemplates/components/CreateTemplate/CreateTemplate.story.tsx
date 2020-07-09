@@ -33,6 +33,7 @@ export const defaultState = (): React.FunctionComponentElement<Props> => (
     handleFetchImages={(): void => undefined}
     areNextImagesLoading={true}
     imageSearchResults={{} as any}
+    totalImagesAvailable={2}
     searchTerm=""
   />
 )

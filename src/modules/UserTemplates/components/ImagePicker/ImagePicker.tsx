@@ -13,6 +13,7 @@ import { createItemData, renderItem } from './item-renderer'
 export interface Props {
   areNextImagesLoading: boolean
   imageSearchResults: ImageSearchResult[]
+  totalImagesAvailable: number
   handleFetchImages: (searchTerm: string, page: number) => void
   handleSelectedImage: (selectedImageUrls: ImageUrls) => void
   handleCloseImagePicker: () => void
@@ -21,6 +22,7 @@ export interface Props {
 
 export const ImagePicker: React.FunctionComponent<Props> = ({
   imageSearchResults,
+  totalImagesAvailable,
   areNextImagesLoading,
   handleFetchImages,
   handleSelectedImage,
@@ -56,19 +58,23 @@ export const ImagePicker: React.FunctionComponent<Props> = ({
     imageSearchResults,
     handleSelectedImage,
     rowWidth,
+    areNextImagesLoading,
+    totalImagesAvailable,
   )
 
   const handleSearchTermChange = (term: string): void => {
-    handleFetchImages(term, 0)
+    handleFetchImages(term, 1)
     setSearchTerm(term)
   }
 
+  const currentPageIndex = Math.floor(imageSearchResults.length / 20) + 1
+
   const loadMoreImages = (): Promise<any> => {
-    return areNextImagesLoading
-      ? Promise.resolve()
-      : Promise.resolve(
-          handleFetchImages(searchTerm, imageSearchResults.length / 20 + 1),
-        )
+    return !areNextImagesLoading &&
+      (!totalImagesAvailable ||
+        imageSearchResults.length < totalImagesAvailable)
+      ? Promise.resolve(handleFetchImages(searchTerm, currentPageIndex))
+      : Promise.resolve()
   }
 
   return (
@@ -103,7 +109,7 @@ export const ImagePicker: React.FunctionComponent<Props> = ({
                   columnCount={2}
                   columnWidth={(): number => rowWidth / 2}
                   height={height}
-                  rowCount={gridItemCount / 2}
+                  rowCount={Math.ceil(gridItemCount / 2)}
                   rowHeight={(): number => rowWidth / 3}
                   width={rowWidth}
                   ref={ref}

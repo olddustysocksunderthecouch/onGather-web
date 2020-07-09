@@ -7,24 +7,34 @@
   text-align: center;
 }
 
+@mixin attributionStyle {
+  display: flex;
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: calc(100% + 5px);
+  padding: 4px 6px;
+  background-color: rgba($color: $color-light-gray, $alpha: 0.4);
+  color: black;
+  @include font-body-small;
+}
+
 .imgContainer {
   position: relative;
   img {
     width: calc(100% + 5px);
     height: calc(100% + 5px);
     box-sizing: border-box;
+    &:hover + .attribution {
+      @include attributionStyle;
+    }
   }
 
-  &:hover .attribution {
-    display: flex;
-    position: absolute;
-    left: 0;
-    bottom: -5px;
-    width: calc(100% + 5px);
-    padding: 4px 6px;
-    background-color: rgba($color: $color-light-gray, $alpha: 0.4);
-    color: black;
-    @include font-body-small;
+  .attribution {
+    display: none;
+    &:hover {
+      @include attributionStyle;
+    }
   }
 }
 .loadingContainers {

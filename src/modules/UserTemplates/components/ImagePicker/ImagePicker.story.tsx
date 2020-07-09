@@ -14,6 +14,7 @@ export const defaultState = (): React.FunctionComponentElement<Props> => (
     handleSelectedImage={(): void => undefined}
     handleCloseImagePicker={(): void => undefined}
     searchTerm=""
+    totalImagesAvailable={2}
   />
 )
 

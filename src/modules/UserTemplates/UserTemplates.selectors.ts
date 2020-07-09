@@ -38,6 +38,11 @@ export const selectImageSearchResults = createSelector(
     imageSearch.imageSearchResults,
 )
 
+export const selectImageSearchTotalPagesAvailable = createSelector(
+  selectImageSearch,
+  (imageSearch: ImageSearch): number | null => imageSearch.totalImagesAvailable,
+)
+
 export const selectImageSearchResultsLoading = createSelector(
   selectImageSearch,
   (imageSearch: ImageSearch): boolean => imageSearch.loading,

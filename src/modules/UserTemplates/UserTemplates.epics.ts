@@ -4,7 +4,13 @@ import 'firebase/functions'
 import 'firebase/storage'
 import { ActionsObservable, ofType, StateObservable } from 'redux-observable'
 import { from, Observable, of } from 'rxjs'
-import { catchError, flatMap, map, withLatestFrom } from 'rxjs/operators'
+import {
+  catchError,
+  flatMap,
+  map,
+  switchMap,
+  withLatestFrom,
+} from 'rxjs/operators'
 import { RootState } from '../../common/redux/types'
 import { TemplateFirestoreResult } from '../../common/types'
 import {
@@ -148,7 +154,7 @@ export const searchForImagesEpic$ = (
   action$.pipe(
     ofType<SearchForImagesAction>(UserTemplatesActions.SearchForImages),
     withLatestFrom(state$),
-    flatMap(([action, state]) =>
+    switchMap(([action, state]) =>
       from(
         firebase.functions().httpsCallable('unsplash-searchImages')({
           searchTerm: action.payload.searchTerm,
@@ -157,8 +163,8 @@ export const searchForImagesEpic$ = (
       ).pipe(
         flatMap(
           (result: any): Observable<SearchForImagesSuccessAction> => {
-            const data = result.data.body as any[]
-            const formattedResults: ImageSearchResult[] = data.reduce(
+            const imageData = result.data.body.imageData as any[]
+            const formattedResults: ImageSearchResult[] = imageData.reduce(
               (
                 accumulator: ImageSearchResult[],
                 currentValue: any,
@@ -174,7 +180,13 @@ export const searchForImagesEpic$ = (
               [],
             )
 
-            return of(searchForImagesSuccess(formattedResults))
+            return of(
+              searchForImagesSuccess(
+                result.data.body.searchTerm,
+                formattedResults,
+                result.data.body.totalImagesAvailable,
+              ),
+            )
           },
         ),
         catchError(

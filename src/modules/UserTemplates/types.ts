@@ -20,6 +20,7 @@ export interface TemplateEditorState extends TemplateCreation {
 export interface ImageSearch {
   searchTerm: string | null
   imageSearchResults: ImageSearchResult[]
+  totalImagesAvailable: number | null
   loading: boolean
   error: string | null
 }
@@ -155,7 +156,9 @@ export interface SearchForImagesAction {
 export interface SearchForImagesSuccessAction {
   type: typeof UserTemplatesActions.SearchForImagesSuccess
   payload: {
+    searchTerm: string
     imageSearchResults: ImageSearchResult[]
+    totalImagesAvailable: number
   }
 }
 
