@@ -25,10 +25,7 @@ export const Home: React.FunctionComponent<Props> = ({
           className={styles.homeBackgroundImage}
         />
         <div className={styles.homeTopContent}>
-          <h1>
-            Struggling to connect with your friends/ loved one’s over video
-            calls?
-          </h1>
+          <h1>Struggling to connect with your friends over video calls?</h1>
           <p>
             Not seeing them in person is tough... and regular calls can get
             boring and feel like a chore
@@ -66,9 +63,10 @@ export const Home: React.FunctionComponent<Props> = ({
             Be the person that makes video calls fun & exciting
           </h1>
           <p>
-            It&apos;s a simple process: pick an activity (or create your own),
-            add a video call link, set a date, invite your friends. We’ll take
-            care of sending everyone a beautiful invitation on email & calendar!
+            Just pick an activity, set a date & invite your friends.
+            <br />
+            Then we&apos;ll send everyone a beautiful invitation on email &
+            calendar!
           </p>
           <Link
             to="/browse-activities"

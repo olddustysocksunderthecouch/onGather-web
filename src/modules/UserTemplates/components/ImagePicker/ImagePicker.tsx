@@ -15,7 +15,10 @@ export interface Props {
   imageSearchResults: ImageSearchResult[]
   totalImagesAvailable: number
   handleFetchImages: (searchTerm: string, page: number) => void
-  handleSelectedImage: (selectedImageUrls: ImageUrls) => void
+  handleSelectedImage: (
+    selectedImageUrls: ImageUrls,
+    downloadLink: string,
+  ) => void
   handleCloseImagePicker: () => void
   searchTerm: string
 }

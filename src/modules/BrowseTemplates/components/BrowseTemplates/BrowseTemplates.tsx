@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { CreateNewTemplate } from '../../../../common/components/CreateNewTemplate'
 import { TemplatePreview } from '../../../../common/components/TemplatePreview'
+import { useWindowDimensions } from '../../../../common/hooks'
 import { Template } from '../../../../common/types'
 import { CategorySelector } from '../CategorySelector'
 import styles from './BrowseTemplates.module.scss'
@@ -19,10 +20,12 @@ export const BrowseTemplates: React.FunctionComponent<Props> = ({
   handleCreateNewTemplateClicked,
 }) => {
   useEffect(() => {
-    document.title = 'Browser'
+    document.title = 'Activity Browser'
   }, [])
+  const { width } = useWindowDimensions()
 
-  console.log('process.env.NODE_ENV', process.env.NODE_ENV)
+  const openInNewTab = width > 1000
+
   return (
     <div className={styles.container}>
       <header>
@@ -52,7 +55,7 @@ export const BrowseTemplates: React.FunctionComponent<Props> = ({
                 shortDescription={template.shortDescription}
                 destinationPath={`/activity/${template.templateId}`}
                 handleTemplatePreviewClicked={(): void => undefined}
-                openInNewTab={true}
+                openInNewTab={openInNewTab}
               />
             )
           })

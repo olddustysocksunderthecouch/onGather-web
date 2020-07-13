@@ -14,13 +14,17 @@
       align-self: flex-end;
       background-color: $color-yellow;
       border: none;
+      
     }
     .saveDraft {
       @include button;
       background-color: $color-malibu;
-      margin-right: 16px;
+      margin-right: 0px;
+      margin-bottom: 8px;
       @media (min-width: 570px) {
-        margin-bottom: 8px;
+        margin-bottom: 0px;
+        margin-right: 16px;
+
       }
     }
   }

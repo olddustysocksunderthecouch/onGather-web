@@ -30,6 +30,7 @@ export const defaultState = (): React.FunctionComponentElement<Props> => (
       participantRange: [1, 2],
       callProviders: [],
     }}
+    handleImageSelected={(): void => undefined}
     handleFetchImages={(): void => undefined}
     areNextImagesLoading={true}
     imageSearchResults={{} as any}

@@ -12,7 +12,7 @@ import {
   publishTemplate,
   saveDraftTemplate,
   searchForImages,
-  uploadImage,
+  triggerUnsplashImageDownload,
 } from '../UserTemplates.actions'
 
 interface Props extends ConnectedReduxProps<AnyAction> {
@@ -25,6 +25,7 @@ interface Props extends ConnectedReduxProps<AnyAction> {
   imageSearchResults: ImageSearchResult[]
   totalImagesAvailable: number
   handleFetchImages: (searchTerm: string, page: number) => void
+  handleImageSelected: (downloadLink: string) => void
   areNextImagesLoading: boolean
   searchTerm: string
 }
@@ -39,6 +40,7 @@ const CreateTemplateContainer = ({
   handlePublishClicked,
   imageSearchResults,
   totalImagesAvailable,
+  handleImageSelected,
   handleFetchImages,
   areNextImagesLoading,
 }: Props): React.FunctionComponentElement<Props> => (
@@ -48,6 +50,7 @@ const CreateTemplateContainer = ({
       loading={loading}
       error={error}
       searchTerm={searchTerm}
+      handleImageSelected={handleImageSelected}
       initialTemplateEditorData={initialTemplateEditorData}
       handleSaveDraftClicked={handleSaveDraftClicked}
       handlePublishClicked={handlePublishClicked}
@@ -80,7 +83,8 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>): any => ({
     dispatch(saveDraftTemplate(template)),
   handlePublishClicked: (template: TemplateCreation): void =>
     dispatch(publishTemplate(template)),
-  handleImageSelected: (file: File): void => dispatch(uploadImage(file)),
+  handleImageSelected: (downloadLink: string): void =>
+    dispatch(triggerUnsplashImageDownload(downloadLink)),
   handleFetchImages: debounce(
     (searchTerm: string, page: number): void =>
       dispatch(searchForImages(searchTerm, page)),

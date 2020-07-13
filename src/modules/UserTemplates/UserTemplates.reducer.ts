@@ -45,6 +45,7 @@ export function reducer(
     case UserTemplatesActions.CreateNewTemplate: {
       return {
         ...state,
+        selectedTemplateId: '',
         templateEditor: {
           ...initialState.templateEditor,
         },
@@ -73,16 +74,6 @@ export function reducer(
       }
     }
 
-    case UserTemplatesActions.SetEditorTemplateData: {
-      return {
-        ...state,
-        templateEditor: {
-          ...action.payload.template,
-          loading: state.templateEditor.loading,
-          error: '',
-        },
-      }
-    }
     case UserTemplatesActions.SaveDraftTemplate: {
       return {
         ...state,

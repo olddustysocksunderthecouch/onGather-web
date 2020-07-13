@@ -26,6 +26,9 @@ import {
   SearchForImagesFailureAction,
   SearchForImagesSuccessAction,
   SetExistingTemplateEditorDataAction,
+  TriggerUnsplashImageDownloadAction,
+  TriggerUnsplashImageDownloadFailureAction,
+  TriggerUnsplashImageDownloadSuccessAction,
   UploadImageAction,
   UploadImageFailureAction,
   UploadImageSuccessAction,
@@ -39,6 +42,8 @@ import {
   searchForImagesFailure,
   searchForImagesSuccess,
   setExistingTemplateEditorData,
+  triggerUnsplashImageDownloadFailure,
+  triggerUnsplashImageDownloadSuccess,
   uploadImageFailure,
   uploadImageSuccess,
 } from './UserTemplates.actions'
@@ -174,6 +179,7 @@ export const searchForImagesEpic$ = (
                   attributionName: currentValue.user.username,
                   attributionLink: `${currentValue.user.links.html}?utm_source=onGather&utm_medium=referral`,
                   altDescription: currentValue.alt_description,
+                  downloadLink: currentValue.links.download_location,
                 })
                 return accumulator
               },
@@ -192,6 +198,39 @@ export const searchForImagesEpic$ = (
         catchError(
           (error: Error): Observable<SearchForImagesFailureAction> =>
             of(searchForImagesFailure(error.message)),
+        ),
+      ),
+    ),
+  )
+
+export const triggerUnsplashImageDownloadEpic$ = (
+  action$: ActionsObservable<TriggerUnsplashImageDownloadAction>,
+  state$: StateObservable<RootState>,
+): Observable<
+  | TriggerUnsplashImageDownloadSuccessAction
+  | TriggerUnsplashImageDownloadFailureAction
+> =>
+  action$.pipe(
+    ofType<TriggerUnsplashImageDownloadAction>(
+      UserTemplatesActions.TriggerUnsplashImageDownload,
+    ),
+    withLatestFrom(state$),
+    flatMap(([action, state]) =>
+      from(
+        firebase.functions().httpsCallable('unsplash-triggerImageDownload')({
+          downloadLink: action.payload.downloadLink,
+        }),
+      ).pipe(
+        flatMap(
+          (): Observable<TriggerUnsplashImageDownloadSuccessAction> => {
+            return of(triggerUnsplashImageDownloadSuccess())
+          },
+        ),
+        catchError(
+          (
+            error: Error,
+          ): Observable<TriggerUnsplashImageDownloadFailureAction> =>
+            of(triggerUnsplashImageDownloadFailure(error.message)),
         ),
       ),
     ),

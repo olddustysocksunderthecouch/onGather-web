@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import memoize from 'memoize-one'
 import React from 'react'
-import { ImageSearchResult } from '../../types'
+import { ImageUrls } from '../../../../common/types'
 import styles from './item-renderer.module.scss'
 
 export const renderItem = ({
@@ -52,8 +52,11 @@ export const renderItem = ({
     )
   }
 
-  const handleImageClicked = (imageSearchResults: ImageSearchResult): void => {
-    handleSelectedImage(imageSearchResults)
+  const handleImageClicked = (
+    images: ImageUrls,
+    downloadLink: string,
+  ): void => {
+    handleSelectedImage(images, downloadLink)
   }
   if (imageSearchResults[index] && imageSearchResults[index].images) {
     const {
@@ -61,6 +64,7 @@ export const renderItem = ({
       attributionName,
       attributionLink,
       altDescription,
+      downloadLink,
     } = imageSearchResults[index]
 
     return (
@@ -83,7 +87,7 @@ export const renderItem = ({
           style={{
             objectFit: 'cover',
           }}
-          onClick={(): void => handleImageClicked(images)}
+          onClick={(): void => handleImageClicked(images, downloadLink)}
         />
         <a className={styles.attribution} href={attributionLink}>
           {attributionName}

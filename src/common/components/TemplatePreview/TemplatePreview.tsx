@@ -63,7 +63,7 @@ export const TemplatePreview: React.FunctionComponent<Props> = ({
           <p className={styles.shortDescription}>{shortDescription}</p>
           <div className={styles.spacer} />
         </div>
-        <button className={styles.viewTemplate}>View Template</button>
+        <button className={styles.viewTemplate}>View Activity</button>
       </Link>
     </article>
   )

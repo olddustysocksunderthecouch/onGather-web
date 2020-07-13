@@ -36,13 +36,13 @@ export interface ImageSearchResult {
   attributionName: string
   attributionLink: string
   altDescription: string
+  downloadLink: string
 }
 
 export enum UserTemplatesActions {
   CreateNewTemplate = '/UserTemplates/CREATE_NEW_TEMPLATE',
   EditExistingTemplate = '/UserTemplates/EDIT_EXISTING_TEMPLATE',
   SetExistingTemplateEditorData = '/UserTemplates/SET_EXISTING_TEMPLATE_EDITOR_DATA',
-  SetEditorTemplateData = '/UserTemplates/SET_EDITOR_TEMPLATE_DATA',
   SaveDraftTemplate = '/UserTemplates/SAVE_DRAFT_TEMPLATE',
   SaveDraftTemplateSuccess = '/UserTemplates/SAVE_DRAFT_TEMPLATE_SUCCESS',
   SaveDraftTemplateFailure = '/UserTemplates/SAVE_DRAFT_TEMPLATE_FAILURE',
@@ -55,6 +55,9 @@ export enum UserTemplatesActions {
   SearchForImages = '/UserTemplates/SEARCH_FOR_IMAGES',
   SearchForImagesSuccess = '/UserTemplates/SEARCH_FOR_IMAGES_SUCCESS',
   SearchForImagesFailure = '/UserTemplates/SEARCH_FOR_IMAGES_FAILURE',
+  TriggerUnsplashImageDownload = '/UserTemplates/TRIGGER_UNSPLASH_IMAGE_DOWNLOAD',
+  TriggerUnsplashImageDownloadSuccess = '/UserTemplates/TRIGGER_UNSPLASH_IMAGE_DOWNLOAD_SUCCESS',
+  TriggerUnsplashImageDownloadFailure = '/UserTemplates/TRIGGER_UNSPLASH_IMAGE_DOWNLOAD_FAILURE',
 }
 
 export interface CreateNewTemplateAction {
@@ -74,13 +77,6 @@ export interface SetExistingTemplateEditorDataAction {
   payload: {
     templateId: string
     templateData: TemplateFirestoreResult
-  }
-}
-
-export interface SetEditorTemplateDataAction {
-  type: typeof UserTemplatesActions.SetEditorTemplateData
-  payload: {
-    template: TemplateCreation
   }
 }
 
@@ -169,11 +165,28 @@ export interface SearchForImagesFailureAction {
   }
 }
 
+export interface TriggerUnsplashImageDownloadAction {
+  type: typeof UserTemplatesActions.TriggerUnsplashImageDownload
+  payload: {
+    downloadLink: string
+  }
+}
+
+export interface TriggerUnsplashImageDownloadSuccessAction {
+  type: typeof UserTemplatesActions.TriggerUnsplashImageDownloadSuccess
+}
+
+export interface TriggerUnsplashImageDownloadFailureAction {
+  type: typeof UserTemplatesActions.TriggerUnsplashImageDownloadFailure
+  payload: {
+    error: string
+  }
+}
+
 export type UserTemplatesActionTypes =
   | CreateNewTemplateAction
   | EditExistingTemplateAction
   | SetExistingTemplateEditorDataAction
-  | SetEditorTemplateDataAction
   | SaveDraftTemplateAction
   | SaveDraftTemplateSuccessAction
   | SaveDraftTemplateFailureAction
@@ -186,3 +199,4 @@ export type UserTemplatesActionTypes =
   | SearchForImagesAction
   | SearchForImagesSuccessAction
   | SearchForImagesFailureAction
+  | TriggerUnsplashImageDownloadAction

@@ -12,8 +12,10 @@ import {
   SearchForImagesAction,
   SearchForImagesFailureAction,
   SearchForImagesSuccessAction,
-  SetEditorTemplateDataAction,
   SetExistingTemplateEditorDataAction,
+  TriggerUnsplashImageDownloadAction,
+  TriggerUnsplashImageDownloadFailureAction,
+  TriggerUnsplashImageDownloadSuccessAction,
   UploadImageAction,
   UploadImageFailureAction,
   UploadImageSuccessAction,
@@ -38,15 +40,6 @@ export const setExistingTemplateEditorData = (
 ): SetExistingTemplateEditorDataAction => ({
   type: UserTemplatesActions.SetExistingTemplateEditorData,
   payload: { templateId, templateData },
-})
-
-export const setEditorTemplateData = (
-  template: TemplateCreation,
-): SetEditorTemplateDataAction => ({
-  type: UserTemplatesActions.SetEditorTemplateData,
-  payload: {
-    template,
-  },
 })
 
 export const saveDraftTemplate = (
@@ -140,6 +133,28 @@ export const searchForImagesFailure = (
   error: string,
 ): SearchForImagesFailureAction => ({
   type: UserTemplatesActions.SearchForImagesFailure,
+  payload: {
+    error,
+  },
+})
+
+export const triggerUnsplashImageDownload = (
+  downloadLink: string,
+): TriggerUnsplashImageDownloadAction => ({
+  type: UserTemplatesActions.TriggerUnsplashImageDownload,
+  payload: {
+    downloadLink,
+  },
+})
+
+export const triggerUnsplashImageDownloadSuccess = (): TriggerUnsplashImageDownloadSuccessAction => ({
+  type: UserTemplatesActions.TriggerUnsplashImageDownloadSuccess,
+})
+
+export const triggerUnsplashImageDownloadFailure = (
+  error: string,
+): TriggerUnsplashImageDownloadFailureAction => ({
+  type: UserTemplatesActions.TriggerUnsplashImageDownloadFailure,
   payload: {
     error,
   },
