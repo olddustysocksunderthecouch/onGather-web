@@ -1,6 +1,7 @@
 import {
   Chip,
   createMuiTheme,
+  InputAdornment,
   TextField,
   ThemeProvider,
 } from '@material-ui/core'
@@ -34,6 +35,7 @@ export const AddMainAimsOutcomes: React.FunctionComponent<Props> = ({
       setMainAimsOutcomes([currentMainAimOutcome, ...mainAimsOutcomes])
       onChange([currentMainAimOutcome, ...mainAimsOutcomes])
       setCurrentMainAimOutcome('')
+      setInputError('')
     } else {
       setInputError("You've already entered this main aim / outcome")
     }
@@ -58,7 +60,7 @@ export const AddMainAimsOutcomes: React.FunctionComponent<Props> = ({
           style={{ marginTop: '0px' }}
           fullWidth
           variant="standard"
-          placeholder="+ Press enter after each main aim or outcome"
+          placeholder="+ Press ADD or enter after each main aim or outcome"
           value={currentMainAimOutcome}
           onChange={(event): void =>
             setCurrentMainAimOutcome(event.target.value)
@@ -73,7 +75,24 @@ export const AddMainAimsOutcomes: React.FunctionComponent<Props> = ({
               setInputError('')
             }
           }}
-          helperText={inputError || 'Press ENTER'}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <button
+                  onClick={(event): void => {
+                    currentMainAimOutcome.length > 1
+                      ? handleValidMainAimOutcomeEntered()
+                      : setInputError('Invalid aim / outcome')
+                    return event.preventDefault()
+                  }}
+                  className={styles.addButton}
+                >
+                  + ADD
+                </button>
+              </InputAdornment>
+            ),
+          }}
+          helperText={inputError || 'Press ADD or ENTER'}
           error={!!inputError}
         />
         <ul className={styles.mainAimOutcomeList}>

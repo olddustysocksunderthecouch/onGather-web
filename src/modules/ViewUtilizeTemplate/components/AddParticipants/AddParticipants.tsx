@@ -5,6 +5,7 @@ import {
   ThemeProvider,
 } from '@material-ui/core'
 import { grey } from '@material-ui/core/colors'
+import InputAdornment from '@material-ui/core/InputAdornment'
 import classes from 'classnames'
 import React, { useState } from 'react'
 import { isEmailValid } from '../../../../common/utils'
@@ -35,6 +36,7 @@ export const AddParticipants: React.FunctionComponent<Props> = ({
       setEmailAddresses([currentEmailAddress, ...emailAddresses])
       onChange([currentEmailAddress, ...emailAddresses])
       setCurrentEmailAddress('')
+      setInputError('')
     } else {
       setInputError("You've already entered this email address")
     }
@@ -59,37 +61,58 @@ export const AddParticipants: React.FunctionComponent<Props> = ({
           fullWidth
           name="email"
           variant="standard"
-          placeholder="+ Press ENTER after each guest's email"
+          placeholder="Guest's email"
           value={currentEmailAddress}
           autoComplete="email"
           type="email"
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <button
+                  onClick={(event): void => {
+                    isEmailValid(currentEmailAddress)
+                      ? handleValidEmailEntered()
+                      : setInputError('Invalid Email Address')
+                    return event.preventDefault()
+                  }}
+                  className={styles.addButton}
+                >
+                  + ADD
+                </button>
+              </InputAdornment>
+            ),
+          }}
           onChange={(event): void => setCurrentEmailAddress(event.target.value)}
           onKeyPress={(event): void => {
             if (event.key === 'Enter') {
+              event.preventDefault()
               isEmailValid(currentEmailAddress)
                 ? handleValidEmailEntered()
                 : setInputError('Invalid Email Address')
-              event.preventDefault()
             } else {
               setInputError('')
             }
           }}
-          helperText={inputError || 'Press ENTER to add'}
+          helperText={inputError || 'Press ADD or ENTER after each email'}
           error={!!inputError}
         />
         <ul className={styles.emailList}>
-          {emailAddresses.map((email: string) => {
-            return (
-              <li key={email}>
-                <Chip
-                  key={email}
-                  label={email}
-                  style={{ marginRight: '4px', lineHeight: '1rem' }}
-                  onDelete={(): void => handleEmailDelete(email)}
-                />
-              </li>
-            )
-          })}
+          {emailAddresses.length === 0 ? (
+            <p>No guests invited so far</p>
+          ) : (
+            emailAddresses.map((email: string) => {
+              return (
+                <li key={email}>
+                  <Chip
+                    key={email}
+                    label={email}
+                    style={{ marginRight: '4px', lineHeight: '1rem' }}
+                    onDelete={(): void => handleEmailDelete(email)}
+                  />
+                </li>
+              )
+            })
+          )}
         </ul>
       </div>
       {error && (

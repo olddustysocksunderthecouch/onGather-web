@@ -21,6 +21,17 @@
     display: flex;
     flex-wrap: wrap;
   }
+
+  .addButton {
+    border: 1px solid $color-mid-gray;
+    padding: 1px 4px 1px 4px;
+    border-radius: 4px;
+    color: $color-dove-gray;
+    background-color: $color-white;
+    &:active {
+      background-color: $color-lightest-gray;
+    }
+  }
 }
 .errorTextAims {
   font-size: 12px;
