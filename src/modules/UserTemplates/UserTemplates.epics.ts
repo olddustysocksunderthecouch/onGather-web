@@ -176,7 +176,7 @@ export const searchForImagesEpic$ = (
               ): ImageSearchResult[] => {
                 accumulator.push({
                   images: currentValue.urls,
-                  attributionName: currentValue.user.username,
+                  attributionName: currentValue.user.name,
                   attributionLink: `${currentValue.user.links.html}?utm_source=onGather&utm_medium=referral`,
                   altDescription: currentValue.alt_description,
                   downloadLink: currentValue.links.download_location,

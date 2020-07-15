@@ -89,7 +89,12 @@ export const renderItem = ({
           }}
           onClick={(): void => handleImageClicked(images, downloadLink)}
         />
-        <a className={styles.attribution} href={attributionLink}>
+        <a
+          className={styles.attribution}
+          href={attributionLink}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           {attributionName}
         </a>
       </div>
