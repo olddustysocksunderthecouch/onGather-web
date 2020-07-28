@@ -238,9 +238,9 @@ export const PrivacyPolicy: React.FunctionComponent = () => (
     </p>
     <p>
       E. Your user content must not be illegal or unlawful, must not infringe
-      any third party's legal rights, and must not be capable of giving rise to
-      legal action whether against you or The Website or a third party (in each
-      case under any applicable law).
+      any third party&apos;s legal rights, and must not be capable of giving
+      rise to legal action whether against you or The Website or a third party
+      (in each case under any applicable law).
     </p>
     <p>
       F. You must not submit any user content to the platform that is or has
