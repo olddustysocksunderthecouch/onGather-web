@@ -102,6 +102,12 @@ export const SignedInMenu: React.FunctionComponent<Props> = ({
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList autoFocusItem={open} id="menu-list-grow">
                   {topNavMenuItems}
+                  <MenuItem
+                    onClick={(): void => history.push('/terms-and-conditions')}
+                    key="tandcs"
+                  >
+                    Terms and Conditions
+                  </MenuItem>
                   <MenuItem onClick={handleSignOutClick}>Logout</MenuItem>
                 </MenuList>
               </ClickAwayListener>

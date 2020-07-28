@@ -69,7 +69,7 @@ export const signInAppEpic$ = (
           // eslint-disable-next-line @typescript-eslint/camelcase
           include_granted_scopes: true,
         })
-        return from(firebase.auth().signInWithPopup(provider)).pipe(
+        return from(firebase.auth().signInWithRedirect(provider)).pipe(
           flatMap(
             (result: any): Observable<SignInGoogleSuccessAction> => {
               console.log('result: ', result)

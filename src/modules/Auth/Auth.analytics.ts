@@ -11,8 +11,8 @@ export default {
     action: 'SignInGoogleSuccess',
     label: action.payload.user.displayName,
   })),
-  [AuthActions.SignInGoogleFailure]: trackException(() => ({
-    exDescription: 'SignInGoogleFailure',
+  [AuthActions.SignInGoogleFailure]: trackException((action) => ({
+    exDescription: `SignInGoogleFailure - ${action.payload.message}`,
     exFatal: true,
   })),
   [AuthActions.SendCodeSuccess]: trackEvent(() => ({
