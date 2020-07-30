@@ -24,9 +24,7 @@ export const PrivacyPolicy: React.FunctionComponent = () => (
       including any data, questions, comments and other information submitted in
       the Website via transmission by electronic mail or otherwise;
     </p>
-    <p>
-      D. &quot;The Creator of the Platform&quot; – means, Mr Adrian Peter Bunge
-    </p>
+    <p>D. &quot;The Provider&quot; – means, Mr Adrian Peter Bunge</p>
     <p>
       E. &quot;User&quot; – means, any person who enters, uses or accesses the
       Website, notwithstanding the fact that such a person only visited the home

@@ -67,11 +67,29 @@
   margin-top: 4px;
 }
 
-.browseButton {
-  margin-top: 24px;
-  @include button-no-shadow;
-  background-color: $color-malibu;
+.continueWithButton {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-top: 16px;
+  border-radius: 24px;
+  padding: 12px 16px 12px 16px;
+  border: solid 1px $color-black;
+  background: none;
+  @include text-style('font-main', 'semibold', 'body');
+  &:active {
+    background-color: $color-light-gray;
+  }
+  &:focus {
+    outline: none;
+  }
 }
+
+.buttonText {
+  align-self: center;
+  margin-left: 16px;
+}
+
 
 .loadingBar {
   margin-top: 8px;

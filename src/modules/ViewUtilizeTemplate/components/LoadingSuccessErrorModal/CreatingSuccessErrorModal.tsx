@@ -23,7 +23,7 @@ export const CreatingSuccessErrorModal: React.FunctionComponent<Props> = ({
           <h1 className={styles.modalTitle}>Creating...</h1>
           <p className={styles.creatingDescription}>
             We&apos;re sending everyone an email & adding the gathering to
-            everyone&apos;s Google calendar
+            everyone&apos;s Google Calendar
           </p>
           <div className={styles.loadingBar}></div>
         </div>
@@ -41,12 +41,12 @@ export const CreatingSuccessErrorModal: React.FunctionComponent<Props> = ({
         <Fragment>
           <h1 className={styles.modalTitle}>Great Success!</h1>
           <p className={styles.description}>
-            The invitations have been sent out to everyone via email!
+            The invitations have been sent out to everyone via email and added
+            everyone&apos;s Google Calendar!
           </p>
-          <Link to="/browse-activities">
-            <button className={styles.browseButton}>
-              Browse more template
-            </button>
+
+          <Link to="/browse-activities" className={styles.continueWithButton}>
+            <div className={styles.buttonText}>Browse more activities</div>
           </Link>
         </Fragment>
       )}

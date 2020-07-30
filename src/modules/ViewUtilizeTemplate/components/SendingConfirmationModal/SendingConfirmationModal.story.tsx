@@ -10,6 +10,7 @@ export const defaultState = (): React.FunctionComponentElement<Props> => (
   <SendingConfirmationModal
     handleContinueWithClicked={(): void => undefined}
     handleCloseModalClicked={(): void => undefined}
+    inviteeEmails={[]}
   />
 )
 

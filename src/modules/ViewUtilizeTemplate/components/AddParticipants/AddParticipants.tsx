@@ -7,12 +7,13 @@ import {
 import { grey } from '@material-ui/core/colors'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import classes from 'classnames'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { isEmailValid } from '../../../../common/utils'
 import styles from './AddParticipants.module.scss'
 
 export interface Props {
   value?: string[]
+  defaultValue?: string[]
   onChange: (emailsEntered: string[]) => void
   error?: boolean
 }
@@ -25,11 +26,18 @@ const theme = createMuiTheme({
 export const AddParticipants: React.FunctionComponent<Props> = ({
   onChange,
   value = [],
+  defaultValue,
   error = false,
 }) => {
   const [emailAddresses, setEmailAddresses] = useState<string[]>(value)
   const [currentEmailAddress, setCurrentEmailAddress] = useState('')
   const [inputError, setInputError] = useState('')
+
+  useEffect(() => {
+    if (defaultValue) {
+      setEmailAddresses(defaultValue)
+    }
+  }, [defaultValue])
 
   const handleValidEmailEntered = (): void => {
     if (!emailAddresses.includes(currentEmailAddress)) {

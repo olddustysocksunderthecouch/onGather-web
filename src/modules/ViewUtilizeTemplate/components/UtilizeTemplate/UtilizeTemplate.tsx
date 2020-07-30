@@ -70,6 +70,9 @@ export const UtilizeTemplate: React.FunctionComponent<Props> = ({
   handleContinueWithGoogleClicked,
   handleSendGatheringInvite,
 }) => {
+  const [authModalIsVisible, setAuthModalVisible] = useState(false)
+  const [confirmModalIsVisible, setConfirmModalIsVisible] = useState(false)
+
   const { register, errors, control, reset, watch } = useForm({
     mode: 'onSubmit',
     reValidateMode: 'onChange',
@@ -87,6 +90,7 @@ export const UtilizeTemplate: React.FunctionComponent<Props> = ({
         howYouDo: gatheringDraft.howYouDo,
         personalizedDescription: gatheringDraft.personalizedDescription,
       })
+      setConfirmModalIsVisible(true)
     } else {
       reset({
         title: template.title,
@@ -141,13 +145,10 @@ export const UtilizeTemplate: React.FunctionComponent<Props> = ({
     })
   }
 
-  const [authModalIsVisible, setAuthModalVisible] = useState(false)
-
   useEffect(() => {
     setAuthModalVisible(false)
   }, [isAuthenticated])
 
-  const [confirmModalIsVisible, setConfirmModalIsVisible] = useState(false)
   const [
     permissionRationalModalVisible,
     setPermissionRationalModalVisible,
@@ -194,6 +195,7 @@ export const UtilizeTemplate: React.FunctionComponent<Props> = ({
             handleCloseModalClicked={(): void =>
               setConfirmModalIsVisible(false)
             }
+            inviteeEmails={watchAllFields.inviteeEmails}
           />
         </div>
       )}
@@ -324,10 +326,10 @@ export const UtilizeTemplate: React.FunctionComponent<Props> = ({
 
               <Controller
                 name="inviteeEmails"
-                defaultValue={[]}
                 as={
                   <AddParticipants
                     onChange={(value): any => value}
+                    defaultValue={gatheringDraft.inviteeEmails}
                     error={!!errors.attendeeEmails}
                   />
                 }
