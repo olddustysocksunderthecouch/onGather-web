@@ -13,7 +13,7 @@ export const PermissionRationalModal: React.FunctionComponent<Props> = ({
   handleCloseModalClicked,
 }) => {
   return (
-    <div className={styles.authModal}>
+    <div className={styles.permissionModal}>
       <h1 className={styles.signUpTitle}>We need your permission...</h1>
       <button className={styles.closeIcon} onClick={handleCloseModalClicked}>
         <img src={CloseIcon} alt="Close Icon" />
@@ -22,9 +22,9 @@ export const PermissionRationalModal: React.FunctionComponent<Props> = ({
         ... to send out invitations to you and your friends, using Google
         Calendar.
       </p>
-      <p>
-        This will only be used to to create and edit events made by you on this
-        website.
+      <p className={styles.rational}>
+        We will only use this permission to create and edit events on your
+        Google Calendar, that you make with this website.
       </p>
       <button
         className={styles.continueWithButton}
