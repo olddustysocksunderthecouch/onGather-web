@@ -329,7 +329,9 @@ export const UtilizeTemplate: React.FunctionComponent<Props> = ({
                 as={
                   <AddParticipants
                     onChange={(value): any => value}
-                    defaultValue={gatheringDraft.inviteeEmails}
+                    defaultValue={
+                      fromState ? gatheringDraft.inviteeEmails : undefined
+                    }
                     error={!!errors.attendeeEmails}
                   />
                 }
