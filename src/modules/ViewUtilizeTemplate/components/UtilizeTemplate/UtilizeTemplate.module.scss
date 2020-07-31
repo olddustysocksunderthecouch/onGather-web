@@ -86,8 +86,15 @@
 
 .signInSendButton {
   position: fixed;
-  bottom: 24px;
-  right: 24px;
-  @include button;
   background-color: $color-red;
+  @include button;
+
+  bottom: 24px;
+  left: 16px;
+
+  @media (min-width: $tablet) {
+    bottom: 24px;
+    right: 24px;
+    left: auto;
+  }
 }

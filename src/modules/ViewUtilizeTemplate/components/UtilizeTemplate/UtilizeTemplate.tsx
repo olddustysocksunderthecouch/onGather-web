@@ -426,7 +426,7 @@ export const UtilizeTemplate: React.FunctionComponent<Props> = ({
             className={styles.signInSendButton}
             onClick={handleSendButtonClicked}
           >
-            Send Invitations
+            Send Email & Calendar Invitations
           </button>
         )}
       </div>
