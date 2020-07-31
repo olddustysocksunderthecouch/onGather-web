@@ -14,17 +14,15 @@
       align-self: flex-end;
       background-color: $color-yellow;
       border: none;
-      
     }
     .saveDraft {
       @include button;
       background-color: $color-malibu;
       margin-right: 0px;
       margin-bottom: 8px;
-      @media (min-width: 570px) {
+      @media (min-width: 540px) {
         margin-bottom: 0px;
         margin-right: 16px;
-
       }
     }
   }
@@ -132,6 +130,23 @@
     @include text-style('font-main', 'regular', 'meta');
     color: #f44336;
     margin-left: 14px;
+  }
+
+  .bottomButtonContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+    .publish {
+      @include button;
+      background-color: $color-yellow;
+      border: none;
+      margin-left: 8px;
+    }
+    .saveDraft {
+      @include button;
+      background-color: $color-malibu;
+      margin-right: 8px;
+    }
   }
 }
 .MuiTextField-root {

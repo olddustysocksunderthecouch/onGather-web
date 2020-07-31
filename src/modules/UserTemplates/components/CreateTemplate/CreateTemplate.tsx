@@ -321,7 +321,7 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
             />
             <h2>Personalized message & description</h2>
             <p>
-              This together with the &quot;What/How you&apos;ll do it&quot;
+              This together with the &quot;What/How we&apos;ll do it&quot;
               sections below will be sent to the guests of the person using this
               activity
             </p>
@@ -435,18 +435,19 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
                 as="p"
               />
             </FormControl>
-            <h2>What you&apos;ll do</h2>
+            <h2>What we&apos;ll do</h2>
             <p>
               Describe what exactly the participants will do while on the
-              video/voice call
+              video/voice call. Write this as though you&apos;re inviting your
+              own friends
             </p>
             <TextField
               name="whatYouDo"
               style={{ marginTop: '16px' }}
               FormHelperTextProps={{ classes: helperTestClasses }}
               id="outlined-basic"
-              label="What you'll do"
-              placeholder="e.g. Play a friendly chess match and see who comes out on top on chess.com"
+              label="What we'll do"
+              placeholder="e.g. Let's play a game of chess and see who comes out on top"
               variant="outlined"
               rows="4"
               rowsMax="14"
@@ -463,22 +464,22 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
                 },
               })}
             />
-            <h2>How you&apos;ll do it</h2>
+            <h2>How we&apos;ll do it</h2>
             <p>
-              Do the participants have to do any preparation ahead of time (e.g.
+              Do your friends have to do any preparation ahead of time (e.g.
               download an app, prepare a topic)?
             </p>
             <TextField
               name="howYouDo"
               style={{ marginTop: '16px' }}
               id="outlined-basic"
-              label="How you'll do it"
+              label="How we'll do it"
               variant="outlined"
               rows="4"
               rowsMax="14"
               fullWidth
               multiline
-              placeholder="e.g. 1) You'll need to create an account on chess.com 2) Just before the game, one of you will need to go to the following link..."
+              placeholder="e.g. 1) You'll need to create an account on chess.com 2) Just before the game, one of us has to create a game link..."
               helperText={errors?.howYouDo?.message}
               error={!!errors.howYouDo}
               inputRef={register({
@@ -505,6 +506,21 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
               specific preparation they need to do"
               inputRef={register}
             />
+            <div className={styles.bottomButtonContainer}>
+              <button
+                className={styles.saveDraft}
+                onClick={handleSaveDraftClick}
+                type="button"
+              >
+                Save draft
+              </button>
+              <input
+                type="submit"
+                form="createTemplateForm"
+                className={styles.publish}
+                value="Publish"
+              />
+            </div>
           </form>
         </ThemeProvider>
         {loading && (

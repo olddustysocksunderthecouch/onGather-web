@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect } from 'react'
+import { Anchorme } from 'react-anchorme'
 import { Link } from 'react-router-dom'
 import { durations } from '../../../../common/constants'
 import { Duration, Template } from '../../../../common/types'
@@ -53,21 +54,25 @@ export const ViewTemplate: React.FunctionComponent<Props> = ({
         <p className={styles.shortDescription}>{template.shortDescription}</p>
         {template.whatYouDo && (
           <Fragment>
-            <h2>What you&apos;ll do</h2>
-            <p className={styles.descriptionBody}>{template.whatYouDo}</p>
+            <h2>What we&apos;ll do</h2>
+            <p className={styles.descriptionBody}>
+              <Anchorme>{template.whatYouDo}</Anchorme>
+            </p>
           </Fragment>
         )}
         {template.howYouDo && (
           <Fragment>
-            <h2>How you&apos;ll do it</h2>
-            <p className={styles.descriptionBody}>{template.howYouDo}</p>
+            <h2>How we&apos;ll do it</h2>
+            <p className={styles.descriptionBody}>
+              <Anchorme>{template.howYouDo}</Anchorme>
+            </p>
           </Fragment>
         )}
         {template.hostInstructions && (
           <Fragment>
             <h2>Host Instructions</h2>
             <p className={styles.descriptionBody}>
-              {template.hostInstructions}
+              <Anchorme>{template.hostInstructions}</Anchorme>
             </p>
           </Fragment>
         )}

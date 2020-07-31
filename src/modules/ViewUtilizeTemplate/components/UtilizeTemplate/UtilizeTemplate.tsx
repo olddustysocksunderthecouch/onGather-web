@@ -370,9 +370,9 @@ export const UtilizeTemplate: React.FunctionComponent<Props> = ({
                 name="whatYouDo"
                 style={{ marginTop: '16px' }}
                 FormHelperTextProps={{ classes: helperTestClasses }}
-                label="What you'll do"
+                label="What we'll do"
                 InputLabelProps={{ shrink: true }}
-                placeholder="e.g. Play a friendly chess match and see how comes out on top on chess.com"
+                placeholder="e.g. Let's play a friendly chess match and see how comes out on top."
                 variant="outlined"
                 rows="4"
                 rowsMax="14"
@@ -392,13 +392,13 @@ export const UtilizeTemplate: React.FunctionComponent<Props> = ({
               <TextField
                 name="howYouDo"
                 style={{ marginTop: '16px' }}
-                label="How you'll do it"
+                label="How we'll do it"
                 variant="outlined"
                 rows="4"
                 rowsMax="14"
                 fullWidth
                 multiline
-                placeholder="e.g. 1) You'll need to create an account on chess.com 2) Just before the game, one of you will need to go to the following link..."
+                placeholder="e.g. 1) You'll need to create an account on chess.com 2) Just before the game, one of us will need to create a game..."
                 InputLabelProps={{ shrink: true }}
                 helperText={errors?.howYouDo?.message}
                 error={!!errors.howYouDo}

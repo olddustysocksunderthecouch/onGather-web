@@ -44,7 +44,7 @@
   }
   h3 {
     @include font-caption;
-    color: $color-dark-yellow;
+    color: $color-dark-blue;
   }
 
   h1 {
@@ -60,6 +60,22 @@
     @include font-h6;
     margin-top: 44px;
     margin-bottom: 16px;
+  }
+
+  a {
+    color: $color-dark-blue;
+    &:visited {
+      color: $color-dark-blue;
+    }
+    &:hover {
+      color: $color-dark-blue;
+    }
+    &:visited {
+      color: $color-dark-blue;
+    }
+    &:focus {
+      color: $color-dark-blue;
+    }
   }
 
   .meta {

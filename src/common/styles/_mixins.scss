@@ -1,7 +1,7 @@
 @mixin button {
   border-radius: 6px;
   color: $color-white;
-  padding: 16px 24px;
+  padding: 12px 24px;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1), 0px 2px 4px rgba(0, 0, 0, 0.06);
   @include text-style('font-main', 'semibold', 'body-s');
   letter-spacing: 0.03em;
@@ -15,6 +15,8 @@
 
   @media (min-width: $mobile) {
     letter-spacing: 0.05em;
+    padding: 16px 24px;
+
   }
   @media (min-width: $desktop) {
     @include text-style('font-main', 'semibold', 'body-s');
