@@ -71,7 +71,7 @@ step_run_install_firebase: &step_run_install_firebase
   name: 'Install Firebase'
   shell: /bin/bash
   command: |
-    npm install -g firebase-tools
+    npm install -D firebase-tools
 
 step_deploy_dev_firebase: &step_deploy_dev_firebase
   name: Firebase Dev Deploy
@@ -113,9 +113,10 @@ jobs:
       - run: *step_run_node_env_info
       - run: *step_run_install_npm_dependencies
       - save_cache: *step_cache_save_npm
-      - run: *step_npm_audit
-      - run: *step_lint
+      # - run: *step_npm_audit
+      # - run: *step_lint
       - run: *step_build
+      - run: *step_run_install_firebase
       - run: *step_deploy_dev_firebase
       - persist_to_workspace:
           root: .
