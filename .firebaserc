@@ -1,5 +1,21 @@
 {
   "projects": {
     "default": "ongather-b1834"
+  },
+  "targets": {
+     "ongather-b1834": {
+      "hosting": {
+        "on-gather": [
+          "ongather-b1834"
+        ]
+      }
+    },
+    "ongather-dev": {
+      "hosting": {
+        "ongather-dev": [
+          "ongather-dev"
+        ]
+      }
+    }
   }
 }

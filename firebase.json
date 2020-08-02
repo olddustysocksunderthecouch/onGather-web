@@ -1,5 +1,6 @@
 {
-  "hosting": {
+  "hosting": [{
+    "target": "on-gather",
     "site": "on-gather",
     "public": "build",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
@@ -10,6 +11,18 @@
       }
     ]
   },
+  {
+    "target": "ongather-dev",
+    "site": "ongather-dev",
+    "public": "build",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }],
   "database": {
     "rules": "database.rules.json"
   },

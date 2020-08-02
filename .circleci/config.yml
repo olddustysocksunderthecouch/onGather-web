@@ -6,7 +6,7 @@ version: 2.1
 
 base_node: &base_node
   docker:
-    - image: circleci/node:12.16.1-browsers
+    - image: circleci/node:10.18.1
 
 # --------------------------------
 # common : steps
@@ -66,6 +66,18 @@ step_build: &step_build
   command: |
     npm run build
 
+step_deploy_dev_firebase: &step_deploy_dev_firebase
+  name: Firebase Deploy
+  command: |
+   command: ./node_modules/.bin/firebase deploy -P ongather-dev --only hosting ongather-dev --token=$FIREBASE_TOKEN
+  
+
+step_deploy_prod_firebase: &step_deploy_prod_firebase
+  name: Firebase Deploy
+  command: |
+      command: ./node_modules/.bin/firebase deploy -P ongather-b1834 --only hosting on-gather --token=$FIREBASE_TOKEN
+
+
 step-install-aws: &step-install-aws
   name: Install AWSCLI
   command: |
@@ -73,20 +85,15 @@ step-install-aws: &step-install-aws
     sudo pip install -q awscli --upgrade
     sudo pip install -q awsebcli --upgrade
 
-step-invalidate-cloudfront: &step-invalidate-cloudfront
-  name: Invalidate Cloudfront
-  command: |
-    if [ "${CIRCLE_BRANCH}" == "develop" ]; then
-      aws cloudfront create-invalidation --distribution-id ${CLOUDFRONT_STAGING} --paths "/*"
-    fi
-
 step-deploy-staging: &step-deploy-staging
   name: Deploy to staging
   command: |
     aws s3 sync build s3://${S3_BUCKET_STAGING}
 
 # --------------------------------
-# jobs
+# jobs 
+#       - run: *step_test
+
 # --------------------------------
 
 jobs:
@@ -101,7 +108,6 @@ jobs:
       - save_cache: *step_cache_save_npm
       - run: *step_npm_audit
       - run: *step_lint
-      - run: *step_test
       - run: *step_build
       - persist_to_workspace:
           root: .
@@ -115,9 +121,8 @@ jobs:
           path: ~/deploy
       - attach_workspace:
           at: ~/deploy
-      - run: *step-install-aws
-      - run: *step-deploy-staging
-      - run: *step-invalidate-cloudfront
+      - run: *step_deploy_dev_firebase
+
 
 # --------------------------------
 # workflows
