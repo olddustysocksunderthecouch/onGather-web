@@ -76,13 +76,13 @@ step_run_install_firebase: &step_run_install_firebase
 step_deploy_dev_firebase: &step_deploy_dev_firebase
   name: Firebase Dev Deploy
   command: |
-   command: ./node_modules/.bin/firebase deploy -P ongather-dev --only hosting ongather-dev --token=$FIREBASE_TOKEN
+   command: ./project/node_modules/.bin/firebase deploy -P ongather-dev --only hosting ongather-dev --token=$FIREBASE_TOKEN
   
 
 step_deploy_prod_firebase: &step_deploy_prod_firebase
   name: Firebase Deploy
   command: |
-      command: ./node_modules/.bin/firebase deploy -P ongather-b1834 --only hosting on-gather --token=$FIREBASE_TOKEN
+      command: ./project/node_modules/.bin/firebase deploy -P ongather-b1834 --only hosting on-gather --token=$FIREBASE_TOKEN
 
 
 step-install-aws: &step-install-aws
