@@ -131,7 +131,6 @@ jobs:
           path: ~/deploy
       - attach_workspace:
           at: ~/deploy
-      - run: *step_run_install_firebase
       - run: *step_deploy_dev_firebase
 
 
