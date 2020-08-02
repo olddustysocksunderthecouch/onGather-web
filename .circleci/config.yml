@@ -77,13 +77,13 @@ step_deploy_dev_firebase: &step_deploy_dev_firebase
   name: Firebase Dev Deploy
   shell: /bin/bash
   command: |
-   command: npm run deploy:dev
+   npm run deploy:dev
   
 
 step_deploy_prod_firebase: &step_deploy_prod_firebase
   name: Firebase Prod Deploy
   command: |
-      command: npm run deploy:prod
+      npm run deploy:prod
 
 step-install-aws: &step-install-aws
   name: Install AWSCLI
