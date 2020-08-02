@@ -66,23 +66,25 @@ step_build: &step_build
   command: |
     npm run build
 
-
-step_run_install_firebase: &step_run_install_firebase
-  name: 'Install Firebase'
-  shell: /bin/bash
+step_ls: &step_ls
+  name: 'ls'
   command: |
-    npm install -D firebase-tools
+    echo ls
+
+
 
 step_deploy_dev_firebase: &step_deploy_dev_firebase
   name: Firebase Dev Deploy
+  shell: /bin/bash
   command: |
-   command: cd project &&  ./node_modules/.bin/firebase deploy -P ongather-dev --only hosting:ongather-dev --token=$FIREBASE_TOKEN
+   command: cd project && npx firebase deploy -P ongather-dev --only hosting:ongather-dev --token=$FIREBASE_TOKEN
   
 
 step_deploy_prod_firebase: &step_deploy_prod_firebase
   name: Firebase Deploy
   command: |
-      command: cd project &&  ./node_modules/.bin/firebase deploy -P ongather-b1834 --only hosting on-gather --token=$FIREBASE_TOKEN
+      ls
+      command: npx firebase deploy -P ongather-b1834 --only hosting on-gather --token=$FIREBASE_TOKEN
 
 step-install-aws: &step-install-aws
   name: Install AWSCLI
@@ -115,7 +117,7 @@ jobs:
       # - run: *step_npm_audit
       # - run: *step_lint
       - run: *step_build
-      - run: *step_run_install_firebase
+      - run: *step_ls
       - run: *step_deploy_dev_firebase
       - persist_to_workspace:
           root: .
