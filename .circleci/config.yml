@@ -69,7 +69,7 @@ step_build: &step_build
 step_ls: &step_ls
   name: 'ls'
   command: |
-    echo ls
+    echo $(ls)
 
 
 
