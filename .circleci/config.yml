@@ -78,18 +78,6 @@ step_deploy_prod_firebase: &step_deploy_prod_firebase
   command: |
       npm run deploy:prod
 
-step-install-aws: &step-install-aws
-  name: Install AWSCLI
-  command: |
-    sudo apt-get update && sudo apt-get install -qq -y python-pip libpython-dev
-    sudo pip install -q awscli --upgrade
-    sudo pip install -q awsebcli --upgrade
-
-step-deploy-staging: &step-deploy-staging
-  name: Deploy to staging
-  command: |
-    aws s3 sync build s3://${S3_BUCKET_STAGING}
-
 # --------------------------------
 # jobs 
 #       - run: *step_test
@@ -109,8 +97,6 @@ jobs:
       - run: *step_npm_audit
       - run: *step_lint
       - run: *step_build
-      - run: *step_ls
-      - run: *step_deploy_dev_firebase
       - persist_to_workspace:
           root: .
           paths:
