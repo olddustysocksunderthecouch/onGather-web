@@ -30,7 +30,7 @@ export const PermissionRationalModal: React.FunctionComponent<Props> = ({
         className={styles.continueWithButton}
         onClick={handleScopeRequestClicked}
       >
-        <a className={styles.buttonText}>Continue</a>
+        <div className={styles.buttonText}>Continue</div>
       </button>
       <p>
         *By continuing you agree to the{' '}
