@@ -77,13 +77,12 @@ step_deploy_dev_firebase: &step_deploy_dev_firebase
   name: Firebase Dev Deploy
   shell: /bin/bash
   command: |
-   command: cd project && npx firebase deploy -P ongather-dev --only hosting:ongather-dev --token=$FIREBASE_TOKEN
+   command: npx firebase deploy -P ongather-dev --only hosting:ongather-dev --token=$FIREBASE_TOKEN
   
 
 step_deploy_prod_firebase: &step_deploy_prod_firebase
   name: Firebase Deploy
   command: |
-      ls
       command: npx firebase deploy -P ongather-b1834 --only hosting on-gather --token=$FIREBASE_TOKEN
 
 step-install-aws: &step-install-aws
