@@ -6,7 +6,7 @@ version: 2.1
 
 base_node: &base_node
   docker:
-    - image: circleci/node:12.16.1-browsers
+    - image: circleci/node:10.18.1
 
 # --------------------------------
 # common : steps
@@ -66,27 +66,22 @@ step_build: &step_build
   command: |
     npm run build
 
-step-install-aws: &step-install-aws
-  name: Install AWSCLI
+step_deploy_dev_firebase: &step_deploy_dev_firebase
+  name: Firebase Dev Deploy
+  shell: /bin/bash
   command: |
-    sudo apt-get update && sudo apt-get install -qq -y python-pip libpython-dev
-    sudo pip install -q awscli --upgrade
-    sudo pip install -q awsebcli --upgrade
+   npm run deploy:dev
+  
 
-step-invalidate-cloudfront: &step-invalidate-cloudfront
-  name: Invalidate Cloudfront
+step_deploy_prod_firebase: &step_deploy_prod_firebase
+  name: Firebase Prod Deploy
   command: |
-    if [ "${CIRCLE_BRANCH}" == "develop" ]; then
-      aws cloudfront create-invalidation --distribution-id ${CLOUDFRONT_STAGING} --paths "/*"
-    fi
-
-step-deploy-staging: &step-deploy-staging
-  name: Deploy to staging
-  command: |
-    aws s3 sync build s3://${S3_BUCKET_STAGING}
+      npm run deploy:prod
 
 # --------------------------------
-# jobs
+# jobs 
+#       - run: *step_test
+
 # --------------------------------
 
 jobs:
@@ -101,13 +96,13 @@ jobs:
       - save_cache: *step_cache_save_npm
       - run: *step_npm_audit
       - run: *step_lint
-      - run: *step_test
       - run: *step_build
       - persist_to_workspace:
           root: .
           paths:
             - build
-  deploy-staging:
+            - node_modules
+  deploy-dev:
     <<: *base_node
     working_directory: ~/deploy
     steps:
@@ -115,9 +110,17 @@ jobs:
           path: ~/deploy
       - attach_workspace:
           at: ~/deploy
-      - run: *step-install-aws
-      - run: *step-deploy-staging
-      - run: *step-invalidate-cloudfront
+      - run: *step_deploy_dev_firebase
+  deploy-prod:
+    <<: *base_node
+    working_directory: ~/deploy
+    steps:
+      - checkout:
+          path: ~/deploy
+      - attach_workspace:
+          at: ~/deploy
+      - run: *step_deploy_prod_firebase
+
 
 # --------------------------------
 # workflows
@@ -128,10 +131,17 @@ workflows:
   build:
     jobs:
       - build-test
-      - deploy-staging:
+      - deploy-dev:
           requires:
             - build-test
           filters:
             branches:
               only:
                 - develop
+      - deploy-prod:
+          requires:
+            - build-test
+          filters:
+            branches:
+              only:
+                - master

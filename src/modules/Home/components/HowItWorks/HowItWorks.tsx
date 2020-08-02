@@ -32,7 +32,11 @@ export const HowItWorks: React.FunctionComponent = () => (
         {howItWorks.map((howItWorksItem: HowItWorksItem) => {
           return (
             <li className={styles.listItem} key={howItWorksItem.icon}>
-              <img className={styles.listItemIcon} src={howItWorksItem.icon} />
+              <img
+                className={styles.listItemIcon}
+                src={howItWorksItem.icon}
+                alt={howItWorksItem.content}
+              />
               <div className={styles.listItemContent}>
                 {howItWorksItem.content}
               </div>

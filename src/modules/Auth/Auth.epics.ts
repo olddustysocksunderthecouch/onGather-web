@@ -148,7 +148,7 @@ export const requestScopeEpic$ = (
     withLatestFrom(state$),
     flatMap(([action, state]) => {
       window.open(
-        `https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcalendar.events&response_type=code&client_id=41626053541-65grf4kj4h45j738vp43v3fpango1olp.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fongather.com%2Fauth%2F&login_hint=${escape(
+        `${process.env['REACT_APP_AUTH_PERMISSION_URL'] as string}${escape(
           state.firebase.auth.email,
         )}`,
         '_self',

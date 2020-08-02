@@ -366,7 +366,7 @@ export const CreateTemplate: React.FunctionComponent<Props> = ({
             />
             <h2>Main Aims & Outcomes</h2>
             <p>
-              e.g. Community, Fun, Insightful, Exercise, Conversation Started
+              e.g. Community, Fun, Insightful, Exercise, Conversation Starter
             </p>
             <Controller
               as={

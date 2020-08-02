@@ -1,8 +1,8 @@
 import { ConnectedRouter } from 'connected-react-router'
+import 'firebase/analytics'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
-import 'firebase/analytics'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
@@ -31,14 +31,16 @@ import {
 import * as serviceWorker from './serviceWorker'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyBcCau-poIS1r0eTp5zGkfMZMt7O9ForM4',
-  authDomain: 'ongather.com',
-  databaseURL: 'https://ongather-b1834.firebaseio.com',
-  projectId: 'ongather-b1834',
-  storageBucket: 'ongather-b1834.appspot.com',
-  messagingSenderId: '41626053541',
-  appId: '1:41626053541:web:c4ee1bcae9bda62a45964c',
-  measurementId: 'G-3KXMD0FGZ6',
+  apiKey: process.env['REACT_APP_FIREBASE_API_KEY'] as string,
+  authDomain: process.env['REACT_APP_FIREBASE_AUTH_DOMAIN'] as string,
+  databaseURL: process.env['REACT_APP_FIREBASE_DATABASE_URL'] as string,
+  projectId: process.env['REACT_APP_FIREBASE_PROJECT_ID'] as string,
+  storageBucket: process.env['REACT_APP_FIREBASE_STORAGE_BUCKET'] as string,
+  messagingSenderId: process.env[
+    'REACT_APP_FIREBASE_MESSAGING_SENDER_ID'
+  ] as string,
+  appId: process.env['REACT_APP_FIREBASE_APP_ID'] as string,
+  measurementId: process.env['REACT_APP_FIREBASE_MEASUREMENT_ID'] as string,
 }
 
 const rrfConfig = {

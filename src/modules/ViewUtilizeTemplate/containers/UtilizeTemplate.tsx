@@ -56,7 +56,6 @@ const UtilizeTemplateContainer = ({
   const { id } = useParams()
   const fromState = useQuery().get('fromState') === 'true'
   const firestore = useFirestore()
-
   useEffect(() => {
     console.log('enter 1st useEffect', calendarEventScopeStatus)
     console.log('isAuthenticated', isAuthenticated)
@@ -70,6 +69,7 @@ const UtilizeTemplateContainer = ({
       console.log('enter 1st conditional', calendarEventScopeStatus)
       handleFetchScopes()
     }
+    // eslint-disable-next-line
   }, [isAuthenticated])
 
   useEffect(() => {
@@ -83,6 +83,7 @@ const UtilizeTemplateContainer = ({
       console.log('enter 2nd conditional', calendarEventScopeStatus)
       handleFetchScopes()
     }
+    // eslint-disable-next-line
   }, [])
 
   useEffect(() => {
