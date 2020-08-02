@@ -66,13 +66,6 @@ step_build: &step_build
   command: |
     npm run build
 
-step_ls: &step_ls
-  name: 'ls'
-  command: |
-    echo $(ls)
-
-
-
 step_deploy_dev_firebase: &step_deploy_dev_firebase
   name: Firebase Dev Deploy
   shell: /bin/bash
@@ -113,8 +106,8 @@ jobs:
       - run: *step_run_node_env_info
       - run: *step_run_install_npm_dependencies
       - save_cache: *step_cache_save_npm
-      # - run: *step_npm_audit
-      # - run: *step_lint
+      - run: *step_npm_audit
+      - run: *step_lint
       - run: *step_build
       - run: *step_ls
       - run: *step_deploy_dev_firebase
@@ -122,6 +115,7 @@ jobs:
           root: .
           paths:
             - build
+            - node_modules
   deploy-staging:
     <<: *base_node
     working_directory: ~/deploy
