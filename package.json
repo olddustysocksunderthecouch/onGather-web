@@ -5,8 +5,12 @@
   "scripts": {
     "start": "npm run env:validate:local && react-scripts start",
     "build": "react-scripts build",
+    "build:dev": "env-cmd -f .env.dev npm run build",
+    "build:prod": "env-cmd -f .env.prod npm run build",
     "deploy:prod": "firebase deploy -P ongather-b1834 --only hosting:on-gather",
     "deploy:dev": "firebase deploy -P ongather-dev --only hosting:ongather-dev",
+    "build-deploy:dev": "npm run build:dev && npm run deploy:dev",
+    "build-deploy:prod": "npm run build:prod && npm run deploy:prod",
     "help": "package-json-help.js",
     "lint": "eslint \"./src/**/*.{ts,tsx}\"",
     "lint:fix": "eslint --fix \"./src/**/*.{ts,tsx}\"",
