@@ -102,7 +102,7 @@ jobs:
           paths:
             - build
             - node_modules
-  deploy-staging:
+  deploy-dev:
     <<: *base_node
     working_directory: ~/deploy
     steps:
@@ -111,6 +111,15 @@ jobs:
       - attach_workspace:
           at: ~/deploy
       - run: *step_deploy_dev_firebase
+   deploy-prod:
+    <<: *base_node
+    working_directory: ~/deploy
+    steps:
+      - checkout:
+          path: ~/deploy
+      - attach_workspace:
+          at: ~/deploy
+      - run: *step_deploy_prod_firebase
 
 
 # --------------------------------
@@ -122,10 +131,18 @@ workflows:
   build:
     jobs:
       - build-test
-      - deploy-staging:
+      - deploy-dev:
           requires:
             - build-test
           filters:
             branches:
               only:
                 - develop
+      - deploy-prod:
+          requires:
+            - build-test
+          filters:
+            branches:
+              only:
+                - master
+
