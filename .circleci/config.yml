@@ -66,8 +66,15 @@ step_build: &step_build
   command: |
     npm run build
 
+
+step_run_install_firebase: &step_run_install_firebase
+  name: 'Install Firebase'
+  shell: /bin/bash
+  command: |
+    npm install -g firebase-tools
+
 step_deploy_dev_firebase: &step_deploy_dev_firebase
-  name: Firebase Deploy
+  name: Firebase Dev Deploy
   command: |
    command: ./node_modules/.bin/firebase deploy -P ongather-dev --only hosting ongather-dev --token=$FIREBASE_TOKEN
   
@@ -109,6 +116,7 @@ jobs:
       - run: *step_npm_audit
       - run: *step_lint
       - run: *step_build
+      - run: *step_deploy_dev_firebase
       - persist_to_workspace:
           root: .
           paths:
@@ -121,6 +129,7 @@ jobs:
           path: ~/deploy
       - attach_workspace:
           at: ~/deploy
+      - run: *step_run_install_firebase
       - run: *step_deploy_dev_firebase
 
 
