@@ -5,6 +5,8 @@
   "scripts": {
     "start": "npm run env:validate:local && react-scripts start",
     "build": "react-scripts build",
+    "deploy:prod": "firebase deploy -P ongather-b1834 --only hosting:on-gather",
+    "deploy:dev": "firebase deploy -P ongather-dev --only hosting:ongather-dev",
     "help": "package-json-help.js",
     "lint": "eslint \"./src/**/*.{ts,tsx}\"",
     "lint:fix": "eslint --fix \"./src/**/*.{ts,tsx}\"",
