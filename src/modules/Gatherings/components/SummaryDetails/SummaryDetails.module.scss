@@ -1,0 +1,29 @@
+@import 'src/common/styles/fonts';
+@import 'src/common/styles/variables';
+@import 'src/common/styles/mixins';
+
+.summaryDetails {
+  display: flex;
+  flex-direction: column;
+
+
+  .overlineTitle {
+    @include font-overline;
+    margin-bottom: 8px;
+    font-size: 12px;
+  }
+
+  .regularBody {
+    @include font-body-mid;
+    margin-bottom: 32px;
+  }
+  .boldBody {
+    @include font-body-mid;
+    font-weight: bold;
+  }
+
+  a {
+    color: $color-black;
+    text-decoration: underline solid $color-mid-gray;
+  }
+}

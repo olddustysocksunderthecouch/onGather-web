@@ -9,8 +9,6 @@ import { Gathering } from '../../../common/types'
 import { ViewGathering } from '../components/ViewGathering'
 import { firebaseSelectors as gatheringsFirebaseSelectors } from '../index'
 
-// import { utilizeThisTemplate } from '../ViewGathering.actions'
-
 interface Props extends ConnectedReduxProps<AnyAction> {
   gathering: Gathering
   handleUseTemplateClicked: () => void
@@ -26,7 +24,7 @@ const ViewGatheringContainer = ({
   useEffect(() => {
     firestore.get({
       collection: 'gatherings',
-      doc: id,
+      where: [['gatheringId', '==', id]],
       storeAs: 'selectedGathering',
     })
     // eslint-disable-next-line

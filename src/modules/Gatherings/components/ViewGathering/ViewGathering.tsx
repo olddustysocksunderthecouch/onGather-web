@@ -1,9 +1,8 @@
 import React, { Fragment, useEffect } from 'react'
 import { Anchorme } from 'react-anchorme'
-import { Link } from 'react-router-dom'
 import { Gathering } from '../../../../common/types'
-import PeopleIcon from './../../../../common/assets/PeopleIcon.svg'
-import TimeIcon from './../../../../common/assets/TimeIcon.svg'
+import { GuestList } from '../GuestList/GuestList'
+import { SummaryDetails } from '../SummaryDetails/SummaryDetails'
 import styles from './ViewGathering.module.scss'
 
 export interface Props {
@@ -24,59 +23,64 @@ export const ViewGathering: React.FunctionComponent<Props> = ({
     : ''
 
   return (
-    <article className={styles.viewTemplate}>
+    <article className={styles.viewGathering}>
       <img
         className={styles.image}
         src={gathering.imageUrls?.regular}
         alt="Template"
       />
-      <div className={styles.content}>
+
+      <div className={styles.container}>
         <h3>{formattedAimsOutcomes}</h3>
         <h1>{gathering.title}</h1>
-        <div className={styles.meta}>
-          <img src={PeopleIcon} alt="People Icon" />
-          {/* <h5>{gatheringSize}</h5> */}
-          <img src={TimeIcon} alt="Time Icon" />
-          {/* <h5>{duration.timeFormatted}</h5> */}
+        <div className={styles.content}>
+          <div className={styles.instructions}>
+            <div className={styles.mobileSummaryDetails}>
+              <SummaryDetails gathering={gathering} />
+            </div>
+            <p className={styles.personalizedDescription}>
+              {gathering.personalizedDescription}
+            </p>
+            {gathering.whatYouDo && (
+              <Fragment>
+                <h2>What we&apos;ll do</h2>
+                <p className={styles.descriptionBody}>
+                  <Anchorme>{gathering.whatYouDo}</Anchorme>
+                </p>
+              </Fragment>
+            )}
+            {gathering.howYouDo && (
+              <Fragment>
+                <h2>How we&apos;ll do it</h2>
+                <p className={styles.descriptionBody}>
+                  <Anchorme>{gathering.howYouDo}</Anchorme>
+                </p>
+              </Fragment>
+            )}
+            {gathering.hostInstructions && (
+              <Fragment>
+                <h2>Host Instructions</h2>
+                <p className={styles.hostInstructionsBody}>
+                  <Anchorme>{gathering.hostInstructions}</Anchorme>
+                </p>
+              </Fragment>
+            )}
+            <div className={styles.mobileGuestList}>
+              <GuestList emails={gathering.inviteeEmails} />
+            </div>
+          </div>
+          <div className={styles.tabletSummaryDetails}>
+            <button className={styles.tabletEditGathering}>
+              Invite more guests or edit
+            </button>
+            <SummaryDetails gathering={gathering} />
+            <GuestList emails={gathering.inviteeEmails} />
+          </div>
         </div>
-        <p className={styles.shortDescription}>
-          {gathering.personalizedDescription}
-        </p>
-        {gathering.whatYouDo && (
-          <Fragment>
-            <h2>What we&apos;ll do</h2>
-            <p className={styles.descriptionBody}>
-              <Anchorme>{gathering.whatYouDo}</Anchorme>
-            </p>
-          </Fragment>
-        )}
-        {gathering.howYouDo && (
-          <Fragment>
-            <h2>How we&apos;ll do it</h2>
-            <p className={styles.descriptionBody}>
-              <Anchorme>{gathering.howYouDo}</Anchorme>
-            </p>
-          </Fragment>
-        )}
-        {gathering.hostInstructions && (
-          <Fragment>
-            <h2>Host Instructions</h2>
-            <p className={styles.descriptionBody}>
-              <Anchorme>{gathering.hostInstructions}</Anchorme>
-            </p>
-          </Fragment>
-        )}
       </div>
-      {/* <Link
-        to={`/edit-send-invites/${gathering.templateId}`}
-        onClick={(): void =>
-          handleUseTemplateClicked(gathering.title, gathering.templateId)
-        }
-      >
-        <button className={styles.useThisTemplateButton}>
-          Create a Gathering with this Activity
-        </button>
-      </Link> */}
+      <button className={styles.mobileEditGathering}>
+        Invite more guests or edit
+      </button>
     </article>
   )
 }

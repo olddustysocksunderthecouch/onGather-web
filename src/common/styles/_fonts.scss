@@ -15,18 +15,18 @@
 }
 
 @font-face {
-  font-family: 'Yeseva_One';
-  src: local('Yeseva One Regular'), local('YesevaOne-Regular'),
-    url('./fonts/Yeseva_One/YesevaOne-Regular.ttf') format('truetype');
-  font-weight: normal;
+  font-family: 'Raleway';
+  src: local('Raleway Bold'), local('Raleway-Bold'),
+    url('./fonts/Raleway/Raleway-Bold.ttf') format('truetype');
+  font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Open_Sans';
-  src: local('Open Sans Light'), local('OpenSans-Light'),
-    url('./fonts/Open_Sans/OpenSans-Light.ttf') format('truetype');
-  font-weight: 300;
+  font-family: 'Yeseva_One';
+  src: local('Yeseva One Regular'), local('YesevaOne-Regular'),
+    url('./fonts/Yeseva_One/YesevaOne-Regular.ttf') format('truetype');
+  font-weight: normal;
   font-style: normal;
 }
 
@@ -81,14 +81,14 @@ $font-families: (
   font-feature-settings: 'pnum' on, 'lnum' on;
 }
 @mixin font-overline {
-font-family: Raleway;
-font-style: normal;
-font-weight: bold;
-font-size: 10px;
-line-height: 12px;
-letter-spacing: 1.5px;
-text-transform: uppercase;
-font-feature-settings: 'pnum' on, 'lnum' on;
+  font-family: Raleway;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-feature-settings: 'pnum' on, 'lnum' on;
 }
 
 @mixin font-body {

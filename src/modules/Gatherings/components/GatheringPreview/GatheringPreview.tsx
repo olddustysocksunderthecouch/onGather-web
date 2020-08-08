@@ -45,7 +45,7 @@ export const GatheringPreview: React.FunctionComponent<Props> = ({
           <h6>{formattedAimsOutcomes}</h6>
           <div className={styles.spacer} />
         </div>
-        <button className={styles.viewTemplate}>View Gathering</button>
+        <button className={styles.viewGathering}>View Gathering</button>
       </Link>
     </article>
   )

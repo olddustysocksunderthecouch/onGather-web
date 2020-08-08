@@ -1,0 +1,27 @@
+@import 'src/common/styles/fonts';
+@import 'src/common/styles/variables';
+
+.guestList {
+  display: flex;
+  flex-direction: column;
+
+  .overlineTitle {
+    @include font-h6;
+    margin-top: 44px;
+    margin-bottom: 16px;
+
+    @media (min-width: $desktop) {
+      @include font-overline;
+      margin-top: 0px;
+      margin-bottom: 12px;
+      font-size: 12px;
+    }
+  }
+  li {
+    margin-bottom: 8px;
+    @include font-body-mid;
+  }
+  .noGuests {
+    @include font-body-mid;
+  }
+}

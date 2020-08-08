@@ -62,6 +62,12 @@ export interface Gathering extends GatheringDraft {
   timeZone: string
   gatheringId?: string
   mainAimsOutcomes: string[]
+  createdTimestamp?: number
+  googleCalendarLink?: string
+  googleCalendarId?: string
+  organizerUid?: string
+  organizerEmail?: string
+  organizerName?: string
 }
 
 export interface CallProvider {

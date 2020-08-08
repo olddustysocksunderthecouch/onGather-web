@@ -95,7 +95,7 @@ export const selectSelectedGathering = createSelector(
   firestoreSelectors.selectData,
   (data: any): any => {
     if (data.selectedGathering) {
-      return data.selectedGathering
+      return arrayResult(data.selectedGathering)[0]
     } else {
       return {}
     }

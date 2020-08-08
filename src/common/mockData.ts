@@ -75,4 +75,6 @@ export const gatheringMock: Gathering = {
     thumb:
       'https://images.unsplash.com/photo-1416339306562-f3d12fefd36f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=92f3e02f63678acc8416d044e189f515',
   },
+  organizerName: 'Adrian Bunge',
+  callUrl: 'https://meet.google.com/mhc-zkwm-omk',
 }
