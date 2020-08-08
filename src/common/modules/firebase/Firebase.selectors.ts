@@ -28,6 +28,11 @@ export const selectUid = createSelector(
   (auth: any): string | null => auth.uid,
 )
 
+export const selectEmail = createSelector(
+  selectAuth,
+  (auth: any): string | null => auth.email,
+)
+
 export const selectPhotoURL = createSelector(
   selectAuth,
   (auth: any): any => auth.photoURL,

@@ -201,10 +201,9 @@
   }
 }
 
-.buttonSection2 {
+@mixin homeButton {
   margin-top: 16px;
   border-radius: 6px;
-  background-color: $color-red;
   color: $color-white;
   box-shadow: 3px 3px 6px rgba(207, 207, 207, 0.8);
   padding: 16px 24px;
@@ -222,6 +221,16 @@
     padding: 16px 28px;
     margin-top: 24px;
   }
+}
+
+.buttonRed {
+  @include homeButton();
+  background-color: $color-red;
+}
+
+.buttonYellow {
+  @include homeButton();
+  background-color: $color-yellow;
 }
 
 .homeSection3 {

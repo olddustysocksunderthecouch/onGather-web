@@ -119,7 +119,7 @@ export const UtilizeTemplate: React.FunctionComponent<Props> = ({
       startTimestamp: mergeDateAndTime(
         watchAllFields.date,
         watchAllFields.time,
-      ).toISOString(),
+      ).getTime(),
       duration: watchAllFields.duration,
       callProvider: '',
       callUrl: '',
@@ -132,11 +132,12 @@ export const UtilizeTemplate: React.FunctionComponent<Props> = ({
       personalizedDescription: watchAllFields.personalizedDescription,
       whatYouDo: watchAllFields.whatYouDo,
       howYouDo: watchAllFields.howYouDo,
+      mainAimsOutcomes: template.mainAimsOutcomes,
       inviteeEmails: watchAllFields.inviteeEmails,
       startTimestamp: mergeDateAndTime(
         watchAllFields.date,
         watchAllFields.time,
-      ).toISOString(),
+      ).getTime(),
       timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       duration: watchAllFields.duration,
       callProvider: '',

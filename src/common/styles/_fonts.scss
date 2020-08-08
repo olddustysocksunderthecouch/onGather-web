@@ -80,6 +80,16 @@ $font-families: (
   letter-spacing: 0.4px;
   font-feature-settings: 'pnum' on, 'lnum' on;
 }
+@mixin font-overline {
+font-family: Raleway;
+font-style: normal;
+font-weight: bold;
+font-size: 10px;
+line-height: 12px;
+letter-spacing: 1.5px;
+text-transform: uppercase;
+font-feature-settings: 'pnum' on, 'lnum' on;
+}
 
 @mixin font-body {
   font-family: Raleway;

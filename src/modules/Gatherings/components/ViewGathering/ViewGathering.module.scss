@@ -1,0 +1,122 @@
+@import 'src/common/styles/fonts';
+@import 'src/common/styles/variables';
+@import 'src/common/styles/mixins';
+
+.viewTemplate {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 8px;
+  @media (min-width: $tablet) {
+    margin: 0px 128px;
+  }
+
+  @media (min-width: $desktop) {
+    margin: 0px 192px;
+  }
+
+  @media (min-width: $bigScreen) {
+    margin: 0px 396px;
+  }
+
+  .image {
+    height: 240px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 0px 0px 16px 16px;
+  }
+}
+
+.content {
+  align-self: center;
+  max-width: 688px;
+  margin: 32px 16px 0px 16px;
+
+  @media (min-width: $tablet) {
+    margin: 36px 16px 0px 16px;
+  }
+
+  @media (min-width: $desktop) {
+    margin: 48px 32px 0px 32px;
+  }
+
+  @media (min-width: $bigScreen) {
+    margin: 64px 32px 0px 32px;
+  }
+  h3 {
+    @include font-caption;
+    color: $color-dark-blue;
+  }
+
+  h1 {
+    margin-top: 8px;
+    margin-bottom: 16px;
+    @include text-style('font-title', 'regular', 'title-xl');
+
+    @media (min-width: $tablet) {
+      @include text-style('font-title', 'regular', 'title-xxl');
+    }
+  }
+  h2 {
+    @include font-h6;
+    margin-top: 44px;
+    margin-bottom: 16px;
+  }
+
+  a {
+    color: $color-dark-blue;
+    &:visited {
+      color: $color-dark-blue;
+    }
+    &:hover {
+      color: $color-dark-blue;
+    }
+    &:visited {
+      color: $color-dark-blue;
+    }
+    &:focus {
+      color: $color-dark-blue;
+    }
+  }
+
+  .meta {
+    display: flex;
+    flex-direction: row;
+
+    @media (min-width: $tablet) {
+      margin-top: 12px;
+    }
+
+    h5 {
+      @include font-caption;
+      padding-right: 16px;
+      justify-self: center;
+      margin-top: 2px;
+    }
+
+    img {
+      padding-right: 8px;
+    }
+  }
+
+  .descriptionBody {
+    @include font-body;
+    white-space: pre-line;
+    &:last-child {
+      margin-bottom: 96px;
+    }
+  }
+}
+
+.shortDescription {
+  @include font-body-large;
+  margin-top: 16px;
+  font-size: 18px;
+}
+
+.useThisTemplateButton {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  @include button;
+  background-color: $color-red;
+}

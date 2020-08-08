@@ -18,6 +18,10 @@ import { history } from './common/redux/store'
 import './index.scss'
 import { AuthRedirectContainer } from './modules/Auth'
 import { BrowseTemplateContainer } from './modules/BrowseTemplates'
+import {
+  GatheringsContainer,
+  ViewGatheringContainer,
+} from './modules/Gatherings'
 import { HomeContainer } from './modules/Home'
 import { PrivacyPolicyContainer } from './modules/PrivacyPolicy'
 import {
@@ -28,6 +32,7 @@ import {
   UtilizeTemplateContainer,
   ViewTemplateContainer,
 } from './modules/ViewUtilizeTemplate'
+import { Routes } from './routes'
 import * as serviceWorker from './serviceWorker'
 
 const firebaseConfig = {
@@ -99,6 +104,11 @@ ReactDOM.render(
             <Route
               path="/edit-send-invites/:id"
               component={UtilizeTemplateContainer}
+            />
+            <Route path={Routes.Gatherings} component={GatheringsContainer} />
+            <Route
+              path={`${Routes.ViewGathering}/:id`}
+              component={ViewGatheringContainer}
             />
             <Route path="/auth/*" component={AuthRedirectContainer} />
             <Route render={(): JSX.Element => <div>404 Not Found</div>} />

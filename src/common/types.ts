@@ -50,7 +50,7 @@ export interface GatheringDraft {
   whatYouDo: string
   howYouDo: string
   inviteeEmails: string[]
-  startTimestamp: string
+  startTimestamp: number
   duration: string
   callProvider: string
   callUrl?: string
@@ -60,6 +60,8 @@ export interface Gathering extends GatheringDraft {
   imageUrls: ImageUrls | null
   hostInstructions: string
   timeZone: string
+  gatheringId?: string
+  mainAimsOutcomes: string[]
 }
 
 export interface CallProvider {

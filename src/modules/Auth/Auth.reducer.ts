@@ -21,7 +21,7 @@ export const initialState: AuthState = {
     whatYouDo: '',
     howYouDo: '',
     inviteeEmails: [],
-    startTimestamp: new Date().toISOString(),
+    startTimestamp: 0,
     duration: '',
     callProvider: '',
     callUrl: '',

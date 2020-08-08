@@ -30,6 +30,12 @@ export const Home: React.FunctionComponent<Props> = ({
             Not seeing them in person is tough... and regular calls can get
             boring and feel like a chore
           </p>
+          <Link
+            to="/browse-activities"
+            onClick={(): void => handleBrowseButtonClicked('top')}
+          >
+            <button className={styles.buttonYellow}>Find an activity</button>
+          </Link>
         </div>
       </section>
       <section className={styles.homeSection2}>
@@ -40,20 +46,16 @@ export const Home: React.FunctionComponent<Props> = ({
         />
         <div className={styles.homeSection2Content}>
           <h1 className={styles.homePageTitle2}>
-            Imagine you could easily organise doing new activities on video
-            calls
+            Organise a fun remote activity in less than a minute!
           </h1>
           <p>
-            Picture a games night, meditation session, casual book club or semi
-            structured conversations
+            Craft Projects, Chess, Monopoly, Meditation, Book Club & much more
           </p>
           <Link
             to="/browse-activities"
             onClick={(): void => handleBrowseButtonClicked('middle')}
           >
-            <button className={styles.buttonSection2}>
-              Browse our activities
-            </button>
+            <button className={styles.buttonRed}>Browse our activities</button>
           </Link>
         </div>
       </section>
@@ -70,9 +72,9 @@ export const Home: React.FunctionComponent<Props> = ({
           </p>
           <Link
             to="/browse-activities"
-            onClick={(): void => handleBrowseButtonClicked('middle')}
+            onClick={(): void => handleBrowseButtonClicked('bottom')}
           >
-            <button className={styles.buttonSection2}>Find an activity</button>
+            <button className={styles.buttonYellow}>Find an activity</button>
           </Link>
         </div>
         <img

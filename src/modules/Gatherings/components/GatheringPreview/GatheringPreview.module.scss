@@ -1,0 +1,144 @@
+@import 'src/common/styles/fonts';
+@import 'src/common/styles/variables';
+@import 'src/common/styles/mixins';
+
+.templatePreview {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+  background-color: $color-white;
+  border: 1px solid #efefef;
+  box-shadow: 2px 2px 36px rgba(238, 235, 235, 0.04),
+    0px 4px 28px rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
+  border-radius: 18px;
+  margin-bottom: 16px;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 2px 2px 36px rgba(0, 0, 0, 0.08),
+      0px 4px 28px rgba(0, 0, 0, 0.06);
+  }
+
+  &:active {
+    background-color: rgba($color: $color-dove-gray, $alpha: 0.01);
+  }
+
+  @media (min-width: $desktop) {
+    width: calc(50% - 8px);
+    justify-items: start;
+    align-items: flex-start;
+    height: 193px;
+
+    &:nth-child(even) {
+      margin-left: 8px;
+    }
+
+    &:nth-child(odd) {
+      margin-right: 8px;
+    }
+  }
+
+  .link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    @media (min-width: $desktop) {
+      flex-direction: row;
+    }
+  }
+}
+
+.image {
+  height: 189px;
+  width: 100%;
+  border-radius: 16px 16px 0px 0px;
+  object-fit: cover;
+
+  @media (min-width: $desktop) {
+    width: 30%;
+    height: 100%;
+    border-radius: 16px 0px 0px 16px;
+  }
+}
+.content {
+  position: relative;
+  width: 100%;
+  padding: 18px 24px 24px 24px;
+
+  @media (min-width: $desktop) {
+    width: 70%;
+  }
+
+  h4 {
+    @include font-h6;
+    margin-top: 8px;
+    margin-bottom: 4px;
+  }
+
+  h5 {
+    @include font-overline;
+    color: $color-red;
+  }
+
+  h6 {
+    @include font-caption;
+    color: $color-malibu;
+
+    @media (min-width: $desktop) {
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  }
+
+  .meta {
+    display: flex;
+    flex-direction: row;
+    margin-top: 8px;
+
+    @media (min-width: $tablet) {
+      margin-top: 12px;
+    }
+
+    p {
+      @include font-caption;
+      padding-right: 16px;
+      margin-top: 2px;
+    }
+
+    img {
+      padding-right: 8px;
+    }
+  }
+  .shortDescription {
+    @include font-body-small;
+    margin-top: 20px;
+    @media (min-width: $desktop) {
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    @media (min-width: $bigScreen) {
+      @include font-body;
+    }
+  }
+
+  .spacer {
+    height: 56px;
+  }
+}
+
+.viewTemplate {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  @include button-no-shadow;
+  background-color: $color-yellow;
+  cursor: pointer;
+}

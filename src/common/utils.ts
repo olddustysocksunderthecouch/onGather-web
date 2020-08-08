@@ -13,3 +13,4 @@ export const mergeDateAndTime = (date: Date, time: Date): Date =>
       formatISO(time, { representation: 'time' }),
     ),
   )
+
