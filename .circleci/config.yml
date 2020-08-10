@@ -34,6 +34,14 @@ step_run_node_env_info: &step_run_node_env_info
     print_node_versions
     print_docker_versions
 
+step_dev_in_app_environment: &step_dev_in_app_environment
+  name: 'Dev in app environment variables'
+  command: |
+    # api
+    echo REACT_APP_GOOGLE_ANALYTICS_ID=$DEV_GOOGLE_ANALYTICS_ID >> .env.dev
+    echo REACT_APP_AUTH_PERMISSION_URL=$DEV_AUTH_PERMISSION_URL >> .env.dev
+    echo REACT_APP_GOOGLE_ANALYTICS_ID=$DEV_GOOGLE_ANALYTICS_ID >> .env.dev
+
 step_run_update_npm: &step_run_update_npm
   name: 'Update NPM To The most recent release'
   shell: /bin/bash
@@ -65,6 +73,11 @@ step_build: &step_build
   name: 'Build the Project'
   command: |
     npm run build
+
+step_build_dev: &step_build_dev
+  name: 'Build the Dev Project'
+  command: |
+    npm run build:dev
 
 step_deploy_dev_firebase: &step_deploy_dev_firebase
   name: Firebase Dev Deploy
@@ -100,7 +113,6 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            - build
             - node_modules
   deploy-dev:
     <<: *base_node
@@ -110,6 +122,9 @@ jobs:
           path: ~/deploy
       - attach_workspace:
           at: ~/deploy
+      - run: *step_dev_in_app_environment
+      - run: *step_run_node_env_info
+      - run: *step_build_dev
       - run: *step_deploy_dev_firebase
   deploy-prod:
     <<: *base_node
