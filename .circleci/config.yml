@@ -47,7 +47,7 @@ step_dev_in_app_environment: &step_dev_in_app_environment
     echo REACT_APP_FIREBASE_STORAGE_BUCKET=$DEV_FIREBASE_STORAGE_BUCKET >> .env.dev
     echo REACT_APP_FIREBASE_MESSAGING_SENDER_ID=$DEV_FIREBASE_MESSAGING_SENDER_ID >> .env.dev
     echo REACT_APP_FIREBASE_APP_ID=$DEV_FIREBASE_APP_ID >> .env.dev
-    echo EACT_APP_FIREBASE_MEASUREMENT_ID=$DEV_FIREBASE_MEASUREMENT_ID >> .env.dev
+    echo REACT_APP_FIREBASE_MEASUREMENT_ID=$DEV_FIREBASE_MEASUREMENT_ID >> .env.dev
 
 step_run_update_npm: &step_run_update_npm
   name: 'Update NPM To The most recent release'

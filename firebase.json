@@ -14,7 +14,7 @@
   {
     "target": "ongather-dev",
     "site": "ongather-dev",
-    "public": "build",
+    "public": "deploy/build",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
