@@ -22,11 +22,10 @@ import { durations } from '../../../../common/constants'
 import { Duration, Gathering } from '../../../../common/types'
 import { mergeDateAndTime } from '../../../../common/utils'
 import { AddParticipants } from '../../../ViewUtilizeTemplate/components/AddParticipants'
-import { CreatingSuccessErrorModal } from '../../../ViewUtilizeTemplate/components/LoadingSuccessErrorModal/CreatingSuccessErrorModal'
 import { UpdateGatheringStatus } from '../../types'
-import styles from './EditGathering.module.scss'
 import { UpdateConfirmationModal } from '../UpdateConfirmationModal/UpdateConfirmationModal'
 import { UpdatingSuccessErrorModal } from '../UpdatingSuccessErrorModal'
+import styles from './EditGathering.module.scss'
 
 export interface Props {
   gathering: Gathering
