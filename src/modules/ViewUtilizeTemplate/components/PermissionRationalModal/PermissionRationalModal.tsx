@@ -14,11 +14,11 @@ export const PermissionRationalModal: React.FunctionComponent<Props> = ({
 }) => {
   return (
     <div className={styles.permissionModal}>
-      <h1 className={styles.signUpTitle}>We need your permission...</h1>
+      <h5>We need your permission...</h5>
       <button className={styles.closeIcon} onClick={handleCloseModalClicked}>
         <img src={CloseIcon} alt="Close Icon" />
       </button>
-      <p className={styles.description}>
+      <p>
         ... to send out invitations to you and your friends, using Google
         Calendar.
       </p>
@@ -27,10 +27,10 @@ export const PermissionRationalModal: React.FunctionComponent<Props> = ({
         Google Calendar, that you make with this website.
       </p>
       <button
-        className={styles.continueWithButton}
+        className={styles.modalButton}
         onClick={handleScopeRequestClicked}
       >
-        <div className={styles.buttonText}>Continue</div>
+        Continue
       </button>
       <p>
         *By continuing you agree to the{' '}

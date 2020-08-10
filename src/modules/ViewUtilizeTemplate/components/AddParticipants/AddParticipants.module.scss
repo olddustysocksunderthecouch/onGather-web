@@ -15,9 +15,12 @@
     border: 1px solid $color-red;
   }
   .emailList {
-    padding: 8px 0px;
+    padding: 4px 0px;
     display: flex;
     flex-wrap: wrap;
+  }
+  .noGuests {
+    @include font-body-mid;
   }
   .addButton {
     border: 1px solid $color-mid-gray;

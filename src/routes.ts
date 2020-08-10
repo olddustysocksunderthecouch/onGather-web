@@ -9,4 +9,5 @@ export enum Routes {
   UtilizeTemplate = '/edit-send-invites/',
   Gatherings = '/gatherings',
   ViewGathering = '/gathering',
+  EditGathering = '/edit-gathering',
 }

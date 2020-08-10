@@ -30,7 +30,12 @@ export const SummaryDetails: React.FunctionComponent<Props> = ({
         <p className={styles.regularBody}>({gathering.timeZone})</p>
       </div>
       <p className={styles.overlineTitle}>Video call link</p>
-      <a className={styles.regularBody} href={gathering.callUrl}>
+      <a
+        className={styles.regularBody}
+        href={gathering.callUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         {gathering.callUrl}
       </a>
       <p className={styles.overlineTitle}>Hosted By</p>

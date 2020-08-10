@@ -16,7 +16,6 @@
   @media (min-width: $mobile) {
     letter-spacing: 0.05em;
     padding: 16px 24px;
-
   }
   @media (min-width: $desktop) {
     @include text-style('font-main', 'semibold', 'body-s');

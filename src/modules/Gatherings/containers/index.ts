@@ -1,4 +1,5 @@
 import Gatherings from './Gatherings'
 import ViewGathering from './ViewGathering'
+import EditGathering from './EditGathering'
 
-export { Gatherings, ViewGathering }
+export { EditGathering, Gatherings, ViewGathering }

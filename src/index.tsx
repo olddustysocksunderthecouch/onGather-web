@@ -19,6 +19,7 @@ import './index.scss'
 import { AuthRedirectContainer } from './modules/Auth'
 import { BrowseTemplateContainer } from './modules/BrowseTemplates'
 import {
+  EditGatheringContainer,
   GatheringsContainer,
   ViewGatheringContainer,
 } from './modules/Gatherings'
@@ -109,6 +110,10 @@ ReactDOM.render(
             <Route
               path={`${Routes.ViewGathering}/:id`}
               component={ViewGatheringContainer}
+            />
+            <Route
+              path={`${Routes.EditGathering}/:id`}
+              component={EditGatheringContainer}
             />
             <Route path="/auth/*" component={AuthRedirectContainer} />
             <Route render={(): JSX.Element => <div>404 Not Found</div>} />

@@ -5,6 +5,7 @@ import { Persistor } from 'redux-persist'
 import { AppState } from '../../modules/App/types'
 import { AuthState } from '../../modules/Auth/types'
 import { BrowseTemplatesState } from '../../modules/BrowseTemplates/types'
+import { GatheringsState } from '../../modules/Gatherings/types'
 import { UserTemplatesState } from '../../modules/UserTemplates/types'
 import { ViewUseTemplateState } from '../../modules/ViewUtilizeTemplate/types'
 
@@ -15,6 +16,7 @@ export interface RootState {
   userTemplates: UserTemplatesState
   viewUseTemplate: ViewUseTemplateState
   browseTemplates: BrowseTemplatesState
+  gatherings: GatheringsState
   firebase: any
   firestore: any
 }

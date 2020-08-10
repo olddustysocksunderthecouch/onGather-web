@@ -5,6 +5,7 @@ import firestore from 'redux-firestore/lib/reducer'
 import { reducer as appReducer } from '../../modules/App'
 import { reducer as authReducer } from '../../modules/Auth'
 import { reducer as browseTemplatesReducer } from '../../modules/BrowseTemplates'
+import { reducer as gatheringsReducer } from '../../modules/Gatherings'
 import { reducer as userTemplatesReducer } from '../../modules/UserTemplates'
 import { reducer as viewUseTemplateReducer } from '../../modules/ViewUtilizeTemplate'
 import { createRoutingReducer } from '../routing'
@@ -23,6 +24,7 @@ const createRootReducer = (history: History): Reducer<RootState> =>
     userTemplates: userTemplatesReducer,
     viewUseTemplate: viewUseTemplateReducer,
     browseTemplates: browseTemplatesReducer,
+    gatherings: gatheringsReducer,
     firebase,
     firestore,
   })

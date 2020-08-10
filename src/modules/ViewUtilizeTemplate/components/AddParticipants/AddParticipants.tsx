@@ -106,7 +106,7 @@ export const AddParticipants: React.FunctionComponent<Props> = ({
         />
         <ul className={styles.emailList}>
           {emailAddresses.length === 0 ? (
-            <p>No guests invited so far</p>
+            <p className={styles.noGuests}>No guests invited so far</p>
           ) : (
             emailAddresses.map((email: string) => {
               return (
@@ -114,7 +114,11 @@ export const AddParticipants: React.FunctionComponent<Props> = ({
                   <Chip
                     key={email}
                     label={email}
-                    style={{ marginRight: '4px', lineHeight: '1rem' }}
+                    style={{
+                      marginRight: '4px',
+                      marginTop: '4px',
+                      lineHeight: '1rem',
+                    }}
                     onDelete={(): void => handleEmailDelete(email)}
                   />
                 </li>

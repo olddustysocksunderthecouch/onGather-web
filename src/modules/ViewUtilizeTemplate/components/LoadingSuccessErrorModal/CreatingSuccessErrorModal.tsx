@@ -19,18 +19,18 @@ export const CreatingSuccessErrorModal: React.FunctionComponent<Props> = ({
         <img src={CloseIcon} alt="Close Icon" />
       </button>
       {createGatheringStatus === CreateGatheringStatus.Creating && (
-        <div className={styles.creatingModal}>
-          <h1 className={styles.modalTitle}>Creating...</h1>
-          <p className={styles.creatingDescription}>
+        <Fragment>
+          <h5>Creating...</h5>
+          <p>
             We&apos;re sending everyone an email & adding the gathering to
             everyone&apos;s Google Calendar
           </p>
           <div className={styles.loadingBar}></div>
-        </div>
+        </Fragment>
       )}
       {createGatheringStatus === CreateGatheringStatus.Error && (
         <Fragment>
-          <h1 className={styles.modalTitle}>Oh hot damn...</h1>
+          <h5>Oh hot damn...</h5>
           <p className={styles.errorDescription}>
             There&apos;s been an error... please let Adrian know that
             you&apos;ve found a bug
@@ -39,14 +39,14 @@ export const CreatingSuccessErrorModal: React.FunctionComponent<Props> = ({
       )}
       {createGatheringStatus === CreateGatheringStatus.Success && (
         <Fragment>
-          <h1 className={styles.modalTitle}>Great Success!</h1>
-          <p className={styles.description}>
+          <h5>Great Success!</h5>
+          <p>
             The invitations have been sent out to everyone via email and added
             everyone&apos;s Google Calendar!
           </p>
 
-          <Link to="/browse-activities" className={styles.continueWithButton}>
-            <div className={styles.buttonText}>Browse more activities</div>
+          <Link to="/browse-activities" className={styles.modalButton}>
+            <div>Browse more activities</div>
           </Link>
         </Fragment>
       )}

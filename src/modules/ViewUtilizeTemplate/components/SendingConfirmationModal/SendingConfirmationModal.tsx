@@ -18,15 +18,14 @@ export const SendingConfirmationModal: React.FunctionComponent<Props> = ({
     ? 'Yes, please only send me an invite'
     : 'Send'
   return (
-    <div className={styles.authModal}>
-      <h1 className={styles.signUpTitle}>Just to confirm...</h1>
+    <div className={styles.sendingConfirmationModal}>
+      <h5>Just to confirm...</h5>
       <button className={styles.closeIcon} onClick={handleCloseModalClicked}>
         <img src={CloseIcon} alt="Close Icon" />
       </button>
-      {renderNoInvitees && (
+      {renderNoInvitees ? (
         <p>Are you sure that you you don&apos;t want to invite someone?</p>
-      )}
-      {inviteeEmails && inviteeEmails.length > 0 && (
+      ) : (
         <div>
           <p>
             Press send and we&apos;ll take care of emailing and sending a
@@ -40,7 +39,7 @@ export const SendingConfirmationModal: React.FunctionComponent<Props> = ({
       )}
 
       <button
-        className={styles.continueWithButton}
+        className={styles.modalButton}
         onClick={handleContinueWithClicked}
       >
         <div className={styles.buttonText}>{sendButtonText}</div>
