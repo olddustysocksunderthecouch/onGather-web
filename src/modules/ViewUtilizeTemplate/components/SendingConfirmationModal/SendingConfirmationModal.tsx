@@ -24,7 +24,7 @@ export const SendingConfirmationModal: React.FunctionComponent<Props> = ({
         <img src={CloseIcon} alt="Close Icon" />
       </button>
       {renderNoInvitees ? (
-        <p>Are you sure that you you don&apos;t want to invite someone?</p>
+        <p>Are you sure that you don&apos;t want to invite someone?</p>
       ) : (
         <div>
           <p>

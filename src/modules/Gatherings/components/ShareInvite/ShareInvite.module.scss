@@ -1,0 +1,50 @@
+@import 'src/common/styles/fonts';
+@import 'src/common/styles/variables';
+@import 'src/common/styles/mixins';
+@import 'src/common/styles/mixins-modal';
+
+.container {
+  @include modal-basic-styles;
+  width: 100%;
+
+  .emailList {
+    padding: 4px 0px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .noGuests {
+    @include font-body-mid;
+  }
+
+  button {
+    @include modal-button;
+  }
+  .addButton {
+    border: 1px solid $color-mid-gray;
+    padding: 1px 4px 1px 4px;
+    border-radius: 4px;
+    margin-top: 0px;
+    color: $color-dove-gray;
+    background-color: $color-white;
+    &:active {
+      background-color: $color-lightest-gray;
+    }
+  }
+
+  .closeIcon {
+    @include modal-close-button;
+  }
+
+  h6{
+    @include font-body-large ;
+    align-self: center;
+  }
+}
+.errorText {
+  font-size: 12px;
+  font-family: 'Raleway';
+  font-weight: 400;
+  color: $color-red;
+  margin-left: 14px;
+  margin-top: 8px;
+}

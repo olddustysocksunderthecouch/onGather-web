@@ -2,6 +2,23 @@
 @import 'src/common/styles/variables';
 @import 'src/common/styles/mixins';
 
+.parent{
+  position: relative;
+  .modal {
+    position: fixed;
+    z-index: 100;
+    width: 100vw;
+    height: 100%;
+    backdrop-filter: blur(3px);
+    background-color: rgba($color: $color-dove-gray, $alpha: 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+  }
+}
+
 .viewGathering {
   display: flex;
   flex-direction: column;
@@ -28,6 +45,32 @@
     object-fit: cover;
     border-radius: 0px 0px 16px 16px;
   }
+
+  .header {
+    margin-left: 16px;
+    margin-top: 24px;
+
+    @media (min-width: $tablet) {
+      margin-left: 42px;
+      margin-top: 32px;
+    }
+
+    @media (min-width: $desktop) {
+      margin-left: 56px;
+      margin-top: 36px;
+    }
+
+    @media (min-width: $bigScreen) {
+      margin-left: 64px;
+      margin-top: 48px;
+    }
+
+    @media (min-width: $massiveScreen) {
+      margin-left: 420px;
+      margin-top: 64px;
+    }
+  }
+
   h3 {
     @include font-caption;
     color: $color-dark-yellow;
@@ -43,9 +86,20 @@
       @include text-style('font-title', 'regular', 'title-xxxl');
     }
   }
+
+  article {
+    display: flex;
+    flex-direction: column;
+  }
+  
 }
 
 .container {
+  align-self: center;
+}
+
+.content {
+  display: flex;
   margin: 32px 16px 0px 16px;
   max-width: 1000px;
   align-self: center;
@@ -62,10 +116,6 @@
     margin: 64px 64px 0px 64px;
     padding-bottom: 64px;
   }
-}
-
-.content {
-  display: flex;
 
   .instructions {
     max-width: 688px;
@@ -86,7 +136,16 @@
     }
   }
 
-  h2 {
+  .sectionTitlePersonal {
+    @include font-h6;
+    margin-bottom: 16px;
+    margin-top: 44px;
+    @media (min-width: $desktop) {
+      margin-top: 0px;
+    }
+  }
+
+  .sectionTitle {
     @include font-h6;
     margin-top: 44px;
     margin-bottom: 16px;
@@ -108,26 +167,6 @@
     }
   }
 
-  .meta {
-    display: flex;
-    flex-direction: row;
-
-    @media (min-width: $tablet) {
-      margin-top: 12px;
-    }
-
-    h5 {
-      @include font-caption;
-      padding-right: 16px;
-      justify-self: center;
-      margin-top: 2px;
-    }
-
-    img {
-      padding-right: 8px;
-    }
-  }
-
   .descriptionBody {
     @include font-body;
     white-space: pre-line;
@@ -139,16 +178,23 @@
   .hostInstructionsBody {
     @include font-body;
     white-space: pre-line;
-    @media (min-width: $desktop) {
-      margin-bottom: 96px;
-    }
+    margin-bottom: 96px;
   }
 
   .tabletEditGathering {
     @include button;
-    background-color: $color-yellow;
+    width: 100%;
+    background-color: $color-malibu;
     cursor: pointer;
     margin-bottom: 32px;
+  }
+
+  .tabletShareGathering {
+    @include button;
+    width: 100%;
+    background-color: $color-yellow;
+    cursor: pointer;
+    margin-bottom: 16px;
   }
 }
 
@@ -164,12 +210,12 @@
   }
 }
 
-.mobileGuestList {
-  padding-bottom: 128px;
-  @media (min-width: $desktop) {
-    display: none;
-  }
-}
+// .mobileGuestList {
+//   padding-bottom: 128px;
+//   @media (min-width: $desktop) {
+//     display: none;
+//   }
+// }
 
 .personalizedDescription {
   @include font-body-large;

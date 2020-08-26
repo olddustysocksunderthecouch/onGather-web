@@ -1,0 +1,14 @@
+@import 'src/common/styles/mixins-modal';
+
+.sendingConfirmationModal {
+  @include modal-basic-styles;
+  .modalButton {
+    @include modal-button;
+  }
+  .invitees {
+    font-weight: 600;
+  }
+  .closeIcon {
+    @include modal-close-button;
+  }
+}

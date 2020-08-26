@@ -21,7 +21,6 @@ import { AuthModal } from '../../../../common/components/AuthModal'
 import { durations } from '../../../../common/constants'
 import { Duration, Gathering } from '../../../../common/types'
 import { mergeDateAndTime } from '../../../../common/utils'
-import { AddParticipants } from '../../../ViewUtilizeTemplate/components/AddParticipants'
 import { UpdateGatheringStatus } from '../../types'
 import { UpdateConfirmationModal } from '../UpdateConfirmationModal/UpdateConfirmationModal'
 import { UpdatingSuccessErrorModal } from '../UpdatingSuccessErrorModal'
@@ -275,21 +274,6 @@ export const EditGathering: React.FunctionComponent<Props> = ({
                 </FormControl>
               </div>
 
-              <Controller
-                name="inviteeEmails"
-                as={
-                  <AddParticipants
-                    onChange={(value): any => value}
-                    defaultValue={gathering.inviteeEmails}
-                    error={!!errors.attendeeEmails}
-                  />
-                }
-                rules={{
-                  validate: (value): boolean | string =>
-                    value.length > 1 || 'error',
-                }}
-                control={control}
-              />
               <h2>Invitation Description</h2>
               <TextField
                 style={{ marginTop: '16px' }}
